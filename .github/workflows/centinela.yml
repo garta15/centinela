@@ -3,6 +3,9 @@ name: Centinela Familiar
 on:
   schedule:
     - cron: "*/10 * * * *"     # cada 10 min (GitHub puede retrasarlo unos minutos)
+  push:                         # corre también al actualizar el código
+    branches: [main]
+    paths-ignore: ["docs/**", "state.json"]
   workflow_dispatch:            # botón "Run workflow" manual
     inputs:
       prueba:
