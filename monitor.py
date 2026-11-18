@@ -646,6 +646,101 @@ def f_puertos():
         time.sleep(1)
     return out
 
+# ------------------------------------------------------------------ restricciones aéreas (FAA)
+TFRS = []          # restricciones de vuelo para el panel
+ESPACIO_AEREO = {}  # ground stops / cierres de aeropuertos
+AEROP_PR = {"SJU", "BQN", "PSE", "MAZ", "NRR", "SIG", "VQS", "CPX"}
+
+def _fecha_tfr(s):
+    try:
+        return datetime.strptime(s, "%m/%d/%Y").replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+def f_restricciones_aereas():
+    """FAA: restricciones temporales de vuelo (TFR) por seguridad nacional, VIP e instrucciones especiales."""
+    out = []
+    d = get("https://tfr.faa.gov/tfrapi/exportTfrList").json()
+    hist = ESTADO_REF.setdefault("tfr_vistos", {})
+    nuevos_seg, en_pr = [], []
+    for t in d:
+        nid = t.get("notam_id", "?"); tipo = t.get("type", ""); est = t.get("state", "")
+        creado = _fecha_tfr(t.get("creation_date"))
+        es_nuevo = nid not in hist
+        if es_nuevo: hist[nid] = NOW.isoformat(timespec="minutes")
+        reciente = creado is not None and (NOW - creado).total_seconds() <= 48 * 3600
+        seg = tipo in ("SECURITY", "SPECIAL", "VIP")
+        pr = est == "PR" or t.get("facility") == "ZSU"
+        nacional = est == "USA" and t.get("facility") == "FDC"
+        reg = {"id": nid, "tipo": tipo, "estado": est, "centro": t.get("facility", ""),
+               "lugar": (t.get("description") or "").strip()[:160], "creado": t.get("creation_date", ""),
+               "pr": pr, "nacional": nacional, "nuevo": reciente,
+               "url": "https://tfr.faa.gov/tfr3/?page=detail_" + nid.replace("/", "_")}
+        if pr or nacional or (seg and reciente):
+            TFRS.append(reg)
+        if pr: en_pr.append(reg)
+        if seg and reciente: nuevos_seg.append(reg)
+    # limpiar vistos viejos
+    for k in [k for k, v in hist.items() if v < (NOW - timedelta(days=30)).isoformat()]:
+        hist.pop(k, None)
+    TFRS.sort(key=lambda r: (not r["pr"], not r["nacional"], not r["nuevo"], r["id"]), reverse=False)
+    # señales
+    pr_nuevos = [r for r in en_pr if r["nuevo"]]
+    if pr_nuevos:
+        out.append(senal("FAA TFR (oficial)", "Restricción aérea", 2,
+                         f"Nueva restricción de vuelo en Puerto Rico: {pr_nuevos[0]['tipo']} — {pr_nuevos[0]['lugar'][:80]}",
+                         f"NOTAM {pr_nuevos[0]['id']}", url=pr_nuevos[0]["url"], clave=f"tfr-{pr_nuevos[0]['id']}",
+                         alcance="familia", seccion="pr"))
+    nac = [r for r in nuevos_seg if r["nacional"]]
+    if nac:
+        out.append(senal("FAA TFR (oficial)", "Restricción aérea", 2,
+                         f"{len(nac)} instrucción(es) especial(es) de seguridad NACIONAL nueva(s) (FAA/FDC)",
+                         "; ".join(r["id"] for r in nac[:6]), url="https://tfr.faa.gov/", clave=f"tfrnac-{NOW:%Y%m%d}",
+                         seccion="eeuu"))
+    base = ESTADO_REF.setdefault("tfr_base", [])
+    base.append(len(nuevos_seg)); del base[:-144]
+    med = sorted(base[:-1])[len(base[:-1]) // 2] if len(base) > 12 else None
+    if med is not None and len(nuevos_seg) >= max(10, 2.5 * med):
+        out.append(senal("FAA TFR (oficial)", "Restricción aérea", 2,
+                         f"Aumento inusual de restricciones de seguridad: {len(nuevos_seg)} nuevas en 48 h (normal ≈{med})",
+                         url="https://tfr.faa.gov/", clave=f"tfrsurge-{NOW:%Y%m%d%H}", seccion="eeuu"))
+    return out
+
+def f_espacio_aereo():
+    """FAA NAS Status: ground stops y cierres de aeropuertos (PR y todo EE. UU.)."""
+    out = []
+    x = ET.fromstring(get("https://nasstatus.faa.gov/api/airport-status-information").content)
+    gs, cierres, gdp = [], [], []
+    for dt in x.findall("Delay_type"):
+        nombre = dt.findtext("Name", "")
+        if "Ground Stop" in nombre:
+            for p in dt.iter("Program"):
+                gs.append({"arpt": p.findtext("ARPT", ""), "motivo": p.findtext("Reason", ""), "fin": p.findtext("End_Time", "")})
+        elif "Closure" in nombre:
+            for a in dt.iter("Airport"):
+                cierres.append({"arpt": a.findtext("ARPT", ""), "motivo": (a.findtext("Reason", "") or "")[:120],
+                                "inicio": a.findtext("Start", ""), "fin": a.findtext("Reopen", "")})
+        elif "Ground Delay" in nombre:
+            for g in dt.iter("Ground_Delay"):
+                gdp.append({"arpt": g.findtext("ARPT", ""), "motivo": g.findtext("Reason", "")})
+    ESPACIO_AEREO.update({"ground_stops": gs, "cierres": cierres, "demoras_programadas": gdp,
+                          "actualizado": x.findtext("Update_Time", "")})
+    seguridad = [g for g in gs + cierres if re.search(r"secur|threat|military|national|equipment outage|comm", g["motivo"], re.I)]
+    pr = [g for g in gs + cierres if g["arpt"] in AEROP_PR]
+    if len(gs) >= 15:
+        out.append(senal("FAA NAS (oficial)", "Espacio aéreo", 3, f"{len(gs)} aeropuertos en ground stop a la vez en EE. UU.",
+                         ", ".join(g["arpt"] for g in gs[:20]), url="https://nasstatus.faa.gov/",
+                         clave=f"gsmasivo-{NOW:%Y%m%d%H}", seccion="eeuu"))
+    if seguridad:
+        out.append(senal("FAA NAS (oficial)", "Espacio aéreo", 2,
+                         f"Ground stop o cierre por motivo de seguridad/comunicaciones: {', '.join(g['arpt'] for g in seguridad[:6])}",
+                         seguridad[0]["motivo"], url="https://nasstatus.faa.gov/", clave=f"gsseg-{NOW:%Y%m%d%H}", seccion="eeuu"))
+    if pr:
+        out.append(senal("FAA NAS (oficial)", "Espacio aéreo", 2,
+                         f"Aeropuerto de PR afectado: {', '.join(g['arpt'] for g in pr)}", pr[0]["motivo"],
+                         url="https://nasstatus.faa.gov/", clave=f"gspr-{NOW:%Y%m%d%H}", alcance="familia", seccion="pr"))
+    return out
+
 FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
            ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
@@ -653,7 +748,8 @@ FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Clima espacial (NOAA)", f_clima_espacial), ("PizzINT", f_pizzint),
            ("Aviones militares Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam),
            ("Aeronaves cerca de PR (registro)", f_aeronaves_pr), ("Buques militares (reportes)", f_buques),
-           ("Puertos que abastecen a PR", f_puertos)]
+           ("Puertos que abastecen a PR", f_puertos),
+           ("Restricciones aéreas (FAA TFR)", f_restricciones_aereas), ("Espacio aéreo (FAA NAS)", f_espacio_aereo)]
 
 
 # ------------------------------------------------------------------ evaluación
@@ -715,6 +811,7 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "log_aviones": ESTADO_REF.get("log_aviones", [])[:20],
         "log_buques": ESTADO_REF.get("log_buques", [])[:20],
         "puertos": PUERTOS_EST,
+        "tfrs": TFRS[:60], "espacio_aereo": ESPACIO_AEREO,
     }
     pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"]}
     json.dump(pulso, open(os.path.join(DOCS, "pulso.json"), "w"), indent=1)
@@ -932,6 +1029,8 @@ def main():
     estado["medidores_base"] = ESTADO_REF.get("medidores_base", {})
     estado["log_aviones"] = ESTADO_REF.get("log_aviones", [])
     estado["log_buques"] = ESTADO_REF.get("log_buques", [])
+    estado["tfr_vistos"] = ESTADO_REF.get("tfr_vistos", {})
+    estado["tfr_base"] = ESTADO_REF.get("tfr_base", [])
 
     escribir_salidas(nivel, resumen, senales, fuentes, estado["historial"])
     json.dump(estado, open(STATE_FILE, "w"), ensure_ascii=False, indent=1)

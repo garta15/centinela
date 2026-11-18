@@ -111,6 +111,12 @@ function pintar(d){
       ||`<tr><td colspan="5" class="det">Todavía no se ha registrado ninguna. El registro se llena con cada revisión.</td></tr>`;
   const bqs=(d.log_buques||[]).map(b=>`<li><div class="det">${fechaPR(b.fecha_utc)} · ${esc(b.fuente)}</div>
       <a href="${esc(safeUrl(b.url))}" target="_blank" rel="noopener">${esc(b.texto)}</a></li>`).join("")||`<li class="det">Sin reportes todavía.</li>`;
+  const tf=(d.tfrs||[]).map(t=>`<tr><td>${t.pr?"🇵🇷 ":t.nacional?"🇺🇸 ":""}${t.nuevo?'<span class="pill" style="background:#dd6b20">NUEVA</span> ':""}<a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(t.id)}</a></td>
+      <td>${esc(t.tipo)}</td><td>${esc(t.lugar||(t.nacional?"Todo EE. UU. (instrucción especial)":""))}</td><td>${esc(t.estado)}</td><td>${esc(t.creado)}</td></tr>`).join("")
+      ||`<tr><td colspan="5" class="det">Sin restricciones relevantes.</td></tr>`;
+  const ea=d.espacio_aereo||{};
+  const gsl=(ea.ground_stops||[]).map(g=>`<li>⛔ <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
+  const cl=(ea.cierres||[]).map(c=>`<li>🚫 <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
   const app=document.getElementById("app");
   app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
     <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
@@ -120,6 +126,12 @@ function pintar(d){
     <div class="gridm">${pts}</div>
     <h2 class="titsec">✈️ Últimas 20 aeronaves militares o no identificadas · Caribe / PR <span class="det">hora de PR</span></h2>
     <div class="card tabla"><table><thead><tr><th>Visto</th><th>Aeronave</th><th>País</th><th>Tipo</th><th>Distancia a PR</th></tr></thead><tbody>${avs}</tbody></table></div>
+    <h2 class="titsec">🛩️ Restricciones aéreas por seguridad nacional <span class="det">FAA · oficial</span></h2>
+    <div class="card tabla"><p class="det" style="margin:0 0 8px">Se muestran las de Puerto Rico, las instrucciones especiales para todo EE. UU. y las de seguridad/VIP creadas en las últimas 48 h.</p>
+      <table><thead><tr><th>NOTAM</th><th>Tipo</th><th>Lugar / alcance</th><th>Estado</th><th>Creada</th></tr></thead><tbody>${tf}</tbody></table></div>
+    <section class="card"><h2><span>🛫 Estado del espacio aéreo de EE. UU.</span><span class="det">${esc(ea.actualizado||"")}</span></h2>
+      <ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin ground stops ni cierres de aeropuertos en este momento.</p>':""}
+      <p class="det">Demoras programadas: ${(ea.demoras_programadas||[]).length} aeropuerto(s).</p></section>
     <h2 class="titsec">⚓ Reportes de buques militares en el Caribe <span class="det">con fecha del reporte</span></h2>
     <section class="card"><ul class="lista">${bqs}</ul></section>
     <h2 class="titsec">📌 Señales oficiales y técnicas</h2>
