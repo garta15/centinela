@@ -104,8 +104,8 @@ def f_nws_pr():
             p = f["properties"]
             if p["event"] in vistos: continue
             vistos.add(p["event"])
-            n = mapa.get(p.get("severity"), 0)
-            if any(c in p["event"] for c in criticos): n = max(n, 3)
+            if not any(c in p["event"] for c in criticos): continue   # clima/mareas no cuentan
+            n = 3
             if "Tsunami Warning" in p["event"] or "Hurricane Warning" in p["event"]: n = 4
             if n == 0: continue
             out.append(senal("NWS (oficial)", "Alerta oficial", n, f"{p['event']} — {area}",
@@ -119,7 +119,7 @@ def f_nws_nacional():
     civiles = ("Civil Danger Warning", "Civil Emergency Message", "Nuclear Power Plant Warning",
                "Radiological Hazard Warning", "Shelter In Place Warning", "Evacuation Immediate",
                "Law Enforcement Warning", "Hazardous Materials Warning")
-    extremas = nws({"severity": "Extreme"})
+    extremas = []   # el clima extremo no cuenta; solo alertas civiles/nucleares
     civ = [f for f in nws({"event": ",".join(civiles)})] if True else []
     for f in civ:
         p = f["properties"]
@@ -146,7 +146,8 @@ def f_huracanes():
         t = it.findtext("title", ""); d = it.findtext("description", "") or ""
         if not any(k in t for k in ("Advisory", "Summary for", "Watch", "Warning")): continue
         pr = "Puerto Rico" in d or "Puerto Rico" in t or "Virgin Islands" in d
-        n = 3 if pr else 1
+        if not pr: continue
+        n = 2
         if pr and ("Hurricane Warning" in d or "Hurricane Warning" in t): n = 4
         out.append(senal("NHC", "Huracán", n, t[:140], ("Menciona a Puerto Rico. " if pr else "") +
                          re.sub("<[^>]+>", " ", d)[:250], url=it.findtext("link", ""),
@@ -180,11 +181,11 @@ def f_sismos():
     out = []
     ini = (NOW - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%S")
     q = "https://earthquake.usgs.gov/fdsnws/event/1/query"
-    pr = get(q, params={"format": "geojson", "starttime": ini, "minmagnitude": 4,
+    pr = get(q, params={"format": "geojson", "starttime": ini, "minmagnitude": 5.5,
                         "minlatitude": PR_CAJA[0], "maxlatitude": PR_CAJA[1],
                         "minlongitude": PR_CAJA[2], "maxlongitude": PR_CAJA[3]}).json()["features"]
     us = get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson").json()["features"]
-    us = [f for f in us if (f["properties"].get("mag") or 0) >= 6 and
+    us = [f for f in us if (f["properties"].get("mag") or 0) >= 6.5 and
           en_caja(f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0], (18, 72, -170, -60))]
     for f, sec in [(f, "pr") for f in pr] + [(f, "eeuu") for f in us]:
         p = f["properties"]; lon, lat = f["geometry"]["coordinates"][:2]; m = p.get("mag") or 0
@@ -387,13 +388,105 @@ def f_gpsjam():
                          clave=f"gpsjam-car-{dia}", seccion="militar"))
     return out
 
-FUENTES = [("Alertas NWS Puerto Rico", f_nws_pr), ("Alertas NWS EE. UU.", f_nws_nacional),
-           ("Huracanes (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos (USGS)", f_sismos),
+# ------------------------------------------------------------------ medidores de seguridad nacional
+MEDIDORES_DEF = [
+    ("telecom", "📡", "Comunicaciones y telecom",
+     [('("cell outage" OR "phone outage" OR "internet outage" OR "911 outage" OR "network outage" OR "service outage") (AT&T OR Verizon OR "T-Mobile" OR Comcast OR Spectrum OR nationwide OR "United States")', "en")]),
+    ("ciber", "💻", "Ciberataques a infraestructura",
+     [('(cyberattack OR hackers OR ransomware OR "Salt Typhoon" OR "Volt Typhoon" OR CISA) ("critical infrastructure" OR telecom OR utilities OR "United States")', "en")]),
+    ("electrica", "⚡", "Red eléctrica",
+     [('("power outage" OR blackout OR "grid attack" OR substation OR "power grid") ("United States" OR nationwide OR "Puerto Rico")', "en"),
+      ('Puerto Rico (apagón OR "relevo de carga" OR LUMA OR Genera)', "es")]),
+    ("ataque", "🚀", "Ataque o amenaza militar a EE. UU.",
+     [('(missile OR ICBM OR nuclear OR NORAD OR "attack on the United States" OR "strike on US" OR "US forces") (Iran OR Russia OR China OR "North Korea")', "en")]),
+    ("terror", "🛡️", "Terrorismo y seguridad interna",
+     [('("terror plot" OR "dirty bomb" OR "terrorist attack" OR "Homeland Security" OR "NTAS bulletin" OR FBI) ("United States" OR Washington OR "New York")', "en")]),
+    ("emergencia", "🚨", "Emergencia nacional y gobierno",
+     [('("national emergency" OR "martial law" OR "continuity of government" OR "Emergency Alert System" OR "state of emergency" OR DEFCON OR "Insurrection Act")', "en")]),
+    ("espacio", "🛰️", "Satélites, GPS y espacio",
+     [('("GPS outage" OR "GPS jamming" OR "satellite outage" OR "Starlink outage" OR "anti-satellite" OR "geomagnetic storm" OR "solar storm")', "en")]),
+    ("caribe", "⚓", "Militar y naval en el Caribe",
+     [('(Navy OR warship OR "aircraft carrier" OR military OR troops OR strike) (Caribbean OR "Puerto Rico" OR Venezuela OR Cuba)', "en")]),
+    ("pr", "🇵🇷", "Seguridad en Puerto Rico",
+     [('Puerto Rico (emergencia OR avería OR "sin servicio" OR ciberataque OR amenaza OR "Guardia Nacional" OR militares OR evacuación OR "sin señal")', "es")]),
+]
+# Frases que, si las repiten 3+ medios distintos en 3 h, suben el medidor a ALTO
+FRASES_GRAVES = ["nationwide outage", "nationwide blackout", "attack on the united states", "attack on us soil",
+                 "martial law", "national emergency declared", "nuclear attack", "missile attack on",
+                 "defcon 2", "defcon 1", "all networks down", "internet shutdown", "cyberattack on us grid",
+                 "apagón general", "sin comunicaciones", "ataque contra estados unidos"]
+MEDIDORES = []
+
+def _rss(q, idioma):
+    es = idioma == "es"
+    x = get("https://news.google.com/rss/search",
+            params={"q": f"{q} when:1d", "hl": "es-419" if es else "en-US", "gl": "US",
+                    "ceid": "US:es-419" if es else "US:en"}).content
+    out = []
+    for it in ET.fromstring(x).iter("item"):
+        try:
+            t = datetime.strptime(it.findtext("pubDate", ""), "%a, %d %b %Y %H:%M:%S %Z").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        tit = it.findtext("title", "")
+        medio = tit.rsplit(" - ", 1)[1].strip() if " - " in tit else ""
+        out.append({"t": t, "titulo": tit, "url": it.findtext("link", ""), "medio": medio})
+    return out
+
+def f_medidores():
+    """Medidores: volumen de noticias en vivo (3 h y 24 h) vs. lo normal, por tema."""
+    out = []
+    bases = ESTADO_REF.setdefault("medidores_base", {})
+    for clave, ico, nombre, consultas in MEDIDORES_DEF:
+        arts, vistos = [], set()
+        for q, idioma in consultas:
+            try:
+                for a in _rss(q, idioma):
+                    k = a["titulo"].rsplit(" - ", 1)[0].lower()[:80]
+                    if k not in vistos:
+                        vistos.add(k); arts.append(a)
+            except Exception as e:
+                print("  ! medidor", clave, e)
+            time.sleep(1)
+        arts.sort(key=lambda a: a["t"], reverse=True)
+        n24 = sum(1 for a in arts if (NOW - a["t"]).total_seconds() <= 86400)
+        r3 = [a for a in arts if (NOW - a["t"]).total_seconds() <= 3 * 3600]
+        n3 = len(r3)
+        medios3 = {a["medio"] for a in r3 if a["medio"]}
+        hist = bases.setdefault(clave, [])
+        base = sorted(hist)[len(hist) // 2] if len(hist) >= 6 else None
+        hist.append(n24); del hist[:-144]                  # ~24 h de corridas cada 10 min
+        ref = max(base if base is not None else n24, 4)
+        r24 = n24 / ref
+        r3x = n3 / max(1.0, ref / 8)                       # lo esperado en 3 h ≈ 1/8 del día
+        indice = int(min(100, round(20 * r24 + 15 * r3x)))
+        nivel = 0 if indice < 50 else 1 if indice < 70 else 2
+        graves = sorted({f for a in r3 for f in FRASES_GRAVES if f in a["titulo"].lower()})
+        medios_graves = {a["medio"] for a in r3 if any(f in a["titulo"].lower() for f in FRASES_GRAVES)}
+        motivo = ""
+        if graves and len(medios_graves) >= 3:
+            nivel = 3; indice = max(indice, 90)
+            motivo = f"{len(medios_graves)} medios distintos en 3 h: «{graves[0]}»"
+        MEDIDORES.append({"clave": clave, "icono": ico, "nombre": nombre, "indice": indice, "nivel": nivel,
+                          "n3": n3, "n24": n24, "base": base, "medios3": len(medios3), "motivo": motivo,
+                          "titulares": [{"hora_utc": a["t"].isoformat(timespec="minutes"), "titulo": a["titulo"][:200],
+                                         "url": a["url"]} for a in arts[:8]]})
+        for a in arts[:3]:
+            TITULARES.append({"hora_utc": a["t"].isoformat(timespec="minutes"), "titulo": a["titulo"][:200],
+                              "url": a["url"], "seccion": clave, "tema": nombre})
+        if nivel >= 1:
+            out.append(senal("Medidor de prensa", "Medidor: " + nombre, nivel,
+                             f"{ico} {nombre}: índice {indice}/100 ({n3} en 3 h · {n24} en 24 h)",
+                             motivo or (arts[0]["titulo"][:200] if arts else ""), url=arts[0]["url"] if arts else "",
+                             clave=f"med-{clave}-{nivel}-{NOW:%Y%m%d%H}", seccion="medidores"))
+    return out
+
+FUENTES = [("Medidores de seguridad nacional", f_medidores),
+           ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
+           ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
            ("Internet PR/EE. UU. (IODA)", f_ioda), ("Apple iMessage/FaceTime", f_apple),
            ("Clima espacial (NOAA)", f_clima_espacial), ("PizzINT", f_pizzint),
-           ("Militar Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam),
-           ("Prensa: comunicaciones", f_noticias_comunicaciones), ("Prensa: amenazas", f_noticias_amenazas),
-           ("Prensa: militar Caribe", f_noticias_militar)]
+           ("Aviones militares Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam)]
 
 
 # ------------------------------------------------------------------ evaluación
@@ -401,11 +494,15 @@ def evaluar(senales):
     nivel = max([s["nivel"] for s in senales], default=0)
     # Convergencia: señales elevadas de CATEGORÍAS distintas (no 3 noticias iguales)
     # La prensa cuenta como UNA sola categoría y nunca basta por sí sola.
-    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith("Prensa")}
+    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith(("Prensa", "Medidor"))}
     prensa = any(s["nivel"] >= 2 and s["fuente"].startswith("Prensa") for s in senales)
     cats = ofic | ({"Prensa"} if prensa else set())
     conv = CFG.get("convergencia_senales", 3)
     motivo = ""
+    med2 = [m for m in senales if m["fuente"] == "Medidor de prensa" and m["nivel"] >= 2]
+    if len(med2) >= 3 and nivel < 3:
+        nivel = 3
+        motivo = f"Convergencia: {len(med2)} medidores de seguridad en ELEVADO a la vez."
     if len(cats) >= conv and len(ofic) >= 2 and nivel < 3:
         nivel = 3
         motivo = f"Convergencia: señales elevadas en {len(cats)} categorías ({', '.join(sorted(cats))})."
@@ -447,6 +544,7 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "motor": os.getenv("MOTOR", "github"),
         "titulares": sorted(TITULARES, key=lambda t: t["hora_utc"], reverse=True)[:40],
         "aviones_militares": AVIONES[:60],
+        "medidores": MEDIDORES,
     }
     pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"]}
     json.dump(pulso, open(os.path.join(DOCS, "pulso.json"), "w"), indent=1)
@@ -661,6 +759,7 @@ def main():
         notificar("🟢 Riesgo bajó", f"Nivel actual: {NIVELES[nivel]}. {resumen}", 2, dry)
     estado["ultimo_nivel"] = nivel
     estado["mil_caribe"] = ESTADO_REF.get("mil_caribe", [])
+    estado["medidores_base"] = ESTADO_REF.get("medidores_base", {})
 
     escribir_salidas(nivel, resumen, senales, fuentes, estado["historial"])
     json.dump(estado, open(STATE_FILE, "w"), ensure_ascii=False, indent=1)

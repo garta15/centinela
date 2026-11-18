@@ -28,6 +28,11 @@ h2{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .nota a,.sig a{text-decoration:none;font-weight:600}.nota a:hover,.sig a:hover{text-decoration:underline}
 details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4px;list-style:none}.av li{padding:4px 0}
 .cols{columns:2;column-gap:16px;font-size:14px}.sec2{width:auto;background:#555}
+.titsec{font-size:17px;margin:22px 0 4px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+.gridm{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.med{margin-top:12px;padding:12px}.med summary{list-style:none;cursor:pointer;text-align:center}.med summary::-webkit-details-marker{display:none}
+.med[open]{grid-column:1/-1;text-align:left}.gauge{width:120px;height:70px;display:block;margin:0 auto}
+.gnum{font-size:20px;font-weight:800;fill:var(--fg)}.mtit{font-weight:700;margin:2px 0 4px}
 </style></head><body><main>
 <div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
   <h2>🔒 Centinela Familiar</h2>
@@ -57,13 +62,14 @@ async function descifrar(clave){
 }
 const SEC={pr:["🇵🇷","Puerto Rico"],eeuu:["🇺🇸","Estados Unidos"],amenazas:["⚠️","Amenazas a Norteamérica"],
   militar:["⚓","Militar y naval · Caribe"],infra:["🛰️","Infraestructura y espacio"]};
+const SECT={telecom:"📡",ciber:"💻",electrica:"⚡",ataque:"🚀",terror:"🛡️",emergencia:"🚨",espacio:"🛰️",caribe:"⚓",pr:"🇵🇷"};
 function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);
   if(m<1)return"ahora"; if(m<60)return`hace ${m} min`; const h=Math.round(m/60); return h<24?`hace ${h} h`:`hace ${Math.round(h/24)} d`;}
 function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
 function pintar(d){
   const n=d.nivel, sen=d.senales||[];
   const tarjetas=Object.entries(SEC).map(([k,[ico,nom]])=>{
-    const ss=sen.filter(s=>(s.seccion||"infra")===k);
+    const ss=sen.filter(s=>(s.seccion||"infra")===k && s.seccion!=="medidores");
     const peor=ss.reduce((a,s)=>Math.max(a,s.nivel),0);
     const filas=ss.map(s=>`<li class="sig"><span class="dot" style="background:${COL[s.nivel]}"></span>
       <div><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.titulo)}</a>
@@ -76,15 +82,29 @@ function pintar(d){
         :`<p class="det">Ninguna aeronave militar con transpondedor visible ahora sobre el Caribe (muchas vuelan sin él).</p>`;}
     return `<section class="card sec"><h2><span>${ico} ${nom}</span><span class="pill" style="background:${COL[peor]}">${NIV[peor]}</span></h2>
       ${filas?`<ul class="lista">${filas}</ul>`:`<p class="det">Sin novedades.</p>`}${extra}</section>`;}).join("");
-  const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const [ico]=SEC[t.seccion]||["📰"];
+  const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const ico=SECT[t.seccion]||(SEC[t.seccion]||["📰"])[0];
     return `<li class="nota"><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a>
     <div class="det">${ico} ${esc(t.tema)} · ${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin titulares recientes.</li>`;
   const hist=(d.historial||[]).slice(0,15).map(h=>`<li>${EMO[h.nivel]} ${esc(h.titulo)} <span class="det">· ${hace(h.hora_utc)}</span></li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
   const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)}</li>`).join("");
   const man=(d.consulta_manual||[]).map(m=>`<li><a href="${esc(safeUrl(m.url))}" target="_blank" rel="noopener">${esc(m.nombre)}</a></li>`).join("");
+  const med=(d.medidores||[]).map(m=>{const pct=Math.max(0,Math.min(100,m.indice)),c=COL[m.nivel];
+    const arco=Math.PI*40, lleno=arco*pct/100;
+    const tend=m.base==null?"aprendiendo lo normal…":(m.n24>m.base*1.5?`▲ sobre lo normal (${m.base}/día)`:m.n24<m.base*0.7?`▼ bajo lo normal (${m.base}/día)`:`≈ normal (${m.base}/día)`);
+    const tl=(m.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);return `<li><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a><div class="det">${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin noticias.</li>`;
+    return `<details class="card med"><summary>
+      <svg viewBox="0 0 100 58" class="gauge" aria-hidden="true"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${lleno} ${arco}"/>
+      <text x="50" y="48" text-anchor="middle" class="gnum">${pct}</text></svg>
+      <div class="mtit">${m.icono} ${esc(m.nombre)}</div>
+      <div class="det"><span class="pill" style="background:${c}">${NIV[m.nivel]}</span> ${m.n3} en 3 h · ${m.n24} en 24 h</div>
+      <div class="det">${esc(m.motivo||tend)}</div></summary><ul class="lista">${tl}</ul></details>`}).join("");
   const app=document.getElementById("app");
   app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
     <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
+    <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
+    <div class="gridm">${med}</div>
+    <h2 class="titsec">📌 Señales oficiales y técnicas</h2>
     <div class="grid">${tarjetas}</div>
     <section class="card"><h2><span>📰 Titulares en vivo</span><span class="det">prensa · sin verificar</span></h2><ul class="lista">${tit}</ul></section>
     <div class="grid"><section class="card"><h2>🕘 Historial de alertas</h2><ul>${hist}</ul></section>
