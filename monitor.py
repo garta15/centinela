@@ -481,12 +481,179 @@ def f_medidores():
                              clave=f"med-{clave}-{nivel}-{NOW:%Y%m%d%H}", seccion="medidores"))
     return out
 
+# ------------------------------------------------------------------ aeronaves, buques y puertos
+PAISES_ICAO = [  # rangos de dirección ICAO (hex) -> país de registro
+    (0xA00000, 0xAFFFFF, "EE. UU."), (0xC00000, 0xC3FFFF, "Canadá"), (0x0D0000, 0x0D7FFF, "México"),
+    (0x0D8000, 0x0DFFFF, "Venezuela"), (0x0B0000, 0x0B0FFF, "Cuba"), (0x0AC000, 0x0ACFFF, "Colombia"),
+    (0x0C4000, 0x0C4FFF, "Rep. Dominicana"), (0x0C8000, 0x0C8FFF, "Haití"), (0x0BE000, 0x0BEFFF, "Jamaica"),
+    (0x140000, 0x15FFFF, "Rusia"), (0x780000, 0x7BFFFF, "China"), (0x730000, 0x737FFF, "Irán"),
+    (0x400000, 0x43FFFF, "Reino Unido"), (0x380000, 0x3BFFFF, "Francia"), (0x480000, 0x487FFF, "Países Bajos"),
+    (0x340000, 0x37FFFF, "España"), (0xE40000, 0xE7FFFF, "Brasil"), (0x3C0000, 0x3FFFFF, "Alemania"),
+]
+def pais_icao(hexcode):
+    try:
+        h = int(hexcode.strip("~"), 16)
+    except (ValueError, AttributeError):
+        return "desconocido"
+    for a, b, p in PAISES_ICAO:
+        if a <= h <= b: return p
+    return "otro"
+
+def f_aeronaves_pr():
+    """Registro de aeronaves MILITARES (de cualquier país) y NO IDENTIFICADAS cerca de PR / Caribe."""
+    out, nuevas = [], []
+    log = ESTADO_REF.setdefault("log_aviones", [])
+    vistas = []
+    try:
+        for a in get("https://api.adsb.lol/v2/mil").json().get("ac", []):
+            if en_caja(a.get("lat"), a.get("lon"), CARIBE): vistas.append((a, "militar"))
+    except Exception as e:
+        print("  ! adsb mil", e)
+    try:
+        for a in get("https://api.adsb.lol/v2/point/18.2/-66.5/250").json().get("ac", []):
+            sin_id = not (a.get("flight") or "").strip() and not a.get("r")
+            mil = bool((a.get("dbFlags") or 0) & 1)
+            if (sin_id or mil) and a.get("lat") is not None:
+                vistas.append((a, "militar" if mil else "no identificada"))
+    except Exception as e:
+        print("  ! adsb punto", e)
+    ahora = NOW.isoformat(timespec="minutes")
+    for a, clase in vistas:
+        hx = a.get("hex", "?")
+        reg = {"hex": hx, "callsign": (a.get("flight") or "").strip() or a.get("r") or "sin identificar",
+               "tipo": a.get("t") or "?", "desc": TIPOS_CLAVE.get(a.get("t") or "", ""), "clase": clase,
+               "pais": pais_icao(hx), "lat": round(a["lat"], 2), "lon": round(a["lon"], 2),
+               "alt": a.get("alt_baro"), "visto_utc": ahora,
+               "dist_pr_km": round(km(a["lat"], a["lon"], 18.22, -66.59))}
+        previo = next((x for x in log if x["hex"] == hx), None)
+        if previo:
+            previo.update(reg)
+        else:
+            reg["primera_vez_utc"] = ahora; log.append(reg); nuevas.append(reg)
+    log.sort(key=lambda x: x["visto_utc"], reverse=True); del log[200:]
+    raras = [x for x in nuevas if x["pais"] not in ("EE. UU.",) or x["clase"] == "no identificada"]
+    n = 0
+    if any(x["pais"] in ("Rusia", "China", "Irán", "Venezuela", "Cuba") and x["clase"] == "militar" for x in nuevas): n = 2
+    elif raras: n = 1
+    if nuevas:
+        out.append(senal("ADS-B (adsb.lol)", "Aeronaves cerca de PR", n,
+                         f"{len(nuevas)} aeronave(s) militar(es)/no identificada(s) nuevas cerca de PR/Caribe",
+                         ", ".join(f"{x['callsign']} ({x['pais']}, {x['tipo']})" for x in nuevas[:6]),
+                         url="https://adsb.lol/?mil", clave=f"avion-{NOW:%Y%m%d%H%M}", seccion="militar"))
+    return out
+
+def f_buques():
+    """Reportes de buques militares en el Caribe: USNI Fleet Tracker, avisos NAVAREA IV y prensa (con fecha)."""
+    out = []
+    log = ESTADO_REF.setdefault("log_buques", [])
+    claves = {x["id"] for x in log}
+    def agregar(fecha, fuente, texto, url):
+        i = hashlib.sha1((fuente + texto[:120]).encode()).hexdigest()[:12]
+        if i not in claves:
+            log.append({"id": i, "fecha_utc": fecha, "fuente": fuente, "texto": texto[:300], "url": url})
+            claves.add(i); return True
+        return False
+    nuevos = 0
+    # 1) USNI Fleet and Marine Tracker (semanal, ubica portaaviones y grupos anfibios)
+    try:
+        x = ET.fromstring(get("https://news.usni.org/feed").content)
+        ns = {"c": "http://purl.org/rss/1.0/modules/content/"}
+        for it in x.iter("item"):
+            tit = it.findtext("title", "")
+            if "Fleet" not in tit or "Tracker" not in tit: continue
+            fecha = datetime.strptime(it.findtext("pubDate"), "%a, %d %b %Y %H:%M:%S %z").isoformat(timespec="minutes")
+            txt = re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", it.findtext("c:encoded", "", ns)))
+            for m in re.finditer(r"[^.]*(Caribbean|Puerto Rico|Venezuela|Cuba|4th Fleet|U\.S\. Southern Command|SOUTHCOM)[^.]*\.", txt):
+                nuevos += agregar(fecha, "USNI Fleet Tracker", m.group(0).strip(), it.findtext("link", ""))
+            break
+    except Exception as e:
+        print("  ! USNI", e)
+    # 2) Avisos de navegación NAVAREA IV (NGA): ejercicios militares, zonas peligrosas
+    try:
+        d = get("https://msi.nga.mil/api/publications/broadcast-warn",
+                params={"navArea": "4", "status": "active", "output": "json"}).json()
+        for w in d.get("broadcast-warn", []):
+            t = (w.get("text") or "").replace("\n", " ")
+            if re.search(r"CARIBBEAN|PUERTO RICO|VIRGIN|MONA|ANEGADA", t) and re.search(r"MILITARY|NAVAL|GUNNERY|MISSILE|ROCKET|HAZARDOUS OPERATIONS|EXERCISE|SUBMARINE", t):
+                nuevos += agregar(w.get("issueDate") or NOW.isoformat(timespec="minutes"), "Aviso NAVAREA IV (NGA)",
+                                  t, "https://msi.nga.mil/NavWarnings")
+    except Exception as e:
+        print("  ! NGA", e)
+    # 3) Prensa: buques de guerra en el Caribe / cerca de PR
+    try:
+        naval = re.compile(r"warship|destroyer|carrier|frigate|submarine|amphibious|navy|naval|uss |coast guard cutter|corvette|buque|fragata|submarino|armada", re.I)
+        zona = re.compile(r"caribbean|puerto rico|venezuela|cuba|caribe|virgin islands|dominican|haiti|jamaica|trinidad|curaçao|curacao", re.I)
+        for a in _rss('(warship OR destroyer OR "aircraft carrier" OR frigate OR submarine OR "amphibious ready group" OR "Navy ship") (Caribbean OR "Puerto Rico" OR Venezuela OR Cuba)', "en")[:25]:
+            if not (naval.search(a["titulo"]) and zona.search(a["titulo"])): continue
+            if (NOW - a["t"]).total_seconds() <= 3 * 86400:
+                nuevos += agregar(a["t"].isoformat(timespec="minutes"), "Prensa: " + (a["medio"] or "?"),
+                                  a["titulo"].rsplit(" - ", 1)[0], a["url"])
+    except Exception as e:
+        print("  ! prensa buques", e)
+    log.sort(key=lambda x: x["fecha_utc"], reverse=True); del log[100:]
+    if nuevos:
+        out.append(senal("Buques (reportes)", "Buques militares Caribe", 1,
+                         f"{nuevos} reporte(s) nuevo(s) de buques militares en el Caribe",
+                         log[0]["texto"][:200] if log else "", url=log[0]["url"] if log else "",
+                         clave=f"buques-{NOW:%Y%m%d%H}", seccion="militar"))
+    return out
+
+PUERTOS = [
+    ("sanjuan", "🇵🇷 Puerto de San Juan (Puerto Nuevo / Isla Grande)", "Recibe la mayoría de los contenedores de la isla",
+     '("Port of San Juan" OR "San Juan harbor" OR "puerto de San Juan" OR "Puerto Nuevo" OR "Isla Grande" OR "Sector San Juan") (closed OR closure OR cerrado OR cierre OR "port condition" OR "security zone" OR "Coast Guard" OR huelga)'),
+    ("jax", "🇺🇸 JAXPORT — Jacksonville, Florida", "≈85–90 % de la carga EE. UU. ↔ PR (Crowley, TOTE, Trailer Bridge)",
+     '(JAXPORT OR "Port of Jacksonville" OR "Blount Island" OR "Talleyrand") (closed OR closure OR "port condition" OR shutdown OR strike OR "security zone" OR halted)'),
+    ("everglades", "🇺🇸 Port Everglades, Florida", "Combustible y carga hacia el Caribe",
+     '("Port Everglades") (closed OR closure OR "port condition" OR shutdown OR strike OR "security zone")'),
+    ("houston", "🇺🇸 Puerto de Houston, Texas", "Combustibles y carga a granel (Jones Act)",
+     '("Port of Houston" OR "Houston Ship Channel") (closed OR closure OR "port condition" OR shutdown OR strike)'),
+    ("sur", "🇵🇷 Ponce / Peñuelas / Guayanilla", "Combustibles y gas natural para generar electricidad",
+     '(Ponce OR Peñuelas OR Guayanilla OR EcoEléctrica) (puerto OR muelle OR gas OR combustible) (cerrado OR cierre OR suspendido OR emergencia)'),
+    ("navieras", "🚢 Navieras a PR (Crowley · TOTE · Trailer Bridge)", "Las líneas que traen la carga a PR",
+     '(Crowley OR "TOTE Maritime" OR "Trailer Bridge") ("Puerto Rico") (suspend OR delay OR cancel OR halt OR strike OR "service disruption")'),
+    ("estibadores", "⚓ Estibadores (huelga ILA, costa Este)", "Una huelga portuaria frena el abastecimiento",
+     '(ILA OR longshoremen OR "port strike" OR "dockworkers") ("East Coast" OR "Gulf Coast" OR Jacksonville OR "Puerto Rico") (strike OR walkout OR huelga)'),
+]
+PUERTOS_EST = []
+GRAVES_PUERTO = ["closed", "closure", "cerrado", "cierre", "shut", "halt", "suspend", "strike", "huelga",
+                 "zulu", "x-ray", "yankee", "security zone", "evacuat"]
+
+def f_puertos():
+    """Estado de los puertos que abastecen a PR, según prensa reciente (48 h)."""
+    out = []
+    for clave, nombre, rol, q in PUERTOS:
+        try:
+            arts = [a for a in _rss(q, "es" if clave == "sur" else "en") if (NOW - a["t"]).total_seconds() <= 48 * 3600]
+        except Exception as e:
+            PUERTOS_EST.append({"clave": clave, "nombre": nombre, "rol": rol, "estado": "sin datos",
+                                "nivel": 1, "reportes": [], "error": str(e)[:80]}); continue
+        nombres = {"sanjuan": r"san juan|puerto nuevo|isla grande", "jax": r"jaxport|jacksonville|blount|talleyrand",
+                   "everglades": r"everglades", "houston": r"houston", "sur": r"ponce|peñuelas|penuelas|guayanilla|ecoeléctrica|ecoelectrica",
+                   "navieras": r"crowley|tote|trailer bridge", "estibadores": r"ila|longshore|dockworker|port strike|estibador"}[clave]
+        malos = [a for a in arts if re.search(nombres, a["titulo"], re.I) and any(g in a["titulo"].lower() for g in GRAVES_PUERTO)]
+        medios = {a["medio"] for a in malos if a["medio"]}
+        nivel = 0 if not malos else 1 if len(medios) < 2 else 2 if len(medios) < 4 else 3
+        estado = {0: "Sin reportes de cierre", 1: "Un reporte sin confirmar", 2: "Varios reportes de cierre o problemas",
+                  3: "Probable cierre o interrupción"}[nivel]
+        PUERTOS_EST.append({"clave": clave, "nombre": nombre, "rol": rol, "estado": estado, "nivel": nivel,
+                            "reportes": [{"hora_utc": a["t"].isoformat(timespec="minutes"), "titulo": a["titulo"][:200],
+                                          "url": a["url"]} for a in malos[:5]],
+                            "revisados": len(arts)})
+        if nivel >= 1:
+            out.append(senal("Puertos (prensa)", "Puertos y suministros", nivel, f"{nombre}: {estado}",
+                             malos[0]["titulo"][:200] if malos else "", url=malos[0]["url"] if malos else "",
+                             clave=f"puerto-{clave}-{nivel}-{NOW:%Y%m%d}", seccion="pr"))
+        time.sleep(1)
+    return out
+
 FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
            ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
            ("Internet PR/EE. UU. (IODA)", f_ioda), ("Apple iMessage/FaceTime", f_apple),
            ("Clima espacial (NOAA)", f_clima_espacial), ("PizzINT", f_pizzint),
-           ("Aviones militares Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam)]
+           ("Aviones militares Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam),
+           ("Aeronaves cerca de PR (registro)", f_aeronaves_pr), ("Buques militares (reportes)", f_buques),
+           ("Puertos que abastecen a PR", f_puertos)]
 
 
 # ------------------------------------------------------------------ evaluación
@@ -494,7 +661,7 @@ def evaluar(senales):
     nivel = max([s["nivel"] for s in senales], default=0)
     # Convergencia: señales elevadas de CATEGORÍAS distintas (no 3 noticias iguales)
     # La prensa cuenta como UNA sola categoría y nunca basta por sí sola.
-    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith(("Prensa", "Medidor"))}
+    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith(("Prensa", "Medidor", "Puertos", "Buques"))}
     prensa = any(s["nivel"] >= 2 and s["fuente"].startswith("Prensa") for s in senales)
     cats = ofic | ({"Prensa"} if prensa else set())
     conv = CFG.get("convergencia_senales", 3)
@@ -545,6 +712,9 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "titulares": sorted(TITULARES, key=lambda t: t["hora_utc"], reverse=True)[:40],
         "aviones_militares": AVIONES[:60],
         "medidores": MEDIDORES,
+        "log_aviones": ESTADO_REF.get("log_aviones", [])[:20],
+        "log_buques": ESTADO_REF.get("log_buques", [])[:20],
+        "puertos": PUERTOS_EST,
     }
     pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"]}
     json.dump(pulso, open(os.path.join(DOCS, "pulso.json"), "w"), indent=1)
@@ -760,6 +930,8 @@ def main():
     estado["ultimo_nivel"] = nivel
     estado["mil_caribe"] = ESTADO_REF.get("mil_caribe", [])
     estado["medidores_base"] = ESTADO_REF.get("medidores_base", {})
+    estado["log_aviones"] = ESTADO_REF.get("log_aviones", [])
+    estado["log_buques"] = ESTADO_REF.get("log_buques", [])
 
     escribir_salidas(nivel, resumen, senales, fuentes, estado["historial"])
     json.dump(estado, open(STATE_FILE, "w"), ensure_ascii=False, indent=1)

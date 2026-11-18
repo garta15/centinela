@@ -33,6 +33,7 @@ details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4
 .med{margin-top:12px;padding:12px}.med summary{list-style:none;cursor:pointer;text-align:center}.med summary::-webkit-details-marker{display:none}
 .med[open]{grid-column:1/-1;text-align:left}.gauge{width:120px;height:70px;display:block;margin:0 auto}
 .gnum{font-size:20px;font-weight:800;fill:var(--fg)}.mtit{font-weight:700;margin:2px 0 4px}
+.puerto{margin-top:12px}.tabla{overflow-x:auto}.tabla table{min-width:520px;font-size:14px}.tabla th{text-align:left;color:var(--mut);font-weight:600;padding:6px}
 </style></head><body><main>
 <div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
   <h2>🔒 {{NOMBRE}}</h2>
@@ -65,6 +66,7 @@ const SEC={pr:["🇵🇷","Puerto Rico"],eeuu:["🇺🇸","Estados Unidos"],amen
 const SECT={telecom:"📡",ciber:"💻",electrica:"⚡",ataque:"🚀",terror:"🛡️",emergencia:"🚨",espacio:"🛰️",caribe:"⚓",pr:"🇵🇷"};
 function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);
   if(m<1)return"ahora"; if(m<60)return`hace ${m} min`; const h=Math.round(m/60); return h<24?`hace ${h} h`:`hace ${Math.round(h/24)} d`;}
+function fechaPR(iso){try{return new Date(iso).toLocaleString("es-PR",{timeZone:"America/Puerto_Rico",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return iso}}
 function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
 function pintar(d){
   const n=d.nivel, sen=d.senales||[];
@@ -99,11 +101,27 @@ function pintar(d){
       <div class="mtit">${m.icono} ${esc(m.nombre)}</div>
       <div class="det"><span class="pill" style="background:${c}">${NIV[m.nivel]}</span> ${m.n3} en 3 h · ${m.n24} en 24 h</div>
       <div class="det">${esc(m.motivo||tend)}</div></summary><ul class="lista">${tl}</ul></details>`}).join("");
+  const pts=(d.puertos||[]).map(p=>{const rep=(p.reportes||[]).map(r=>{const [h,f]=fuenteDe(r.titulo);
+      return `<li><a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener">${esc(h)}</a><div class="det">${esc(f)} · ${fechaPR(r.hora_utc)}</div></li>`}).join("");
+    return `<div class="card puerto" style="border-left:6px solid ${COL[p.nivel]}"><div class="mtit">${esc(p.nombre)}</div>
+      <div class="det">${esc(p.rol)}</div><div style="margin-top:6px"><span class="pill" style="background:${COL[p.nivel]}">${esc(p.estado)}</span>
+      <span class="det"> · ${p.revisados??0} noticias revisadas (48 h)</span></div>${rep?`<ul class="lista">${rep}</ul>`:""}</div>`}).join("");
+  const avs=(d.log_aviones||[]).map(a=>`<tr><td>${fechaPR(a.visto_utc)}</td><td><b>${esc(a.callsign)}</b><div class="det">${esc(a.tipo)}${a.desc?" · "+esc(a.desc):""}</div></td>
+      <td>${esc(a.pais)}</td><td>${a.clase==="no identificada"?"❓ no identificada":"🎖️ militar"}</td><td>${a.dist_pr_km} km</td></tr>`).join("")
+      ||`<tr><td colspan="5" class="det">Todavía no se ha registrado ninguna. El registro se llena con cada revisión.</td></tr>`;
+  const bqs=(d.log_buques||[]).map(b=>`<li><div class="det">${fechaPR(b.fecha_utc)} · ${esc(b.fuente)}</div>
+      <a href="${esc(safeUrl(b.url))}" target="_blank" rel="noopener">${esc(b.texto)}</a></li>`).join("")||`<li class="det">Sin reportes todavía.</li>`;
   const app=document.getElementById("app");
   app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
     <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
     <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
     <div class="gridm">${med}</div>
+    <h2 class="titsec">🚢 Puertos que abastecen a Puerto Rico <span class="det">por si hay crisis de suministros</span></h2>
+    <div class="gridm">${pts}</div>
+    <h2 class="titsec">✈️ Últimas 20 aeronaves militares o no identificadas · Caribe / PR <span class="det">hora de PR</span></h2>
+    <div class="card tabla"><table><thead><tr><th>Visto</th><th>Aeronave</th><th>País</th><th>Tipo</th><th>Distancia a PR</th></tr></thead><tbody>${avs}</tbody></table></div>
+    <h2 class="titsec">⚓ Reportes de buques militares en el Caribe <span class="det">con fecha del reporte</span></h2>
+    <section class="card"><ul class="lista">${bqs}</ul></section>
     <h2 class="titsec">📌 Señales oficiales y técnicas</h2>
     <div class="grid">${tarjetas}</div>
     <section class="card"><h2><span>📰 Titulares en vivo</span><span class="det">prensa · sin verificar</span></h2><ul class="lista">${tit}</ul></section>
