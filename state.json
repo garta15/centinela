@@ -18,38 +18,73 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 0,
+ "ultimo_nivel": 1,
  "mil_caribe": [
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
+   3,
    3
   ],
   "ciber": [
+   30,
    30
   ],
   "electrica": [
-   13
+   13,
+   77
   ],
   "ataque": [
+   94,
    94
   ],
   "terror": [
+   98,
    98
   ],
   "emergencia": [
+   95,
    95
   ],
   "espacio": [
-   10
+   10,
+   11
   ],
   "caribe": [
+   21,
    21
   ],
   "pr": [
-   0
+   0,
+   27
   ]
- }
+ },
+ "log_aviones": [
+  {
+   "hex": "ae5965",
+   "callsign": "14-5795",
+   "tipo": "C30J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.9,
+   "lon": -81.9,
+   "alt": 6775,
+   "visto_utc": "2026-11-18T05:13+00:00",
+   "dist_pr_km": 1897,
+   "primera_vez_utc": "2026-11-18T05:13+00:00"
+  }
+ ],
+ "log_buques": [
+  {
+   "id": "de95045900fd",
+   "fecha_utc": "2026-11-16T19:55+00:00",
+   "fuente": "USNI Fleet Tracker",
+   "texto": "In the Caribbean Sea Littoral combat ship USS Minneapolis-Saint Paul (LCS-21) is operating in the central Caribbean Sea.",
+   "url": "https://news.usni.org/2026/11/16/usni-news-fleet-and-marine-tracker-nov-16-2026"
+  }
+ ]
 }
