@@ -18,8 +18,38 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 0,
  "mil_caribe": [
+  0,
   0
- ]
+ ],
+ "medidores_base": {
+  "telecom": [
+   3
+  ],
+  "ciber": [
+   30
+  ],
+  "electrica": [
+   13
+  ],
+  "ataque": [
+   94
+  ],
+  "terror": [
+   98
+  ],
+  "emergencia": [
+   95
+  ],
+  "espacio": [
+   10
+  ],
+  "caribe": [
+   21
+  ],
+  "pr": [
+   0
+  ]
+ }
 }
