@@ -1,1 +1,22 @@
-{"enviadas": {}, "historial": [], "ultimo_nivel": 0}
+{
+ "enviadas": {
+  "bf0dba7fc2b6": "2026-11-18T01:15:54+00:00"
+ },
+ "historial": [
+  {
+   "id": "bf0dba7fc2b6",
+   "fuente": "GDACS",
+   "categoria": "Desastre",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "Orange notification for tropical cyclone AKVAN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (11.577 million in Tropical Storm).",
+   "detalle": "Alerta ORANGE.",
+   "lat": 13.1,
+   "lon": 87.3,
+   "url": "http://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001351",
+   "alcance": "global",
+   "hora_utc": "2026-11-18T01:15:54+00:00"
+  }
+ ],
+ "ultimo_nivel": 2
+}
