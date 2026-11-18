@@ -39,6 +39,7 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"#";
 async function descifrar(clave){
   const r=await fetch("estado.enc?t="+Date.now(),{cache:"no-store"});
+  if(r.status===404) throw new Error("Todavía no hay datos: el motor aún no ha corrido. Ejecuta el Paso 4 (Actions → Run workflow) y vuelve en 2–3 minutos.");
   if(!r.ok) throw new Error("No se pudo descargar el estado ("+r.status+")");
   const e=await r.json();
   const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(clave),"PBKDF2",false,["deriveKey"]);
