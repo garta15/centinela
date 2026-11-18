@@ -63,257 +63,355 @@ def zona_cercana(lat, lon):
     return None, None
 
 def senal(fuente, categoria, nivel, titulo, detalle="", lat=None, lon=None,
-          url="", clave=None, alcance="global"):
+          url="", clave=None, alcance="global", seccion="infra"):
     nivel = max(0, min(4, int(nivel)))
     return {
         "id": hashlib.sha1((clave or f"{fuente}|{titulo}").encode()).hexdigest()[:12],
         "fuente": fuente, "categoria": categoria, "nivel": nivel,
         "nivel_txt": NIVELES[nivel], "titulo": titulo, "detalle": detalle,
-        "lat": lat, "lon": lon, "url": url, "alcance": alcance,
+        "lat": lat, "lon": lon, "url": url, "alcance": alcance, "seccion": seccion,
         "hora_utc": NOW.isoformat(timespec="seconds"),
     }
 
 
 # ------------------------------------------------------------------ fuentes
+# Enfoque: PUERTO RICO + ESTADOS UNIDOS + amenazas a NORTEAMÉRICA +
+# actividad MILITAR en el CARIBE. Lo global solo entra si afecta aquí.
+TITULARES = []        # titulares en vivo para el panel (tipo RSS)
+AVIONES = []          # aeronaves militares con transpondedor sobre el Caribe
+ESTADO_REF = {}       # estado persistente (lo llena main) para líneas base
+
+CARIBE = (8.0, 28.0, -90.0, -58.0)          # lat_min, lat_max, lon_min, lon_max
+PR_CAJA = (16.5, 20.5, -68.5, -64.0)        # PR + Islas Vírgenes + Pasaje de la Mona
+
+def en_caja(lat, lon, c):
+    return lat is not None and lon is not None and c[0] <= lat <= c[1] and c[2] <= lon <= c[3]
+
+def nws(params):
+    h = dict(UA); h["Accept"] = "application/geo+json"
+    r = requests.get("https://api.weather.gov/alerts/active", params=params, headers=h, timeout=TIMEOUT)
+    r.raise_for_status(); return r.json().get("features", [])
+
+def f_nws_pr():
+    """Alertas OFICIALES del Servicio Nacional de Meteorología para PR e Islas Vírgenes."""
+    out = []
+    mapa = {"Extreme": 3, "Severe": 2, "Moderate": 1}
+    criticos = ("Hurricane Warning", "Tsunami Warning", "Civil Danger", "Civil Emergency",
+                "Nuclear", "Radiological", "Shelter In Place", "Evacuation", "Extreme Wind")
+    vistos = set()
+    for area in ("PR", "VI"):
+        for f in nws({"area": area}):
+            p = f["properties"]
+            if p["event"] in vistos: continue
+            vistos.add(p["event"])
+            n = mapa.get(p.get("severity"), 0)
+            if any(c in p["event"] for c in criticos): n = max(n, 3)
+            if "Tsunami Warning" in p["event"] or "Hurricane Warning" in p["event"]: n = 4
+            if n == 0: continue
+            out.append(senal("NWS (oficial)", "Alerta oficial", n, f"{p['event']} — {area}",
+                             (p.get("headline") or "")[:300], url="https://www.weather.gov/sju/",
+                             clave=f"nws-{p['id']}", alcance="familia", seccion="pr"))
+    return out
+
+def f_nws_nacional():
+    """Alertas EXTREMAS en todo EE. UU. y alertas civiles/nucleares (cualquier severidad)."""
+    out = []
+    civiles = ("Civil Danger Warning", "Civil Emergency Message", "Nuclear Power Plant Warning",
+               "Radiological Hazard Warning", "Shelter In Place Warning", "Evacuation Immediate",
+               "Law Enforcement Warning", "Hazardous Materials Warning")
+    extremas = nws({"severity": "Extreme"})
+    civ = [f for f in nws({"event": ",".join(civiles)})] if True else []
+    for f in civ:
+        p = f["properties"]
+        out.append(senal("NWS (oficial)", "Alerta civil EE. UU.", 3, f"{p['event']}: {p.get('areaDesc','')[:80]}",
+                         (p.get("headline") or "")[:300], url="https://alerts.weather.gov/",
+                         clave=f"nwsciv-{p['id']}", seccion="eeuu"))
+    eventos = {}
+    for f in extremas:
+        p = f["properties"]; eventos.setdefault(p["event"], []).append(p.get("areaDesc", ""))
+    graves = ("Hurricane", "Tsunami", "Extreme Wind", "Storm Surge", "Tornado Emergency")
+    for ev, areas in eventos.items():
+        n = 1 if len(areas) < 5 else 2
+        if any(g in ev for g in graves): n = 3 if len(areas) >= 3 else 2
+        out.append(senal("NWS (oficial)", "Alerta extrema EE. UU.", n, f"{ev} — {len(areas)} zona(s) en EE. UU.",
+                         "; ".join(areas)[:300], url="https://alerts.weather.gov/",
+                         clave=f"nwsext-{ev}-{NOW:%Y%m%d}", seccion="eeuu"))
+    return out
+
+def f_huracanes():
+    """Centro Nacional de Huracanes (Atlántico): sistemas activos y menciones de PR."""
+    out = []
+    x = ET.fromstring(get("https://www.nhc.noaa.gov/index-at.xml").content)
+    for it in x.iter("item"):
+        t = it.findtext("title", ""); d = it.findtext("description", "") or ""
+        if not any(k in t for k in ("Advisory", "Summary for", "Watch", "Warning")): continue
+        pr = "Puerto Rico" in d or "Puerto Rico" in t or "Virgin Islands" in d
+        n = 3 if pr else 1
+        if pr and ("Hurricane Warning" in d or "Hurricane Warning" in t): n = 4
+        out.append(senal("NHC", "Huracán", n, t[:140], ("Menciona a Puerto Rico. " if pr else "") +
+                         re.sub("<[^>]+>", " ", d)[:250], url=it.findtext("link", ""),
+                         clave=f"nhc-{t}", alcance="familia" if pr else "global", seccion="pr" if pr else "infra"))
+    return out
+
+def f_tsunami():
+    """Centro Nacional de Alerta de Tsunamis (cubre PR e Islas Vírgenes)."""
+    out = []
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    x = ET.fromstring(get("https://www.tsunami.gov/events/xml/PAAQAtom.xml").content)
+    for e in x.findall("a:entry", ns):
+        t = e.findtext("a:title", "", ns); s = (e.findtext("a:summary", "", ns) or "")
+        upd = e.findtext("a:updated", "", ns)
+        try:
+            if (NOW - datetime.fromisoformat(upd.replace("Z", "+00:00"))).total_seconds() > 86400: continue
+        except ValueError:
+            pass
+        txt = (t + " " + s)
+        n = 4 if "Warning" in txt else 3 if "Advisory" in txt else 2 if "Watch" in txt else 0
+        if not n: continue
+        cerca = any(k in txt for k in ("Puerto Rico", "Virgin Islands", "Caribbean"))
+        out.append(senal("NTWC Tsunami", "Tsunami", n if cerca else max(1, n - 2), t[:140],
+                         re.sub("<[^>]+>", " ", s)[:250], url="https://www.tsunami.gov/",
+                         clave=f"tsu-{t}-{upd}", alcance="familia" if cerca else "global",
+                         seccion="pr" if cerca else "eeuu"))
+    return out
+
+def f_sismos():
+    """USGS: sismos M4+ en la zona de PR (24 h) y M6+ en EE. UU. continental."""
+    out = []
+    ini = (NOW - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%S")
+    q = "https://earthquake.usgs.gov/fdsnws/event/1/query"
+    pr = get(q, params={"format": "geojson", "starttime": ini, "minmagnitude": 4,
+                        "minlatitude": PR_CAJA[0], "maxlatitude": PR_CAJA[1],
+                        "minlongitude": PR_CAJA[2], "maxlongitude": PR_CAJA[3]}).json()["features"]
+    us = get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson").json()["features"]
+    us = [f for f in us if (f["properties"].get("mag") or 0) >= 6 and
+          en_caja(f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0], (18, 72, -170, -60))]
+    for f, sec in [(f, "pr") for f in pr] + [(f, "eeuu") for f in us]:
+        p = f["properties"]; lon, lat = f["geometry"]["coordinates"][:2]; m = p.get("mag") or 0
+        n = 1 if m < 5.5 else 2 if m < 6.5 else 3 if m < 7.3 else 4
+        if p.get("tsunami"): n = min(4, n + 1)
+        out.append(senal("USGS", "Sismo", n, f"Sismo M{m:.1f} — {p.get('place')}",
+                         "Bandera de tsunami USGS." if p.get("tsunami") else f"Profundidad {f['geometry']['coordinates'][2]:.0f} km",
+                         lat, lon, p.get("url", ""), clave=f["id"], alcance="familia", seccion=sec))
+    return out
+
 def f_clima_espacial():
-    """NOAA SWPC: tormentas geomagnéticas (G), apagones de radio (R), tormentas solares (S)."""
+    """NOAA SWPC: tormentas que degradan GPS, satélites, radio HF y red eléctrica en EE. UU."""
     out = []
     d = get("https://services.swpc.noaa.gov/products/noaa-scales.json").json()
     act = d["0"]
-    mapa_g = {3: 2, 4: 3, 5: 4}
-    mapa_r = {3: 2, 4: 3, 5: 4}
-    g = int(act["G"]["Scale"] or 0); r = int(act["R"]["Scale"] or 0); s = int(act["S"]["Scale"] or 0)
-    if g >= 1:
-        out.append(senal("NOAA SWPC", "Clima espacial", mapa_g.get(g, 1),
-                         f"Tormenta geomagnética G{g} ({act['G']['Text']})",
-                         "G4-G5 puede degradar GPS, satélites, radio HF y red eléctrica.",
-                         url="https://www.swpc.noaa.gov/", clave=f"swpc-G{g}-{act['DateStamp']}"))
-    if r >= 1:
-        out.append(senal("NOAA SWPC", "Clima espacial", mapa_r.get(r, 1),
-                         f"Apagón de radio R{r} ({act['R']['Text']})",
-                         "Afecta radio HF y navegación en el lado diurno de la Tierra.",
-                         url="https://www.swpc.noaa.gov/", clave=f"swpc-R{r}-{act['DateStamp']}"))
-    if s >= 3:
-        out.append(senal("NOAA SWPC", "Clima espacial", 2, f"Tormenta de radiación solar S{s}",
-                         "Puede afectar satélites y comunicaciones polares.",
-                         url="https://www.swpc.noaa.gov/", clave=f"swpc-S{s}-{act['DateStamp']}"))
-    # pronóstico (días 1-3): G4+ previsto
+    g = int(act["G"]["Scale"] or 0); r = int(act["R"]["Scale"] or 0)
+    m = {3: 2, 4: 3, 5: 4}
+    if g >= 3:
+        out.append(senal("NOAA SWPC", "Clima espacial", m[g], f"Tormenta geomagnética G{g} ({act['G']['Text']})",
+                         "Puede degradar GPS, satélites, radio y red eléctrica.", url="https://www.swpc.noaa.gov/",
+                         clave=f"swpc-G{g}-{act['DateStamp']}", seccion="infra"))
+    if r >= 3:
+        out.append(senal("NOAA SWPC", "Clima espacial", m[r], f"Apagón de radio R{r} ({act['R']['Text']})",
+                         "Afecta radio HF y navegación en el lado diurno.", url="https://www.swpc.noaa.gov/",
+                         clave=f"swpc-R{r}-{act['DateStamp']}", seccion="infra"))
     for k in ("1", "2", "3"):
-        g_f = d.get(k, {}).get("G", {}).get("Scale")
-        if g_f and int(g_f) >= 4:
-            out.append(senal("NOAA SWPC", "Clima espacial", 2,
-                             f"Pronóstico: tormenta geomagnética G{g_f} el {d[k]['DateStamp']}",
-                             url="https://www.swpc.noaa.gov/", clave=f"swpc-fG{g_f}-{d[k]['DateStamp']}"))
+        gf = d.get(k, {}).get("G", {}).get("Scale")
+        if gf and int(gf) >= 4:
+            out.append(senal("NOAA SWPC", "Clima espacial", 2, f"Pronóstico: tormenta G{gf} el {d[k]['DateStamp']}",
+                             url="https://www.swpc.noaa.gov/", clave=f"swpc-f{gf}-{d[k]['DateStamp']}", seccion="infra"))
     return out
-
-
-def f_sismos():
-    """USGS: sismos M6+ de las últimas 24 h (y M5+ cerca de la familia)."""
-    out = []
-    d = get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson").json()
-    for f in d["features"]:
-        p = f["properties"]; lon, lat = f["geometry"]["coordinates"][:2]
-        m = p.get("mag") or 0
-        zona, dist = zona_cercana(lat, lon)
-        if m < 6 and not (zona and m >= 5):
-            continue
-        n = 1
-        if m >= 7: n = 2
-        if m >= 7.8: n = 3
-        if zona: n = max(n + 1, 2) if m >= 6 else 2
-        if p.get("tsunami"): n += 1
-        det = f"Profundidad {f['geometry']['coordinates'][2]} km."
-        if p.get("tsunami"): det += " Posible tsunami (bandera USGS)."
-        if zona: det += f" A {dist} km de {zona}."
-        out.append(senal("USGS", "Sismo", n, f"Sismo M{m:.1f} — {p.get('place')}", det,
-                         lat, lon, p.get("url", ""), clave=f["id"],
-                         alcance="familia" if zona else "global"))
-    return out
-
-
-def f_gdacs():
-    """GDACS (ONU/UE): alertas naranja y roja de desastres (ciclones, inundaciones, volcanes)."""
-    out = []
-    x = get("https://www.gdacs.org/xml/rss.xml").content
-    ns = {"gdacs": "http://www.gdacs.org", "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#"}
-    for it in ET.fromstring(x).iter("item"):
-        lvl = (it.findtext("gdacs:alertlevel", "", ns) or "").lower()
-        if lvl not in ("orange", "red"):
-            continue
-        if (it.findtext("gdacs:iscurrent", "true", ns) or "true").lower() != "true":
-            continue
-        try:
-            lat = float(it.findtext("geo:Point/geo:lat", None, ns))
-            lon = float(it.findtext("geo:Point/geo:long", None, ns))
-        except (TypeError, ValueError):
-            lat = lon = None
-        zona = dist = None
-        if lat is not None:
-            zona, dist = zona_cercana(lat, lon)
-        n = 3 if lvl == "red" else 2
-        if zona: n = min(4, n + 1)
-        titulo = it.findtext("title", "")
-        out.append(senal("GDACS", "Desastre", n, titulo,
-                         (f"A {dist} km de {zona}. " if zona else "") + f"Alerta {lvl.upper()}.",
-                         lat, lon, it.findtext("link", ""),
-                         clave="gdacs-" + (it.findtext("guid", "") or titulo) + lvl,
-                         alcance="familia" if zona else "global"))
-    return out
-
 
 def f_ioda():
-    """IODA (Georgia Tech): caídas de internet a nivel país (BGP, sondeo activo, telescopio)."""
+    """IODA: caídas de internet a nivel país SOLO para PR, EE. UU. e Islas Vírgenes."""
     out = []
     until = int(time.time()); frm = until - 3 * 3600
+    fam = set(CFG.get("paises_familia") or ["PR", "US"]) | {"PR", "US", "VI"}
     d = get("https://api.ioda.inetintel.cc.gatech.edu/v2/outages/alerts",
             params={"from": frm, "until": until, "entityType": "country", "limit": 500}).json()
-    paises = {}
+    peor = {}
     for a in d.get("data") or []:
-        if a.get("level") != "critical":
-            continue
-        e = a["entity"]; code = e["code"]
+        e = a["entity"]
+        if e["code"] not in fam or a.get("level") not in ("critical", "warning"): continue
         hv = a.get("historyValue") or 0; v = a.get("value") or 0
         caida = (1 - v / hv) * 100 if hv else 0
-        prev = paises.get(code)
-        if not prev or caida > prev["caida"]:
-            paises[code] = {"nombre": e["name"], "caida": caida, "fuente": a.get("datasource")}
-    fam = set(CFG.get("paises_familia", []))
-    for code, p in paises.items():
-        if p["caida"] < 5 and code not in fam:
-            continue  # ruido
-        n = 1
-        if p["caida"] >= 25: n = 2
-        if code in fam: n = 3 if p["caida"] >= 10 else 2
-        out.append(senal("IODA", "Internet", n,
-                         f"Caída de internet en {p['nombre']} (-{p['caida']:.0f}% {p['fuente']})",
-                         "Detectado por IODA en las últimas 3 h.",
+        if caida > peor.get(e["code"], (0,))[0]:
+            peor[e["code"]] = (caida, e["name"], a.get("datasource"))
+    for code, (caida, nombre, src) in peor.items():
+        if caida < 3: continue
+        n = 1 if caida < 8 else 2 if caida < 20 else 3 if caida < 50 else 4
+        out.append(senal("IODA", "Internet", n, f"Caída de internet en {nombre}: -{caida:.0f}% ({src})",
+                         "Medido por IODA (Georgia Tech) en las últimas 3 h.",
                          url=f"https://ioda.inetintel.cc.gatech.edu/country/{code}",
-                         clave=f"ioda-{code}-{NOW:%Y%m%d}", alcance="familia" if code in fam else "global"))
-    umbral = CFG.get("ioda_paises_patron_global", 10)
-    if len(paises) >= umbral:
-        out.append(senal("IODA", "Internet", 3,
-                         f"Patrón global: {len(paises)} países con caídas críticas simultáneas",
-                         ", ".join(sorted(p["nombre"] for p in paises.values()))[:400],
-                         url="https://ioda.inetintel.cc.gatech.edu/",
-                         clave=f"ioda-global-{NOW:%Y%m%d%H}"))
+                         clave=f"ioda-{code}-{NOW:%Y%m%d%H}", alcance="familia",
+                         seccion="pr" if code in ("PR", "VI") else "eeuu"))
     return out
-
 
 def f_apple():
-    """Estado de iMessage, FaceTime, iCloud, Find My (los canales de la familia)."""
+    """iMessage, FaceTime, Find My: los canales que usa la familia."""
     out = []
     t = get("https://www.apple.com/support/systemstatus/data/system_status_en_US.js").text
-    t = t[t.find("{"): t.rfind("}") + 1]
-    d = json.loads(t)
-    vig = set(CFG.get("apple_servicios", []))
+    d = json.loads(t[t.find("{"): t.rfind("}") + 1])
+    crit = set(CFG.get("apple_criticos", ["iMessage", "FaceTime", "Find My"]))
     for s in d.get("services", []):
-        if s["serviceName"] not in vig:
-            continue
+        if s["serviceName"] not in crit: continue
         for ev in s.get("events", []):
-            if ev.get("eventStatus") not in ("ongoing",):
+            if ev.get("eventStatus") != "ongoing": continue
+            n = 3 if ev.get("statusType") == "Outage" else 2
+            out.append(senal("Apple", "Canal familiar", n, f"{s['serviceName']}: {ev.get('statusType')}",
+                             ev.get("message", "")[:300], url="https://www.apple.com/support/systemstatus/",
+                             clave=f"apple-{ev.get('messageId')}", alcance="familia", seccion="eeuu"))
+    return out
+
+def f_pizzint():
+    """PizzINT: índice de actividad nocturna cerca del Pentágono (señal blanda, no oficial)."""
+    out = []
+    d = get("https://www.pizzint.watch/api/dashboard-data").json()
+    lvl = int(d.get("defcon_level") or 5)
+    mapa = {5: 0, 4: 1, 3: 2, 2: 2, 1: 3}
+    det = (d.get("defcon_details") or {}).get("reason", "")
+    n = mapa.get(lvl, 0)
+    if d.get("has_active_spikes"): n = max(n, 1)
+    if n:
+        out.append(senal("PizzINT", "Indicador Pentágono", n, f"PizzINT nivel {lvl} — {d.get('active_spikes', 0)} pico(s) activos",
+                         f"Señal no oficial; solo cuenta junto a otras. {det}", url="https://www.pizzint.watch/",
+                         clave=f"pizz-{lvl}-{NOW:%Y%m%d%H}", seccion="amenazas"))
+    return out
+
+# Aeronaves de interés (códigos ICAO de tipo)
+TIPOS_CLAVE = {"E6": "E-6B Mercury (mando nuclear)", "E3TF": "E-3 AWACS", "E3CF": "E-3 AWACS",
+               "R135": "RC-135 (reconocimiento)", "P8": "P-8 Poseidon (patrulla marítima)",
+               "K35R": "KC-135 (reabastecimiento)", "KC46": "KC-46 (reabastecimiento)",
+               "E2": "E-2 Hawkeye (portaaviones)", "C17": "C-17 (transporte)", "C5M": "C-5 (transporte)",
+               "B52": "B-52", "B1": "B-1", "F35": "F-35", "FA18": "F/A-18 (portaaviones)",
+               "MQ9": "MQ-9 Reaper", "Q4": "RQ-4 Global Hawk", "E8": "E-8 JSTARS", "V22": "V-22 Osprey"}
+
+def f_militar_caribe():
+    """ADS-B (adsb.lol): aeronaves militares con transpondedor sobre el Caribe vs. su promedio."""
+    out = []
+    d = get("https://api.adsb.lol/v2/mil").json()
+    car = [a for a in d.get("ac", []) if en_caja(a.get("lat"), a.get("lon"), CARIBE)]
+    for a in car:
+        AVIONES.append({"callsign": (a.get("flight") or "").strip() or a.get("r") or a.get("hex"),
+                        "tipo": a.get("t") or "?", "desc": TIPOS_CLAVE.get(a.get("t") or "", ""),
+                        "lat": round(a["lat"], 2), "lon": round(a["lon"], 2),
+                        "alt": a.get("alt_baro"), "cerca_pr": en_caja(a["lat"], a["lon"], PR_CAJA)})
+    hist = ESTADO_REF.setdefault("mil_caribe", [])
+    hist.append(len(car)); del hist[:-96]                 # ~24 h de corridas cada 15 min
+    base = sorted(hist[:-1])[len(hist[:-1]) // 2] if len(hist) > 8 else None
+    clave_t = [a for a in AVIONES if a["desc"]]
+    det = ", ".join(sorted({f"{a['desc']}" for a in clave_t}))[:250]
+    n = 0
+    if base is not None and len(car) >= 6 and len(car) >= 2.5 * max(base, 1): n = 2
+    elif len(car) >= 4: n = 1
+    if any(a["tipo"] in ("E6", "E3TF", "E3CF", "R135", "B52", "B1") for a in AVIONES): n = max(n, 1)
+    if n or car:
+        out.append(senal("ADS-B (adsb.lol)", "Militar Caribe", n,
+                         f"{len(car)} aeronave(s) militar(es) visibles sobre el Caribe" +
+                         (f" (promedio {base})" if base is not None else ""),
+                         det or "Solo aeronaves con transpondedor encendido; muchas vuelan sin él.",
+                         url="https://adsb.lol/?mil", clave=f"mil-{NOW:%Y%m%d%H}", seccion="militar"))
+    return out
+
+def noticias(consultas, horas, seccion, categoria, peso_max=2, umbral=2):
+    """Google News RSS. Solo cuenta artículos de las últimas `horas`. Guarda titulares."""
+    out = []
+    for c in consultas:
+        q, idioma, etiqueta = c[:3]
+        sec = c[3] if len(c) > 3 else seccion
+        es = idioma == "es"
+        try:
+            x = get("https://news.google.com/rss/search",
+                    params={"q": f"{q} when:1d", "hl": "es-419" if es else "en-US", "gl": "US",
+                            "ceid": "US:es-419" if es else "US:en"}).content
+        except Exception as e:
+            print("  ! noticias", q, e); continue
+        recientes = []
+        for it in ET.fromstring(x).iter("item"):
+            try:
+                t = datetime.strptime(it.findtext("pubDate", ""), "%a, %d %b %Y %H:%M:%S %Z").replace(tzinfo=timezone.utc)
+            except ValueError:
                 continue
-            tipo = ev.get("statusType", "")
-            critico = s["serviceName"] in CFG.get("apple_criticos", [])
-            n = (3 if critico else 2) if tipo == "Outage" else (2 if critico else 1)
-            out.append(senal("Apple", "Servicio familiar", n,
-                             f"{s['serviceName']}: {tipo}", ev.get("message", "")[:300],
-                             url="https://www.apple.com/support/systemstatus/",
-                             clave=f"apple-{ev.get('messageId')}", alcance="familia"))
+            if (NOW - t).total_seconds() <= horas * 3600:
+                recientes.append((t, it.findtext("title", ""), it.findtext("link", "")))
+        recientes.sort(reverse=True)
+        for t, tit, link in recientes[:4]:
+            TITULARES.append({"hora_utc": t.isoformat(timespec="minutes"), "titulo": tit[:200],
+                              "url": link, "seccion": sec, "tema": etiqueta})
+        if len(recientes) >= umbral:
+            n = 1 if len(recientes) < umbral * 3 else min(peso_max, 2)
+            out.append(senal("Prensa (sin verificar)", categoria, n,
+                             f"{etiqueta}: {len(recientes)} noticia(s) en {horas} h",
+                             recientes[0][1][:200], url=recientes[0][2],
+                             clave=f"news-{q}-{NOW:%Y%m%d}", seccion=sec))
+        time.sleep(0.7)
     return out
 
+def f_noticias_comunicaciones():
+    return noticias([
+        ('Puerto Rico ("sin servicio" OR avería OR interrupción) (Claro OR Liberty OR "T-Mobile" OR AT&T OR internet OR celular)', "es", "Averías telecom PR"),
+        ('Puerto Rico (apagón OR "relevo de carga") LUMA', "es", "Apagones PR (LUMA)"),
+        ('("AT&T outage" OR "Verizon outage" OR "T-Mobile outage")', "en", "Caídas de celulares EE. UU.", "eeuu"),
+        ('("911 outage" OR "nationwide cell outage" OR "internet outage" United States)', "en", "Caídas 911 / internet EE. UU.", "eeuu"),
+        ('(cyberattack OR hack) (telecom OR "power grid") "United States"', "en", "Ciberataques a telecom/red eléctrica", "eeuu"),
+        ('("undersea cable" OR "submarine cable") (Caribbean OR "Puerto Rico" OR "United States") damaged', "en", "Cables submarinos"),
+    ], horas=6, seccion="pr", categoria="Comunicaciones (prensa)")
 
-def f_statuspages():
-    out = []
-    mapa = {"minor": 1, "major": 2, "critical": 3}
-    for sp in CFG.get("statuspages", []):
-        try:
-            st = get(sp["url"]).json()["status"]
-        except Exception as e:
-            print(f"  ! {sp['nombre']}: {e}")
-            continue
-        n = mapa.get(st.get("indicator"), 0)
-        if n:
-            out.append(senal(sp["nombre"], "Infraestructura", n,
-                             f"{sp['nombre']}: {st.get('description')}",
-                             url=sp["url"].split("/api/")[0], clave=f"sp-{sp['nombre']}-{st.get('indicator')}-{NOW:%Y%m%d}"))
-    return out
+def f_noticias_amenazas():
+    return noticias([
+        ('(ICBM OR "missile launch" OR "missile test") ("United States" OR "North America" OR NORAD)', "en", "Misiles / ICBM"),
+        ('NORAD (intercept OR alert OR scramble)', "en", "NORAD"),
+        ('("homeland" OR "United States") ("nuclear threat" OR "imminent attack" OR "terror alert")', "en", "Amenazas a EE. UU."),
+        ('("Emergency Alert System" OR "Presidential Alert" OR "national emergency") United States', "en", "Alertas nacionales"),
+    ], horas=6, seccion="amenazas", categoria="Amenaza Norteamérica (prensa)")
 
-
-def f_noticias():
-    """Google News RSS: conteo de artículos de 24 h por frase de riesgo."""
-    out = []
-    for nq in CFG.get("noticias", []):
-        es = nq.get("idioma") == "es"
-        params = {"q": f'"{nq["frase"]}" when:1d',
-                  "hl": "es-419" if es else "en-US", "gl": "PR" if es else "US",
-                  "ceid": "PR:es-419" if es else "US:en"}
-        try:
-            x = get("https://news.google.com/rss/search", params=params).content
-        except Exception as e:
-            print(f"  ! noticias '{nq['frase']}': {e}")
-            continue
-        items = list(ET.fromstring(x).iter("item"))
-        if len(items) >= nq["umbral"]:
-            top = items[0]
-            # Las noticias son ruidosas: nunca pasan de ELEVADO por sí solas.
-            out.append(senal("Noticias", "Señal de noticias", min(2, nq["peso"]),
-                             f"{len(items)} noticias en 24 h: “{nq['frase']}”",
-                             f"Más reciente: {top.findtext('title','')}",
-                             url=top.findtext("link", ""),
-                             clave=f"news-{nq['frase']}-{NOW:%Y%m%d}"))
-        time.sleep(1)
-    return out
-
+def f_noticias_militar():
+    return noticias([
+        ('(Navy OR warship OR "aircraft carrier" OR destroyer OR "amphibious") (Caribbean OR "Puerto Rico")', "en", "Movimiento naval Caribe"),
+        ('(Venezuela OR Cuba) (military OR warships OR navy OR strike) Caribbean', "en", "Venezuela / Cuba"),
+        ('("Roosevelt Roads" OR "Fuerte Buchanan" OR "Guardia Nacional") Puerto Rico militares', "es", "Militares en PR"),
+        ('(Russian OR Chinese) (warships OR submarine OR navy) (Cuba OR Caribbean OR Venezuela)', "en", "Rusia / China en el Caribe"),
+    ], horas=12, seccion="militar", categoria="Militar Caribe (prensa)", umbral=3)
 
 def f_gpsjam():
-    """GPSJam: interferencia GNSS (día anterior). Indicador de guerra electrónica."""
+    """GPSJam: interferencia GPS solo en el Caribe / cerca de PR."""
     out = []
-    man = get("https://gpsjam.org/data/manifest.csv").text.strip().splitlines()
-    dia = man[-1].split(",")[0]
-    rows = csv.DictReader(io.StringIO(get(f"https://gpsjam.org/data/{dia}-h3_4.csv").text))
+    import h3
+    dia = get("https://gpsjam.org/data/manifest.csv").text.strip().splitlines()[-1].split(",")[0]
     malos = []
-    for r in rows:
+    for r in csv.DictReader(io.StringIO(get(f"https://gpsjam.org/data/{dia}-h3_4.csv").text)):
         g = int(r["count_good_aircraft"]); b = int(r["count_bad_aircraft"])
         if g + b >= 5 and b / (g + b) > 0.10:
-            malos.append(r["hex"])
-    det = ""
-    try:
-        import h3
-        cerca = []
-        for hx in malos:
-            lat, lon = h3.cell_to_latlng(hx)
-            zona, dist = zona_cercana(lat, lon)
-            if zona: cerca.append(f"{zona} ({dist} km)")
-        if cerca:
-            out.append(senal("GPSJam", "GPS/GNSS", 2, f"Interferencia GPS cerca de la familia ({dia})",
-                             "; ".join(sorted(set(cerca)))[:300], url="https://gpsjam.org/",
-                             clave=f"gpsjam-fam-{dia}", alcance="familia"))
-    except ImportError:
-        det = "(instala 'h3' para ubicar zonas)"
-    n = 1 if len(malos) < 1500 else 2
-    out.append(senal("GPSJam", "GPS/GNSS", n, f"{len(malos)} zonas con interferencia GPS ({dia})",
-                     det, url=f"https://gpsjam.org/?date={dia}", clave=f"gpsjam-{dia}"))
+            lat, lon = h3.cell_to_latlng(r["hex"])
+            if en_caja(lat, lon, CARIBE): malos.append((lat, lon))
+    if malos:
+        cerca = [m for m in malos if en_caja(m[0], m[1], PR_CAJA)]
+        out.append(senal("GPSJam", "GPS/GNSS", 2 if cerca else 1,
+                         f"Interferencia GPS en {len(malos)} zona(s) del Caribe ({dia})" + (" — incluye PR" if cerca else ""),
+                         "Puede indicar guerra electrónica o interferencia.", url=f"https://gpsjam.org/?date={dia}",
+                         clave=f"gpsjam-car-{dia}", seccion="militar"))
     return out
 
-
-FUENTES = [("Clima espacial", f_clima_espacial), ("Sismos", f_sismos), ("GDACS", f_gdacs),
-           ("IODA", f_ioda), ("Apple", f_apple), ("Status pages", f_statuspages),
-           ("Noticias", f_noticias), ("GPSJam", f_gpsjam)]
+FUENTES = [("Alertas NWS Puerto Rico", f_nws_pr), ("Alertas NWS EE. UU.", f_nws_nacional),
+           ("Huracanes (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos (USGS)", f_sismos),
+           ("Internet PR/EE. UU. (IODA)", f_ioda), ("Apple iMessage/FaceTime", f_apple),
+           ("Clima espacial (NOAA)", f_clima_espacial), ("PizzINT", f_pizzint),
+           ("Militar Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam),
+           ("Prensa: comunicaciones", f_noticias_comunicaciones), ("Prensa: amenazas", f_noticias_amenazas),
+           ("Prensa: militar Caribe", f_noticias_militar)]
 
 
 # ------------------------------------------------------------------ evaluación
 def evaluar(senales):
     nivel = max([s["nivel"] for s in senales], default=0)
     # Convergencia: señales elevadas de CATEGORÍAS distintas (no 3 noticias iguales)
-    cats = {s["categoria"] for s in senales if s["nivel"] >= 2}
+    # La prensa cuenta como UNA sola categoría y nunca basta por sí sola.
+    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith("Prensa")}
+    prensa = any(s["nivel"] >= 2 and s["fuente"].startswith("Prensa") for s in senales)
+    cats = ofic | ({"Prensa"} if prensa else set())
     conv = CFG.get("convergencia_senales", 3)
     motivo = ""
-    if len(cats) >= conv and nivel < 3:
+    if len(cats) >= conv and len(ofic) >= 2 and nivel < 3:
         nivel = 3
         motivo = f"Convergencia: señales elevadas en {len(cats)} categorías ({', '.join(sorted(cats))})."
     top = sorted(senales, key=lambda s: (-s["nivel"], s["fuente"]))
     if nivel == 0:
-        resumen = "Sin riesgos relevantes para las comunicaciones."
+        resumen = "Sin riesgos relevantes para Puerto Rico y EE. UU. en este momento."
     else:
         resumen = "; ".join(s["titulo"] for s in top if s["nivel"] >= max(1, nivel - 1))[:500]
         if motivo:
@@ -347,6 +445,8 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "resumen": resumen, "mensaje_corto": f"{EMOJI[nivel]} {NIVELES[nivel]}: {resumen}"[:300],
         "senales": senales, "fuentes": estado_fuentes, "panel": url,
         "motor": os.getenv("MOTOR", "github"),
+        "titulares": sorted(TITULARES, key=lambda t: t["hora_utc"], reverse=True)[:40],
+        "aviones_militares": AVIONES[:60],
     }
     pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"]}
     json.dump(pulso, open(os.path.join(DOCS, "pulso.json"), "w"), indent=1)
@@ -517,6 +617,7 @@ def main():
                   3, dry)
         return
     estado = json.load(open(STATE_FILE)) if os.path.exists(STATE_FILE) else {"enviadas": {}, "historial": [], "ultimo_nivel": 0}
+    ESTADO_REF.update(estado)
     senales, fuentes = [], {}
     for nombre, fn in FUENTES:
         try:
@@ -559,6 +660,7 @@ def main():
     elif nivel < umbral <= estado.get("ultimo_nivel", 0):
         notificar("🟢 Riesgo bajó", f"Nivel actual: {NIVELES[nivel]}. {resumen}", 2, dry)
     estado["ultimo_nivel"] = nivel
+    estado["mil_caribe"] = ESTADO_REF.get("mil_caribe", [])
 
     escribir_salidas(nivel, resumen, senales, fuentes, estado["historial"])
     json.dump(estado, open(STATE_FILE, "w"), ensure_ascii=False, indent=1)

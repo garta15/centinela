@@ -21,6 +21,13 @@ button{background:#2b6cb0;color:#fff;border:0;margin-top:10px;font-weight:600;mi
 label.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}label.chk input{width:auto}
 #err{color:#e53e3e;margin-top:8px;min-height:1.2em}
 @media (max-width:600px){td:nth-child(2),td:nth-child(4){display:none}.hero h1{font-size:24px}}
+.hero .h1{font-size:30px;font-weight:800}.hero p{margin:6px 0 0}.peq{opacity:.85;font-size:13px}
+h2{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lista{list-style:none;padding:0;margin:0}.lista li{padding:10px 0;border-top:1px solid var(--line)}.lista li:first-child{border-top:0}
+.sig{display:flex;gap:10px;align-items:flex-start}.dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px}
+.nota a,.sig a{text-decoration:none;font-weight:600}.nota a:hover,.sig a:hover{text-decoration:underline}
+details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4px;list-style:none}.av li{padding:4px 0}
+.cols{columns:2;column-gap:16px;font-size:14px}.sec2{width:auto;background:#555}
 </style></head><body><main>
 <div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
   <h2>🔒 {{NOMBRE}}</h2>
@@ -48,22 +55,42 @@ async function descifrar(clave){
   const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(e.iv)},key,b64(e.ct));
   return JSON.parse(new TextDecoder().decode(pt));
 }
+const SEC={pr:["🇵🇷","Puerto Rico"],eeuu:["🇺🇸","Estados Unidos"],amenazas:["⚠️","Amenazas a Norteamérica"],
+  militar:["⚓","Militar y naval · Caribe"],infra:["🛰️","Infraestructura y espacio"]};
+function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);
+  if(m<1)return"ahora"; if(m<60)return`hace ${m} min`; const h=Math.round(m/60); return h<24?`hace ${h} h`:`hace ${Math.round(h/24)} d`;}
+function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
 function pintar(d){
-  const n=d.nivel, filas=(d.senales||[]).map(s=>`<tr><td><span class="pill" style="background:${COL[s.nivel]}">${esc(s.nivel_txt)}</span></td>
-    <td>${esc(s.categoria)}</td><td><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.titulo)}</a>
-    <div class="det">${esc(s.detalle)}</div></td><td>${esc(s.fuente)}</td></tr>`).join("")
-    ||`<tr><td colspan="4" class="det">Sin señales activas.</td></tr>`;
-  const hist=(d.historial||[]).slice(0,25).map(h=>`<li>${esc(h.hora_utc.slice(0,16).replace("T"," "))} · ${EMO[h.nivel]} ${esc(h.titulo)}</li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
-  const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)} <span class="det">${esc(v.nota)}</span></li>`).join("");
+  const n=d.nivel, sen=d.senales||[];
+  const tarjetas=Object.entries(SEC).map(([k,[ico,nom]])=>{
+    const ss=sen.filter(s=>(s.seccion||"infra")===k);
+    const peor=ss.reduce((a,s)=>Math.max(a,s.nivel),0);
+    const filas=ss.map(s=>`<li class="sig"><span class="dot" style="background:${COL[s.nivel]}"></span>
+      <div><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.titulo)}</a>
+      <div class="det">${esc(s.fuente)}${s.detalle?" · "+esc(s.detalle):""}</div></div></li>`).join("");
+    let extra="";
+    if(k==="militar"){const av=d.aviones_militares||[];
+      extra= av.length?`<details><summary>${av.length} aeronave(s) militar(es) con transpondedor</summary><ul class="av">${
+        av.map(a=>`<li>${a.cerca_pr?"📍":"✈️"} <b>${esc(a.callsign)}</b> ${esc(a.tipo)} ${a.desc?"· "+esc(a.desc):""}
+        <span class="det">${a.lat}, ${a.lon}${a.alt?" · "+esc(a.alt)+" ft":""}</span></li>`).join("")}</ul></details>`
+        :`<p class="det">Ninguna aeronave militar con transpondedor visible ahora sobre el Caribe (muchas vuelan sin él).</p>`;}
+    return `<section class="card sec"><h2><span>${ico} ${nom}</span><span class="pill" style="background:${COL[peor]}">${NIV[peor]}</span></h2>
+      ${filas?`<ul class="lista">${filas}</ul>`:`<p class="det">Sin novedades.</p>`}${extra}</section>`;}).join("");
+  const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const [ico]=SEC[t.seccion]||["📰"];
+    return `<li class="nota"><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a>
+    <div class="det">${ico} ${esc(t.tema)} · ${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin titulares recientes.</li>`;
+  const hist=(d.historial||[]).slice(0,15).map(h=>`<li>${EMO[h.nivel]} ${esc(h.titulo)} <span class="det">· ${hace(h.hora_utc)}</span></li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
+  const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)}</li>`).join("");
   const man=(d.consulta_manual||[]).map(m=>`<li><a href="${esc(safeUrl(m.url))}" target="_blank" rel="noopener">${esc(m.nombre)}</a></li>`).join("");
   const app=document.getElementById("app");
-  app.innerHTML=`<div class="hero" style="background:${COL[n]}"><h1>${EMO[n]} ${NIV[n]}</h1><p>${esc(d.resumen)}</p>
-    <p style="opacity:.85;font-size:13px">Actualizado ${esc(d.actualizado_utc.replace("T"," ").slice(0,16))} UTC · motor ${esc(d.motor)}</p></div>
-    <div class="card"><h2>Señales activas</h2><table>${filas}</table></div>
-    <div class="grid"><div class="card"><h2>Historial</h2><ul>${hist}</ul></div>
-    <div class="card"><h2>Fuentes</h2><ul>${fu}</ul></div>
-    <div class="card"><h2>Consulta manual</h2><ul>${man}</ul></div></div>
-    <p class="det"><button id="salir" style="width:auto;background:#555">Cerrar sesión en este dispositivo</button></p>`;
+  app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
+    <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
+    <div class="grid">${tarjetas}</div>
+    <section class="card"><h2><span>📰 Titulares en vivo</span><span class="det">prensa · sin verificar</span></h2><ul class="lista">${tit}</ul></section>
+    <div class="grid"><section class="card"><h2>🕘 Historial de alertas</h2><ul>${hist}</ul></section>
+    <section class="card"><h2>🔌 Fuentes</h2><ul class="cols">${fu}</ul></section>
+    <section class="card"><h2>🔎 Consulta manual</h2><ul class="cols">${man}</ul></section></div>
+    <p class="det"><button id="salir" class="sec2">Cerrar sesión en este dispositivo</button></p>`;
   document.getElementById("login").hidden=true; app.hidden=false;
   document.getElementById("salir").onclick=()=>{try{localStorage.removeItem("cf_k")}catch(e){} location.reload()};
 }
