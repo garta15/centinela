@@ -456,7 +456,7 @@ def notificar(titulo, cuerpo, nivel, dry=False):
     topic = os.getenv("NTFY_TOPIC")
     if topic:
         server = os.getenv("NTFY_SERVER", "https://ntfy.sh").rstrip("/")
-        atajo = os.getenv("SHORTCUT_NAME", "Alerta Familiar")
+        atajo = os.getenv("SHORTCUT_NAME") or "Alerta Familiar"
         msg = {"topic": topic, "title": titulo, "message": cuerpo,
                "priority": 5 if nivel >= 4 else 4 if nivel == 3 else 3,
                "tags": ["rotating_light"] if nivel >= 3 else ["warning"], "click": url,
@@ -466,7 +466,7 @@ def notificar(titulo, cuerpo, nivel, dry=False):
                     "url": f"shortcuts://run-shortcut?name={requests.utils.quote(atajo)}"
                            f"&input=text&text={requests.utils.quote((titulo + ' | ' + cuerpo)[:400])}"},
                    {"action": "view", "label": "Confirmo / estoy bien",
-                    "url": "shortcuts://run-shortcut?name=" + requests.utils.quote(os.getenv("SHORTCUT_CONFIRMO", "Confirmo"))},
+                    "url": "shortcuts://run-shortcut?name=" + requests.utils.quote(os.getenv("SHORTCUT_CONFIRMO") or "Confirmo")},
                    {"action": "view", "label": "Ver panel", "url": url}]}
         h = {"Authorization": f"Bearer {os.getenv('NTFY_TOKEN')}"} if os.getenv("NTFY_TOKEN") else {}
         try:
