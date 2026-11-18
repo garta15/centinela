@@ -1,0 +1,71 @@
+# ============================================================
+#  CENTINELA FAMILIAR — configuración
+#  Lo que pongas aquí se publica en un repositorio. NO pongas
+#  nombres, teléfonos, direcciones ni el protocolo familiar.
+#  Eso vive en el Atajo del iPhone y en los "Secrets" de GitHub.
+# ============================================================
+
+nombre_sistema: "Centinela Familiar"
+
+# URL pública del panel (tu dominio o GitHub Pages). Se usa en las alertas.
+url_panel: "https://garta15.github.io/centinela/"
+
+# Países y zonas de la familia: NO van aquí (este archivo es público).
+# Se ponen en GitHub → Settings → Secrets:
+#   PAISES_FAMILIA = PR,US
+#   ZONAS_FAMILIA  = [{"nombre":"Base","lat":18.22,"lon":-66.59,"radio_km":600}]
+# Usa nombres en clave para las zonas ("Base", "Zona Agosto"...).
+paises_familia: []
+zonas_familia: []
+
+# Nivel mínimo que dispara una notificación push/SMS
+#   0 NORMAL · 1 VIGILANCIA · 2 ELEVADO · 3 ALTO · 4 CRÍTICO
+nivel_minimo_alerta: 3
+
+# Si hay este número de señales de nivel >= 2 a la vez, el nivel
+# general sube a ALTO aunque ninguna por sí sola lo sea (convergencia).
+convergencia_senales: 3
+
+# Caídas nacionales de internet (IODA) en distintos países a la vez
+# que se consideran un patrón global.
+ioda_paises_patron_global: 10
+
+# Servicios de comunicación a vigilar (páginas de estado públicas)
+# Críticos (caída = ALTO): los canales que la familia usa para hablar
+apple_criticos: ["iMessage", "FaceTime", "Find My"]
+apple_servicios: ["iMessage", "FaceTime", "iCloud Mail", "Find My", "Apple Account", "iCloud Account & Sign In"]
+statuspages:
+  - { nombre: "Cloudflare", url: "https://www.cloudflarestatus.com/api/v2/status.json" }
+  - { nombre: "Twilio (SMS)", url: "https://status.twilio.com/api/v2/status.json" }
+
+# Noticias: frases que indican riesgo de corte de comunicaciones.
+# peso = nivel (máx. 2) si aparecen >= umbral artículos en 24 h. Las noticias
+# solas nunca disparan ALTO; solo cuentan para la convergencia con otras fuentes.
+noticias:
+  - { frase: "nationwide internet shutdown", umbral: 3, peso: 2 }
+  - { frase: "undersea cable cut",           umbral: 2, peso: 2 }
+  - { frase: "submarine cable damaged",      umbral: 2, peso: 2 }
+  - { frase: "cyberattack telecom outage",   umbral: 2, peso: 2 }
+  - { frase: "nationwide cell outage",       umbral: 2, peso: 2 }
+  - { frase: "GPS jamming",                  umbral: 10, peso: 1 }
+  - { frase: "satellite outage",             umbral: 3, peso: 2 }
+  - { frase: "electromagnetic pulse",        umbral: 20, peso: 2 }
+  - { frase: "nuclear detonation",           umbral: 20, peso: 2 }
+  - { frase: "apagón general Puerto Rico",   umbral: 2, peso: 2, idioma: "es" }
+
+# Enlaces de consulta manual que aparecen en el panel
+# (no tienen API pública; se revisan a mano cuando hay alerta)
+consulta_manual:
+  - { nombre: "OSIRIS AI (mapa global)", url: "https://osirisai.live/?layers=maritime,cctv,cctv_previews,live_news,earthquakes,global_incidents,day_night,cables,sdk_sea,sdk_air,sdk_naval,wind_controls,rain_controls" }
+  - { nombre: "PizzINT", url: "https://www.pizzint.watch/" }
+  - { nombre: "Conflictly", url: "https://www.conflictly.app/" }
+  - { nombre: "Radware Live Threat Map", url: "https://livethreatmap.radware.com/" }
+  - { nombre: "VECERT Analyzer", url: "https://analyzer.vecert.io/" }
+  - { nombre: "Iran Monitor", url: "https://www.iranmonitor.org/" }
+  - { nombre: "SkyOSINT", url: "https://skyosint.io/" }
+  - { nombre: "RF Consult SST", url: "https://rfconsult.uk/sst/" }
+  - { nombre: "GPSJam", url: "https://gpsjam.org/" }
+  - { nombre: "Downdetector", url: "https://downdetector.com/" }
+  - { nombre: "Is It Down Right Now", url: "https://www.isitdownrightnow.com/" }
+  - { nombre: "IODA (cortes de internet)", url: "https://ioda.inetintel.cc.gatech.edu/" }
+  - { nombre: "NOAA Clima espacial", url: "https://www.swpc.noaa.gov/" }

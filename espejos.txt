@@ -1,0 +1,6 @@
+# Copias del CÓDIGO (git). Los motores de respaldo intentan actualizarse
+# en este orden; si uno cae (ciberataque, bloqueo), usan el siguiente.
+https://github.com/garta15/centinela.git
+https://codeberg.org/garta15/centinela.git
+https://gitlab.com/garta15/centinela.git
+https://huggingface.co/garta15/centinela-codigo

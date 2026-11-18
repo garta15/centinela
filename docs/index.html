@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Centinela Familiar</title>
+<style>
+:root{color-scheme:light dark;--bg:#0f1115;--fg:#e8e8ea;--mut:#9aa0a6;--card:#181b22;--line:#2a2f3a}
+@media (prefers-color-scheme:light){:root{--bg:#f6f7f9;--fg:#15171c;--mut:#5f6368;--card:#fff;--line:#e3e5e8}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.45 -apple-system,system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:980px;margin:auto;padding:20px}a{color:inherit}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:16px}
+.hero{border-radius:14px;padding:20px 22px;color:#fff}.hero h1{margin:0;font-size:28px}.hero p{margin:6px 0 0}
+h2{font-size:16px;margin:0 0 10px}table{width:100%;border-collapse:collapse}
+td{border-top:1px solid var(--line);padding:8px 6px;vertical-align:top}
+.pill{color:#fff;border-radius:99px;padding:2px 8px;font-size:12px;white-space:nowrap}
+.det{color:var(--mut);font-size:13px}ul{margin:0;padding-left:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+input,button{font:inherit;padding:12px 14px;border-radius:10px;border:1px solid var(--line);width:100%}
+button{background:#2b6cb0;color:#fff;border:0;margin-top:10px;font-weight:600;min-height:44px}
+label.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}label.chk input{width:auto}
+#err{color:#e53e3e;margin-top:8px;min-height:1.2em}
+@media (max-width:600px){td:nth-child(2),td:nth-child(4){display:none}.hero h1{font-size:24px}}
+</style></head><body><main>
+<div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
+  <h2>🔒 Centinela Familiar</h2>
+  <p class="det">Contenido cifrado. Escribe la frase clave familiar.</p>
+  <form id="f"><input id="k" type="password" autocomplete="current-password" placeholder="Frase clave" aria-label="Frase clave" required>
+  <label class="chk"><input id="rec" type="checkbox"> Recordar en este dispositivo</label>
+  <button type="submit">Abrir</button><div id="err" role="alert"></div></form>
+</div>
+<div id="app" hidden></div>
+</main>
+<script>
+const NIV=["NORMAL","VIGILANCIA","ELEVADO","ALTO","CRÍTICO"],EMO=["🟢","🔵","🟡","🟠","🔴"],
+      COL=["#1f9d55","#2b6cb0","#c99a06","#dd6b20","#c53030"];
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"#";
+async function descifrar(clave){
+  const r=await fetch("estado.enc?t="+Date.now(),{cache:"no-store"});
+  if(!r.ok) throw new Error("No se pudo descargar el estado ("+r.status+")");
+  const e=await r.json();
+  const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(clave),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(e.salt),iterations:e.iter,hash:"SHA-256"},
+             base,{name:"AES-GCM",length:256},false,["decrypt"]);
+  const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(e.iv)},key,b64(e.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function pintar(d){
+  const n=d.nivel, filas=(d.senales||[]).map(s=>`<tr><td><span class="pill" style="background:${COL[s.nivel]}">${esc(s.nivel_txt)}</span></td>
+    <td>${esc(s.categoria)}</td><td><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.titulo)}</a>
+    <div class="det">${esc(s.detalle)}</div></td><td>${esc(s.fuente)}</td></tr>`).join("")
+    ||`<tr><td colspan="4" class="det">Sin señales activas.</td></tr>`;
+  const hist=(d.historial||[]).slice(0,25).map(h=>`<li>${esc(h.hora_utc.slice(0,16).replace("T"," "))} · ${EMO[h.nivel]} ${esc(h.titulo)}</li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
+  const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)} <span class="det">${esc(v.nota)}</span></li>`).join("");
+  const man=(d.consulta_manual||[]).map(m=>`<li><a href="${esc(safeUrl(m.url))}" target="_blank" rel="noopener">${esc(m.nombre)}</a></li>`).join("");
+  const app=document.getElementById("app");
+  app.innerHTML=`<div class="hero" style="background:${COL[n]}"><h1>${EMO[n]} ${NIV[n]}</h1><p>${esc(d.resumen)}</p>
+    <p style="opacity:.85;font-size:13px">Actualizado ${esc(d.actualizado_utc.replace("T"," ").slice(0,16))} UTC · motor ${esc(d.motor)}</p></div>
+    <div class="card"><h2>Señales activas</h2><table>${filas}</table></div>
+    <div class="grid"><div class="card"><h2>Historial</h2><ul>${hist}</ul></div>
+    <div class="card"><h2>Fuentes</h2><ul>${fu}</ul></div>
+    <div class="card"><h2>Consulta manual</h2><ul>${man}</ul></div></div>
+    <p class="det"><button id="salir" style="width:auto;background:#555">Cerrar sesión en este dispositivo</button></p>`;
+  document.getElementById("login").hidden=true; app.hidden=false;
+  document.getElementById("salir").onclick=()=>{try{localStorage.removeItem("cf_k")}catch(e){} location.reload()};
+}
+async function abrir(clave,recordar){
+  const err=document.getElementById("err"); err.textContent="Descifrando…";
+  try{ const d=await descifrar(clave); err.textContent="";
+       if(recordar){try{localStorage.setItem("cf_k",clave)}catch(e){}}
+       pintar(d); setTimeout(()=>abrir(clave,false),300000);
+  }catch(e){ err.textContent = e.name==="OperationError" ? "Frase clave incorrecta." : e.message; }
+}
+document.getElementById("f").onsubmit=ev=>{ev.preventDefault();
+  abrir(document.getElementById("k").value,document.getElementById("rec").checked)};
+let guardada=null; try{guardada=localStorage.getItem("cf_k")}catch(e){}
+if(guardada) abrir(guardada,false);
+</script></body></html>

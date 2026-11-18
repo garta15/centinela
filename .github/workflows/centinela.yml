@@ -1,0 +1,103 @@
+name: Centinela Familiar
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"     # cada 15 min (GitHub puede retrasarlo unos minutos)
+  workflow_dispatch:            # botón "Run workflow" manual
+    inputs:
+      prueba:
+        description: "Enviar alerta de prueba"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: centinela
+  cancel-in-progress: false
+
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      FTP_DESTINOS: ${{ secrets.FTP_DESTINOS }}
+      CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+      GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Alerta de prueba
+        if: ${{ github.event.inputs.prueba == 'true' }}
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          SHORTCUT_NAME: ${{ vars.SHORTCUT_NAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+        run: python monitor.py --test-alert
+
+      - name: Vigilar fuentes
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          SHORTCUT_NAME: ${{ vars.SHORTCUT_NAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+          FAMILY_KEY: ${{ secrets.FAMILY_KEY }}
+          ZONAS_FAMILIA: ${{ secrets.ZONAS_FAMILIA }}
+          PAISES_FAMILIA: ${{ secrets.PAISES_FAMILIA }}
+        run: python monitor.py
+
+      - name: Guardar resultados (GitHub Pages sirve /docs)
+        run: |
+          git config user.name  "centinela-bot"
+          git config user.email "centinela-bot@users.noreply.github.com"
+          git add docs state.json
+          git diff --cached --quiet || git commit -m "estado $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Respaldo en Hugging Face
+        if: ${{ env.HF_TOKEN != '' }}
+        env:
+          HF_SPACE: ${{ vars.HF_SPACE }}
+        run: python mirror_hf.py
+        continue-on-error: true
+
+      - name: Copia FTP en tu dominio (solo si ya tienes hosting)
+        if: ${{ env.FTP_DESTINOS != '' }}
+        run: |
+          sudo apt-get -qq install -y lftp
+          echo "$FTP_DESTINOS" | tr ';' '\n' | while IFS='|' read -r host user pass path; do
+            [ -z "$host" ] && continue
+            lftp -u "$user","$pass" "$host" -e "set ssl:verify-certificate yes; set net:timeout 20; set net:max-retries 2; mirror -R --delete docs $path; quit" \
+              && echo "✓ $host" || echo "✗ $host"
+          done
+        continue-on-error: true
+
+      - name: Copia en Cloudflare Pages (red global, incluye Auckland, Christchurch, Zúrich, Tokio, Singapur)
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 pages deploy docs --project-name="${{ vars.CF_PROJECT || 'centinela-familiar' }}" --branch=main --commit-dirty=true
+        continue-on-error: true
+
+      - name: Espejos del código (Codeberg / GitLab)
+        run: |
+          git fetch --unshallow --quiet || true
+          [ -n "$CODEBERG_TOKEN" ] && git push --force --quiet "https://oauth2:${CODEBERG_TOKEN}@codeberg.org/${{ vars.CODEBERG_REPO }}.git" HEAD:main && echo "✓ Codeberg" || true
+          [ -n "$GITLAB_TOKEN" ]   && git push --force --quiet "https://oauth2:${GITLAB_TOKEN}@gitlab.com/${{ vars.GITLAB_REPO }}.git" HEAD:main && echo "✓ GitLab" || true
+        continue-on-error: true

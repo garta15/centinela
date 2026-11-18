@@ -1,0 +1,5 @@
+requests>=2.31
+PyYAML>=6.0
+h3>=4.0
+huggingface_hub>=0.24
+cryptography>=42
