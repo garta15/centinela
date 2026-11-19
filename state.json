@@ -2,9 +2,25 @@
  "enviadas": {
   "bf0dba7fc2b6": "2026-11-18T01:15:54+00:00",
   "02a82893c3b2": "2026-11-18T21:38:24+00:00",
-  "555c550953e0": "2026-11-18T21:38:24+00:00"
+  "555c550953e0": "2026-11-18T21:38:24+00:00",
+  "22b4158b6bec": "2026-11-19T02:49:49+00:00"
  },
  "historial": [
+  {
+   "id": "22b4158b6bec",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 3,
+   "nivel_txt": "ALTO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 90/100 (11 en 3 h · 95 en 24 h)",
+   "detalle": "3 medios distintos en 3 h: «martial law»",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9PRDRPbTZoZEgydTNOMEdVbzJnMmlnOVJZRHBCWThhdGhieW9Da2w2NGF4dUhRMUo4ZWN3RW1EZS10QW9ESGo0eUNxWGNveU94VWRlOWdiNjJnX3hTdWdaTGdJT2lTTlNMYllaQW5WZw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-19T02:49:49+00:00"
+  },
   {
    "id": "555c550953e0",
    "fuente": "Medidor de prensa",
@@ -57,7 +73,8 @@
   1,
   0,
   2,
-  2
+  2,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -65,41 +82,47 @@
    3,
    3,
    0,
-   1
+   1,
+   0
   ],
   "ciber": [
    30,
    30,
    30,
    0,
-   27
+   27,
+   26
   ],
   "electrica": [
    13,
    77,
    76,
    0,
-   50
+   50,
+   47
   ],
   "ataque": [
    94,
    94,
    94,
    0,
-   96
+   96,
+   92
   ],
   "terror": [
    98,
    98,
    98,
    0,
-   40
+   40,
+   33
   ],
   "emergencia": [
    95,
    95,
    95,
    0,
+   95,
    95
   ],
   "espacio": [
@@ -107,24 +130,41 @@
    11,
    11,
    0,
-   7
+   7,
+   9
   ],
   "caribe": [
    21,
    21,
    21,
    0,
-   41
+   41,
+   42
   ],
   "pr": [
    0,
    27,
    27,
    0,
-   27
+   27,
+   29
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae26a8",
+   "callsign": "6582",
+   "tipo": "AS65",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.14,
+   "lon": -79.75,
+   "alt": 275,
+   "visto_utc": "2026-11-19T02:49+00:00",
+   "dist_pr_km": 1614,
+   "primera_vez_utc": "2026-11-19T02:49+00:00"
+  },
   {
    "hex": "ae4bf0",
    "callsign": "C2316",
@@ -202,6 +242,13 @@
    "fecha_utc": "2026-11-18T17:38+00:00",
    "fuente": "Prensa: CiberCuba",
    "texto": "Two U.S. aircraft carriers sail together in the Arabian Sea as tensions rise with Iran",
+   "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNZXpkbnVUNllhX3dVNjhMS1RYWFRQbmRlSjhrSFMtU2ZqeE5HclVqMk5ucWpWcWxNcFJwWEFJSmdCYk15MTBEc2ZOQlJJazJSS1VSX29pNjhoNHFpN3dlQzMxLWltQVRkaWtoejdKaWFuOVFMc1dQcnoybUU4bEZhdGxvRHQ2SHJtSF8tTnE4TVBWYldkaW5NNEI5cENxNU5zdFA0SGhETUt4UDN0UzhoQ2c0eG5NaUsweGdfZmtn?oc=5"
+  },
+  {
+   "id": "48ccf0a4da43",
+   "fecha_utc": "2026-11-18T17:38+00:00",
+   "fuente": "Prensa: CiberCuba",
+   "texto": "Two U.S. aircraft carriers are sailing together in the Arabian Sea as tensions with Iran escalate",
    "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNZXpkbnVUNllhX3dVNjhMS1RYWFRQbmRlSjhrSFMtU2ZqeE5HclVqMk5ucWpWcWxNcFJwWEFJSmdCYk15MTBEc2ZOQlJJazJSS1VSX29pNjhoNHFpN3dlQzMxLWltQVRkaWtoejdKaWFuOVFMc1dQcnoybUU4bEZhdGxvRHQ2SHJtSF8tTnE4TVBWYldkaW5NNEI5cENxNU5zdFA0SGhETUt4UDN0UzhoQ2c0eG5NaUsweGdfZmtn?oc=5"
   },
   {
@@ -318,11 +365,17 @@
   "6/8638": "2026-11-18T21:38+00:00",
   "6/8635": "2026-11-18T21:38+00:00",
   "6/8612": "2026-11-18T21:38+00:00",
-  "6/8596": "2026-11-18T21:38+00:00"
+  "6/8596": "2026-11-18T21:38+00:00",
+  "6/8736": "2026-11-19T02:49+00:00",
+  "6/8735": "2026-11-19T02:49+00:00",
+  "6/8731": "2026-11-19T02:49+00:00",
+  "6/8729": "2026-11-19T02:49+00:00",
+  "6/8734": "2026-11-19T02:49+00:00"
  },
  "tfr_base": [
   24,
   26,
-  18
+  18,
+  16
  ]
 }
