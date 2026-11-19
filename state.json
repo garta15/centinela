@@ -5,9 +5,25 @@
   "555c550953e0": "2026-11-18T21:38:24+00:00",
   "22b4158b6bec": "2026-11-19T02:49:49+00:00",
   "fea4bccc604f": "2026-11-19T10:56:31+00:00",
-  "6b0877b5d37c": "2026-11-19T10:56:31+00:00"
+  "6b0877b5d37c": "2026-11-19T10:56:31+00:00",
+  "f5031917a469": "2026-11-19T19:27:24+00:00"
  },
  "historial": [
+  {
+   "id": "f5031917a469",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 100/100 (9 en 3 h · 68 en 24 h)",
+   "detalle": "Rodríguez, Hegseth Announce Venezuela-US ‘Military Cooperation’ Agreement - Venezuelanalysis",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNY2JKQjNDbXZINnhNY1c3R0JxUHZpNjIyMFc0bWsyZ3pOb0E5M2tySEI4N3ZpYkZoLTFadFV4MGNTX0RsMUhVNXVFTzhHSk0yaVl2MTd4cnV4SDM3UE1zZVBHY0hCekg5cTB4VjZPTm4wVUZmY0JmOFNxNzdqZzFlUWhSMW1DcC1qQTlDMS1ybjhpRTZFdGx5ZGxCdVFWVlgyUXpreC1YRno?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-19T19:27:24+00:00"
+  },
   {
    "id": "6b0877b5d37c",
    "fuente": "Medidor de prensa",
@@ -98,7 +114,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 3,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -107,7 +123,8 @@
   2,
   2,
   1,
-  0
+  0,
+  5
  ],
  "medidores_base": {
   "telecom": [
@@ -116,6 +133,7 @@
    3,
    0,
    1,
+   0,
    0,
    0
   ],
@@ -126,7 +144,8 @@
    0,
    27,
    26,
-   26
+   26,
+   10
   ],
   "electrica": [
    13,
@@ -135,7 +154,8 @@
    0,
    50,
    47,
-   48
+   48,
+   51
   ],
   "ataque": [
    94,
@@ -144,7 +164,8 @@
    0,
    96,
    92,
-   74
+   74,
+   96
   ],
   "terror": [
    98,
@@ -153,7 +174,8 @@
    0,
    40,
    33,
-   32
+   32,
+   24
   ],
   "emergencia": [
    95,
@@ -162,7 +184,8 @@
    0,
    95,
    95,
-   88
+   88,
+   87
   ],
   "espacio": [
    10,
@@ -171,7 +194,8 @@
    0,
    7,
    9,
-   7
+   7,
+   9
   ],
   "caribe": [
    21,
@@ -180,7 +204,8 @@
    0,
    41,
    42,
-   63
+   63,
+   68
   ],
   "pr": [
    0,
@@ -189,10 +214,81 @@
    0,
    27,
    29,
+   28,
    28
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae4eb7",
+   "callsign": "BOE014",
+   "tipo": "P8",
+   "desc": "P-8 Poseidon (patrulla marítima)",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.65,
+   "lon": -84.39,
+   "alt": 27025,
+   "visto_utc": "2026-11-19T19:27+00:00",
+   "dist_pr_km": 2100,
+   "primera_vez_utc": "2026-11-19T19:27+00:00"
+  },
+  {
+   "hex": "ae2913",
+   "callsign": "C6036",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.76,
+   "lon": -82.71,
+   "alt": 575,
+   "visto_utc": "2026-11-19T19:27+00:00",
+   "dist_pr_km": 1959,
+   "primera_vez_utc": "2026-11-19T19:27+00:00"
+  },
+  {
+   "hex": "ae5bbc",
+   "callsign": "sin identificar",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.1,
+   "lon": -80.66,
+   "alt": 1750,
+   "visto_utc": "2026-11-19T19:27+00:00",
+   "dist_pr_km": 1747,
+   "primera_vez_utc": "2026-11-19T19:27+00:00"
+  },
+  {
+   "hex": "ae54d5",
+   "callsign": "KING30",
+   "tipo": "C30J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.43,
+   "lon": -80.6,
+   "alt": 22025,
+   "visto_utc": "2026-11-19T19:27+00:00",
+   "dist_pr_km": 1704,
+   "primera_vez_utc": "2026-11-19T19:27+00:00"
+  },
+  {
+   "hex": "ae481a",
+   "callsign": "R20077",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.93,
+   "lon": -80.41,
+   "alt": 750,
+   "visto_utc": "2026-11-19T19:27+00:00",
+   "dist_pr_km": 1716,
+   "primera_vez_utc": "2026-11-19T19:27+00:00"
+  },
   {
    "hex": "ae26a8",
    "callsign": "6582",
@@ -412,13 +508,22 @@
   "6/8735": "2026-11-19T02:49+00:00",
   "6/8731": "2026-11-19T02:49+00:00",
   "6/8729": "2026-11-19T02:49+00:00",
-  "6/8734": "2026-11-19T02:49+00:00"
+  "6/8734": "2026-11-19T02:49+00:00",
+  "6/9062": "2026-11-19T19:27+00:00",
+  "6/9014": "2026-11-19T19:27+00:00",
+  "6/9013": "2026-11-19T19:27+00:00",
+  "6/8989": "2026-11-19T19:27+00:00",
+  "6/8986": "2026-11-19T19:27+00:00",
+  "6/8983": "2026-11-19T19:27+00:00",
+  "6/8982": "2026-11-19T19:27+00:00",
+  "6/8981": "2026-11-19T19:27+00:00"
  },
  "tfr_base": [
   24,
   26,
   18,
   16,
-  16
+  16,
+  18
  ]
 }
