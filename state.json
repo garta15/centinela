@@ -3,9 +3,41 @@
   "bf0dba7fc2b6": "2026-11-18T01:15:54+00:00",
   "02a82893c3b2": "2026-11-18T21:38:24+00:00",
   "555c550953e0": "2026-11-18T21:38:24+00:00",
-  "22b4158b6bec": "2026-11-19T02:49:49+00:00"
+  "22b4158b6bec": "2026-11-19T02:49:49+00:00",
+  "fea4bccc604f": "2026-11-19T10:56:31+00:00",
+  "6b0877b5d37c": "2026-11-19T10:56:31+00:00"
  },
  "historial": [
+  {
+   "id": "6b0877b5d37c",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 89/100 (5 en 3 h · 63 en 24 h)",
+   "detalle": "Washington and Caracas sign deal to restore military cooperation - سانا",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9EZ1VDWURJVUxQeDdXM2ZJUk9QeXRLcHg5RXhNakNrdjI2N2RoYUdKQmt1aWwwSkFQTk92cm9mVlFDMHZXT1lldFFNQnZkWnVKUGRr?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-19T10:56:31+00:00"
+  },
+  {
+   "id": "fea4bccc604f",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 3,
+   "nivel_txt": "ALTO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 90/100 (26 en 3 h · 88 en 24 h)",
+   "detalle": "14 medios distintos en 3 h: «martial law»",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPYjY5OFF6T0xELUI4cjJTa0hJYXRRbW9OYVkxZjM0QUNxYXZndC1Dc1JEeW4zaEZocHppOGN0cVlxMlkzR1F2ME9SVVdMUGNkYnZhbkJmVWdZX0hjSGxXSEhvUlhJQm14QWpZcS16SDFxaEZrNWxoMjhoSldaY21FdtIBlAFBVV95cUxPME80cmxvVExhNHU3dkF2cmcxc3VGSzZIUV9lMzU4YW03OE9hM2xMYktyTjlmZ05HRUpOeHZ6N2VRUWFvWHE1bWR0WDg3Mm1Tdk1mTm5oNExndU1jcHZHQUktdTY5MWlDSjlkNm9RcC1FeERXeFNHWlN5YzFja3BjSTJLSy0zaS1MM1plck1rejh2NzRC?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-19T10:56:31+00:00"
+  },
   {
    "id": "22b4158b6bec",
    "fuente": "Medidor de prensa",
@@ -74,7 +106,8 @@
   0,
   2,
   2,
-  1
+  1,
+  0
  ],
  "medidores_base": {
   "telecom": [
@@ -83,6 +116,7 @@
    3,
    0,
    1,
+   0,
    0
   ],
   "ciber": [
@@ -91,6 +125,7 @@
    30,
    0,
    27,
+   26,
    26
   ],
   "electrica": [
@@ -99,7 +134,8 @@
    76,
    0,
    50,
-   47
+   47,
+   48
   ],
   "ataque": [
    94,
@@ -107,7 +143,8 @@
    94,
    0,
    96,
-   92
+   92,
+   74
   ],
   "terror": [
    98,
@@ -115,7 +152,8 @@
    98,
    0,
    40,
-   33
+   33,
+   32
   ],
   "emergencia": [
    95,
@@ -123,7 +161,8 @@
    95,
    0,
    95,
-   95
+   95,
+   88
   ],
   "espacio": [
    10,
@@ -131,7 +170,8 @@
    11,
    0,
    7,
-   9
+   9,
+   7
   ],
   "caribe": [
    21,
@@ -139,7 +179,8 @@
    21,
    0,
    41,
-   42
+   42,
+   63
   ],
   "pr": [
    0,
@@ -147,7 +188,8 @@
    27,
    0,
    27,
-   29
+   29,
+   28
   ]
  },
  "log_aviones": [
@@ -376,6 +418,7 @@
   24,
   26,
   18,
+  16,
   16
  ]
 }
