@@ -144,7 +144,8 @@
   3,
   0,
   2,
-  1
+  1,
+  0
  ],
  "medidores_base": {
   "telecom": [
@@ -159,6 +160,7 @@
    3,
    3,
    1,
+   0,
    0
   ],
   "ciber": [
@@ -173,7 +175,8 @@
    5,
    23,
    2,
-   17
+   17,
+   15
   ],
   "electrica": [
    13,
@@ -187,7 +190,8 @@
    45,
    56,
    46,
-   47
+   47,
+   49
   ],
   "ataque": [
    94,
@@ -201,7 +205,8 @@
    98,
    99,
    95,
-   95
+   95,
+   93
   ],
   "terror": [
    98,
@@ -215,7 +220,8 @@
    19,
    15,
    20,
-   24
+   24,
+   25
   ],
   "emergencia": [
    95,
@@ -229,7 +235,8 @@
    77,
    58,
    51,
-   45
+   45,
+   44
   ],
   "espacio": [
    10,
@@ -243,7 +250,8 @@
    6,
    7,
    9,
-   8
+   8,
+   7
   ],
   "caribe": [
    21,
@@ -257,6 +265,7 @@
    71,
    50,
    26,
+   31,
    31
   ],
   "pr": [
@@ -271,7 +280,8 @@
    26,
    28,
    24,
-   22
+   22,
+   24
   ]
  },
  "log_aviones": [
@@ -502,6 +512,13 @@
  ],
  "log_buques": [
   {
+   "id": "fd0e91095dc6",
+   "fecha_utc": "2026-11-20T23:50+00:00",
+   "fuente": "Prensa: Lokmat Times",
+   "texto": "India, Venezuela Discuss Big Cat Conservation, Energy Security at COP31",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPeVJJQk1fTF9zYUoyVXVKZnUyOHViWmZ6QnJZczE1LVVhYXJpd2VlLWoydU1ZWVM1MmhVT1JKVEN5cHYtazV1eWJ1QTlZZkJ3czRuLXQ2QllhdFlhcDBYQTZMSnFtNG9uLUVleTk1Um5TZHBsMU9vZzlRTFozRmtQb3dqZ1hkM21VZm5GSGRnYmtJVFhEQzB5NngxYkhJcjljRm9ud1BIeVByUEdRclhHUGp2WjN5aVdHRTg4cFY2am1tU1XSAcMBQVVfeXFMT3lSSUJNX0xfc2FKMlV1SmZ1Mjh1YlpmekJyWXMxNS1VYWFyaXdlZS1qMnVNWVlTNTJoVU9SSlRDeXB2LWs1dXlidUE5WWZCd3M0bi10NkJZYXRZYXAwWEE2TEpxbTRvbi1FZXk5NVJuU2RwbDFPb2c5UUxaM0ZrUG93amdYZDNtVWZuRkhkZ2JrSVRYREMweTZ4MWJISXI5Y0ZvbndQSHlQclBHUXJYR1BqdlozeWlXR0U4OHBWNmptbVNV?oc=5"
+  },
+  {
    "id": "c42ae17bebe5",
    "fecha_utc": "2026-11-18T17:38+00:00",
    "fuente": "Prensa: CiberCuba",
@@ -664,6 +681,7 @@
   2,
   3,
   4,
-  5
+  5,
+  3
  ]
 }
