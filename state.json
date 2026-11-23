@@ -7,9 +7,41 @@
   "fea4bccc604f": "2026-11-19T10:56:31+00:00",
   "6b0877b5d37c": "2026-11-19T10:56:31+00:00",
   "f5031917a469": "2026-11-19T19:27:24+00:00",
-  "04b0e13abf56": "2026-11-20T01:26:03+00:00"
+  "04b0e13abf56": "2026-11-20T01:26:03+00:00",
+  "6b6124b1b074": "2026-11-23T21:57:38+00:00",
+  "7649e9295b41": "2026-11-23T21:57:38+00:00"
  },
  "historial": [
+  {
+   "id": "7649e9295b41",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 71/100 (9 en 3 h · 42 en 24 h)",
+   "detalle": "Bunny Shaw's early strike wasted as Tottenham hit City for three - Caribbean National Weekly",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOX0llbmxaSVcwSmxhM0c3UVpaRm5VUy0tN25fQnZzclp2anN0SGZOT0pLa01VZmN1b2Z5UTVaNXNCd25JaDQzZ3l3cFJrQUpVMEpnZW83aWZSejN3ZmU0WWl6LW10VVY0TUotbjZpV19xVGgtZ0o2SGp5WG5CWDh6N09wME1PRVJtdzVTU21oYkZPMk1kTFlLaWpfM0lPd09iY1JfRlZGT0JTcGRFZkE?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-23T21:57:38+00:00"
+  },
+  {
+   "id": "6b6124b1b074",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 98/100 (5 en 3 h · 53 en 24 h)",
+   "detalle": "Whitesides, Gottheimer Seek To Defend Infrastructure Against AI-Driven Cyberattacks - SCVNews.com",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOV0t1dTBBMGN6ZXFHdmJZUk4xX2JraVpFblRnSVNXam02ZlVIYjZyVFBaeFBLaVc4YTNuVG5TWE9JQUs0RW1wY1pfVnJkNFhoYURRMmRIQ0dKSkI5c3FFSWVhT1BsM1l2MTlQYmFQZHNqNDFfamprbE9hMWF1QTVpNHV6bzI4MUNzbnNfclRNR3NxTzlOQjhVZ2lzck9oYUtPR0ZsVGRn?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-23T21:57:38+00:00"
+  },
   {
    "id": "04b0e13abf56",
    "fuente": "IODA",
@@ -130,7 +162,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -153,7 +185,8 @@
   2,
   0,
   1,
-  0
+  0,
+  2
  ],
  "medidores_base": {
   "telecom": [
@@ -168,6 +201,7 @@
    3,
    3,
    1,
+   0,
    0,
    0,
    0,
@@ -200,7 +234,8 @@
    17,
    12,
    11,
-   24
+   24,
+   53
   ],
   "electrica": [
    13,
@@ -223,7 +258,8 @@
    37,
    25,
    29,
-   28
+   28,
+   63
   ],
   "ataque": [
    94,
@@ -246,7 +282,8 @@
    94,
    99,
    100,
-   98
+   98,
+   97
   ],
   "terror": [
    98,
@@ -269,7 +306,8 @@
    25,
    17,
    12,
-   10
+   10,
+   24
   ],
   "emergencia": [
    95,
@@ -292,7 +330,8 @@
    45,
    20,
    24,
-   24
+   24,
+   49
   ],
   "espacio": [
    10,
@@ -315,7 +354,8 @@
    6,
    7,
    6,
-   6
+   6,
+   12
   ],
   "caribe": [
    21,
@@ -338,7 +378,8 @@
    21,
    20,
    20,
-   20
+   20,
+   42
   ],
   "pr": [
    0,
@@ -361,10 +402,39 @@
    20,
    21,
    19,
-   19
+   19,
+   22
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae2709",
+   "callsign": "C2311",
+   "tipo": "CN35",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.84,
+   "lon": -81.41,
+   "alt": 2975,
+   "visto_utc": "2026-11-23T21:57+00:00",
+   "dist_pr_km": 1745,
+   "primera_vez_utc": "2026-11-23T21:57+00:00"
+  },
+  {
+   "hex": "e40176",
+   "callsign": "sin identificar",
+   "tipo": "?",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Brasil",
+   "lat": 21.88,
+   "lon": -77.83,
+   "alt": 42975,
+   "visto_utc": "2026-11-23T21:57+00:00",
+   "dist_pr_km": 1242,
+   "primera_vez_utc": "2026-11-23T21:57+00:00"
+  },
   {
    "hex": "e401a7",
    "callsign": "PRHBW",
@@ -662,6 +732,13 @@
  ],
  "log_buques": [
   {
+   "id": "3755f157a034",
+   "fecha_utc": "2026-11-23T19:39+00:00",
+   "fuente": "USNI Fleet Tracker",
+   "texto": "Louis (LCS-19) are assigned to U.S. Southern Command but are currently in port at Naval Station Mayport, Fla.",
+   "url": "https://news.usni.org/2026/11/23/usni-news-fleet-and-marine-tracker-nov-23-2026"
+  },
+  {
    "id": "fd0e91095dc6",
    "fecha_utc": "2026-11-20T23:50+00:00",
    "fuente": "Prensa: Lokmat Times",
@@ -825,7 +902,15 @@
   "6/9306": "2026-11-22T00:12+00:00",
   "6/9338": "2026-11-22T21:07+00:00",
   "6/9337": "2026-11-22T21:07+00:00",
-  "6/9335": "2026-11-22T21:07+00:00"
+  "6/9335": "2026-11-22T21:07+00:00",
+  "6/9591": "2026-11-23T21:57+00:00",
+  "6/9576": "2026-11-23T21:57+00:00",
+  "6/9522": "2026-11-23T21:57+00:00",
+  "6/9517": "2026-11-23T21:57+00:00",
+  "6/9492": "2026-11-23T21:57+00:00",
+  "6/9446": "2026-11-23T21:57+00:00",
+  "6/9435": "2026-11-23T21:57+00:00",
+  "6/9432": "2026-11-23T21:57+00:00"
  },
  "tfr_base": [
   24,
@@ -846,6 +931,7 @@
   1,
   2,
   1,
-  1
+  1,
+  4
  ]
 }
