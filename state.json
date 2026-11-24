@@ -10,9 +10,25 @@
   "04b0e13abf56": "2026-11-20T01:26:03+00:00",
   "6b6124b1b074": "2026-11-23T21:57:38+00:00",
   "7649e9295b41": "2026-11-23T21:57:38+00:00",
-  "9bfb49adea58": "2026-11-24T15:10:34+00:00"
+  "9bfb49adea58": "2026-11-24T15:10:34+00:00",
+  "5b94e701d4cb": "2026-11-24T16:16:16+00:00"
  },
  "historial": [
+  {
+   "id": "5b94e701d4cb",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 100/100 (6 en 3 h · 28 en 24 h)",
+   "detalle": "Four radiation belts surrounded Earth for weeks after 2024 solar superstorm - Phys.org",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFByT3ZVekh4OVpnemJxaHNac1Q3RmNLTVJPS2NuZ0tSblNCWW1fdDRGMEM1ZGNDY2ROWThKLUZOVWlmRTRQMGEzdWo0ckdNY1Q5cjJVOUlnQzJXSjUzVEpZM0t4OXZBOFZRMmYtU3BrQl9WME1hWUhyYg?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-24T16:16:16+00:00"
+  },
   {
    "id": "9bfb49adea58",
    "fuente": "Medidor de prensa",
@@ -204,7 +220,8 @@
   0,
   2,
   0,
-  3
+  3,
+  4
  ],
  "medidores_base": {
   "telecom": [
@@ -219,6 +236,7 @@
    3,
    3,
    1,
+   0,
    0,
    0,
    0,
@@ -257,7 +275,8 @@
    24,
    53,
    13,
-   23
+   23,
+   24
   ],
   "electrica": [
    13,
@@ -283,7 +302,8 @@
    28,
    63,
    51,
-   42
+   42,
+   56
   ],
   "ataque": [
    94,
@@ -309,7 +329,8 @@
    98,
    97,
    87,
-   96
+   96,
+   0
   ],
   "terror": [
    98,
@@ -335,7 +356,8 @@
    10,
    24,
    8,
-   12
+   12,
+   14
   ],
   "emergencia": [
    95,
@@ -361,7 +383,8 @@
    24,
    49,
    48,
-   26
+   26,
+   25
   ],
   "espacio": [
    10,
@@ -387,7 +410,8 @@
    6,
    12,
    13,
-   26
+   26,
+   28
   ],
   "caribe": [
    21,
@@ -413,7 +437,8 @@
    20,
    42,
    25,
-   29
+   29,
+   27
   ],
   "pr": [
    0,
@@ -439,10 +464,67 @@
    19,
    22,
    26,
-   27
+   27,
+   0
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae2237",
+   "callsign": "C2301",
+   "tipo": "CN35",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.72,
+   "lon": -80.9,
+   "alt": 4400,
+   "visto_utc": "2026-11-24T16:16+00:00",
+   "dist_pr_km": 1693,
+   "primera_vez_utc": "2026-11-20T23:24+00:00"
+  },
+  {
+   "hex": "ae7817",
+   "callsign": "BLKCAT5",
+   "tipo": "Q4",
+   "desc": "RQ-4 Global Hawk",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.98,
+   "lon": -83.45,
+   "alt": 46025,
+   "visto_utc": "2026-11-24T16:16+00:00",
+   "dist_pr_km": 2034,
+   "primera_vez_utc": "2026-11-24T16:16+00:00"
+  },
+  {
+   "hex": "ae2763",
+   "callsign": "MARLN03",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.77,
+   "lon": -80.14,
+   "alt": 250,
+   "visto_utc": "2026-11-24T16:16+00:00",
+   "dist_pr_km": 1628,
+   "primera_vez_utc": "2026-11-24T16:16+00:00"
+  },
+  {
+   "hex": "ae4ae5",
+   "callsign": "C2719",
+   "tipo": "C27J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.05,
+   "lon": -79.08,
+   "alt": 925,
+   "visto_utc": "2026-11-24T16:16+00:00",
+   "dist_pr_km": 1496,
+   "primera_vez_utc": "2026-11-24T16:16+00:00"
+  },
   {
    "hex": "ae269f",
    "callsign": "C6573",
@@ -456,20 +538,6 @@
    "visto_utc": "2026-11-24T15:10+00:00",
    "dist_pr_km": 1635,
    "primera_vez_utc": "2026-11-22T15:16+00:00"
-  },
-  {
-   "hex": "ae2237",
-   "callsign": "C2301",
-   "tipo": "CN35",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.57,
-   "lon": -80.07,
-   "alt": 1400,
-   "visto_utc": "2026-11-24T15:10+00:00",
-   "dist_pr_km": 1611,
-   "primera_vez_utc": "2026-11-20T23:24+00:00"
   },
   {
    "hex": "ae2fad",
@@ -963,7 +1031,10 @@
   "6/9432": "2026-11-23T21:57+00:00",
   "6/9661": "2026-11-24T05:54+00:00",
   "6/9639": "2026-11-24T05:54+00:00",
-  "6/9674": "2026-11-24T15:10+00:00"
+  "6/9674": "2026-11-24T15:10+00:00",
+  "6/9716": "2026-11-24T16:16+00:00",
+  "6/9689": "2026-11-24T16:16+00:00",
+  "6/9684": "2026-11-24T16:16+00:00"
  },
  "tfr_base": [
   24,
@@ -987,6 +1058,7 @@
   1,
   4,
   5,
-  5
+  5,
+  7
  ]
 }
