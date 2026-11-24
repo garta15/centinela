@@ -9,9 +9,25 @@
   "f5031917a469": "2026-11-19T19:27:24+00:00",
   "04b0e13abf56": "2026-11-20T01:26:03+00:00",
   "6b6124b1b074": "2026-11-23T21:57:38+00:00",
-  "7649e9295b41": "2026-11-23T21:57:38+00:00"
+  "7649e9295b41": "2026-11-23T21:57:38+00:00",
+  "9bfb49adea58": "2026-11-24T15:10:34+00:00"
  },
  "historial": [
+  {
+   "id": "9bfb49adea58",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 100/100 (9 en 3 h · 26 en 24 h)",
+   "detalle": "“We’ll nuke them from orbit” (Game over, man) - Daily Kos",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQcmxWTjZFOEtiall1T0h2dEg4M0kydFVGZVJxQ1NnUEE3dm11dnNYT1dseG85V3Jac29QalZSX0FfYXI4akpXcFFJSGt5UmhSZzZTcEZOQzNMWlFLLVVINlRhcTRadGtNcm9EMU84NDRQTmoxS2pPaFZwVV9sTXFjb29JZGJpX1JfS2xnRDFGN3N1TmJIREpobFZzSWMzZlBpN2xRa0tMSQ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-24T15:10:34+00:00"
+  },
   {
    "id": "7649e9295b41",
    "fuente": "Medidor de prensa",
@@ -162,7 +178,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -187,7 +203,8 @@
   1,
   0,
   2,
-  0
+  0,
+  3
  ],
  "medidores_base": {
   "telecom": [
@@ -202,6 +219,7 @@
    3,
    3,
    1,
+   0,
    0,
    0,
    0,
@@ -238,7 +256,8 @@
    11,
    24,
    53,
-   13
+   13,
+   23
   ],
   "electrica": [
    13,
@@ -263,7 +282,8 @@
    29,
    28,
    63,
-   51
+   51,
+   42
   ],
   "ataque": [
    94,
@@ -288,7 +308,8 @@
    100,
    98,
    97,
-   87
+   87,
+   96
   ],
   "terror": [
    98,
@@ -313,7 +334,8 @@
    12,
    10,
    24,
-   8
+   8,
+   12
   ],
   "emergencia": [
    95,
@@ -338,7 +360,8 @@
    24,
    24,
    49,
-   48
+   48,
+   26
   ],
   "espacio": [
    10,
@@ -363,7 +386,8 @@
    6,
    6,
    12,
-   13
+   13,
+   26
   ],
   "caribe": [
    21,
@@ -388,7 +412,8 @@
    20,
    20,
    42,
-   25
+   25,
+   29
   ],
   "pr": [
    0,
@@ -413,10 +438,53 @@
    19,
    19,
    22,
-   26
+   26,
+   27
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae269f",
+   "callsign": "C6573",
+   "tipo": "AS65",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.79,
+   "lon": -80.21,
+   "alt": 300,
+   "visto_utc": "2026-11-24T15:10+00:00",
+   "dist_pr_km": 1635,
+   "primera_vez_utc": "2026-11-22T15:16+00:00"
+  },
+  {
+   "hex": "ae2237",
+   "callsign": "C2301",
+   "tipo": "CN35",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.57,
+   "lon": -80.07,
+   "alt": 1400,
+   "visto_utc": "2026-11-24T15:10+00:00",
+   "dist_pr_km": 1611,
+   "primera_vez_utc": "2026-11-20T23:24+00:00"
+  },
+  {
+   "hex": "ae2fad",
+   "callsign": "TEDDY78",
+   "tipo": "C17",
+   "desc": "C-17 (transporte)",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.68,
+   "lon": -80.06,
+   "alt": 1275,
+   "visto_utc": "2026-11-24T15:10+00:00",
+   "dist_pr_km": 1672,
+   "primera_vez_utc": "2026-11-24T15:10+00:00"
+  },
   {
    "hex": "ae2709",
    "callsign": "C2311",
@@ -460,20 +528,6 @@
    "primera_vez_utc": "2026-11-23T01:42+00:00"
   },
   {
-   "hex": "ae269f",
-   "callsign": "C6573",
-   "tipo": "AS65",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 26.38,
-   "lon": -80.11,
-   "alt": 175,
-   "visto_utc": "2026-11-22T15:16+00:00",
-   "dist_pr_km": 1659,
-   "primera_vez_utc": "2026-11-22T15:16+00:00"
-  },
-  {
    "hex": "ae2730",
    "callsign": "CC2705",
    "tipo": "C27J",
@@ -514,20 +568,6 @@
    "visto_utc": "2026-11-21T19:53+00:00",
    "dist_pr_km": 1820,
    "primera_vez_utc": "2026-11-21T19:53+00:00"
-  },
-  {
-   "hex": "ae2237",
-   "callsign": "C2301",
-   "tipo": "CN35",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.88,
-   "lon": -80.83,
-   "alt": 875,
-   "visto_utc": "2026-11-20T23:24+00:00",
-   "dist_pr_km": 1695,
-   "primera_vez_utc": "2026-11-20T23:24+00:00"
   },
   {
    "hex": "ae2689",
@@ -922,7 +962,8 @@
   "6/9435": "2026-11-23T21:57+00:00",
   "6/9432": "2026-11-23T21:57+00:00",
   "6/9661": "2026-11-24T05:54+00:00",
-  "6/9639": "2026-11-24T05:54+00:00"
+  "6/9639": "2026-11-24T05:54+00:00",
+  "6/9674": "2026-11-24T15:10+00:00"
  },
  "tfr_base": [
   24,
@@ -945,6 +986,7 @@
   1,
   1,
   4,
+  5,
   5
  ]
 }
