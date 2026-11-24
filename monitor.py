@@ -1028,7 +1028,8 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
                                  key=lambda x: -x["nivel"])[:80],
         "netblocks": NETBLOCKS[:15],
     }
-    pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"]}
+    pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"],
+             "fuentes_con_falla": sorted(k for k, v in estado_fuentes.items() if not v["ok"])}
     json.dump(pulso, open(os.path.join(DOCS, "pulso.json"), "w"), indent=1)
 
     if CLAVE:
