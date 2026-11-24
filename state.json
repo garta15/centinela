@@ -12,9 +12,25 @@
   "7649e9295b41": "2026-11-23T21:57:38+00:00",
   "9bfb49adea58": "2026-11-24T15:10:34+00:00",
   "5b94e701d4cb": "2026-11-24T16:16:16+00:00",
-  "24261f9cbab0": "2026-11-24T17:08:32+00:00"
+  "24261f9cbab0": "2026-11-24T17:08:32+00:00",
+  "2b479e7b7631": "2026-11-24T17:16:31+00:00"
  },
  "historial": [
+  {
+   "id": "2b479e7b7631",
+   "fuente": "ADS-B (adsb.lol)",
+   "categoria": "Militar Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "6 aeronave(s) militar(es) visibles sobre el Caribe (promedio 1)",
+   "detalle": "KC-135 (reabastecimiento)",
+   "lat": null,
+   "lon": null,
+   "url": "https://adsb.lol/?mil",
+   "alcance": "global",
+   "seccion": "militar",
+   "hora_utc": "2026-11-24T17:16:31+00:00"
+  },
   {
    "id": "24261f9cbab0",
    "fuente": "Medidor de prensa",
@@ -239,7 +255,8 @@
   3,
   4,
   2,
-  3
+  3,
+  6
  ],
  "medidores_base": {
   "telecom": [
@@ -254,6 +271,7 @@
    3,
    3,
    1,
+   0,
    0,
    0,
    0,
@@ -298,6 +316,7 @@
    23,
    24,
    24,
+   27,
    27
   ],
   "electrica": [
@@ -327,7 +346,8 @@
    42,
    56,
    65,
-   40
+   40,
+   39
   ],
   "ataque": [
    94,
@@ -355,6 +375,7 @@
    87,
    96,
    0,
+   99,
    99,
    99
   ],
@@ -385,7 +406,8 @@
    12,
    14,
    23,
-   22
+   22,
+   21
   ],
   "emergencia": [
    95,
@@ -414,6 +436,7 @@
    26,
    25,
    23,
+   57,
    57
   ],
   "espacio": [
@@ -443,7 +466,8 @@
    26,
    28,
    27,
-   27
+   27,
+   28
   ],
   "caribe": [
    21,
@@ -472,7 +496,8 @@
    29,
    27,
    26,
-   25
+   25,
+   27
   ],
   "pr": [
    0,
@@ -501,6 +526,7 @@
    27,
    0,
    26,
+   29,
    29
   ]
  },
@@ -512,11 +538,11 @@
    "desc": "KC-135 (reabastecimiento)",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.59,
-   "lon": -81.77,
-   "alt": 22025,
-   "visto_utc": "2026-11-24T17:08+00:00",
-   "dist_pr_km": 1815,
+   "lat": 27.35,
+   "lon": -82.06,
+   "alt": 21350,
+   "visto_utc": "2026-11-24T17:16+00:00",
+   "dist_pr_km": 1880,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
    "trazas": [
     {
@@ -534,6 +560,14 @@
      "rumbo": 351.0,
      "nudos": 370.0,
      "alt": 22025
+    },
+    {
+     "lat": 27.35,
+     "lon": -82.06,
+     "t": "2026-11-24T17:16+00:00",
+     "rumbo": 322.0,
+     "nudos": 347.0,
+     "alt": 21350
     }
    ]
   },
@@ -544,11 +578,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 25.9,
-   "lon": -80.04,
+   "lat": 25.77,
+   "lon": -79.66,
    "alt": 1425,
-   "visto_utc": "2026-11-24T17:08+00:00",
-   "dist_pr_km": 1626,
+   "visto_utc": "2026-11-24T17:16+00:00",
+   "dist_pr_km": 1586,
    "primera_vez_utc": "2026-11-20T23:24+00:00",
    "trazas": [
     {
@@ -558,6 +592,118 @@
      "rumbo": 95.6,
      "nudos": 153.7,
      "alt": 1425
+    },
+    {
+     "lat": 25.77,
+     "lon": -79.66,
+     "t": "2026-11-24T17:16+00:00",
+     "rumbo": 108.0,
+     "nudos": 168.2,
+     "alt": 1425
+    }
+   ]
+  },
+  {
+   "hex": "ae0242",
+   "callsign": "58-0065",
+   "tipo": "K35R",
+   "desc": "KC-135 (reabastecimiento)",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.32,
+   "lon": -82.04,
+   "alt": 22175,
+   "visto_utc": "2026-11-24T17:16+00:00",
+   "dist_pr_km": 1877,
+   "primera_vez_utc": "2026-11-24T16:51+00:00",
+   "trazas": [
+    {
+     "lat": 25.48,
+     "lon": -81.1,
+     "t": "2026-11-24T16:51+00:00",
+     "rumbo": 133.0,
+     "nudos": 442.0,
+     "alt": 25500
+    },
+    {
+     "lat": 27.32,
+     "lon": -82.04,
+     "t": "2026-11-24T17:16+00:00",
+     "rumbo": 324.0,
+     "nudos": 291.0,
+     "alt": 22175
+    }
+   ]
+  },
+  {
+   "hex": "ae4ae5",
+   "callsign": "C2719",
+   "tipo": "C27J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.25,
+   "lon": -79.54,
+   "alt": 10425,
+   "visto_utc": "2026-11-24T17:16+00:00",
+   "dist_pr_km": 1548,
+   "primera_vez_utc": "2026-11-24T16:16+00:00",
+   "trazas": [
+    {
+     "lat": 25.25,
+     "lon": -79.54,
+     "t": "2026-11-24T17:16+00:00",
+     "rumbo": 306.6,
+     "nudos": 256.6,
+     "alt": 10425
+    }
+   ]
+  },
+  {
+   "hex": "ae2913",
+   "callsign": "C6036",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.97,
+   "lon": -82.8,
+   "alt": 500,
+   "visto_utc": "2026-11-24T17:16+00:00",
+   "dist_pr_km": 1978,
+   "primera_vez_utc": "2026-11-19T19:27+00:00",
+   "trazas": [
+    {
+     "lat": 27.97,
+     "lon": -82.8,
+     "t": "2026-11-24T17:16+00:00",
+     "rumbo": 337.38,
+     "nudos": 117.0,
+     "alt": 500
+    }
+   ]
+  },
+  {
+   "hex": "ae5bb5",
+   "callsign": "R27594",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.92,
+   "lon": -80.48,
+   "alt": 1050,
+   "visto_utc": "2026-11-24T17:16+00:00",
+   "dist_pr_km": 1721,
+   "primera_vez_utc": "2026-11-24T17:16+00:00",
+   "trazas": [
+    {
+     "lat": 26.92,
+     "lon": -80.48,
+     "t": "2026-11-24T17:16+00:00",
+     "rumbo": 276.38,
+     "nudos": 152.9,
+     "alt": 1050
     }
    ]
   },
@@ -582,30 +728,6 @@
      "rumbo": null,
      "nudos": 15.5,
      "alt": "ground"
-    }
-   ]
-  },
-  {
-   "hex": "ae0242",
-   "callsign": "58-0065",
-   "tipo": "K35R",
-   "desc": "KC-135 (reabastecimiento)",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.48,
-   "lon": -81.1,
-   "alt": 25500,
-   "visto_utc": "2026-11-24T16:51+00:00",
-   "dist_pr_km": 1700,
-   "primera_vez_utc": "2026-11-24T16:51+00:00",
-   "trazas": [
-    {
-     "lat": 25.48,
-     "lon": -81.1,
-     "t": "2026-11-24T16:51+00:00",
-     "rumbo": 133.0,
-     "nudos": 442.0,
-     "alt": 25500
     }
    ]
   },
@@ -636,21 +758,6 @@
    "alt": 250,
    "visto_utc": "2026-11-24T16:16+00:00",
    "dist_pr_km": 1628,
-   "primera_vez_utc": "2026-11-24T16:16+00:00",
-   "trazas": []
-  },
-  {
-   "hex": "ae4ae5",
-   "callsign": "C2719",
-   "tipo": "C27J",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.05,
-   "lon": -79.08,
-   "alt": 925,
-   "visto_utc": "2026-11-24T16:16+00:00",
-   "dist_pr_km": 1496,
    "primera_vez_utc": "2026-11-24T16:16+00:00",
    "trazas": []
   },
@@ -846,21 +953,6 @@
    "alt": 27025,
    "visto_utc": "2026-11-19T19:27+00:00",
    "dist_pr_km": 2100,
-   "primera_vez_utc": "2026-11-19T19:27+00:00",
-   "trazas": []
-  },
-  {
-   "hex": "ae2913",
-   "callsign": "C6036",
-   "tipo": "H60",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.76,
-   "lon": -82.71,
-   "alt": 575,
-   "visto_utc": "2026-11-19T19:27+00:00",
-   "dist_pr_km": 1959,
    "primera_vez_utc": "2026-11-19T19:27+00:00",
    "trazas": []
   },
@@ -1211,6 +1303,7 @@
   4,
   5,
   5,
+  7,
   7,
   7,
   7
