@@ -13,9 +13,41 @@
   "9bfb49adea58": "2026-11-24T15:10:34+00:00",
   "5b94e701d4cb": "2026-11-24T16:16:16+00:00",
   "24261f9cbab0": "2026-11-24T17:08:32+00:00",
-  "2b479e7b7631": "2026-11-24T17:16:31+00:00"
+  "2b479e7b7631": "2026-11-24T17:16:31+00:00",
+  "0fb612b859f6": "2026-11-24T20:05:36+00:00",
+  "d40c0c16ee64": "2026-11-24T20:05:36+00:00"
  },
  "historial": [
+  {
+   "id": "d40c0c16ee64",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 76/100 (9 en 3 h · 48 en 24 h)",
+   "detalle": "Royal Caribbean Searches for Passenger Overboard in Bahamas - cwibc.co.id",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1CQUpEdThTMFA5bXQ1cjhKdFNHd0l5VXZwZVNCbXV3QWZDU01waEIzOExONzlTbU8zV3BYMEtxeXdPNWFhTk5ZLTlxTG15eXVUeW12WFBUUmxweGo2NnVJVmU3RQ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-24T20:05:36+00:00"
+  },
+  {
+   "id": "0fb612b859f6",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 100/100 (4 en 3 h · 26 en 24 h)",
+   "detalle": "GPS Jamming Linked to a Russian Ship Disrupted 140 Flights Over the United Kingdom and the North Sea - Мілітарний",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQa2s3RzBveTNZcUwtTnY2UEVYQzc1a0pSRlJJN1FSdnFSQTM1ejdiLVBlUEZZRDFPdWlMTlFhdEJqTmFyWWlyNXVQbjJrLVBJYlFWMHB2blF4YzZwN1BKcFJXWUxONmR2QUhaVnMybDVrQ2pXQy01RzJUYklKSm9Hal93aklkUmVhQXBOdTktNHB6b0FLZkVaVXhmSkROV1k1Z1J5Mg?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-24T20:05:36+00:00"
+  },
   {
    "id": "2b479e7b7631",
    "fuente": "ADS-B (adsb.lol)",
@@ -257,7 +289,8 @@
   2,
   3,
   6,
-  6
+  6,
+  3
  ],
  "medidores_base": {
   "telecom": [
@@ -289,7 +322,8 @@
    0,
    0,
    0,
-   0
+   0,
+   1
   ],
   "ciber": [
    30,
@@ -320,7 +354,8 @@
    24,
    27,
    27,
-   27
+   27,
+   26
   ],
   "electrica": [
    13,
@@ -351,7 +386,8 @@
    65,
    40,
    39,
-   39
+   39,
+   65
   ],
   "ataque": [
    94,
@@ -382,7 +418,8 @@
    99,
    99,
    99,
-   99
+   99,
+   100
   ],
   "terror": [
    98,
@@ -413,7 +450,8 @@
    23,
    22,
    21,
-   15
+   15,
+   23
   ],
   "emergencia": [
    95,
@@ -444,7 +482,8 @@
    23,
    57,
    57,
-   23
+   23,
+   25
   ],
   "espacio": [
    10,
@@ -475,7 +514,8 @@
    27,
    27,
    28,
-   27
+   27,
+   26
   ],
   "caribe": [
    21,
@@ -506,7 +546,8 @@
    26,
    25,
    27,
-   43
+   43,
+   48
   ],
   "pr": [
    0,
@@ -537,10 +578,83 @@
    26,
    29,
    29,
-   28
+   28,
+   26
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae0375",
+   "callsign": "58-0042",
+   "tipo": "K35R",
+   "desc": "KC-135 (reabastecimiento)",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.84,
+   "lon": -82.53,
+   "alt": 25,
+   "visto_utc": "2026-11-24T20:05+00:00",
+   "dist_pr_km": 1948,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 27.84,
+     "lon": -82.53,
+     "t": "2026-11-24T20:05+00:00",
+     "rumbo": 40.56,
+     "nudos": 146.1,
+     "alt": 25
+    }
+   ]
+  },
+  {
+   "hex": "adfdd0",
+   "callsign": "WING65",
+   "tipo": "BE20",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.36,
+   "lon": -80.84,
+   "alt": 11950,
+   "visto_utc": "2026-11-24T20:05+00:00",
+   "dist_pr_km": 1777,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 27.36,
+     "lon": -80.84,
+     "t": "2026-11-24T20:05+00:00",
+     "rumbo": 216.73,
+     "nudos": 240.8,
+     "alt": 11950
+    }
+   ]
+  },
+  {
+   "hex": "add70a",
+   "callsign": "BAT91",
+   "tipo": "DH8B",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 10.6,
+   "lon": -61.41,
+   "alt": 1200,
+   "visto_utc": "2026-11-24T20:05+00:00",
+   "dist_pr_km": 1015,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 10.6,
+     "lon": -61.41,
+     "t": "2026-11-24T20:05+00:00",
+     "rumbo": 88.53,
+     "nudos": 117.0,
+     "alt": 1200
+    }
+   ]
+  },
   {
    "hex": "ae04c0",
    "callsign": "58-0124",
@@ -555,14 +669,6 @@
    "dist_pr_km": 1904,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
    "trazas": [
-    {
-     "lat": 25.45,
-     "lon": -81.05,
-     "t": "2026-11-24T16:51+00:00",
-     "rumbo": 111.27,
-     "nudos": 428.0,
-     "alt": 25000
-    },
     {
      "lat": 26.59,
      "lon": -81.77,
@@ -643,14 +749,6 @@
    "dist_pr_km": 1902,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
    "trazas": [
-    {
-     "lat": 25.48,
-     "lon": -81.1,
-     "t": "2026-11-24T16:51+00:00",
-     "rumbo": 133.0,
-     "nudos": 442.0,
-     "alt": 25500
-    },
     {
      "lat": 27.32,
      "lon": -82.04,
@@ -1352,7 +1450,8 @@
   "6/9674": "2026-11-24T15:10+00:00",
   "6/9716": "2026-11-24T16:16+00:00",
   "6/9689": "2026-11-24T16:16+00:00",
-  "6/9684": "2026-11-24T16:16+00:00"
+  "6/9684": "2026-11-24T16:16+00:00",
+  "6/9722": "2026-11-24T20:05+00:00"
  },
  "tfr_base": [
   24,
@@ -1381,7 +1480,8 @@
   7,
   7,
   7,
-  7
+  7,
+  6
  ],
  "tfr_geo": {
   "6/9716": {
@@ -2947,182 +3047,6 @@
    "texto": "!FDC 6/9639 ZID OH..AIRSPACE FAIRBORN, OHIO..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 25, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 91.141, ALL ACFT FLT OPS INCLUDING REMOTE CONTROLLED ACFT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 5NM RADIUS OF 394937N0840249W (DQN126019.7) SFC-4999FT AGL EFFECTIVE 2611251600 UTC (1100 LOCAL 11/25/26) UNTIL 2611251930 UTC (143",
    "altitud": ""
   },
-  "6/9591": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       39.04279337,
-       -76.82055556
-      ],
-      [
-       39.04253987,
-       -76.81684088
-      ],
-      [
-       39.04178708,
-       -76.81323915
-      ],
-      [
-       39.04055788,
-       -76.80985987
-      ],
-      [
-       39.03888966,
-       -76.80680577
-      ],
-      [
-       39.03683311,
-       -76.80416967
-      ],
-      [
-       39.03445077,
-       -76.80203168
-      ],
-      [
-       39.03181505,
-       -76.80045671
-      ],
-      [
-       39.02900606,
-       -76.79949259
-      ],
-      [
-       39.02610915,
-       -76.79916853
-      ],
-      [
-       39.02321236,
-       -76.79949431
-      ],
-      [
-       39.0204037,
-       -76.80045995
-      ],
-      [
-       39.01776849,
-       -76.80203603
-      ],
-      [
-       39.01538679,
-       -76.80417462
-      ],
-      [
-       39.01333092,
-       -76.80681072
-      ],
-      [
-       39.01166332,
-       -76.80986422
-      ],
-      [
-       39.01043464,
-       -76.81324238
-      ],
-      [
-       39.00968219,
-       -76.8168426
-      ],
-      [
-       39.00942881,
-       -76.82055556
-      ],
-      [
-       39.00968219,
-       -76.82426852
-      ],
-      [
-       39.01043464,
-       -76.82786874
-      ],
-      [
-       39.01166332,
-       -76.8312469
-      ],
-      [
-       39.01333092,
-       -76.8343004
-      ],
-      [
-       39.01538679,
-       -76.8369365
-      ],
-      [
-       39.01776849,
-       -76.83907509
-      ],
-      [
-       39.0204037,
-       -76.84065117
-      ],
-      [
-       39.02321236,
-       -76.84161681
-      ],
-      [
-       39.02610915,
-       -76.84194259
-      ],
-      [
-       39.02900606,
-       -76.84161853
-      ],
-      [
-       39.03181505,
-       -76.84065441
-      ],
-      [
-       39.03445077,
-       -76.83907944
-      ],
-      [
-       39.03683311,
-       -76.83694145
-      ],
-      [
-       39.03888966,
-       -76.83430535
-      ],
-      [
-       39.04055788,
-       -76.83125125
-      ],
-      [
-       39.04178708,
-       -76.82787197
-      ],
-      [
-       39.04253987,
-       -76.82427024
-      ],
-      [
-       39.04279337,
-       -76.82055556
-      ],
-      [
-       39.02611111,
-       -76.82055556
-      ],
-      [
-       39.02611111,
-       -76.82055556
-      ],
-      [
-       39.17106342,
-       -76.66125625
-      ],
-      [
-       39.17106342,
-       -76.66125625
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions for Special Security Reasons",
-   "texto": "!FDC 6/9591 ZDC MD..AIRSPACE LAUREL, MD..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 24, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 1NM RADIUS OF 390134N0764914W (BAL232011.4) SFC-1000FT AGL EFFECTIVE 2611241400 UTC (0900 LOCAL 11/24/26) UNTIL 261",
-   "altitud": ""
-  },
   "6/9522": {
    "areas": [
     {
@@ -3297,182 +3221,6 @@
    ],
    "motivo": "Temporary flight restrictions for Special Security Reasons",
    "texto": "!FDC 6/9522 ZMA FL..AIRSPACE PALM BEACH, FL..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 24, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 2NM RADIUS OF 264117N0800617W (PBI299001.1) SFC-2000FT AGL EFFECTIVE 2611242135 UTC (1635 LOCAL 11/24/26) UNTIL",
-   "altitud": ""
-  },
-  "6/9517": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       47.49137087,
-       -92.96083333
-      ],
-      [
-       47.49086442,
-       -92.95229802
-      ],
-      [
-       47.48936048,
-       -92.94402252
-      ],
-      [
-       47.48690484,
-       -92.93625871
-      ],
-      [
-       47.48357224,
-       -92.92924281
-      ],
-      [
-       47.47946407,
-       -92.92318814
-      ],
-      [
-       47.47470534,
-       -92.91827869
-      ],
-      [
-       47.46944079,
-       -92.91466345
-      ],
-      [
-       47.46383051,
-       -92.91245196
-      ],
-      [
-       47.45804503,
-       -92.91171099
-      ],
-      [
-       47.45226019,
-       -92.91246257
-      ],
-      [
-       47.44665171,
-       -92.9146834
-      ],
-      [
-       47.44138994,
-       -92.91830556
-      ],
-      [
-       47.43663461,
-       -92.9232187
-      ],
-      [
-       47.43253007,
-       -92.92927337
-      ],
-      [
-       47.42920086,
-       -92.93628558
-      ],
-      [
-       47.42674799,
-       -92.94404247
-      ],
-      [
-       47.42524587,
-       -92.95230863
-      ],
-      [
-       47.42474005,
-       -92.96083333
-      ],
-      [
-       47.42524587,
-       -92.96935804
-      ],
-      [
-       47.42674799,
-       -92.9776242
-      ],
-      [
-       47.42920086,
-       -92.98538108
-      ],
-      [
-       47.43253007,
-       -92.9923933
-      ],
-      [
-       47.43663461,
-       -92.99844796
-      ],
-      [
-       47.44138994,
-       -93.0033611
-      ],
-      [
-       47.44665171,
-       -93.00698327
-      ],
-      [
-       47.45226019,
-       -93.00920409
-      ],
-      [
-       47.45804503,
-       -93.00995568
-      ],
-      [
-       47.46383051,
-       -93.00921471
-      ],
-      [
-       47.46944079,
-       -93.00700322
-      ],
-      [
-       47.47470534,
-       -93.00338798
-      ],
-      [
-       47.47946407,
-       -92.99847852
-      ],
-      [
-       47.48357224,
-       -92.99242386
-      ],
-      [
-       47.48690484,
-       -92.98540795
-      ],
-      [
-       47.48936048,
-       -92.97764415
-      ],
-      [
-       47.49086442,
-       -92.96936865
-      ],
-      [
-       47.49137087,
-       -92.96083333
-      ],
-      [
-       47.45805556,
-       -92.96083333
-      ],
-      [
-       47.45805556,
-       -92.96083333
-      ],
-      [
-       47.30153131,
-       -92.70404317
-      ],
-      [
-       47.30153131,
-       -92.70404317
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions",
-   "texto": "!FDC 6/9517 ZMP MN..AIRSPACE HIBBING, MN..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(1), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 2NM RADIUS OF 472729N0925739W (HIB310014.0) SFC-4500FT MSL EFFECTIVE 2611241600 UTC UNTIL 2611241800 UTC. HIBBING TACONITE COMPANY, TEL 218-262-5940, IS IN CHARGE OF THE OPS. THE MINNEAPOLIS /ZMP/ ARTCC, TEL 651-463-5580, IS THE CDN FAC. 2611241600-2611241800",
    "altitud": ""
   },
   "6/9446": {
@@ -5719,182 +5467,6 @@
    "motivo": "Temporary flight restrictions for Special Security Reasons",
    "texto": "!FDC 6/9276 ZJX FL..AIRSPACE MAYPORT, FL..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 23-26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 301918N0812606W (CRG108004) THEN COUNTERCLOCKWISE ON A 4.2 NM ARC CENTERED ON 302329N0812528W (CRG058005.4) TO 302421N0813013W (CRG008004) ",
    "altitud": "From the surface  up to and including 2500 feet MSL"
-  },
-  "6/9186": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       40.86170833,
-       -91.24805556
-      ],
-      [
-       40.86069388,
-       -91.23279813
-      ],
-      [
-       40.85768144,
-       -91.21800565
-      ],
-      [
-       40.8527628,
-       -91.20412878
-      ],
-      [
-       40.84608781,
-       -91.19159004
-      ],
-      [
-       40.83785977,
-       -91.1807709
-      ],
-      [
-       40.82832921,
-       -91.17200007
-      ],
-      [
-       40.81778619,
-       -91.16554358
-      ],
-      [
-       40.80655145,
-       -91.16159672
-      ],
-      [
-       40.79496661,
-       -91.16027821
-      ],
-      [
-       40.78338377,
-       -91.16162676
-      ],
-      [
-       40.77215476,
-       -91.16560005
-      ],
-      [
-       40.76162052,
-       -91.17207615
-      ],
-      [
-       40.75210073,
-       -91.18085742
-      ],
-      [
-       40.74388415,
-       -91.19167657
-      ],
-      [
-       40.73721993,
-       -91.20420487
-      ],
-      [
-       40.73231007,
-       -91.21806213
-      ],
-      [
-       40.72930335,
-       -91.23282818
-      ],
-      [
-       40.72829089,
-       -91.24805556
-      ],
-      [
-       40.72930335,
-       -91.26328293
-      ],
-      [
-       40.73231007,
-       -91.27804899
-      ],
-      [
-       40.73721993,
-       -91.29190624
-      ],
-      [
-       40.74388415,
-       -91.30443454
-      ],
-      [
-       40.75210073,
-       -91.31525369
-      ],
-      [
-       40.76162052,
-       -91.32403496
-      ],
-      [
-       40.77215476,
-       -91.33051106
-      ],
-      [
-       40.78338377,
-       -91.33448435
-      ],
-      [
-       40.79496661,
-       -91.3358329
-      ],
-      [
-       40.80655145,
-       -91.3345144
-      ],
-      [
-       40.81778619,
-       -91.33056753
-      ],
-      [
-       40.82832921,
-       -91.32411105
-      ],
-      [
-       40.83785977,
-       -91.31534022
-      ],
-      [
-       40.84608781,
-       -91.30452107
-      ],
-      [
-       40.8527628,
-       -91.29198233
-      ],
-      [
-       40.85768144,
-       -91.27810546
-      ],
-      [
-       40.86069388,
-       -91.26331298
-      ],
-      [
-       40.86170833,
-       -91.24805556
-      ],
-      [
-       40.795,
-       -91.24805556
-      ],
-      [
-       40.795,
-       -91.24805556
-      ],
-      [
-       40.72345583,
-       -90.92588972
-      ],
-      [
-       40.72345583,
-       -90.92588972
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions",
-   "texto": "!FDC 6/9186 ZAU IA..AIRSPACE MIDDLETOWN, IA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(1), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 4NM RADIUS OF 404742N0911453W (BRL281015.3) SFC-4000FT MSL EFFECTIVE 2611231530 UTC UNTIL 2611252200 UTC. DEPT OF ARMY, WILLIAM VANCE, TEL 309-756-9203, IS IN CHARGE OF THE OPS. THE CHICAGO /ZAU/ ARTCC, TEL 630-906-8341, IS THE CDN FAC. 2611231530-2611252200",
-   "altitud": ""
   },
   "6/9071": {
    "areas": [
@@ -10147,6 +9719,182 @@
    ],
    "motivo": "Temporary flight restrictions for VIP Movement",
    "texto": "!FDC 9/2934 ZFW TX..AIRSPACE DALLAS, TEXAS..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 91.141, ALL ACFT FLT OPS INCLUDING REMOTE CONTROLLED ACFT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 1NM RADIUS OF 325321N0964835W (CVE085004.8) SFC-1500FT AGL EFFECTIVE IMMEDIATELY UNTIL FURTHER NOTICE. 2608141107-PERM",
+   "altitud": ""
+  },
+  "6/9722": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       40.86170833,
+       -91.24805556
+      ],
+      [
+       40.86069388,
+       -91.23279813
+      ],
+      [
+       40.85768144,
+       -91.21800565
+      ],
+      [
+       40.8527628,
+       -91.20412878
+      ],
+      [
+       40.84608781,
+       -91.19159004
+      ],
+      [
+       40.83785977,
+       -91.1807709
+      ],
+      [
+       40.82832921,
+       -91.17200007
+      ],
+      [
+       40.81778619,
+       -91.16554358
+      ],
+      [
+       40.80655145,
+       -91.16159672
+      ],
+      [
+       40.79496661,
+       -91.16027821
+      ],
+      [
+       40.78338377,
+       -91.16162676
+      ],
+      [
+       40.77215476,
+       -91.16560005
+      ],
+      [
+       40.76162052,
+       -91.17207615
+      ],
+      [
+       40.75210073,
+       -91.18085742
+      ],
+      [
+       40.74388415,
+       -91.19167657
+      ],
+      [
+       40.73721993,
+       -91.20420487
+      ],
+      [
+       40.73231007,
+       -91.21806213
+      ],
+      [
+       40.72930335,
+       -91.23282818
+      ],
+      [
+       40.72829089,
+       -91.24805556
+      ],
+      [
+       40.72930335,
+       -91.26328293
+      ],
+      [
+       40.73231007,
+       -91.27804899
+      ],
+      [
+       40.73721993,
+       -91.29190624
+      ],
+      [
+       40.74388415,
+       -91.30443454
+      ],
+      [
+       40.75210073,
+       -91.31525369
+      ],
+      [
+       40.76162052,
+       -91.32403496
+      ],
+      [
+       40.77215476,
+       -91.33051106
+      ],
+      [
+       40.78338377,
+       -91.33448435
+      ],
+      [
+       40.79496661,
+       -91.3358329
+      ],
+      [
+       40.80655145,
+       -91.3345144
+      ],
+      [
+       40.81778619,
+       -91.33056753
+      ],
+      [
+       40.82832921,
+       -91.32411105
+      ],
+      [
+       40.83785977,
+       -91.31534022
+      ],
+      [
+       40.84608781,
+       -91.30452107
+      ],
+      [
+       40.8527628,
+       -91.29198233
+      ],
+      [
+       40.85768144,
+       -91.27810546
+      ],
+      [
+       40.86069388,
+       -91.26331298
+      ],
+      [
+       40.86170833,
+       -91.24805556
+      ],
+      [
+       40.795,
+       -91.24805556
+      ],
+      [
+       40.795,
+       -91.24805556
+      ],
+      [
+       40.72345583,
+       -90.92588972
+      ],
+      [
+       40.72345583,
+       -90.92588972
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions",
+   "texto": "!FDC 6/9722 ZAU IA..AIRSPACE MIDDLETOWN, IA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(1), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 4NM RADIUS OF 404742N0911453W (BRL281015.3) SFC-4000FT MSL EFFECTIVE 2611241854 UTC UNTIL 2611251852 UTC. DEPT OF ARMY, WILLIAM VANCE, TEL 309-756-9203, IS IN CHARGE OF THE OPS. THE CHICAGO /ZAU/ ARTCC, TEL 630-906-8341, IS THE CDN FAC. 2611241854-2611251852",
    "altitud": ""
   }
  },
