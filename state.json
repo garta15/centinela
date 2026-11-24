@@ -11,9 +11,25 @@
   "6b6124b1b074": "2026-11-23T21:57:38+00:00",
   "7649e9295b41": "2026-11-23T21:57:38+00:00",
   "9bfb49adea58": "2026-11-24T15:10:34+00:00",
-  "5b94e701d4cb": "2026-11-24T16:16:16+00:00"
+  "5b94e701d4cb": "2026-11-24T16:16:16+00:00",
+  "24261f9cbab0": "2026-11-24T17:08:32+00:00"
  },
  "historial": [
+  {
+   "id": "24261f9cbab0",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 100/100 (9 en 3 h · 27 en 24 h)",
+   "detalle": "Western intelligence says Russia's nuclear anti-satellite weapon could be launch-ready by December - Latin Times",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNb3ZMRFpldHZuYkE5Vl9zM21RVTRaZVA4X29BdGtJcHEyQ0JzaHhnWU9qeEVidm56NDV2dFBEM00tQU04T3h5bXpaNFNTVHRjbXhXM01iYU9pa3dIVnJqRmpReUpTQ0ZqNVdjTHBkNEY3UWIxZWFzdklGUUZNZE1WbkY3bWVXTDVBd0Z3?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-24T17:08:32+00:00"
+  },
   {
    "id": "5b94e701d4cb",
    "fuente": "Medidor de prensa",
@@ -222,7 +238,8 @@
   0,
   3,
   4,
-  2
+  2,
+  3
  ],
  "medidores_base": {
   "telecom": [
@@ -237,6 +254,7 @@
    3,
    3,
    1,
+   0,
    0,
    0,
    0,
@@ -279,7 +297,8 @@
    13,
    23,
    24,
-   24
+   24,
+   27
   ],
   "electrica": [
    13,
@@ -307,7 +326,8 @@
    51,
    42,
    56,
-   65
+   65,
+   40
   ],
   "ataque": [
    94,
@@ -335,6 +355,7 @@
    87,
    96,
    0,
+   99,
    99
   ],
   "terror": [
@@ -363,7 +384,8 @@
    8,
    12,
    14,
-   23
+   23,
+   22
   ],
   "emergencia": [
    95,
@@ -391,7 +413,8 @@
    48,
    26,
    25,
-   23
+   23,
+   57
   ],
   "espacio": [
    10,
@@ -419,6 +442,7 @@
    13,
    26,
    28,
+   27,
    27
   ],
   "caribe": [
@@ -447,7 +471,8 @@
    25,
    29,
    27,
-   26
+   26,
+   25
   ],
   "pr": [
    0,
@@ -475,10 +500,91 @@
    26,
    27,
    0,
-   26
+   26,
+   29
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae04c0",
+   "callsign": "58-0124",
+   "tipo": "K35R",
+   "desc": "KC-135 (reabastecimiento)",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.59,
+   "lon": -81.77,
+   "alt": 22025,
+   "visto_utc": "2026-11-24T17:08+00:00",
+   "dist_pr_km": 1815,
+   "primera_vez_utc": "2026-11-24T16:51+00:00",
+   "trazas": [
+    {
+     "lat": 25.45,
+     "lon": -81.05,
+     "t": "2026-11-24T16:51+00:00",
+     "rumbo": 111.27,
+     "nudos": 428.0,
+     "alt": 25000
+    },
+    {
+     "lat": 26.59,
+     "lon": -81.77,
+     "t": "2026-11-24T17:08+00:00",
+     "rumbo": 351.0,
+     "nudos": 370.0,
+     "alt": 22025
+    }
+   ]
+  },
+  {
+   "hex": "ae2237",
+   "callsign": "C2301",
+   "tipo": "CN35",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.9,
+   "lon": -80.04,
+   "alt": 1425,
+   "visto_utc": "2026-11-24T17:08+00:00",
+   "dist_pr_km": 1626,
+   "primera_vez_utc": "2026-11-20T23:24+00:00",
+   "trazas": [
+    {
+     "lat": 25.9,
+     "lon": -80.04,
+     "t": "2026-11-24T17:08+00:00",
+     "rumbo": 95.6,
+     "nudos": 153.7,
+     "alt": 1425
+    }
+   ]
+  },
+  {
+   "hex": "ae4ae1",
+   "callsign": "2709",
+   "tipo": "C27J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.9,
+   "lon": -82.69,
+   "alt": "ground",
+   "visto_utc": "2026-11-24T17:08+00:00",
+   "dist_pr_km": 1965,
+   "primera_vez_utc": "2026-11-24T17:08+00:00",
+   "trazas": [
+    {
+     "lat": 27.9,
+     "lon": -82.69,
+     "t": "2026-11-24T17:08+00:00",
+     "rumbo": null,
+     "nudos": 15.5,
+     "alt": "ground"
+    }
+   ]
+  },
   {
    "hex": "ae0242",
    "callsign": "58-0065",
@@ -502,45 +608,6 @@
      "alt": 25500
     }
    ]
-  },
-  {
-   "hex": "ae04c0",
-   "callsign": "58-0124",
-   "tipo": "K35R",
-   "desc": "KC-135 (reabastecimiento)",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.45,
-   "lon": -81.05,
-   "alt": 25000,
-   "visto_utc": "2026-11-24T16:51+00:00",
-   "dist_pr_km": 1694,
-   "primera_vez_utc": "2026-11-24T16:51+00:00",
-   "trazas": [
-    {
-     "lat": 25.45,
-     "lon": -81.05,
-     "t": "2026-11-24T16:51+00:00",
-     "rumbo": 111.27,
-     "nudos": 428.0,
-     "alt": 25000
-    }
-   ]
-  },
-  {
-   "hex": "ae2237",
-   "callsign": "C2301",
-   "tipo": "CN35",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.72,
-   "lon": -80.9,
-   "alt": 4400,
-   "visto_utc": "2026-11-24T16:16+00:00",
-   "dist_pr_km": 1693,
-   "primera_vez_utc": "2026-11-20T23:24+00:00",
-   "trazas": []
   },
   {
    "hex": "ae7817",
@@ -1144,6 +1211,7 @@
   4,
   5,
   5,
+  7,
   7,
   7
  ],
