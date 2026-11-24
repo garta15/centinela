@@ -79,6 +79,14 @@ details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4
 .iitem{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}.iitem:hover .inom{text-decoration:underline}
 .iitem .dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px}.icuerpo{min-width:0}.inom{font-weight:700;overflow-wrap:anywhere}
 .imeta{font-size:12px;color:var(--mut);margin-top:2px;overflow-wrap:anywhere}
+.plegable>summary{cursor:pointer;list-style:none}.plegable>summary::-webkit-details-marker{display:none}
+summary.titsec{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+summary.titsec>span:first-child::before{content:"▾ ";display:inline-block;transition:transform .15s}
+.plegable:not([open])>summary.titsec>span:first-child::before{transform:rotate(-90deg)}
+.plegable>summary .ver::after{content:"ocultar"}.plegable:not([open])>summary .ver::after{content:"mostrar"}
+.plegable>summary .ver{text-decoration:underline}
+.igr-t::before{content:"▾ ";display:inline-block;transition:transform .15s}.igr:not([open])>.igr-t::before{transform:rotate(-90deg)}
+@media (prefers-reduced-motion:reduce){summary.titsec>span:first-child::before,.igr-t::before{transition:none}}
 </style></head><body><main>
 <div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
   <h2>🔒 Centinela Familiar</h2>
@@ -202,6 +210,8 @@ function pintarMapa(d){
 }
 function toggleCapa(b){b.classList.toggle("off");const c=CAPAS[b.dataset.capa];if(!c)return;b.classList.contains("off")?MAPA.removeLayer(c):c.addTo(MAPA);}
 
+function abierto(id,def){try{const v=localStorage.getItem("pl_"+id);return v===null?def:v==="1"}catch(e){return def}}
+document.addEventListener("toggle",e=>{const t=e.target;if(t.classList&&t.classList.contains("plegable")&&t.dataset.id){try{localStorage.setItem("pl_"+t.dataset.id,t.open?"1":"0")}catch(_){}}},true);
 function fechaPR(iso){try{return new Date(iso).toLocaleString("es-PR",{timeZone:"America/Puerto_Rico",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return iso}}
 function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
 const VISTA="panel";
@@ -300,12 +310,12 @@ function pintar(d){
   const horaPR=iso=>{try{return new Date(iso).toLocaleTimeString("es-PR",{timeZone:"America/Puerto_Rico",hour:"numeric",minute:"2-digit"})}catch(e){return""}};
   let itf="";
   [0,1,2].forEach(g=>{const xs=its.filter(x=>(x.prox??1)===g);if(!xs.length)return;
-    itf+=`<div class="igr"><div class="igr-t">${GRUPO[g]} <span class="det">· ${xs.length}</span></div>`;let dia=null;
+    itf+=`<details class="igr plegable" data-id="int-g${g}" ${abierto("int-g"+g,g<2)?"open":""}><summary class="igr-t">${GRUPO[g]} <span class="det">· ${xs.length}</span></summary>`;let dia=null;
     xs.forEach(x=>{const dd=x.desde_utc?diaDe(x.desde_utc):"Sin fecha";if(dd!==dia){dia=dd;itf+=`<div class="idia">${esc(dd)}</div>`;}
       itf+=`<a class="iitem" href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener"><span class="dot" style="background:${COL[x.nivel]}"></span>
         <div class="icuerpo"><div class="inom">${esc(x.nombre)}</div><div class="det">${esc(x.estado)}</div>
         <div class="imeta">${x.desde_utc?esc(horaPR(x.desde_utc)):""} · ${esc(x.tipo)} · ${esc(x.fuente)}${x.zona?" · "+esc(x.zona):""}</div></div></a>`;});
-    itf+=`</div>`;});
+    itf+=`</details>`;});
   if(!itf)itf='<p class="det">Sin interrupciones reportadas ahora mismo.</p>';
   const activas=its.filter(x=>x.nivel>=2).length;
   const nb=(d.netblocks||[]).slice(0,8).map(n=>`<li><div class="det">${fechaPR(n.hora_utc)} · NetBlocks</div><a href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener">${esc(n.texto)}</a></li>`).join("");
@@ -324,7 +334,8 @@ function pintar(d){
     ${mapaBoton(d)}
     <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
     <div class="gridm">${med}</div>
-    <h2 class="titsec">🌐 Interrupciones de servicios e internet <span class="det">${activas} importante(s) · ${its.length} en total</span></h2>
+    <details class="plegable" data-id="interrupciones" ${abierto("interrupciones",true)?"open":""}>
+    <summary class="titsec"><span>🌐 Interrupciones de servicios e internet</span><span class="det">${activas} importante(s) · ${its.length} en total · <span class="ver"></span></span></summary>
     <div class="card tabla">
       ${crOk?"":`<p class="det" style="margin:0 0 8px">⚠️ Cloudflare Radar aún no está conectado (falta su token gratuito). Las demás fuentes funcionan.</p>`}
       ${itf}
@@ -336,6 +347,7 @@ function pintar(d){
         <a href="https://netblocks.org/" target="_blank" rel="noopener">NetBlocks</a> ·
         <a href="https://www.logicmonitor.com/outages" target="_blank" rel="noopener">LogicMonitor Outages</a> ·
         <a href="https://ioda.inetintel.cc.gatech.edu/country/PR" target="_blank" rel="noopener">IODA PR</a></p></div>
+    </details>
     ${nb?`<details class="card"><summary><b>📣 Últimos reportes de NetBlocks</b> <span class="det">cortes nacionales confirmados en el mundo</span></summary><ul class="lista">${nb}</ul></details>`:""}
     <h2 class="titsec">🚢 Puertos que abastecen a Puerto Rico <span class="det">por si hay crisis de suministros</span></h2>
     <div class="gridm">${pts}</div>
