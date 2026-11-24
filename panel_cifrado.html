@@ -22,7 +22,7 @@ input,button{font:inherit;padding:12px 14px;border-radius:10px;border:1px solid 
 button{background:#2b6cb0;color:#fff;border:0;margin-top:10px;font-weight:600;min-height:44px}
 label.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}label.chk input{width:auto}
 #err{color:#e53e3e;margin-top:8px;min-height:1.2em}
-@media (max-width:600px){td:nth-child(2),td:nth-child(4){display:none}.hero h1{font-size:24px}}
+@media (max-width:600px){.hero h1{font-size:24px}}
 .hero .h1{font-size:30px;font-weight:800}.hero p{margin:6px 0 0}.peq{opacity:.85;font-size:13px}
 h2{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .lista{list-style:none;padding:0;margin:0}.lista li{padding:10px 0;border-top:1px solid var(--line)}.lista li:first-child{border-top:0}
@@ -71,6 +71,14 @@ details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4
 @media (max-width:600px){.hud button{font-size:11px;padding:5px 8px;min-height:30px}}
 @media (min-width:900px){#hoja{left:auto;right:18px;bottom:18px;width:420px;border-radius:16px}}
 @media (prefers-reduced-motion:reduce){#hoja{transition:none}}
+.mapbtn{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#0b1522,#13243a);color:#e6f0ff;border-color:#1f3550}
+.mapbtn .det{color:#9fb7d3}.mapbtn-ico{font-size:34px}.mapbtn-fl{margin-left:auto;font-size:32px;opacity:.7}
+.mapbar{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;flex-wrap:wrap}
+.volver{font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:6px 12px}
+.igr{margin-top:6px}.igr-t{font-weight:800;margin:12px 0 4px;font-size:15px}.idia{font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin:10px 0 2px}
+.iitem{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}.iitem:hover .inom{text-decoration:underline}
+.iitem .dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px}.icuerpo{min-width:0}.inom{font-weight:700;overflow-wrap:anywhere}
+.imeta{font-size:12px;color:var(--mut);margin-top:2px;overflow-wrap:anywhere}
 </style></head><body><main>
 <div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
   <h2>🔒 {{NOMBRE}}</h2>
@@ -196,6 +204,27 @@ function toggleCapa(b){b.classList.toggle("off");const c=CAPAS[b.dataset.capa];i
 
 function fechaPR(iso){try{return new Date(iso).toLocaleString("es-PR",{timeZone:"America/Puerto_Rico",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return iso}}
 function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
+const VISTA="{{VISTA}}";
+function mapaHTML(d,alto){return `    <h2 class="titsec">🗺️ Mapa táctico · Puerto Rico y alrededores <span class="det">toca cualquier elemento</span></h2>
+    <div class="mapwrap"><div class="hud">
+      <button data-capa="aviones" onclick="toggleCapa(this)">✈ AERONAVES ${(d.mapa?.aviones||[]).length}</button>
+      <button data-capa="buques" onclick="toggleCapa(this)">⚓ BUQUES ${(d.mapa?.buques||[]).length}</button>
+      <button data-capa="satelites" onclick="toggleCapa(this)">✦ SATÉLITES ${(d.mapa?.satelites||[]).length}</button>
+      <button data-capa="puertos" onclick="toggleCapa(this)">● PUERTOS</button>
+      <button data-capa="tfr" onclick="toggleCapa(this)">▢ RESTRICCIONES ${(d.mapa?.tfr||[]).length}</button>
+      <button data-capa="aeropuertos" onclick="toggleCapa(this)">▲ AEROPUERTOS ${(d.mapa?.aeropuertos||[]).length}</button></div>
+      <div id="mapa" style="height:${alto}" role="application" aria-label="Mapa táctico"></div><div class="mapstamp">ACTUALIZADO ${hace(d.actualizado_utc).toUpperCase()}</div></div>
+    <div class="leg"><span><span class="sw" style="background:#4da3ff"></span>EE. UU. militar</span><span><span class="sw" style="background:#ff4d4d"></span>Adversario</span>
+      <span><span class="sw" style="background:#ffd34d"></span>No identificado / otro país</span><span><span class="sw" style="background:#c77dff"></span>Satélite no identificado</span>
+      <span><span class="sw" style="background:#7ee0ff"></span>Buque</span><span><span class="sw" style="background:#ff2d2d"></span>Restricción nueva</span>
+      <span><span class="sw" style="background:#ff8c1a"></span>Restricción vigente</span><span><span class="sw" style="background:#22c55e;border-radius:50%"></span>Puerto OK</span>
+      <span><span class="sw" style="background:#f2c230;border-radius:50%"></span>Posible riesgo</span><span><span class="sw" style="background:#e53935;border-radius:50%"></span>Cierre</span>
+      <span><span class="tri" style="border-bottom-color:#e53935"></span>Aeropuerto con problemas</span><span>— — dirección probable</span></div>
+    ${(d.mapa?.buques||[]).length?"":'<p class="det">⚓ Los buques aparecerán cuando se active la clave gratuita de AISStream.</p>'}
+`;}
+function mapaBoton(d){const m=d.mapa||{};
+  return `<a class="card mapbtn" href="mapa.html"><div class="mapbtn-ico">🗺️</div><div><div style="font-weight:800;font-size:18px">Abrir mapa táctico</div>
+    <div class="det">✈ ${(m.aviones||[]).length} aeronaves · ⚓ ${(m.buques||[]).length} buques · ✦ ${(m.satelites||[]).length} satélites · ▢ ${(m.tfr||[]).length} restricciones · ▲ ${(m.aeropuertos||[]).length} aeropuertos · ● puertos</div></div><div class="mapbtn-fl">›</div></a>`;}
 function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";const c=COL[r.color];
   const ch=r.categorias.map(k=>`<span class="chip" style="background:${COL[k.nivel]}">${esc(k.nombre)}: ${NIV[k.nivel]}</span>`).join("");
   const pl=r.planes.map((p,i)=>`<details class="plan" ${i===0?"open":""}><summary><b>${esc(p.titulo)}</b>${p.motivos.length?` <span class="det">· ${esc(p.motivos[0])}</span>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
@@ -265,40 +294,40 @@ function pintar(d){
   const gsl=(ea.ground_stops||[]).map(g=>`<li>⛔ <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
   const cl=(ea.cierres||[]).map(c=>`<li>🚫 <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
   const its=(d.interrupciones||[]);
-  const itf=its.map(x=>`<tr><td><span class="dot" style="display:inline-block;background:${COL[x.nivel]}"></span></td>
-      <td><a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener"><b>${esc(x.nombre)}</b></a>${x.zona?` <span class="det">· ${esc(x.zona)}</span>`:""}
-      <div class="det">${esc(x.estado)}</div></td><td>${esc(x.tipo)}</td><td class="det">${esc(x.fuente)}</td><td>${x.desde_utc?fechaPR(x.desde_utc):""}</td></tr>`).join("")
-      ||`<tr><td colspan="5" class="det">Sin interrupciones reportadas ahora mismo.</td></tr>`;
+  const GRUPO=["🇵🇷 Afecta a Puerto Rico","🇺🇸 Estados Unidos · puede afectar a PR","🌎 Resto del mundo"];
+  const diaDe=iso=>{try{const f=new Date(iso),h=new Date(),a=new Date(Date.now()-864e5),o={timeZone:"America/Puerto_Rico"};
+    const k=x=>x.toLocaleDateString("es-PR",o);return k(f)===k(h)?"Hoy":k(f)===k(a)?"Ayer":f.toLocaleDateString("es-PR",{...o,weekday:"long",day:"numeric",month:"short"});}catch(e){return""}};
+  const horaPR=iso=>{try{return new Date(iso).toLocaleTimeString("es-PR",{timeZone:"America/Puerto_Rico",hour:"numeric",minute:"2-digit"})}catch(e){return""}};
+  let itf="";
+  [0,1,2].forEach(g=>{const xs=its.filter(x=>(x.prox??1)===g);if(!xs.length)return;
+    itf+=`<div class="igr"><div class="igr-t">${GRUPO[g]} <span class="det">· ${xs.length}</span></div>`;let dia=null;
+    xs.forEach(x=>{const dd=x.desde_utc?diaDe(x.desde_utc):"Sin fecha";if(dd!==dia){dia=dd;itf+=`<div class="idia">${esc(dd)}</div>`;}
+      itf+=`<a class="iitem" href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener"><span class="dot" style="background:${COL[x.nivel]}"></span>
+        <div class="icuerpo"><div class="inom">${esc(x.nombre)}</div><div class="det">${esc(x.estado)}</div>
+        <div class="imeta">${x.desde_utc?esc(horaPR(x.desde_utc)):""} · ${esc(x.tipo)} · ${esc(x.fuente)}${x.zona?" · "+esc(x.zona):""}</div></div></a>`;});
+    itf+=`</div>`;});
+  if(!itf)itf='<p class="det">Sin interrupciones reportadas ahora mismo.</p>';
   const activas=its.filter(x=>x.nivel>=2).length;
   const nb=(d.netblocks||[]).slice(0,8).map(n=>`<li><div class="det">${fechaPR(n.hora_utc)} · NetBlocks</div><a href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener">${esc(n.texto)}</a></li>`).join("");
   const crOk=(d.fuentes||{})["Cloudflare Radar (cortes y anomalías)"]?.ok;
   const app=document.getElementById("app");
+  if(VISTA==="mapa"){
+    app.innerHTML=`<div class="mapbar" style="border-left:8px solid ${COL[n]}"><a href="./" class="volver">‹ Panel</a>
+      <div><b>${EMO[n]} ${NIV[n]}</b> <span class="det">· Riesgo familiar: ${esc(d.riesgo_familiar?.etiqueta||"")} · revisado ${hace(d.actualizado_utc)}</span></div></div>
+      ${mapaHTML(d,"calc(100vh - 230px)")}`;
+    document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
+  }
   app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
     <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
     ${riesgoHTML(d)}
     ${energiaHTML(d)}
-    <h2 class="titsec">🗺️ Mapa táctico · Puerto Rico y alrededores <span class="det">toca cualquier elemento</span></h2>
-    <div class="mapwrap"><div class="hud">
-      <button data-capa="aviones" onclick="toggleCapa(this)">✈ AERONAVES ${(d.mapa?.aviones||[]).length}</button>
-      <button data-capa="buques" onclick="toggleCapa(this)">⚓ BUQUES ${(d.mapa?.buques||[]).length}</button>
-      <button data-capa="satelites" onclick="toggleCapa(this)">✦ SATÉLITES ${(d.mapa?.satelites||[]).length}</button>
-      <button data-capa="puertos" onclick="toggleCapa(this)">● PUERTOS</button>
-      <button data-capa="tfr" onclick="toggleCapa(this)">▢ RESTRICCIONES ${(d.mapa?.tfr||[]).length}</button>
-      <button data-capa="aeropuertos" onclick="toggleCapa(this)">▲ AEROPUERTOS ${(d.mapa?.aeropuertos||[]).length}</button></div>
-      <div id="mapa" role="application" aria-label="Mapa táctico"></div><div class="mapstamp">ACTUALIZADO ${hace(d.actualizado_utc).toUpperCase()}</div></div>
-    <div class="leg"><span><span class="sw" style="background:#4da3ff"></span>EE. UU. militar</span><span><span class="sw" style="background:#ff4d4d"></span>Adversario</span>
-      <span><span class="sw" style="background:#ffd34d"></span>No identificado / otro país</span><span><span class="sw" style="background:#c77dff"></span>Satélite no identificado</span>
-      <span><span class="sw" style="background:#7ee0ff"></span>Buque</span><span><span class="sw" style="background:#ff2d2d"></span>Restricción nueva</span>
-      <span><span class="sw" style="background:#ff8c1a"></span>Restricción vigente</span><span><span class="sw" style="background:#22c55e;border-radius:50%"></span>Puerto OK</span>
-      <span><span class="sw" style="background:#f2c230;border-radius:50%"></span>Posible riesgo</span><span><span class="sw" style="background:#e53935;border-radius:50%"></span>Cierre</span>
-      <span><span class="tri" style="border-bottom-color:#e53935"></span>Aeropuerto con problemas</span><span>— — dirección probable</span></div>
-    ${(d.mapa?.buques||[]).length?"":'<p class="det">⚓ Los buques aparecerán cuando se active la clave gratuita de AISStream.</p>'}
+    ${mapaBoton(d)}
     <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
     <div class="gridm">${med}</div>
     <h2 class="titsec">🌐 Interrupciones de servicios e internet <span class="det">${activas} importante(s) · ${its.length} en total</span></h2>
     <div class="card tabla">
       ${crOk?"":`<p class="det" style="margin:0 0 8px">⚠️ Cloudflare Radar aún no está conectado (falta su token gratuito). Las demás fuentes funcionan.</p>`}
-      <table><thead><tr><th></th><th>Servicio / proveedor</th><th>Tipo</th><th>Fuente</th><th>Desde (hora PR)</th></tr></thead><tbody>${itf}</tbody></table>
+      ${itf}
       <p class="det" style="margin-top:10px">Ver en vivo:
         <a href="https://radar.cloudflare.com/outage-center" target="_blank" rel="noopener">Cloudflare Outage Center</a> ·
         <a href="https://radar.cloudflare.com/pr" target="_blank" rel="noopener">Radar PR</a> ·
@@ -328,7 +357,7 @@ function pintar(d){
     <section class="card"><h2>🔎 Consulta manual</h2><ul class="cols">${man}</ul></section></div>
     <p class="det"><button id="salir" class="sec2">Cerrar sesión en este dispositivo</button></p>`;
   document.getElementById("login").hidden=true; app.hidden=false;
-  MAPA=null; pintarMapa(d);
+
   document.getElementById("salir").onclick=()=>{try{localStorage.removeItem("cf_k")}catch(e){} location.reload()};
 }
 async function abrir(clave,recordar){

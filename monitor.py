@@ -766,9 +766,41 @@ ISP_GRANDES = re.compile(r"ATT|AT&T|VERIZON|CELLCO|T-MOBILE|TMOBILE|COMCAST|CHAR
                          r"FRONTIER|STARLINK|SPACEX|CLARO|LIBERTY|TELECOMUNICACIONES|PRTC|CRITICAL HUB|AERONET|WORLDNET|"
                          r"OPTIMUM|ALTICE|WINDSTREAM|CABLEVISION|GOOGLE-FIBER|AMAZON|CLOUDFLARE|AKAMAI|MICROSOFT|GOOGLE", re.I)
 
+PR_TXT = re.compile(r"puerto rico|\bPR\b|claro|liberty|prtc|critical hub|aeronet|worldnet|san juan|luma|islas v[ií]rgenes|virgin islands", re.I)
+US_TXT = re.compile(r"united states|\bUS\b|U\.S\.|EE\. ?UU|usa|north america|virginia|ohio|oregon|california|florida|texas|"
+                    r"new york|at&t|verizon|t-mobile|comcast|xfinity|spectrum|cox|starlink|apple|icloud|imessage|facetime|whatsapp|"
+                    r"google|gmail|youtube|microsoft|outlook|teams|azure|aws|amazon|cloudflare|twilio|meta|instagram|facebook|"
+                    r"github|discord|zoom|slack|openai|chatgpt|reddit|dropbox|911|netflix|spotify", re.I)
+OTRO_PAIS = re.compile(r"france|francia|germany|alemania|uae|bahrain|india|pakistan|ukraine|ucrania|iran|irán|iraq|russia|rusia|"
+                       r"china|côte d|ivoire|iceland|islandia|brazil|brasil|japan|japón|europe|europa|asia|africa|áfrica|"
+                       r"australia|singapore|telekom germany|mexico|méxico|venezuela|cuba|colombia", re.I)
+
+def _fecha_iso(v):
+    if not v: return ""
+    try:
+        return datetime.fromisoformat(str(v).replace("Z", "+00:00")).astimezone(timezone.utc).isoformat(timespec="minutes")
+    except ValueError:
+        pass
+    try:
+        from email.utils import parsedate_to_datetime
+        return parsedate_to_datetime(str(v)).astimezone(timezone.utc).isoformat(timespec="minutes")
+    except Exception:
+        return str(v)
+
+def _proximidad(nombre, estado, zona, tipo):
+    """0 = afecta a Puerto Rico · 1 = EE. UU. (puede interferir con PR) · 2 = resto del mundo."""
+    txt = f"{nombre} {estado}"
+    zonas = {z.strip().upper() for z in (zona or "").replace(";", ",").split(",") if z.strip()}
+    if zonas & {"PR", "VI"} or PR_TXT.search(txt): return 0
+    if OTRO_PAIS.search(txt) and not (zonas & {"US"}): return 2
+    if zonas & {"US"} or US_TXT.search(txt): return 1
+    if tipo.startswith("País") or "NetBlocks" in tipo: return 2
+    return 1
+
 def _int(nombre, tipo, fuente, desde, estado, nivel, url, zona=""):
-    INTERRUPCIONES.append({"nombre": nombre[:90], "tipo": tipo, "fuente": fuente, "desde_utc": desde,
-                           "estado": estado[:200], "nivel": nivel, "url": url, "zona": zona})
+    INTERRUPCIONES.append({"nombre": nombre[:90], "tipo": tipo, "fuente": fuente, "desde_utc": _fecha_iso(desde),
+                           "estado": estado[:200], "nivel": nivel, "url": url, "zona": zona,
+                           "prox": _proximidad(nombre, estado, zona, tipo)})
 
 def f_cloudflare_radar():
     """Cloudflare Radar (requiere token gratis CLOUDFLARE_RADAR_TOKEN): cortes y anomalías de tráfico."""
@@ -1461,7 +1493,7 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "puertos": PUERTOS_EST,
         "tfrs": TFRS[:60], "espacio_aereo": ESPACIO_AEREO,
         "interrupciones": sorted(sorted(INTERRUPCIONES, key=lambda x: x["desde_utc"], reverse=True),
-                                 key=lambda x: -x["nivel"])[:80],
+                                 key=lambda x: x["prox"])[:90],
         "netblocks": NETBLOCKS[:15],
         "energia": ENERGIA,
         "riesgo_familiar": evaluar_riesgo_familiar(senales),
@@ -1501,8 +1533,9 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
 </channel></rss>"""
         open(os.path.join(DOCS, "feed.xml"), "w", encoding="utf-8").write(rss)
         tpl = open(os.path.join(BASE, "panel_cifrado.html"), encoding="utf-8").read()
-        open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(
-            tpl.replace("{{NOMBRE}}", html.escape(CFG["nombre_sistema"])))
+        for archivo, vista in (("index.html", "panel"), ("mapa.html", "mapa")):
+            open(os.path.join(DOCS, archivo), "w", encoding="utf-8").write(
+                tpl.replace("{{NOMBRE}}", html.escape(CFG["nombre_sistema"])).replace("{{VISTA}}", vista))
         return
 
     json.dump(status, open(os.path.join(DOCS, "status.json"), "w", encoding="utf-8"),

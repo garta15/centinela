@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Centinela Familiar</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<style>
+:root{color-scheme:light dark;--bg:#0f1115;--fg:#e8e8ea;--mut:#9aa0a6;--card:#181b22;--line:#2a2f3a}
+@media (prefers-color-scheme:light){:root{--bg:#f6f7f9;--fg:#15171c;--mut:#5f6368;--card:#fff;--line:#e3e5e8}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.45 -apple-system,system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:980px;margin:auto;padding:20px}a{color:inherit}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:16px}
+.hero{border-radius:14px;padding:20px 22px;color:#fff}.hero h1{margin:0;font-size:28px}.hero p{margin:6px 0 0}
+h2{font-size:16px;margin:0 0 10px}table{width:100%;border-collapse:collapse}
+td{border-top:1px solid var(--line);padding:8px 6px;vertical-align:top}
+.pill{color:#fff;border-radius:99px;padding:2px 8px;font-size:12px;white-space:nowrap}
+.det{color:var(--mut);font-size:13px}ul{margin:0;padding-left:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+input,button{font:inherit;padding:12px 14px;border-radius:10px;border:1px solid var(--line);width:100%}
+button{background:#2b6cb0;color:#fff;border:0;margin-top:10px;font-weight:600;min-height:44px}
+label.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}label.chk input{width:auto}
+#err{color:#e53e3e;margin-top:8px;min-height:1.2em}
+@media (max-width:600px){.hero h1{font-size:24px}}
+.hero .h1{font-size:30px;font-weight:800}.hero p{margin:6px 0 0}.peq{opacity:.85;font-size:13px}
+h2{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lista{list-style:none;padding:0;margin:0}.lista li{padding:10px 0;border-top:1px solid var(--line)}.lista li:first-child{border-top:0}
+.sig{display:flex;gap:10px;align-items:flex-start}.dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px}
+.nota a,.sig a{text-decoration:none;font-weight:600}.nota a:hover,.sig a:hover{text-decoration:underline}
+details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4px;list-style:none}.av li{padding:4px 0}
+.cols{columns:2;column-gap:16px;font-size:14px}.sec2{width:auto;background:#555}
+.titsec{font-size:17px;margin:22px 0 4px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+.gridm{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.med{margin-top:12px;padding:12px}.med summary{list-style:none;cursor:pointer;text-align:center}.med summary::-webkit-details-marker{display:none}
+.med[open]{grid-column:1/-1;text-align:left}.gauge{width:120px;height:70px;display:block;margin:0 auto}
+.gnum{font-size:20px;font-weight:800;fill:var(--fg)}.mtit{font-weight:700;margin:2px 0 4px}
+.puerto{margin-top:12px}.tabla{overflow-x:auto}.tabla table{min-width:520px;font-size:14px}.tabla th{text-align:left;color:var(--mut);font-weight:600;padding:6px}
+
+/* ---- riesgo familiar / energía ---- */
+.rf{border-radius:14px;padding:16px 18px;margin-top:16px;border:1px solid var(--line);background:var(--card)}
+.rf .top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.rf .big{font-size:34px;font-weight:900;line-height:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chip{border-radius:99px;padding:4px 10px;font-size:13px;color:#fff;font-weight:600}
+.plan{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}.plan ol{margin:6px 0 0;padding-left:20px}.plan li{margin:4px 0}
+.en{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.bar{height:8px;border-radius:9px;background:var(--line);overflow:hidden;margin-top:4px}.bar>i{display:block;height:100%}
+/* ---- mapa táctico ---- */
+.mapwrap{position:relative;margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid #1f2a37;background:#05080d}
+#mapa{height:62vh;min-height:420px;background:#05080d}
+.oscuro{filter:invert(1) hue-rotate(180deg) brightness(.78) contrast(1.15) saturate(.35)}
+.hud{position:absolute;top:10px;left:10px;right:10px;z-index:500;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.hud button{pointer-events:auto;width:auto;margin:0;padding:6px 10px;min-height:32px;border-radius:99px;border:1px solid #2b3a4d;
+  background:rgba(8,14,22,.82);color:#cfe3ff;font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.03em;backdrop-filter:blur(4px)}
+.hud button.off{opacity:.45;text-decoration:line-through}
+.mapstamp{position:absolute;bottom:8px;left:10px;z-index:500;font:11px ui-monospace,Menlo,monospace;color:#8fb4d9;background:rgba(5,8,13,.7);padding:3px 7px;border-radius:6px}
+.leg{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:12px;color:var(--mut);margin-top:8px}.leg span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}.tri{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid}
+.leaflet-container{font:inherit}.leaflet-control-attribution{font-size:10px!important}
+.ico-avion{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:16px solid;filter:drop-shadow(0 0 3px #000)}
+.ico-tri{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:16px solid;filter:drop-shadow(0 0 2px #000)}
+.ico-sat{font-size:16px;line-height:16px;text-shadow:0 0 4px #000}
+/* ---- ventana inferior (bottom sheet) ---- */
+#hoja{position:fixed;left:0;right:0;bottom:0;z-index:3000;max-height:62vh;overflow:auto;background:var(--card);color:var(--fg);
+  border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:0 -8px 30px rgba(0,0,0,.45);padding:8px 18px 22px;
+  transform:translateY(calc(100% + 60px));visibility:hidden;transition:transform .25s ease,visibility 0s .25s}
+#hoja.abierta{transform:translateY(0);visibility:visible;transition:transform .25s ease}
+#hoja .asa{width:44px;height:5px;border-radius:9px;background:var(--line);margin:4px auto 10px}
+#hoja h3{margin:0 0 6px;font-size:18px}#hoja .cerrar{position:absolute;top:10px;right:12px;width:36px;height:36px;padding:0;margin:0;border-radius:50%;background:var(--line);color:var(--fg);font-size:18px}
+#hoja dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0}#hoja dt{color:var(--mut)}#hoja dd{margin:0}
+#hoja pre{white-space:pre-wrap;font-size:12px;background:var(--bg);padding:10px;border-radius:8px;max-height:30vh;overflow:auto}
+@media (max-width:600px){.hud button{font-size:11px;padding:5px 8px;min-height:30px}}
+@media (min-width:900px){#hoja{left:auto;right:18px;bottom:18px;width:420px;border-radius:16px}}
+@media (prefers-reduced-motion:reduce){#hoja{transition:none}}
+.mapbtn{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#0b1522,#13243a);color:#e6f0ff;border-color:#1f3550}
+.mapbtn .det{color:#9fb7d3}.mapbtn-ico{font-size:34px}.mapbtn-fl{margin-left:auto;font-size:32px;opacity:.7}
+.mapbar{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;flex-wrap:wrap}
+.volver{font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:6px 12px}
+.igr{margin-top:6px}.igr-t{font-weight:800;margin:12px 0 4px;font-size:15px}.idia{font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin:10px 0 2px}
+.iitem{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}.iitem:hover .inom{text-decoration:underline}
+.iitem .dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px}.icuerpo{min-width:0}.inom{font-weight:700;overflow-wrap:anywhere}
+.imeta{font-size:12px;color:var(--mut);margin-top:2px;overflow-wrap:anywhere}
+</style></head><body><main>
+<div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
+  <h2>🔒 Centinela Familiar</h2>
+  <p class="det">Contenido cifrado. Escribe la frase clave familiar.</p>
+  <form id="f"><input id="k" type="password" autocomplete="current-password" placeholder="Frase clave" aria-label="Frase clave" required>
+  <label class="chk"><input id="rec" type="checkbox"> Recordar en este dispositivo</label>
+  <button type="submit">Abrir</button><div id="err" role="alert"></div></form>
+</div>
+<div id="app" hidden></div>
+<div id="hoja" role="dialog" aria-modal="false" aria-labelledby="hojaTit"><div class="asa"></div><button class="cerrar" aria-label="Cerrar" onclick="cerrarHoja()">✕</button><div id="hojaCont"></div></div>
+</main>
+<script>
+const NIV=["NORMAL","VIGILANCIA","ELEVADO","ALTO","CRÍTICO"],EMO=["🟢","🔵","🟡","🟠","🔴"],
+      COL=["#1f9d55","#2b6cb0","#c99a06","#dd6b20","#c53030"];
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"#";
+async function descifrar(clave){
+  const r=await fetch("estado.enc?t="+Date.now(),{cache:"no-store"});
+  if(r.status===404) throw new Error("Todavía no hay datos: el motor aún no ha corrido. Ejecuta el Paso 4 (Actions → Run workflow) y vuelve en 2–3 minutos.");
+  if(!r.ok) throw new Error("No se pudo descargar el estado ("+r.status+")");
+  const e=await r.json();
+  const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(clave),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(e.salt),iterations:e.iter,hash:"SHA-256"},
+             base,{name:"AES-GCM",length:256},false,["decrypt"]);
+  const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(e.iv)},key,b64(e.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+const SEC={pr:["🇵🇷","Puerto Rico"],eeuu:["🇺🇸","Estados Unidos"],amenazas:["⚠️","Amenazas a Norteamérica"],
+  militar:["⚓","Militar y naval · Caribe"],infra:["🛰️","Infraestructura y espacio"]};
+const SECT={telecom:"📡",ciber:"💻",electrica:"⚡",ataque:"🚀",terror:"🛡️",emergencia:"🚨",espacio:"🛰️",caribe:"⚓",pr:"🇵🇷"};
+function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);
+  if(m<1)return"ahora"; if(m<60)return`hace ${m} min`; const h=Math.round(m/60); return h<24?`hace ${h} h`:`hace ${Math.round(h/24)} d`;}
+
+// ---------------- ventana inferior ----------------
+function abrirHoja(html){const h=document.getElementById("hoja");document.getElementById("hojaCont").innerHTML=html;h.classList.add("abierta");h.scrollTop=0;}
+function cerrarHoja(){document.getElementById("hoja").classList.remove("abierta");}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarHoja()});
+function dl(pares){return "<dl>"+pares.filter(p=>p[1]!==undefined&&p[1]!==null&&p[1]!=="").map(([k,v])=>`<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")+"</dl>";}
+function enlace(u,t){return `<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${esc(t||"Abrir fuente")} ↗</a>`;}
+// ---------------- utilidades geográficas ----------------
+function destino(lat,lon,rumbo,km){const R=6371,d=km/R,b=rumbo*Math.PI/180,f1=lat*Math.PI/180,l1=lon*Math.PI/180;
+  const f2=Math.asin(Math.sin(f1)*Math.cos(d)+Math.cos(f1)*Math.sin(d)*Math.cos(b));
+  const l2=l1+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(f1),Math.cos(d)-Math.sin(f1)*Math.sin(f2));
+  return [f2*180/Math.PI,((l2*180/Math.PI+540)%360)-180];}
+function partir(pts){const out=[[]];pts.forEach((p,i)=>{if(i&&Math.abs(p[1]-pts[i-1][1])>180)out.push([]);out[out.length-1].push(p)});return out;}
+const COLPAIS=p=>({"EE. UU.":"#4da3ff","Rusia":"#ff4d4d","China":"#ff4d4d","Irán":"#ff4d4d","Venezuela":"#ff7a45","Cuba":"#ff7a45","Corea del Norte":"#ff4d4d"})[p]||"#ffd34d";
+const CPUERTO=n=>n>=3?"#e53935":n>=1?"#f2c230":"#22c55e";
+const CTRI=n=>n>=3?"#e53935":n>=2?"#fb8c00":"#f2c230";
+let MAPA=null,CAPAS={};
+function pintarMapa(d){
+  if(typeof L==="undefined"){document.getElementById("mapa").innerHTML='<p class="det" style="padding:16px">No se pudo cargar el mapa (sin conexión a internet).</p>';return;}
+  const m=d.mapa||{};
+  if(!MAPA){MAPA=L.map("mapa",{zoomControl:false,worldCopyJump:true,attributionControl:true}).setView([19.2,-67.5],window.innerWidth<600?6:5);
+    L.control.zoom({position:"bottomright"}).addTo(MAPA);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:12,className:"oscuro",
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(MAPA);
+    L.circle([18.22,-66.59],{radius:250000,color:"#4da3ff",weight:1,dashArray:"4 6",fill:false,interactive:false}).addTo(MAPA);
+  }
+  Object.values(CAPAS).forEach(c=>MAPA.removeLayer(c)); CAPAS={};
+  const g=k=>(CAPAS[k]=L.layerGroup().addTo(MAPA));
+  // --- restricciones aéreas ---
+  const lt=g("tfr");
+  (m.tfr||[]).forEach(t=>{const c=t.nueva?"#ff2d2d":"#ff8c1a";
+    const ab=()=>abrirHoja(`<h3 id="hojaTit">🛩️ Restricción aérea ${esc(t.id)}</h3><p><span class="pill" style="background:${c}">${t.nueva?"NUEVA (≤48 h)":"Vigente"}</span> ${esc(t.tipo)}</p>`+
+      dl([["Lugar",esc(t.lugar)],["Motivo",esc(t.motivo||"No indicado")],["Altitud",esc(t.altitud)],["Estado",esc(t.estado)],["Creada",esc(t.creado)]])+
+      (t.texto?`<details><summary>Texto oficial del NOTAM</summary><pre>${esc(t.texto)}</pre></details>`:"")+`<p>${enlace(t.url,"Ver en la FAA")}</p>`);
+    (t.areas||[]).forEach(a=>{let f;
+      if(a.tipo==="circulo")f=L.circle(a.centro,{radius:a.radio_m,color:c,weight:2,fillOpacity:.22});
+      else f=L.polygon(a.puntos,{color:c,weight:2,fillOpacity:.22});
+      f.on("click",ab).addTo(lt);});});
+  // --- puertos ---
+  const lp=g("puertos");
+  (m.puertos||[]).forEach(p=>{const c=CPUERTO(p.nivel);
+    const txt={0:"Operando: sin riesgo de cierre",1:"Posible riesgo de cierre",2:"Posible riesgo de cierre por seguridad",3:"Cierre parcial o total"}[p.nivel];
+    L.circleMarker([p.lat,p.lon],{radius:9,color:"#fff",weight:2,fillColor:c,fillOpacity:1}).bindTooltip(p.nombre,{direction:"top"})
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">🚢 ${esc(p.nombre)}</h3><p><span class="pill" style="background:${c}">${txt}</span></p><p class="det">${esc(p.rol)}</p>`+
+       ((p.reportes||[]).length?`<ul class="lista">${p.reportes.map(r=>`<li>${enlace(r.url,fuenteDe(r.titulo)[0])}<div class="det">${fechaPR(r.hora_utc)}</div></li>`).join("")}</ul>`:'<p class="det">Sin reportes de cierre en las últimas 48 h.</p>'))).addTo(lp);});
+  // --- aeropuertos con problemas (triángulos) ---
+  const la=g("aeropuertos");
+  (m.aeropuertos||[]).forEach(a=>{const c=CTRI(a.nivel);
+    L.marker([a.lat,a.lon],{icon:L.divIcon({className:"",html:`<div class="ico-tri" style="border-bottom-color:${c}"></div>`,iconSize:[18,16],iconAnchor:[9,8]})})
+     .bindTooltip(a.arpt,{direction:"top"})
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">▲ Aeropuerto ${esc(a.arpt)}</h3>`+a.problemas.map(p=>dl([["Situación",`<b>${esc(p.tipo)}</b>`],["Motivo",esc(p.motivo)],["Hasta",esc(p.fin)]])).join("")+`<p>${enlace("https://nasstatus.faa.gov/","Estado oficial FAA")}</p>`)).addTo(la);});
+  // --- aeronaves (últimas 6 posiciones en 3 h + dirección) ---
+  const lv=g("aviones");
+  (m.aviones||[]).forEach(a=>{const c=a.clase==="no identificada"?"#ffd34d":COLPAIS(a.pais),tr=a.trazas||[];if(!tr.length)return;
+    const pts=tr.map(p=>[p.lat,p.lon]),u=tr[tr.length-1];
+    L.polyline(pts,{color:c,weight:2,opacity:.85}).addTo(lv);
+    tr.slice(0,-1).forEach(p=>L.circleMarker([p.lat,p.lon],{radius:2.5,color:c,fillOpacity:1}).addTo(lv));
+    if(u.rumbo!=null&&u.nudos)L.polyline([[u.lat,u.lon],destino(u.lat,u.lon,u.rumbo,u.nudos*1.852/3)],{color:c,weight:2,dashArray:"5 6",opacity:.9}).addTo(lv);
+    const ab=()=>abrirHoja(`<h3 id="hojaTit">✈️ ${esc(a.callsign)}</h3><p><span class="pill" style="background:${c};color:#000">${a.clase==="no identificada"?"❓ No identificada":"🎖️ Militar"}</span> ${esc(a.pais)}</p>`+
+      dl([["Tipo",esc(a.tipo)+(a.desc?" · "+esc(a.desc):"")],["Última vez",fechaPR(u.t)],["Altitud",u.alt?esc(u.alt)+" ft":""],["Rumbo",u.rumbo!=null?Math.round(u.rumbo)+"°":""],
+          ["Velocidad",u.nudos?Math.round(u.nudos)+" nudos":""],["Distancia a PR",a.dist_pr_km+" km"],["Posiciones (3 h)",tr.length]])+
+      `<p class="det">La línea discontinua es la dirección probable en los próximos 20 min, según su rumbo y velocidad.</p><p>${enlace("https://globe.adsb.lol/?icao="+encodeURIComponent(a.hex),"Ver en ADS-B en vivo")}</p>`);
+    L.marker([u.lat,u.lon],{icon:L.divIcon({className:"",html:`<div class="ico-avion" style="border-bottom-color:${c};transform:rotate(${u.rumbo||0}deg)"></div>`,iconSize:[14,16],iconAnchor:[7,8]})})
+     .bindTooltip(a.callsign,{direction:"top"}).on("click",ab).addTo(lv);});
+  // --- buques (AIS) ---
+  const lb=g("buques");
+  (m.buques||[]).forEach(b=>{const c="#7ee0ff",tr=b.trazas||[];if(!tr.length)return;const u=tr[tr.length-1];
+    L.polyline(tr.map(p=>[p.lat,p.lon]),{color:c,weight:2}).addTo(lb);
+    if(u.rumbo!=null&&u.nudos)L.polyline([[u.lat,u.lon],destino(u.lat,u.lon,u.rumbo,u.nudos*1.852)],{color:c,weight:2,dashArray:"5 6"}).addTo(lb);
+    L.circleMarker([u.lat,u.lon],{radius:7,color:"#fff",weight:2,fillColor:c,fillOpacity:1}).bindTooltip(b.nombre)
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">⚓ ${esc(b.nombre)}</h3><p><span class="pill" style="background:${c};color:#000">${esc(b.clase)}</span></p>`+
+       dl([["MMSI",esc(b.mmsi)],["Última vez",fechaPR(u.t)],["Rumbo",u.rumbo!=null?Math.round(u.rumbo)+"°":""],["Velocidad",u.nudos!=null?u.nudos+" nudos":""],["Posiciones (3 h)",tr.length]])+
+       `<p class="det">La línea discontinua es la dirección probable en la próxima hora.</p><p>${enlace("https://www.marinetraffic.com/en/ais/details/ships/mmsi:"+encodeURIComponent(b.mmsi),"Ver buque")}</p>`)).addTo(lb);});
+  // --- satélites ---
+  const ls=g("satelites");
+  (m.satelites||[]).forEach(s=>{const c=s.categoria==="eeuu"?"#4da3ff":s.categoria==="adversario"?"#ff4d4d":"#c77dff";
+    const pas=s.traza.filter(p=>p[2]<=0).map(p=>[p[0],p[1]]),fut=s.traza.filter(p=>p[2]>=0).map(p=>[p[0],p[1]]);
+    partir(pas).forEach(seg=>L.polyline(seg,{color:c,weight:1.5,opacity:.45,dashArray:"2 5"}).addTo(ls));
+    partir(fut).forEach(seg=>L.polyline(seg,{color:c,weight:2,opacity:.8}).addTo(ls));
+    const etq=s.categoria==="eeuu"?"EE. UU. militar":s.categoria==="adversario"?"Adversario de EE. UU.":"No identificado";
+    L.marker([s.lat,s.lon],{icon:L.divIcon({className:"",html:`<div class="ico-sat" style="color:${c}">✦</div>`,iconSize:[16,16],iconAnchor:[8,8]})})
+     .bindTooltip(s.nombre,{direction:"top"})
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">🛰️ ${esc(s.nombre)}</h3><p><span class="pill" style="background:${c}">${etq}</span> ${esc(s.pais)} ${s.nuevo?'<span class="pill" style="background:#7c3aed">Lanzado en los últimos 30 días</span>':""}</p>`+
+       dl([["NORAD",esc(s.norad)],["Altura actual",s.alt_km?s.alt_km+" km":""],["Paso más cercano a PR",s.dist_min_km+" km"]])+
+       `<p class="det">Línea continua: trayectoria de los próximos 60 min. Punteada: últimos 30 min. Calculada con datos orbitales públicos (CelesTrak).</p><p>${enlace(s.url,"Ficha del satélite")}</p>`)).addTo(ls);});
+  document.querySelectorAll(".hud button").forEach(b=>{if(b.classList.contains("off")&&CAPAS[b.dataset.capa])MAPA.removeLayer(CAPAS[b.dataset.capa]);});
+  setTimeout(()=>MAPA.invalidateSize(),50);
+}
+function toggleCapa(b){b.classList.toggle("off");const c=CAPAS[b.dataset.capa];if(!c)return;b.classList.contains("off")?MAPA.removeLayer(c):c.addTo(MAPA);}
+
+function fechaPR(iso){try{return new Date(iso).toLocaleString("es-PR",{timeZone:"America/Puerto_Rico",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return iso}}
+function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
+const VISTA="mapa";
+function mapaHTML(d,alto){return `    <h2 class="titsec">🗺️ Mapa táctico · Puerto Rico y alrededores <span class="det">toca cualquier elemento</span></h2>
+    <div class="mapwrap"><div class="hud">
+      <button data-capa="aviones" onclick="toggleCapa(this)">✈ AERONAVES ${(d.mapa?.aviones||[]).length}</button>
+      <button data-capa="buques" onclick="toggleCapa(this)">⚓ BUQUES ${(d.mapa?.buques||[]).length}</button>
+      <button data-capa="satelites" onclick="toggleCapa(this)">✦ SATÉLITES ${(d.mapa?.satelites||[]).length}</button>
+      <button data-capa="puertos" onclick="toggleCapa(this)">● PUERTOS</button>
+      <button data-capa="tfr" onclick="toggleCapa(this)">▢ RESTRICCIONES ${(d.mapa?.tfr||[]).length}</button>
+      <button data-capa="aeropuertos" onclick="toggleCapa(this)">▲ AEROPUERTOS ${(d.mapa?.aeropuertos||[]).length}</button></div>
+      <div id="mapa" style="height:${alto}" role="application" aria-label="Mapa táctico"></div><div class="mapstamp">ACTUALIZADO ${hace(d.actualizado_utc).toUpperCase()}</div></div>
+    <div class="leg"><span><span class="sw" style="background:#4da3ff"></span>EE. UU. militar</span><span><span class="sw" style="background:#ff4d4d"></span>Adversario</span>
+      <span><span class="sw" style="background:#ffd34d"></span>No identificado / otro país</span><span><span class="sw" style="background:#c77dff"></span>Satélite no identificado</span>
+      <span><span class="sw" style="background:#7ee0ff"></span>Buque</span><span><span class="sw" style="background:#ff2d2d"></span>Restricción nueva</span>
+      <span><span class="sw" style="background:#ff8c1a"></span>Restricción vigente</span><span><span class="sw" style="background:#22c55e;border-radius:50%"></span>Puerto OK</span>
+      <span><span class="sw" style="background:#f2c230;border-radius:50%"></span>Posible riesgo</span><span><span class="sw" style="background:#e53935;border-radius:50%"></span>Cierre</span>
+      <span><span class="tri" style="border-bottom-color:#e53935"></span>Aeropuerto con problemas</span><span>— — dirección probable</span></div>
+    ${(d.mapa?.buques||[]).length?"":'<p class="det">⚓ Los buques aparecerán cuando se active la clave gratuita de AISStream.</p>'}
+`;}
+function mapaBoton(d){const m=d.mapa||{};
+  return `<a class="card mapbtn" href="mapa.html"><div class="mapbtn-ico">🗺️</div><div><div style="font-weight:800;font-size:18px">Abrir mapa táctico</div>
+    <div class="det">✈ ${(m.aviones||[]).length} aeronaves · ⚓ ${(m.buques||[]).length} buques · ✦ ${(m.satelites||[]).length} satélites · ▢ ${(m.tfr||[]).length} restricciones · ▲ ${(m.aeropuertos||[]).length} aeropuertos · ● puertos</div></div><div class="mapbtn-fl">›</div></a>`;}
+function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";const c=COL[r.color];
+  const ch=r.categorias.map(k=>`<span class="chip" style="background:${COL[k.nivel]}">${esc(k.nombre)}: ${NIV[k.nivel]}</span>`).join("");
+  const pl=r.planes.map((p,i)=>`<details class="plan" ${i===0?"open":""}><summary><b>${esc(p.titulo)}</b>${p.motivos.length?` <span class="det">· ${esc(p.motivos[0])}</span>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
+  return `<section class="rf" style="border-left:8px solid ${c}"><div class="top"><div class="big" style="color:${c}">${r.indice}</div>
+    <div><div style="font-weight:800;font-size:20px">Riesgo familiar: ${esc(r.etiqueta)}</div><div class="det">Puerto Rico y alrededores · 0–100</div></div></div>
+    <div class="chips">${ch}</div>${pl}<p class="det" style="margin-top:10px">${esc(r.nota)}</p></section>`;}
+function energiaHTML(d){const e=d.energia||{},pr=e.pr||{},us=e.us||{};
+  const ev=(pr.evidencia||[]).slice(0,5).map(x=>`<li>${enlace(x.url,x.texto)}<div class="det">${esc(x.fuente)} · ${fechaPR(x.hora_utc)}</div></li>`).join("");
+  const rg=(us.regiones||[]).map(r=>{const v=Math.max(-30,Math.min(30,r.desviacion_pct)),col=r.desviacion_pct<=-10?COL[3]:r.desviacion_pct<=-5?COL[2]:COL[0];
+    return `<div style="margin:6px 0"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${esc(r.nombre)}</span><span>${r.demanda_mw.toLocaleString("es-PR")} MW · ${r.desviacion_pct>0?"+":""}${r.desviacion_pct}%</span></div>
+      <div class="bar"><i style="width:${50+v*1.6}%;background:${col}"></i></div></div>`}).join("");
+  return `<h2 class="titsec">⚡ Producción y distribución eléctrica</h2><div class="en">
+   <section class="card" style="border-left:8px solid ${COL[pr.nivel||0]}"><h2><span>🇵🇷 Puerto Rico</span><span class="pill" style="background:${COL[pr.nivel||0]}">${esc(pr.estado||"Sin datos")}</span></h2>
+     ${pr.clientes_sin_servicio?`<p style="font-size:22px;font-weight:800;margin:4px 0">${pr.clientes_sin_servicio.toLocaleString("es-PR")} clientes sin servicio</p>`:""}
+     ${ev?`<ul class="lista">${ev}</ul>`:'<p class="det">Sin reportes recientes de apagones o averías de generación.</p>'}
+     <p class="det">${esc(pr.nota||"")}</p><p class="det">${(pr.enlaces||[]).map(l=>enlace(l.url,l.nombre)).join(" · ")}</p></section>
+   <section class="card" style="border-left:8px solid ${COL[us.nivel||0]}"><h2><span>🇺🇸 Estados Unidos</span><span class="pill" style="background:${COL[us.nivel||0]}">${NIV[us.nivel||0]}</span></h2>
+     <p class="det">${esc(us.estado||"")}. Demanda real frente a la pronosticada (una caída fuerte puede indicar apagones):</p>${rg}
+     <p class="det">${enlace(us.url||"https://www.eia.gov/electricity/gridmonitor/",us.fuente||"EIA")}</p></section></div>`;}
+function pintar(d){
+  const n=d.nivel, sen=d.senales||[];
+  const tarjetas=Object.entries(SEC).map(([k,[ico,nom]])=>{
+    const ss=sen.filter(s=>(s.seccion||"infra")===k && s.seccion!=="medidores");
+    const peor=ss.reduce((a,s)=>Math.max(a,s.nivel),0);
+    const filas=ss.map(s=>`<li class="sig"><span class="dot" style="background:${COL[s.nivel]}"></span>
+      <div><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.titulo)}</a>
+      <div class="det">${esc(s.fuente)}${s.detalle?" · "+esc(s.detalle):""}</div></div></li>`).join("");
+    let extra="";
+    if(k==="militar"){const av=d.aviones_militares||[];
+      extra= av.length?`<details><summary>${av.length} aeronave(s) militar(es) con transpondedor</summary><ul class="av">${
+        av.map(a=>`<li>${a.cerca_pr?"📍":"✈️"} <b>${esc(a.callsign)}</b> ${esc(a.tipo)} ${a.desc?"· "+esc(a.desc):""}
+        <span class="det">${a.lat}, ${a.lon}${a.alt?" · "+esc(a.alt)+" ft":""}</span></li>`).join("")}</ul></details>`
+        :`<p class="det">Ninguna aeronave militar con transpondedor visible ahora sobre el Caribe (muchas vuelan sin él).</p>`;}
+    return `<section class="card sec"><h2><span>${ico} ${nom}</span><span class="pill" style="background:${COL[peor]}">${NIV[peor]}</span></h2>
+      ${filas?`<ul class="lista">${filas}</ul>`:`<p class="det">Sin novedades.</p>`}${extra}</section>`;}).join("");
+  const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const ico=SECT[t.seccion]||(SEC[t.seccion]||["📰"])[0];
+    return `<li class="nota"><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a>
+    <div class="det">${ico} ${esc(t.tema)} · ${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin titulares recientes.</li>`;
+  const hist=(d.historial||[]).slice(0,15).map(h=>`<li>${EMO[h.nivel]} ${esc(h.titulo)} <span class="det">· ${hace(h.hora_utc)}</span></li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
+  const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)}</li>`).join("");
+  const man=(d.consulta_manual||[]).map(m=>`<li><a href="${esc(safeUrl(m.url))}" target="_blank" rel="noopener">${esc(m.nombre)}</a></li>`).join("");
+  const med=(d.medidores||[]).map(m=>{const pct=Math.max(0,Math.min(100,m.indice)),c=COL[m.nivel];
+    const arco=Math.PI*40, lleno=arco*pct/100;
+    const tend=m.base==null?"aprendiendo lo normal…":(m.n24>m.base*1.5?`▲ sobre lo normal (${m.base}/día)`:m.n24<m.base*0.7?`▼ bajo lo normal (${m.base}/día)`:`≈ normal (${m.base}/día)`);
+    const tl=(m.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);return `<li><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a><div class="det">${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin noticias.</li>`;
+    return `<details class="card med"><summary>
+      <svg viewBox="0 0 100 58" class="gauge" aria-hidden="true"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${lleno} ${arco}"/>
+      <text x="50" y="48" text-anchor="middle" class="gnum">${pct}</text></svg>
+      <div class="mtit">${m.icono} ${esc(m.nombre)}</div>
+      <div class="det"><span class="pill" style="background:${c}">${NIV[m.nivel]}</span> ${m.n3} en 3 h · ${m.n24} en 24 h</div>
+      <div class="det">${esc(m.motivo||tend)}</div></summary><ul class="lista">${tl}</ul></details>`}).join("");
+  const pts=(d.puertos||[]).map(p=>{const rep=(p.reportes||[]).map(r=>{const [h,f]=fuenteDe(r.titulo);
+      return `<li><a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener">${esc(h)}</a><div class="det">${esc(f)} · ${fechaPR(r.hora_utc)}</div></li>`}).join("");
+    return `<div class="card puerto" style="border-left:6px solid ${COL[p.nivel]}"><div class="mtit">${esc(p.nombre)}</div>
+      <div class="det">${esc(p.rol)}</div><div style="margin-top:6px"><span class="pill" style="background:${COL[p.nivel]}">${esc(p.estado)}</span>
+      <span class="det"> · ${p.revisados??0} noticias revisadas (48 h)</span></div>${rep?`<ul class="lista">${rep}</ul>`:""}</div>`}).join("");
+  const avs=(d.log_aviones||[]).map(a=>`<tr><td>${fechaPR(a.visto_utc)}</td><td><b>${esc(a.callsign)}</b><div class="det">${esc(a.tipo)}${a.desc?" · "+esc(a.desc):""}</div></td>
+      <td>${esc(a.pais)}</td><td>${a.clase==="no identificada"?"❓ no identificada":"🎖️ militar"}</td><td>${a.dist_pr_km} km</td></tr>`).join("")
+      ||`<tr><td colspan="5" class="det">Todavía no se ha registrado ninguna. El registro se llena con cada revisión.</td></tr>`;
+  const bqs=(d.log_buques||[]).map(b=>`<li><div class="det">${fechaPR(b.fecha_utc)} · ${esc(b.fuente)}</div>
+      <a href="${esc(safeUrl(b.url))}" target="_blank" rel="noopener">${esc(b.texto)}</a></li>`).join("")||`<li class="det">Sin reportes todavía.</li>`;
+  const tf=(d.tfrs||[]).map(t=>`<tr><td>${t.pr?"🇵🇷 ":t.nacional?"🇺🇸 ":""}${t.nuevo?'<span class="pill" style="background:#dd6b20">NUEVA</span> ':""}<a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(t.id)}</a></td>
+      <td>${esc(t.tipo)}</td><td>${esc(t.lugar||(t.nacional?"Todo EE. UU. (instrucción especial)":""))}</td><td>${esc(t.estado)}</td><td>${esc(t.creado)}</td></tr>`).join("")
+      ||`<tr><td colspan="5" class="det">Sin restricciones relevantes.</td></tr>`;
+  const ea=d.espacio_aereo||{};
+  const gsl=(ea.ground_stops||[]).map(g=>`<li>⛔ <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
+  const cl=(ea.cierres||[]).map(c=>`<li>🚫 <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
+  const its=(d.interrupciones||[]);
+  const GRUPO=["🇵🇷 Afecta a Puerto Rico","🇺🇸 Estados Unidos · puede afectar a PR","🌎 Resto del mundo"];
+  const diaDe=iso=>{try{const f=new Date(iso),h=new Date(),a=new Date(Date.now()-864e5),o={timeZone:"America/Puerto_Rico"};
+    const k=x=>x.toLocaleDateString("es-PR",o);return k(f)===k(h)?"Hoy":k(f)===k(a)?"Ayer":f.toLocaleDateString("es-PR",{...o,weekday:"long",day:"numeric",month:"short"});}catch(e){return""}};
+  const horaPR=iso=>{try{return new Date(iso).toLocaleTimeString("es-PR",{timeZone:"America/Puerto_Rico",hour:"numeric",minute:"2-digit"})}catch(e){return""}};
+  let itf="";
+  [0,1,2].forEach(g=>{const xs=its.filter(x=>(x.prox??1)===g);if(!xs.length)return;
+    itf+=`<div class="igr"><div class="igr-t">${GRUPO[g]} <span class="det">· ${xs.length}</span></div>`;let dia=null;
+    xs.forEach(x=>{const dd=x.desde_utc?diaDe(x.desde_utc):"Sin fecha";if(dd!==dia){dia=dd;itf+=`<div class="idia">${esc(dd)}</div>`;}
+      itf+=`<a class="iitem" href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener"><span class="dot" style="background:${COL[x.nivel]}"></span>
+        <div class="icuerpo"><div class="inom">${esc(x.nombre)}</div><div class="det">${esc(x.estado)}</div>
+        <div class="imeta">${x.desde_utc?esc(horaPR(x.desde_utc)):""} · ${esc(x.tipo)} · ${esc(x.fuente)}${x.zona?" · "+esc(x.zona):""}</div></div></a>`;});
+    itf+=`</div>`;});
+  if(!itf)itf='<p class="det">Sin interrupciones reportadas ahora mismo.</p>';
+  const activas=its.filter(x=>x.nivel>=2).length;
+  const nb=(d.netblocks||[]).slice(0,8).map(n=>`<li><div class="det">${fechaPR(n.hora_utc)} · NetBlocks</div><a href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener">${esc(n.texto)}</a></li>`).join("");
+  const crOk=(d.fuentes||{})["Cloudflare Radar (cortes y anomalías)"]?.ok;
+  const app=document.getElementById("app");
+  if(VISTA==="mapa"){
+    app.innerHTML=`<div class="mapbar" style="border-left:8px solid ${COL[n]}"><a href="./" class="volver">‹ Panel</a>
+      <div><b>${EMO[n]} ${NIV[n]}</b> <span class="det">· Riesgo familiar: ${esc(d.riesgo_familiar?.etiqueta||"")} · revisado ${hace(d.actualizado_utc)}</span></div></div>
+      ${mapaHTML(d,"calc(100vh - 230px)")}`;
+    document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
+  }
+  app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
+    <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
+    ${riesgoHTML(d)}
+    ${energiaHTML(d)}
+    ${mapaBoton(d)}
+    <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
+    <div class="gridm">${med}</div>
+    <h2 class="titsec">🌐 Interrupciones de servicios e internet <span class="det">${activas} importante(s) · ${its.length} en total</span></h2>
+    <div class="card tabla">
+      ${crOk?"":`<p class="det" style="margin:0 0 8px">⚠️ Cloudflare Radar aún no está conectado (falta su token gratuito). Las demás fuentes funcionan.</p>`}
+      ${itf}
+      <p class="det" style="margin-top:10px">Ver en vivo:
+        <a href="https://radar.cloudflare.com/outage-center" target="_blank" rel="noopener">Cloudflare Outage Center</a> ·
+        <a href="https://radar.cloudflare.com/pr" target="_blank" rel="noopener">Radar PR</a> ·
+        <a href="https://radar.cloudflare.com/us" target="_blank" rel="noopener">Radar EE. UU.</a> ·
+        <a href="https://downdetector.com/" target="_blank" rel="noopener">Downdetector</a> ·
+        <a href="https://netblocks.org/" target="_blank" rel="noopener">NetBlocks</a> ·
+        <a href="https://www.logicmonitor.com/outages" target="_blank" rel="noopener">LogicMonitor Outages</a> ·
+        <a href="https://ioda.inetintel.cc.gatech.edu/country/PR" target="_blank" rel="noopener">IODA PR</a></p></div>
+    ${nb?`<details class="card"><summary><b>📣 Últimos reportes de NetBlocks</b> <span class="det">cortes nacionales confirmados en el mundo</span></summary><ul class="lista">${nb}</ul></details>`:""}
+    <h2 class="titsec">🚢 Puertos que abastecen a Puerto Rico <span class="det">por si hay crisis de suministros</span></h2>
+    <div class="gridm">${pts}</div>
+    <h2 class="titsec">✈️ Últimas 20 aeronaves militares o no identificadas · Caribe / PR <span class="det">hora de PR</span></h2>
+    <div class="card tabla"><table><thead><tr><th>Visto</th><th>Aeronave</th><th>País</th><th>Tipo</th><th>Distancia a PR</th></tr></thead><tbody>${avs}</tbody></table></div>
+    <h2 class="titsec">🛩️ Restricciones aéreas por seguridad nacional <span class="det">FAA · oficial</span></h2>
+    <div class="card tabla"><p class="det" style="margin:0 0 8px">Se muestran las de Puerto Rico, las instrucciones especiales para todo EE. UU. y las de seguridad/VIP creadas en las últimas 48 h.</p>
+      <table><thead><tr><th>NOTAM</th><th>Tipo</th><th>Lugar / alcance</th><th>Estado</th><th>Creada</th></tr></thead><tbody>${tf}</tbody></table></div>
+    <section class="card"><h2><span>🛫 Estado del espacio aéreo de EE. UU.</span><span class="det">${esc(ea.actualizado||"")}</span></h2>
+      <ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin ground stops ni cierres de aeropuertos en este momento.</p>':""}
+      <p class="det">Demoras programadas: ${(ea.demoras_programadas||[]).length} aeropuerto(s).</p></section>
+    <h2 class="titsec">⚓ Reportes de buques militares en el Caribe <span class="det">con fecha del reporte</span></h2>
+    <section class="card"><ul class="lista">${bqs}</ul></section>
+    <h2 class="titsec">📌 Señales oficiales y técnicas</h2>
+    <div class="grid">${tarjetas}</div>
+    <section class="card"><h2><span>📰 Titulares en vivo</span><span class="det">prensa · sin verificar</span></h2><ul class="lista">${tit}</ul></section>
+    <div class="grid"><section class="card"><h2>🕘 Historial de alertas</h2><ul>${hist}</ul></section>
+    <section class="card"><h2>🔌 Fuentes</h2><ul class="cols">${fu}</ul></section>
+    <section class="card"><h2>🔎 Consulta manual</h2><ul class="cols">${man}</ul></section></div>
+    <p class="det"><button id="salir" class="sec2">Cerrar sesión en este dispositivo</button></p>`;
+  document.getElementById("login").hidden=true; app.hidden=false;
+
+  document.getElementById("salir").onclick=()=>{try{localStorage.removeItem("cf_k")}catch(e){} location.reload()};
+}
+async function abrir(clave,recordar){
+  const err=document.getElementById("err"); err.textContent="Descifrando…";
+  try{ const d=await descifrar(clave); err.textContent="";
+       if(recordar){try{localStorage.setItem("cf_k",clave)}catch(e){}}
+       pintar(d); setTimeout(()=>abrir(clave,false),300000);
+  }catch(e){ err.textContent = e.name==="OperationError" ? "Frase clave incorrecta." : e.message; }
+}
+document.getElementById("f").onsubmit=ev=>{ev.preventDefault();
+  abrir(document.getElementById("k").value,document.getElementById("rec").checked)};
+let guardada=null; try{guardada=localStorage.getItem("cf_k")}catch(e){}
+if(guardada) abrir(guardada,false);
+</script></body></html>
