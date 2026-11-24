@@ -4,6 +4,9 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <title>{{NOMBRE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0A1626">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <style>
@@ -87,9 +90,60 @@ summary.titsec>span:first-child::before{content:"▾ ";display:inline-block;tran
 .plegable>summary .ver{text-decoration:underline}
 .igr-t::before{content:"▾ ";display:inline-block;transition:transform .15s}.igr:not([open])>.igr-t::before{transform:rotate(-90deg)}
 @media (prefers-reduced-motion:reduce){summary.titsec>span:first-child::before,.igr-t::before{transition:none}}
+
+/* ================= Diseño "sala de operaciones náutica" ================= */
+:root,:root{color-scheme:dark;--bg:#0A1626;--fg:#E8EEF6;--mut:#8CA3BF;--card:#10223A;--line:#22405F;--carta:#0D1C30}
+@media (prefers-color-scheme:light){:root{color-scheme:dark;--bg:#0A1626;--fg:#E8EEF6;--mut:#8CA3BF;--card:#10223A;--line:#22405F}}
+body{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;line-height:1.5;background:var(--bg);
+  background-image:radial-gradient(circle at 15% -10%,#163357 0,transparent 55%),
+  repeating-radial-gradient(circle at 78% 18%,transparent 0 46px,rgba(80,130,190,.055) 47px 48px);background-attachment:fixed}
+main{max-width:1040px;padding:14px 16px 40px}
+a{color:#9CC7FF}a:hover{color:#CFE3FF}
+h2,.titsec,.mtit,.igr-t,.nivel,.marca,.big,.gnum{font-family:"Barlow Condensed","IBM Plex Sans",sans-serif;letter-spacing:.01em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:none}
+.det{color:var(--mut)}
+.titsec{font-size:22px;font-weight:700;margin:30px 0 8px;padding-left:12px;border-left:4px solid #3B8CF6;line-height:1.15}
+.titsec .det{font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:400}
+summary.titsec{border-left-color:#3B8CF6}
+.pill{border-radius:6px;font-weight:600;padding:2px 8px;color:#06121F}
+/* cabecera */
+.cab{display:flex;justify-content:space-between;align-items:center;padding:4px 2px 12px;border-bottom:1px solid var(--line)}
+.marca{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700}
+.faro{width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 25%,transparent),0 0 18px var(--c)}
+/* héroe: escalera de amenaza */
+.hero2{margin-top:18px;padding:22px 20px 18px;border-radius:12px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 16%,var(--card)),var(--card));
+  border:1px solid color-mix(in srgb,var(--c) 45%,var(--line))}
+.hz{color:var(--mut);font-size:14px}
+.nivel{font-size:clamp(56px,14vw,104px);font-weight:800;line-height:.9;color:var(--c);margin:6px 0 14px;text-shadow:0 0 28px color-mix(in srgb,var(--c) 35%,transparent)}
+.escalera{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.pel{height:46px;border-radius:6px;background:color-mix(in srgb,var(--c) 12%,var(--carta));border:1px solid color-mix(in srgb,var(--c) 30%,transparent);
+  display:flex;align-items:flex-end;padding:5px 7px;font:600 12px/1.1 "Barlow Condensed",sans-serif;color:color-mix(in srgb,var(--c) 70%,#fff)}
+.pel.bajo{background:color-mix(in srgb,var(--c) 30%,var(--carta))}
+.pel.on{background:var(--c);color:#06121F;height:58px;margin-top:-12px;border-color:var(--c);box-shadow:0 0 22px color-mix(in srgb,var(--c) 55%,transparent);font-size:14px}
+.escalera{align-items:end}
+.resumen{margin:14px 0 0;max-width:72ch;color:#D5E1EF}
+@media (max-width:600px){.pel span{font-size:10px}.pel{padding:4px}}
+/* riesgo familiar */
+.rf{background:var(--card);border:1px solid var(--line)}
+.rf .big{font-size:54px;font-weight:800}
+.chip{border-radius:6px;color:#06121F}
+.plan summary{cursor:pointer}
+/* medidores */
+.med{background:var(--carta)}.gnum{font-size:22px;font-weight:800}
+/* botón del mapa */
+.mapbtn{background:linear-gradient(120deg,#0E2744,#123A63);border-color:#2B5A8C}
+/* login */
+.login{max-width:440px;margin:12vh auto 0;padding:22px}
+input{background:var(--carta);color:var(--fg);border-color:var(--line)}
+input:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #9CC7FF;outline-offset:2px}
+button{background:#3B8CF6}
+#hoja{background:#0F2036;border-top:1px solid var(--line)}
+.leaflet-container{background:#05101C}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body><main>
-<div id="login" class="card" style="max-width:420px;margin:12vh auto 0">
-  <h2>🔒 {{NOMBRE}}</h2>
+<div id="login" class="card login">
+  <div class="marca" style="margin-bottom:6px"><span class="faro" style="--c:#3B8CF6"></span>{{NOMBRE}}</div>
+  <h2 style="font-size:28px">Acceso familiar</h2>
   <p class="det">Contenido cifrado. Escribe la frase clave familiar.</p>
   <form id="f"><input id="k" type="password" autocomplete="current-password" placeholder="Frase clave" aria-label="Frase clave" required>
   <label class="chk"><input id="rec" type="checkbox"> Recordar en este dispositivo</label>
@@ -100,7 +154,7 @@ summary.titsec>span:first-child::before{content:"▾ ";display:inline-block;tran
 </main>
 <script>
 const NIV=["NORMAL","VIGILANCIA","ELEVADO","ALTO","CRÍTICO"],EMO=["🟢","🔵","🟡","🟠","🔴"],
-      COL=["#1f9d55","#2b6cb0","#c99a06","#dd6b20","#c53030"];
+      COL=["#2FBF71","#3B8CF6","#E9A825","#F07A2B","#E5484D"];
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"#";
@@ -327,8 +381,12 @@ function pintar(d){
       ${mapaHTML(d,"calc(100vh - 230px)")}`;
     document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
   }
-  app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
-    <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
+  const esc5=NIV.map((t,i)=>`<li class="pel${i===n?" on":""}${i<n?" bajo":""}" style="--c:${COL[i]}"><span>${t}</span></li>`).join("");
+  app.innerHTML=`<header class="cab"><div class="marca"><span class="faro" style="--c:${COL[n]}"></span>Centinela Familiar</div>
+      <div class="det">Revisado ${hace(d.actualizado_utc)}</div></header>
+    <section class="hero2" style="--c:${COL[n]}"><div class="hz">Nivel de amenaza · Puerto Rico</div>
+      <div class="nivel">${NIV[n]}</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
+      <p class="resumen">${esc(d.resumen)}</p></section>
     ${riesgoHTML(d)}
     ${energiaHTML(d)}
     ${mapaBoton(d)}
