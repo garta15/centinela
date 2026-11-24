@@ -233,6 +233,7 @@ def f_ioda():
         caida = (1 - v / hv) * 100 if hv else 0
         if caida > peor.get(e["code"], (0,))[0]:
             peor[e["code"]] = (caida, e["name"], a.get("datasource"))
+    if "PR" in peor: ESTADO_REF["_ioda_pr_caida"] = peor["PR"][0]
     for code, (caida, nombre, src) in peor.items():
         if caida < 3: continue
         n = 1 if caida < 8 else 2 if caida < 20 else 3 if caida < 50 else 4
@@ -417,11 +418,19 @@ FRASES_GRAVES = ["nationwide outage", "nationwide blackout", "attack on the unit
                  "apagón general", "sin comunicaciones", "ataque contra estados unidos"]
 MEDIDORES = []
 
+_ULTIMA_RSS = [0.0]
 def _rss(q, idioma):
     es = idioma == "es"
-    x = get("https://news.google.com/rss/search",
-            params={"q": f"{q} when:1d", "hl": "es-419" if es else "en-US", "gl": "US",
-                    "ceid": "US:es-419" if es else "US:en"}).content
+    espera = 1.5 - (time.time() - _ULTIMA_RSS[0])
+    if espera > 0: time.sleep(espera)
+    params = {"q": f"{q} when:1d", "hl": "es-419" if es else "en-US", "gl": "US", "ceid": "US:es-419" if es else "US:en"}
+    for intento in range(2):
+        _ULTIMA_RSS[0] = time.time()
+        r = requests.get("https://news.google.com/rss/search", params=params, headers=UA, timeout=TIMEOUT)
+        if r.status_code == 429 and intento == 0:
+            time.sleep(8); continue
+        r.raise_for_status(); break
+    x = r.content
     out = []
     for it in ET.fromstring(x).iter("item"):
         try:
@@ -525,11 +534,17 @@ def f_aeronaves_pr():
                "pais": pais_icao(hx), "lat": round(a["lat"], 2), "lon": round(a["lon"], 2),
                "alt": a.get("alt_baro"), "visto_utc": ahora,
                "dist_pr_km": round(km(a["lat"], a["lon"], 18.22, -66.59))}
+        punto = {"lat": reg["lat"], "lon": reg["lon"], "t": ahora, "rumbo": a.get("track"), "nudos": a.get("gs"), "alt": a.get("alt_baro")}
         previo = next((x for x in log if x["hex"] == hx), None)
         if previo:
-            previo.update(reg)
+            tr = previo.get("trazas", []); previo.update(reg); previo["trazas"] = tr
         else:
-            reg["primera_vez_utc"] = ahora; log.append(reg); nuevas.append(reg)
+            reg["primera_vez_utc"] = ahora; log.append(reg); nuevas.append(reg); previo = reg
+        tr = previo.setdefault("trazas", [])
+        if not tr or tr[-1]["t"] != ahora: tr.append(punto)
+    lim3 = (NOW - timedelta(hours=3)).isoformat()
+    for x in log:
+        x["trazas"] = [p for p in x.get("trazas", []) if p["t"] >= lim3][-6:]
     log.sort(key=lambda x: x["visto_utc"], reverse=True); del log[200:]
     raras = [x for x in nuevas if x["pais"] not in ("EE. UU.",) or x["clase"] == "no identificada"]
     n = 0
@@ -710,7 +725,7 @@ def f_espacio_aereo():
     """FAA NAS Status: ground stops y cierres de aeropuertos (PR y todo EE. UU.)."""
     out = []
     x = ET.fromstring(get("https://nasstatus.faa.gov/api/airport-status-information").content)
-    gs, cierres, gdp = [], [], []
+    gs, cierres, gdp, gdemoras = [], [], [], []
     for dt in x.findall("Delay_type"):
         nombre = dt.findtext("Name", "")
         if "Ground Stop" in nombre:
@@ -720,10 +735,13 @@ def f_espacio_aereo():
             for a in dt.iter("Airport"):
                 cierres.append({"arpt": a.findtext("ARPT", ""), "motivo": (a.findtext("Reason", "") or "")[:120],
                                 "inicio": a.findtext("Start", ""), "fin": a.findtext("Reopen", "")})
+        elif "General Arrival" in nombre:
+            for g in dt.iter("Delay"):
+                gdemoras.append({"arpt": g.findtext("ARPT", ""), "motivo": g.findtext("Reason", "")})
         elif "Ground Delay" in nombre:
             for g in dt.iter("Ground_Delay"):
                 gdp.append({"arpt": g.findtext("ARPT", ""), "motivo": g.findtext("Reason", "")})
-    ESPACIO_AEREO.update({"ground_stops": gs, "cierres": cierres, "demoras_programadas": gdp,
+    ESPACIO_AEREO.update({"ground_stops": gs, "cierres": cierres, "demoras_programadas": gdp, "demoras": gdemoras,
                           "actualizado": x.findtext("Update_Time", "")})
     seguridad = [g for g in gs + cierres if re.search(r"secur|threat|military|national|equipment outage|comm", g["motivo"], re.I)]
     pr = [g for g in gs + cierres if g["arpt"] in AEROP_PR]
@@ -770,6 +788,10 @@ def f_cloudflare_radar():
         nuestro = any(c in ("US", "PR", "VI") for c in locs)
         nivel = (3 if activo else 1) if nuestro else (1 if activo else 0)
         nombre = ", ".join(asns[:3]) or ", ".join(locs[:4]) or "Corte de internet"
+        causa = (a.get("outage") or {}).get("outageCause", "") or ""
+        if "PR" in locs and re.search(r"power|electric", causa + " " + (a.get("description") or ""), re.I):
+            RADAR_PR_ELECTRICO.append({"activo": activo, "inicio": a.get("startDate", ""),
+                                       "texto": f"Corte de internet por causa eléctrica: {a.get('description') or causa}"})
         _int(nombre, "Proveedor/ISP" if asns else "País/región", "Cloudflare Radar (Outage Center)",
              a.get("startDate", ""), f"{'ACTIVO' if activo else 'terminado'} · {a.get('outage', {}).get('outageCause', '')} · "
              f"{a.get('description') or ''}", nivel, a.get("linkedUrl") or "https://radar.cloudflare.com/outage-center",
@@ -950,6 +972,417 @@ def f_downdetector_prensa():
                              ultimo["titulo"][:200], url="https://downdetector.com/", clave=f"dd-{srv}-{NOW:%Y%m%d}", seccion="eeuu"))
     return out
 
+# ------------------------------------------------------------------ energía (PR principal, EE. UU.)
+ENERGIA = {"pr": {}, "us": {}}
+RADAR_PR_ELECTRICO = []      # cortes de Radar en PR con causa eléctrica (lo llena f_cloudflare_radar)
+
+def f_energia_eeuu():
+    """EIA-930: demanda eléctrica real vs. pronosticada (EE. UU. 48 estados y regiones clave)."""
+    out = []
+    ny = timezone(timedelta(hours=-5))
+    ini = (NOW - timedelta(hours=30)).astimezone(ny).strftime("%m%d%Y %H:00:00")
+    fin = NOW.astimezone(ny).strftime("%m%d%Y %H:00:00")
+    regiones = {"US48": "EE. UU. (48 estados)", "FLA": "Florida", "SE": "Sureste", "TEX": "Texas",
+                "MIDA": "Atlántico Medio", "NY": "Nueva York", "NE": "Nueva Inglaterra",
+                "CAR": "Carolinas", "MIDW": "Medio Oeste", "CAL": "California", "NW": "Noroeste", "SW": "Suroeste"}
+    params = {"type[0]": "D", "type[1]": "DF", "start": ini, "end": fin, "frequency": "hourly",
+              "timezone": "Eastern", "limit": 10000, "offset": 0}
+    for i, r in enumerate(regiones):
+        params[f"respondent[{i}]"] = r
+    d = get("https://www.eia.gov/electricity/930-api/region_data/series_data", params=params).json()
+    series = {}
+    for blk in d:
+        for s in blk.get("data", []):
+            series[(s["RESPONDENT_ID"], s["TYPE_ID"])] = s["VALUES"]
+    filas = []
+    for rid, nombre in regiones.items():
+        dem, pro = series.get((rid, "D")), series.get((rid, "DF"))
+        if not dem or not pro: continue
+        # última hora con ambos datos
+        for k in range(len(dem["DATA"]) - 1, -1, -1):
+            a, b = dem["DATA"][k], (pro["DATA"][k] if k < len(pro["DATA"]) else None)
+            if a is not None and b:
+                dev = (a - b) / b * 100
+                filas.append({"id": rid, "nombre": nombre, "demanda_mw": round(a), "pronostico_mw": round(b),
+                              "desviacion_pct": round(dev, 1), "hora": dem["DATES"][k]})
+                break
+    total = next((f for f in filas if f["id"] == "US48"), None)
+    nivel = 0
+    for f in filas:
+        lim = -10 if f["id"] == "US48" else -20
+        if f["desviacion_pct"] <= lim:
+            n = 3 if f["id"] == "US48" else 2
+            nivel = max(nivel, n)
+            out.append(senal("EIA (oficial)", "Energía EE. UU.", n,
+                             f"Demanda eléctrica en {f['nombre']} {f['desviacion_pct']}% bajo lo pronosticado",
+                             "Una caída fuerte de la demanda real frente a la esperada puede indicar apagones amplios.",
+                             url="https://www.eia.gov/electricity/gridmonitor/", clave=f"eia-{f['id']}-{NOW:%Y%m%d%H}",
+                             seccion="eeuu"))
+    ENERGIA["us"] = {"nivel": nivel, "regiones": filas, "total": total,
+                     "estado": "Red eléctrica de EE. UU. operando según lo esperado" if nivel == 0
+                     else "Caída anormal de demanda en alguna región (posibles apagones)",
+                     "fuente": "EIA Hourly Electric Grid Monitor (oficial)", "url": "https://www.eia.gov/electricity/gridmonitor/"}
+    return out
+
+def f_energia_pr():
+    """Puerto Rico: LUMA y Genera no permiten lectura automática. Se combinan señales independientes."""
+    out = []
+    evid, nivel = [], 0
+    clientes = None
+    # 1) Prensa reciente (12 h) sobre apagones, relevos de carga y generación
+    try:
+        arts = [a for a in _rss('Puerto Rico (apagón OR "relevo de carga" OR "relevos de carga" OR "sin servicio eléctrico" '
+                                'OR "sin luz" OR "clientes sin servicio") (LUMA OR Genera OR AEE)', "es")
+                if (NOW - a["t"]).total_seconds() <= 12 * 3600]
+        arts += [a for a in _rss('Genera PR (avería OR "fuera de servicio" OR "salió de servicio" OR "déficit de generación") '
+                                 '(Aguirre OR "Costa Sur" OR "Palo Seco" OR "San Juan" OR EcoEléctrica OR AES OR unidad)', "es")
+                 if (NOW - a["t"]).total_seconds() <= 24 * 3600]
+    except Exception as e:
+        arts = []; print("  ! prensa energía", e)
+    for a in sorted(arts, key=lambda a: a["t"], reverse=True)[:8]:
+        tl = a["titulo"].lower()
+        evid.append({"fuente": "Prensa: " + (a["medio"] or "?"), "hora_utc": a["t"].isoformat(timespec="minutes"),
+                     "texto": a["titulo"].rsplit(" - ", 1)[0][:200], "url": a["url"]})
+        m = re.search(r"(\d{1,3}(?:[.,]\d{3})+|\d{4,6})\s*(?:clientes|abonados)", a["titulo"])
+        if m and clientes is None:
+            clientes = int(re.sub(r"[.,]", "", m.group(1)))
+        if re.search(r"apagón general|toda la isla|islawide|apagón total|blackout", tl): nivel = max(nivel, 4)
+        elif "relevo" in tl: nivel = max(nivel, 2)
+        elif re.search(r"apagón|sin luz|sin servicio", tl): nivel = max(nivel, 1)
+        elif re.search(r"avería|fuera de servicio|déficit", tl): nivel = max(nivel, 1)
+    if clientes:
+        nivel = max(nivel, 3 if clientes >= 300000 else 2 if clientes >= 100000 else 1)
+    # 2) Cloudflare Radar: cortes de internet en PR atribuidos a la electricidad
+    for r in RADAR_PR_ELECTRICO:
+        nivel = max(nivel, 3 if r.get("activo") else 1)
+        evid.append({"fuente": "Cloudflare Radar", "hora_utc": r.get("inicio", ""), "texto": r.get("texto", ""),
+                     "url": "https://radar.cloudflare.com/pr"})
+    # 3) IODA: caída de internet en PR (suele acompañar apagones grandes)
+    caida = ESTADO_REF.get("_ioda_pr_caida")
+    if caida and caida >= 15:
+        nivel = max(nivel, 3 if caida >= 40 else 2)
+        evid.append({"fuente": "IODA", "hora_utc": NOW.isoformat(timespec="minutes"),
+                     "texto": f"Internet en PR {caida:.0f}% bajo lo normal (posible apagón)", "url": "https://ioda.inetintel.cc.gatech.edu/country/PR"})
+    textos = {0: "Sin reportes de apagones importantes", 1: "Averías o apagones locales reportados",
+              2: "Relevos de carga o apagones amplios", 3: "Apagón extenso en curso", 4: "Posible apagón general de la isla"}
+    ENERGIA["pr"] = {"nivel": nivel, "estado": textos[nivel], "clientes_sin_servicio": clientes, "evidencia": evid[:10],
+                     "nota": "LUMA y Genera PR no permiten lectura automática de sus datos en vivo; este estado combina prensa, Cloudflare Radar e IODA.",
+                     "enlaces": [{"nombre": "Mapa de averías LUMA", "url": "https://miluma.lumapr.com/outages/outageMap"},
+                                 {"nombre": "Genera PR", "url": "https://genera-pr.com/"},
+                                 {"nombre": "Cloudflare Radar PR", "url": "https://radar.cloudflare.com/pr"}]}
+    if nivel >= 2:
+        out.append(senal("Energía PR", "Energía PR", nivel, f"Electricidad en Puerto Rico: {textos[nivel]}",
+                         (f"{clientes:,} clientes sin servicio. " if clientes else "") + (evid[0]["texto"] if evid else ""),
+                         url="https://miluma.lumapr.com/outages/outageMap", clave=f"enpr-{nivel}-{NOW:%Y%m%d%H}",
+                         alcance="familia", seccion="pr"))
+    return out
+
+# ------------------------------------------------------------------ satélites
+SATELITES = []
+def clase_satelite(nombre):
+    n = nombre.upper()
+    if re.search(r"^USA[ -]\d|NROL|SBIRS|WGS|AEHF|MUOS|DSP|NOSS|MILSTAR|ORS-|STPSAT|X-37|OTV", n): return "eeuu", "EE. UU. militar"
+    if re.search(r"COSMOS|KOSMOS|BARS|LOTOS|PION|NIVELIR|LUCH|OLYMP|RAZDAN|TUNDRA|MERIDIAN", n): return "adversario", "Rusia"
+    if re.search(r"YAOGAN|SHIYAN|SHIJIAN|TJS|TONGXIN JISHU|CHUANGXIN|JILIN-1 KUANFU|HUOYAN|GAOFEN|QIANFAN", n): return "adversario", "China"
+    if re.search(r"NOOR|KHAYYAM|PARS|SORAYA|ZAFAR|KOWSAR|HODHOD", n): return "adversario", "Irán"
+    if re.search(r"MALLIGYONG|KMS|KWANGMYONGSONG", n): return "adversario", "Corea del Norte"
+    if re.search(r"OBJECT [A-Z]+$|^TBA|UNKNOWN|^OBJECT", n): return "no_identificado", "No identificado"
+    return None, None
+
+def _tle(grupo):
+    cache = ESTADO_REF.setdefault("tle_cache", {})
+    c = cache.get(grupo)
+    if c and (NOW - datetime.fromisoformat(c["t"])).total_seconds() < 2 * 3600:   # CelesTrak pide no bajar más de 1 vez cada 2 h
+        return c["txt"]
+    txt = get("https://celestrak.org/NORAD/elements/gp.php", params={"GROUP": grupo, "FORMAT": "tle"}).text
+    if "1 " in txt:
+        cache[grupo] = {"t": NOW.isoformat(timespec="minutes"), "txt": txt}
+    return txt
+
+def _subpunto(sat, dt):
+    from sgp4.api import jday
+    jd, fr = jday(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
+    e, r, v = sat.sgp4(jd, fr)
+    if e != 0: return None
+    t = (jd - 2451545.0) + fr
+    gmst = math.radians((280.46061837 + 360.98564736629 * t) % 360)
+    x, y, z = r
+    lon = math.degrees(math.atan2(y, x) - gmst)
+    lon = (lon + 540) % 360 - 180
+    lat = math.degrees(math.atan2(z, math.hypot(x, y)))
+    alt = math.sqrt(x * x + y * y + z * z) - 6371
+    return round(lat, 3), round(lon, 3), round(alt)
+
+def f_satelites():
+    """CelesTrak + SGP4: satélites militares de EE. UU., de adversarios y no identificados que pasan cerca de PR."""
+    from sgp4.api import Satrec
+    out = []
+    nuevos_ids = set()
+    textos = {}
+    for g in ("military", "last-30-days"):
+        try:
+            textos[g] = _tle(g)
+        except Exception as e:
+            print("  ! TLE", g, e)
+    vistos = set()
+    for g, txt in textos.items():
+        l = [x.rstrip() for x in txt.splitlines() if x.strip()]
+        for i in range(0, len(l) - 2, 3):
+            nombre, l1, l2 = l[i].strip(), l[i + 1], l[i + 2]
+            if not l1.startswith("1 ") or not l2.startswith("2 "): continue
+            norad = l1[2:7].strip()
+            if norad in vistos: continue
+            vistos.add(norad)
+            if g == "last-30-days": nuevos_ids.add(norad)
+            cat, pais = clase_satelite(nombre)
+            if not cat: continue
+            try:
+                sat = Satrec.twoline2rv(l1, l2)
+            except Exception:
+                continue
+            traza = []
+            for m in range(-30, 61, 3):
+                p = _subpunto(sat, NOW + timedelta(minutes=m))
+                if p: traza.append([p[0], p[1], m])
+            if not traza: continue
+            dmin = min(km(p[0], p[1], 18.22, -66.59) for p in traza)
+            if dmin > 3000: continue
+            ahora = _subpunto(sat, NOW)
+            SATELITES.append({"norad": norad, "nombre": nombre, "categoria": cat, "pais": pais,
+                              "nuevo": norad in nuevos_ids, "lat": ahora[0] if ahora else traza[0][0],
+                              "lon": ahora[1] if ahora else traza[0][1], "alt_km": ahora[2] if ahora else None,
+                              "dist_min_km": round(dmin), "traza": traza,
+                              "url": f"https://celestrak.org/satcat/table-satcat.php?CATNR={norad}"})
+    orden = {"adversario": 0, "no_identificado": 1, "eeuu": 2}
+    SATELITES.sort(key=lambda s: (orden[s["categoria"]], not s["nuevo"], s["dist_min_km"]))
+    del SATELITES[45:]
+    nuevos_adv = [s for s in SATELITES if s["categoria"] in ("adversario", "no_identificado") and s["nuevo"] and s["dist_min_km"] < 1500]
+    if nuevos_adv:
+        out.append(senal("CelesTrak", "Satélites", 1,
+                         f"{len(nuevos_adv)} objeto(s) recién lanzado(s) (adversario/no identificado) pasando cerca de PR",
+                         ", ".join(f"{s['nombre']} ({s['pais']})" for s in nuevos_adv[:5]),
+                         url="https://celestrak.org/NORAD/elements/table.php?GROUP=last-30-days",
+                         clave=f"sat-{NOW:%Y%m%d%H}", seccion="militar"))
+    return out
+
+# ------------------------------------------------------------------ buques AIS (opcional, clave gratis AISSTREAM_KEY)
+def f_buques_ais():
+    """AISStream.io: buques militares / de gobierno / fuerzas del orden que transmiten AIS en el Caribe."""
+    key = os.getenv("AISSTREAM_KEY")
+    if not key:
+        raise RuntimeError("falta la clave gratis AISSTREAM_KEY (aisstream.io)")
+    import asyncio, websockets
+    vistos, tipos = {}, {}
+    async def leer():
+        async with websockets.connect("wss://stream.aisstream.io/v0/stream", open_timeout=20) as ws:
+            await ws.send(json.dumps({"APIKey": key, "BoundingBoxes": [[[CARIBE[0], CARIBE[2]], [CARIBE[1], CARIBE[3]]]],
+                                      "FilterMessageTypes": ["PositionReport", "ShipStaticData"]}))
+            fin = time.time() + 45
+            while time.time() < fin:
+                try:
+                    m = json.loads(await asyncio.wait_for(ws.recv(), timeout=5))
+                except asyncio.TimeoutError:
+                    continue
+                md = m.get("MetaData", {}); mmsi = str(md.get("MMSI", ""))
+                if m.get("MessageType") == "ShipStaticData":
+                    tipos[mmsi] = m["Message"]["ShipStaticData"].get("Type")
+                elif m.get("MessageType") == "PositionReport":
+                    p = m["Message"]["PositionReport"]
+                    vistos[mmsi] = {"nombre": (md.get("ShipName") or "").strip(), "lat": p.get("Latitude"),
+                                    "lon": p.get("Longitude"), "rumbo": p.get("Cog"), "nudos": p.get("Sog")}
+    asyncio.run(leer())
+    log = ESTADO_REF.setdefault("log_buques_ais", {})
+    ahora = NOW.isoformat(timespec="minutes")
+    for mmsi, v in vistos.items():
+        t = tipos.get(mmsi)
+        nom = v["nombre"].upper()
+        clase = ("militar" if t == 35 else "fuerzas del orden" if t == 55 else
+                 "gobierno EE. UU." if mmsi.startswith("3669") else
+                 "militar" if re.search(r"WARSHIP|NAVY|USNS|USCGC|COAST GUARD|ARMADA|GUARDACOSTA", nom) else None)
+        if not clase: continue
+        reg = log.setdefault(mmsi, {"mmsi": mmsi, "nombre": v["nombre"] or "sin nombre", "clase": clase, "trazas": []})
+        reg.update({"nombre": v["nombre"] or reg["nombre"], "clase": clase, "visto_utc": ahora})
+        reg["trazas"].append({"lat": v["lat"], "lon": v["lon"], "t": ahora, "rumbo": v["rumbo"], "nudos": v["nudos"]})
+    lim = (NOW - timedelta(hours=3)).isoformat()
+    for mmsi in list(log):
+        log[mmsi]["trazas"] = [p for p in log[mmsi]["trazas"] if p["t"] >= lim][-6:]
+        if not log[mmsi]["trazas"]: del log[mmsi]
+    return []
+
+# ------------------------------------------------------------------ geometría de restricciones aéreas (FAA)
+TFR_MAPA = []
+def _coord(s):
+    v = float(s[:-1]); return -v if s[-1] in "SW" else v
+
+def f_tfr_geometria():
+    """Descarga la geometría oficial (XNOTAM) de cada TFR para dibujarla en el mapa."""
+    geo = ESTADO_REF.setdefault("tfr_geo", {})
+    lista = get("https://tfr.faa.gov/tfrapi/exportTfrList").json()
+    vivos = {t["notam_id"] for t in lista}
+    for k in [k for k in geo if k not in vivos]: geo.pop(k, None)
+    bajados = 0
+    for t in lista:
+        nid = t["notam_id"]
+        if t.get("state") == "USA": continue          # instrucciones nacionales sin área concreta
+        if nid not in geo and bajados < 45:
+            bajados += 1
+            try:
+                xml = get("https://tfr.faa.gov/download/detail_" + nid.replace("/", "_") + ".xml").content.decode("utf-8-sig", "ignore")
+                areas = []
+                for area in re.findall(r"<TFRAreaGroup>(.*?)</TFRAreaGroup>", xml, re.S):
+                    rad = re.search(r"<valRadiusArc>([\d.]+)</valRadiusArc>", area)
+                    cen = re.search(r"<geoLatArc>([\d.]+[NS])</geoLatArc>\s*<geoLongArc>([\d.]+[EW])</geoLongArc>", area)
+                    if rad and cen:
+                        uom = re.search(r"<uomRadiusArc>(\w+)</uomRadiusArc>", area)
+                        mult = 1852 if (uom and uom.group(1).upper() == "NM") else 1609 if (uom and uom.group(1).upper() == "SM") else 1852
+                        areas.append({"tipo": "circulo", "centro": [_coord(cen.group(1)), _coord(cen.group(2))],
+                                      "radio_m": float(rad.group(1)) * mult})
+                    else:
+                        pts = [[_coord(a), _coord(b)] for a, b in
+                               re.findall(r"<geoLat>([\d.]+[NS])</geoLat>\s*<geoLong>([\d.]+[EW])</geoLong>", area)]
+                        if len(pts) >= 3: areas.append({"tipo": "poligono", "puntos": pts})
+                tr = re.search(r"<txtDescrTraditional>(.*?)</txtDescrTraditional>", xml, re.S)
+                mod = html.unescape(html.unescape((re.search(r"<txtDescrModern>(.*?)</txtDescrModern>", xml, re.S) or [None, ""])[1] or ""))
+                motivo = re.search(r"Reason for NOTAM\s*:.*?<font[^>]*>([^<]+)</font>", mod, re.S)
+                alt = re.search(r"Altitude:\s*([^<]+)", mod)
+                geo[nid] = {"areas": areas, "motivo": (motivo.group(1).strip() if motivo else ""),
+                            "texto": html.unescape(tr.group(1)).strip()[:1200] if tr else "",
+                            "altitud": alt.group(1).strip() if alt else ""}
+            except Exception as e:
+                print("  ! TFR", nid, e)
+                continue
+        g = geo.get(nid)
+        if not g or not g["areas"]: continue
+        creado = _fecha_tfr(t.get("creation_date"))
+        nueva = creado is not None and (NOW - creado).total_seconds() <= 48 * 3600
+        TFR_MAPA.append({"id": nid, "tipo": t.get("type", ""), "lugar": (t.get("description") or "").strip()[:160],
+                         "estado": t.get("state", ""), "creado": t.get("creation_date", ""), "nueva": nueva,
+                         "motivo": g["motivo"], "altitud": g["altitud"], "texto": g["texto"], "areas": g["areas"],
+                         "url": "https://tfr.faa.gov/tfr3/?page=detail_" + nid.replace("/", "_")})
+    return []
+
+# ------------------------------------------------------------------ aeropuertos con problemas (triángulos)
+AEROPUERTOS_COORD = {
+ "SJU": (18.44, -66.00), "BQN": (18.49, -67.13), "PSE": (18.01, -66.56), "MAZ": (18.26, -67.15), "VQS": (18.11, -65.49),
+ "CPX": (18.31, -65.30), "SIG": (18.46, -66.10), "NRR": (18.25, -65.64), "STT": (18.34, -64.97), "STX": (17.70, -64.80),
+ "ATL": (33.64, -84.43), "LAX": (33.94, -118.41), "ORD": (41.98, -87.90), "DFW": (32.90, -97.04), "DEN": (39.86, -104.67),
+ "JFK": (40.64, -73.78), "SFO": (37.62, -122.38), "SEA": (47.45, -122.31), "LAS": (36.08, -115.15), "MCO": (28.43, -81.31),
+ "EWR": (40.69, -74.17), "CLT": (35.21, -80.94), "PHX": (33.43, -112.01), "IAH": (29.98, -95.34), "MIA": (25.79, -80.29),
+ "BOS": (42.36, -71.01), "MSP": (44.88, -93.22), "FLL": (26.07, -80.15), "DTW": (42.21, -83.35), "PHL": (39.87, -75.24),
+ "LGA": (40.78, -73.87), "BWI": (39.18, -76.67), "SLC": (40.79, -111.98), "DCA": (38.85, -77.04), "IAD": (38.95, -77.46),
+ "SAN": (32.73, -117.19), "TPA": (27.98, -82.53), "MDW": (41.79, -87.75), "BNA": (36.12, -86.68), "AUS": (30.19, -97.67),
+ "HNL": (21.32, -157.92), "PDX": (45.59, -122.60), "STL": (38.75, -90.37), "HOU": (29.65, -95.28), "RDU": (35.88, -78.79),
+ "MSY": (29.99, -90.26), "SJC": (37.36, -121.93), "OAK": (37.72, -122.22), "SMF": (38.70, -121.59), "DAL": (32.85, -96.85),
+ "SNA": (33.68, -117.87), "SAT": (29.53, -98.47), "RSW": (26.54, -81.76), "PBI": (26.68, -80.10), "JAX": (30.49, -81.69),
+ "CLE": (41.41, -81.85), "PIT": (40.49, -80.23), "IND": (39.72, -86.29), "CMH": (39.99, -82.89), "MCI": (39.30, -94.71),
+ "CVG": (39.05, -84.66), "MKE": (42.95, -87.90), "ANC": (61.17, -150.00), "TEB": (40.85, -74.06), "HPN": (41.07, -73.71),
+ "ABQ": (35.04, -106.61), "BUR": (34.20, -118.36), "ONT": (34.06, -117.60), "OKC": (35.39, -97.60), "MEM": (35.04, -89.98),
+ "SDF": (38.17, -85.74), "RIC": (37.51, -77.32), "ORF": (36.89, -76.20), "CHS": (32.90, -80.04), "SAV": (32.13, -81.20),
+ "PNS": (30.47, -87.19), "ELP": (31.81, -106.38), "TUS": (32.12, -110.94), "BDL": (41.94, -72.68), "PVD": (41.73, -71.43),
+ "BUF": (42.94, -78.73), "SYR": (43.11, -76.11), "ALB": (42.75, -73.80), "LGB": (33.82, -118.15), "PSP": (33.83, -116.51)}
+
+def aeropuertos_mapa():
+    ea = ESPACIO_AEREO or {}
+    out = {}
+    def add(lista, tipo, nivel):
+        for g in lista or []:
+            c = AEROPUERTOS_COORD.get(g.get("arpt"))
+            if not c: continue
+            x = out.setdefault(g["arpt"], {"arpt": g["arpt"], "lat": c[0], "lon": c[1], "problemas": [], "nivel": 0})
+            x["problemas"].append({"tipo": tipo, "motivo": g.get("motivo", ""), "fin": g.get("fin", "")})
+            x["nivel"] = max(x["nivel"], nivel)
+    seg = [c for c in (ea.get("cierres") or []) if re.search(r"secur|threat|military|national|emergenc", c.get("motivo", ""), re.I)]
+    otros = [c for c in (ea.get("cierres") or []) if c not in seg]
+    add(seg, "Cerrado por seguridad", 3); add(otros, "Cierre programado (ver horario)", 2)
+    add(ea.get("ground_stops"), "Ground stop (vuelos detenidos)", 3)
+    add(ea.get("demoras_programadas"), "Demoras programadas", 2); add(ea.get("demoras"), "Demoras", 1)
+    return list(out.values())
+
+PUERTOS_COORD = {"sanjuan": (18.435, -66.095), "jax": (30.40, -81.52), "everglades": (26.09, -80.12),
+                 "houston": (29.69, -95.00), "sur": (17.97, -66.62), "navieras": (30.36, -81.62), "estibadores": (30.32, -81.66)}
+
+# ------------------------------------------------------------------ riesgo familiar y plan básico
+PLANES = {
+ "base": ("🧭 Plan base (siempre)", [
+   "Tener el protocolo familiar impreso y en una Nota sin conexión.",
+   "Teléfonos cargados y una batería externa llena por persona.",
+   "Agua: 1 galón por persona por día, para al menos 7 días.",
+   "Comida que no necesite nevera para 7 días, y abridor manual.",
+   "Medicamentos para 30 días y copia de recetas.",
+   "Efectivo en billetes pequeños; tanque del carro sobre la mitad.",
+   "Radio de baterías o de manivela (AM/FM) para noticias oficiales."]),
+ "comunicaciones": ("📡 Caída de comunicaciones", [
+   "Enviar ahora tu ubicación con el Atajo «Alerta Familiar».",
+   "Si no hay datos, usar SMS; los mensajes cortos pasan cuando las llamadas no.",
+   "Seguir las ventanas de contacto del protocolo (a la hora en punto, cada 3 h).",
+   "Si no hay contacto en el plazo acordado, ir al punto de encuentro 1.",
+   "Usar radio FRS/GMRS si la familia la tiene (GMRS requiere licencia de la FCC)."]),
+ "energia": ("⚡ Apagón eléctrico", [
+   "Mantener nevera y congelador cerrados (la comida aguanta ~4 h / ~48 h).",
+   "Planta eléctrica SOLO al aire libre, lejos de puertas y ventanas (monóxido de carbono).",
+   "Desconectar equipos sensibles para evitar daños cuando vuelva la luz.",
+   "Priorizar la carga de teléfonos y de equipos médicos.",
+   "Escuchar la radio AM/FM para avisos de LUMA y del gobierno."]),
+ "suministros": ("🚢 Crisis de suministros", [
+   "Revisar inventario de agua, comida y medicinas; completar lo que falte con calma.",
+   "Llenar el tanque del carro y cilindros de gas si es seguro hacerlo.",
+   "Comprar lo necesario sin acaparar; coordinar compras entre la familia.",
+   "Tener efectivo: los sistemas de pago pueden fallar.",
+   "Seguir solo fuentes oficiales para evitar rumores."]),
+ "seguridad": ("🛡️ Amenaza de seguridad nacional", [
+   "Seguir solo instrucciones oficiales: alertas WEA del celular, NMEAD, FEMA y radio.",
+   "Si piden refugiarse: «entra, quédate adentro y mantente informado».",
+   "Mantener a la familia junta o en contacto con el Atajo «Confirmo».",
+   "Evitar zonas militares, aeropuertos y lugares con restricciones aéreas.",
+   "Tener la mochila de emergencia lista junto a la puerta."]),
+ "desastre": ("🌊 Desastre natural (huracán, tsunami, terremoto)", [
+   "Tsunami: si vives en zona de desalojo, sube a terreno alto o tierra adentro de inmediato.",
+   "Huracán: asegurar la casa, agua y comida para 14 días, y seguir avisos de NMEAD.",
+   "Terremoto: agáchate, cúbrete y agárrate; luego sal con cuidado y revisa gas y luz.",
+   "Avisar a la familia con «Confirmo» en cuanto sea seguro."]),
+}
+
+def evaluar_riesgo_familiar(senales):
+    cats = {"comunicaciones": 0, "energia": 0, "suministros": 0, "seguridad": 0, "desastre": 0}
+    motivos = {k: [] for k in cats}
+    def sube(k, n, txt):
+        if n > cats[k]: cats[k] = n
+        if n >= 2: motivos[k].append(txt)
+    for s in senales:
+        c, n, t = s["categoria"], s["nivel"], s["titulo"]
+        if c in ("Internet", "Interrupción internet", "Interrupción comunicaciones", "Canal familiar") or "telecom" in c.lower():
+            sube("comunicaciones", n, t)
+        elif c in ("Energía PR", "Energía EE. UU.") or "Red eléctrica" in c:
+            sube("energia", n if c == "Energía PR" else max(0, n - 1), t)
+        elif c in ("Puertos y suministros",):
+            sube("suministros", n, t)
+        elif c in ("Alerta oficial", "Tsunami", "Huracán", "Sismo"):
+            sube("desastre", n, t)
+        elif c in ("Alerta civil EE. UU.", "Restricción aérea", "Espacio aéreo", "Aeronaves cerca de PR", "Militar Caribe",
+                   "Buques militares Caribe", "Indicador Pentágono", "Satélites") or "Ataque" in c or "Terrorismo" in c \
+                or "Emergencia nacional" in c or "Militar" in c:
+            sube("seguridad", n, t)
+    cats["energia"] = max(cats["energia"], (ENERGIA.get("pr") or {}).get("nivel", 0))
+    for p in PUERTOS_EST:
+        if p["clave"] in ("sanjuan", "jax"):
+            cats["suministros"] = max(cats["suministros"], p["nivel"])
+    altos = [k for k, v in cats.items() if v >= 3]
+    mx = max(cats.values())
+    indice = min(100, mx * 18 + sum(v for v in cats.values()) * 4 + (15 if len(altos) >= 2 else 0))
+    if mx >= 4 or len(altos) >= 2: etiqueta, color = "EXTREMO", 4
+    elif mx >= 3 or indice >= 50: etiqueta, color = "ALTO", 3
+    elif mx >= 2 or indice >= 35: etiqueta, color = "MODERADO", 2
+    else: etiqueta, color = "BAJO", 0
+    activos = [k for k, v in sorted(cats.items(), key=lambda kv: -kv[1]) if v >= 2]
+    planes = [{"clave": k, "titulo": PLANES[k][0], "pasos": PLANES[k][1], "motivos": motivos[k][:3]} for k in activos]
+    planes.append({"clave": "base", "titulo": PLANES["base"][0], "pasos": PLANES["base"][1], "motivos": []})
+    nombres = {"comunicaciones": "Comunicaciones", "energia": "Energía", "suministros": "Suministros",
+               "seguridad": "Seguridad nacional", "desastre": "Desastre natural"}
+    return {"indice": indice, "etiqueta": etiqueta, "color": color,
+            "categorias": [{"clave": k, "nombre": nombres[k], "nivel": v} for k, v in cats.items()],
+            "planes": planes,
+            "nota": "Evaluación automática con datos públicos. Ante cualquier duda, siguen mandando las instrucciones oficiales (NMEAD, FEMA, 911)."}
+
 FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
            ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
@@ -961,7 +1394,10 @@ FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Restricciones aéreas (FAA TFR)", f_restricciones_aereas), ("Espacio aéreo (FAA NAS)", f_espacio_aereo),
            ("Cloudflare Radar (cortes y anomalías)", f_cloudflare_radar), ("NetBlocks (cortes nacionales)", f_netblocks),
            ("IODA por proveedor (ISP)", f_ioda_isp), ("Páginas de estado (AWS, Google, Azure…)", f_servicios),
-           ("Downdetector (vía prensa)", f_downdetector_prensa)]
+           ("Downdetector (vía prensa)", f_downdetector_prensa),
+           ("Energía EE. UU. (EIA)", f_energia_eeuu), ("Satélites (CelesTrak)", f_satelites),
+           ("Buques AIS (AISStream)", f_buques_ais), ("Restricciones aéreas en mapa (FAA)", f_tfr_geometria),
+           ("Energía Puerto Rico", f_energia_pr)]
 
 
 # ------------------------------------------------------------------ evaluación
@@ -1027,6 +1463,17 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "interrupciones": sorted(sorted(INTERRUPCIONES, key=lambda x: x["desde_utc"], reverse=True),
                                  key=lambda x: -x["nivel"])[:80],
         "netblocks": NETBLOCKS[:15],
+        "energia": ENERGIA,
+        "riesgo_familiar": evaluar_riesgo_familiar(senales),
+        "mapa": {
+            "aviones": [x for x in ESTADO_REF.get("log_aviones", []) if x.get("trazas")][:60],
+            "buques": list(ESTADO_REF.get("log_buques_ais", {}).values())[:60],
+            "satelites": SATELITES,
+            "tfr": TFR_MAPA,
+            "aeropuertos": aeropuertos_mapa(),
+            "puertos": [dict(p, lat=PUERTOS_COORD[p["clave"]][0], lon=PUERTOS_COORD[p["clave"]][1])
+                        for p in PUERTOS_EST if p["clave"] in PUERTOS_COORD],
+        },
     }
     pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"],
              "fuentes_con_falla": sorted(k for k, v in estado_fuentes.items() if not v["ok"])}
@@ -1247,6 +1694,9 @@ def main():
     estado["log_buques"] = ESTADO_REF.get("log_buques", [])
     estado["tfr_vistos"] = ESTADO_REF.get("tfr_vistos", {})
     estado["tfr_base"] = ESTADO_REF.get("tfr_base", [])
+    estado["tfr_geo"] = ESTADO_REF.get("tfr_geo", {})
+    estado["tle_cache"] = ESTADO_REF.get("tle_cache", {})
+    estado["log_buques_ais"] = ESTADO_REF.get("log_buques_ais", {})
 
     escribir_salidas(nivel, resumen, senales, fuentes, estado["historial"])
     json.dump(estado, open(STATE_FILE, "w"), ensure_ascii=False, indent=1)

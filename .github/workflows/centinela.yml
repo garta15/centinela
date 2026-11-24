@@ -61,6 +61,7 @@ jobs:
           TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
           FAMILY_KEY: ${{ secrets.FAMILY_KEY }}
           CLOUDFLARE_RADAR_TOKEN: ${{ secrets.CLOUDFLARE_RADAR_TOKEN }}
+          AISSTREAM_KEY: ${{ secrets.AISSTREAM_KEY }}
           ZONAS_FAMILIA: ${{ secrets.ZONAS_FAMILIA }}
           PAISES_FAMILIA: ${{ secrets.PAISES_FAMILIA }}
         run: python monitor.py
