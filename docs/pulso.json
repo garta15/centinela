@@ -1,6 +1,8 @@
 {
- "actualizado_utc": "2026-11-24T16:16:16+00:00",
+ "actualizado_utc": "2026-11-24T16:51:23+00:00",
  "nivel": 2,
  "motor": "github",
- "fuentes_con_falla": []
+ "fuentes_con_falla": [
+  "Buques AIS (AISStream)"
+ ]
 }
