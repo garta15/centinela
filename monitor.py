@@ -741,6 +741,215 @@ def f_espacio_aereo():
                          url="https://nasstatus.faa.gov/", clave=f"gspr-{NOW:%Y%m%d%H}", alcance="familia", seccion="pr"))
     return out
 
+# ------------------------------------------------------------------ interrupciones de servicios e internet
+INTERRUPCIONES = []   # tabla del panel: qué servicio/proveedor falla, desde cuándo y según qué fuente
+NETBLOCKS = []
+ISP_GRANDES = re.compile(r"ATT|AT&T|VERIZON|CELLCO|T-MOBILE|TMOBILE|COMCAST|CHARTER|SPECTRUM|COX|LUMEN|LEVEL3|CENTURYLINK|"
+                         r"FRONTIER|STARLINK|SPACEX|CLARO|LIBERTY|TELECOMUNICACIONES|PRTC|CRITICAL HUB|AERONET|WORLDNET|"
+                         r"OPTIMUM|ALTICE|WINDSTREAM|CABLEVISION|GOOGLE-FIBER|AMAZON|CLOUDFLARE|AKAMAI|MICROSOFT|GOOGLE", re.I)
+
+def _int(nombre, tipo, fuente, desde, estado, nivel, url, zona=""):
+    INTERRUPCIONES.append({"nombre": nombre[:90], "tipo": tipo, "fuente": fuente, "desde_utc": desde,
+                           "estado": estado[:200], "nivel": nivel, "url": url, "zona": zona})
+
+def f_cloudflare_radar():
+    """Cloudflare Radar (requiere token gratis CLOUDFLARE_RADAR_TOKEN): cortes y anomalías de tráfico."""
+    tok = os.getenv("CLOUDFLARE_RADAR_TOKEN") or os.getenv("CLOUDFLARE_API_TOKEN")
+    if not tok:
+        raise RuntimeError("falta el token gratis CLOUDFLARE_RADAR_TOKEN")
+    h = dict(UA); h["Authorization"] = f"Bearer {tok}"
+    out = []
+    base = "https://api.cloudflare.com/client/v4/radar"
+    # 1) Outage Center: cortes verificados (7 días) en todo el mundo; resaltar PR/EE. UU.
+    r = requests.get(f"{base}/annotations/outages", params={"dateRange": "7d", "limit": 100, "format": "json"},
+                     headers=h, timeout=TIMEOUT); r.raise_for_status()
+    for a in r.json()["result"]["annotations"]:
+        locs = [l.get("code", "") if isinstance(l, dict) else str(l) for l in (a.get("locationsDetails") or a.get("locations") or [])]
+        asns = [x.get("name", "") for x in (a.get("asnsDetails") or [])]
+        activo = not a.get("endDate")
+        nuestro = any(c in ("US", "PR", "VI") for c in locs)
+        nivel = (3 if activo else 1) if nuestro else (1 if activo else 0)
+        nombre = ", ".join(asns[:3]) or ", ".join(locs[:4]) or "Corte de internet"
+        _int(nombre, "Proveedor/ISP" if asns else "País/región", "Cloudflare Radar (Outage Center)",
+             a.get("startDate", ""), f"{'ACTIVO' if activo else 'terminado'} · {a.get('outage', {}).get('outageCause', '')} · "
+             f"{a.get('description') or ''}", nivel, a.get("linkedUrl") or "https://radar.cloudflare.com/outage-center",
+             ",".join(locs))
+        if nuestro and activo:
+            out.append(senal("Cloudflare Radar", "Interrupción internet", 3, f"Corte de internet activo en {','.join(locs)}: {nombre}",
+                             a.get("description") or "", url="https://radar.cloudflare.com/outage-center",
+                             clave=f"cfout-{a.get('id')}", alcance="familia", seccion="pr" if "PR" in locs else "eeuu"))
+    # 2) Anomalías de tráfico detectadas automáticamente en PR y EE. UU. (48 h)
+    for loc in ("PR", "US"):
+        r = requests.get(f"{base}/traffic_anomalies", params={"dateRange": "2d", "location": loc, "limit": 50, "format": "json"},
+                         headers=h, timeout=TIMEOUT)
+        if not r.ok: continue
+        for an in r.json()["result"].get("trafficAnomalies", []):
+            asn = (an.get("asnDetails") or {}).get("name") or (an.get("locationDetails") or {}).get("name") or loc
+            activo = not an.get("endDate")
+            _int(asn, "Anomalía de tráfico", "Cloudflare Radar", an.get("startDate", ""),
+                 f"{'ACTIVA' if activo else 'terminada'} · {an.get('status', '')} · {an.get('type', '')}",
+                 2 if activo else 0, "https://radar.cloudflare.com/traffic/" + loc.lower(), loc)
+            if activo and an.get("status") == "VERIFIED":
+                out.append(senal("Cloudflare Radar", "Interrupción internet", 2, f"Anomalía de tráfico verificada en {loc}: {asn}",
+                                 url="https://radar.cloudflare.com/traffic/" + loc.lower(), clave=f"cfan-{an.get('uuid')}",
+                                 alcance="familia", seccion="pr" if loc == "PR" else "eeuu"))
+    return out
+
+def f_netblocks():
+    """NetBlocks (su canal público en Mastodon): cortes nacionales confirmados."""
+    out = []
+    x = ET.fromstring(get("https://mastodon.social/@netblocks.rss").content)
+    for it in list(x.iter("item"))[:15]:
+        try:
+            t = datetime.strptime(it.findtext("pubDate"), "%a, %d %b %Y %H:%M:%S %z")
+        except (TypeError, ValueError):
+            continue
+        txt = html.unescape(re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", it.findtext("description", "")))).strip()
+        NETBLOCKS.append({"hora_utc": t.isoformat(timespec="minutes"), "texto": txt[:400], "url": it.findtext("link", "")})
+        nuestro = re.search(r"United States|\bUS\b|U\.S\.|Puerto Rico|nationwide in the US|AT&T|Verizon|T-Mobile|Comcast|Starlink", txt)
+        reciente = (NOW - t).total_seconds() <= 24 * 3600
+        if reciente:
+            _int(txt[:90], "País (NetBlocks)", "NetBlocks", t.isoformat(timespec="minutes"), txt[:200],
+                 3 if nuestro and "Confirmed" in txt else 2 if nuestro else 1, it.findtext("link", ""))
+        if nuestro and reciente:
+            out.append(senal("NetBlocks", "Interrupción internet", 3 if "Confirmed" in txt else 2,
+                             "NetBlocks reporta interrupción que afecta a EE. UU./PR", txt[:250], url=it.findtext("link", ""),
+                             clave=f"nb-{it.findtext('guid', '')}", seccion="eeuu"))
+    return out
+
+def f_ioda_isp():
+    """IODA por proveedor (ASN): caídas de ISPs grandes de EE. UU. y de cualquier ISP de PR."""
+    out = []
+    until = int(time.time()); frm = until - 3 * 3600
+    for pais in ("PR", "US"):
+        d = get("https://api.ioda.inetintel.cc.gatech.edu/v2/outages/alerts",
+                params={"entityType": "asn", "relatedTo": f"country/{pais}", "from": frm, "until": until, "limit": 500}).json()
+        peor = {}
+        for a in d.get("data") or []:
+            if a.get("level") != "critical": continue
+            hv = a.get("historyValue") or 0; v = a.get("value") or 0
+            caida = (1 - v / hv) * 100 if hv else 0
+            nombre = a["entity"]["name"]
+            if pais == "US" and not ISP_GRANDES.search(nombre): continue
+            if caida < (20 if pais == "PR" else 30): continue
+            if caida > peor.get(nombre, (0,))[0]:
+                peor[nombre] = (caida, a.get("datasource"), a.get("time"), a["entity"]["code"])
+        for nombre, (caida, src, t, code) in peor.items():
+            n = 2 if caida < 60 else 3
+            desde = datetime.fromtimestamp(t, timezone.utc).isoformat(timespec="minutes") if t else ""
+            _int(nombre, "Proveedor/ISP", "IODA (Georgia Tech)", desde, f"-{caida:.0f}% ({src})", n,
+                 f"https://ioda.inetintel.cc.gatech.edu/asn/{code}", pais)
+            out.append(senal("IODA", "Interrupción internet", n, f"Caída del proveedor {nombre} ({pais}): -{caida:.0f}%",
+                             f"Fuente de datos: {src}", url=f"https://ioda.inetintel.cc.gatech.edu/asn/{code}",
+                             clave=f"iodaasn-{code}-{NOW:%Y%m%d%H}", alcance="familia", seccion="pr" if pais == "PR" else "eeuu"))
+    return out
+
+SERVICIOS_STATUSPAGE = [("GitHub", "https://www.githubstatus.com/api/v2/summary.json"),
+                        ("Discord", "https://discordstatus.com/api/v2/summary.json"),
+                        ("OpenAI / ChatGPT", "https://status.openai.com/api/v2/summary.json"),
+                        ("Cloudflare", "https://www.cloudflarestatus.com/api/v2/summary.json"),
+                        ("Twilio (SMS)", "https://status.twilio.com/api/v2/summary.json"),
+                        ("Zoom", "https://status.zoom.us/api/v2/summary.json"),
+                        ("Dropbox", "https://status.dropbox.com/api/v2/summary.json"),
+                        ("Reddit", "https://www.redditstatus.com/api/v2/summary.json")]
+
+def f_servicios():
+    """Páginas de estado oficiales: AWS, Google, Azure, Slack y servicios con Statuspage."""
+    out = []; caidos = 0
+    for nombre, url in SERVICIOS_STATUSPAGE:
+        try:
+            d = get(url).json()
+        except Exception:
+            continue
+        for inc in d.get("incidents", []):
+            if inc.get("status") in ("resolved", "postmortem"): continue
+            imp = inc.get("impact", "none")
+            n = {"critical": 2, "major": 2, "minor": 1}.get(imp, 0)
+            _int(f"{nombre}: {inc.get('name', '')}", "Servicio", f"{nombre} (estado oficial)", inc.get("created_at", ""),
+                 f"{inc.get('status', '')} · impacto {imp}", n, inc.get("shortlink") or url.split("/api/")[0])
+            caidos += 1 if n >= 2 else 0
+    try:   # AWS
+        raw = requests.get("https://health.aws.amazon.com/public/currentevents", headers=UA, timeout=TIMEOUT).content
+        for ev in json.loads(raw.decode("utf-16") if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else raw.decode("utf-8-sig")):
+            if NOW.timestamp() - int(ev.get("date", 0)) > 7 * 86400: continue
+            reg = ev.get("region_name", "")
+            us = bool(re.search(r"Virginia|Ohio|Oregon|California|GovCloud|Global", reg))
+            n = 2 if us and str(ev.get("status")) in ("2", "3") else 1
+            _int(f"AWS: {ev.get('service_name', '')} ({reg})", "Nube", "AWS Health (oficial)",
+                 datetime.fromtimestamp(int(ev.get("date", 0)), timezone.utc).isoformat(timespec="minutes"),
+                 (ev.get("summary") or "")[:200], n, "https://health.aws.amazon.com/health/status", reg)
+            caidos += 1 if n >= 2 else 0
+    except Exception as e:
+        print("  ! AWS", e)
+    try:   # Google (Workspace)
+        for inc in get("https://www.google.com/appsstatus/dashboard/incidents.json").json():
+            if inc.get("end"): continue
+            n = 2 if inc.get("severity") in ("high", "medium") else 1
+            _int(f"Google: {inc.get('service_name', '')}", "Servicio", "Google Workspace Status (oficial)",
+                 inc.get("begin", ""), (inc.get("external_desc") or "")[:200], n, "https://www.google.com/appsstatus/dashboard/")
+            caidos += 1 if n >= 2 else 0
+    except Exception as e:
+        print("  ! Google", e)
+    try:   # Azure
+        x = ET.fromstring(get("https://azure.status.microsoft/en-us/status/feed/").content)
+        for it in x.iter("item"):
+            _int(f"Microsoft Azure: {it.findtext('title', '')}", "Nube", "Azure Status (oficial)",
+                 it.findtext("pubDate", ""), re.sub("<[^>]+>", " ", it.findtext("description", ""))[:200], 2,
+                 it.findtext("link", "") or "https://azure.status.microsoft/")
+            caidos += 1
+    except Exception as e:
+        print("  ! Azure", e)
+    try:   # Slack
+        d = get("https://status.slack.com/api/v2.0.0/current").json()
+        if d.get("status") != "ok":
+            for inc in d.get("active_incidents", []):
+                _int(f"Slack: {inc.get('title', '')}", "Servicio", "Slack Status (oficial)", inc.get("date_created", ""),
+                     inc.get("type", ""), 1, inc.get("url", "https://status.slack.com/"))
+    except Exception as e:
+        print("  ! Slack", e)
+    if caidos >= 4:
+        out.append(senal("Páginas de estado", "Interrupción servicios", 2,
+                         f"{caidos} servicios grandes con incidentes importantes a la vez",
+                         url="https://downdetector.com/", clave=f"multi-{NOW:%Y%m%d%H}", seccion="eeuu"))
+    return out
+
+SERVICIOS_CONOCIDOS = ["AT&T", "Verizon", "T-Mobile", "Comcast", "Xfinity", "Spectrum", "Cox", "Starlink", "Claro", "Liberty",
+    "WhatsApp", "iMessage", "FaceTime", "iCloud", "Apple", "Instagram", "Facebook", "Messenger", "Meta", "Signal", "Telegram",
+    "YouTube", "Gmail", "Google", "Outlook", "Microsoft 365", "Microsoft Teams", "Teams", "Azure", "AWS", "Amazon", "Alexa",
+    "X", "Twitter", "TikTok", "Snapchat", "Discord", "Reddit", "Zoom", "Slack", "ChatGPT", "OpenAI", "Netflix", "Spotify",
+    "Disney+", "Hulu", "PlayStation", "Xbox", "Steam", "Roblox", "PayPal", "Venmo", "Cash App", "Zelle", "Chase", "Bank of America",
+    "Wells Fargo", "Cloudflare", "Ring", "911"]
+COMUNICACION = {"AT&T", "Verizon", "T-Mobile", "Comcast", "Xfinity", "Spectrum", "Cox", "Starlink", "Claro", "Liberty",
+                "WhatsApp", "iMessage", "FaceTime", "iCloud", "Messenger", "Signal", "Telegram", "Gmail", "Outlook", "911",
+                "Cloudflare", "AWS", "Azure", "Microsoft Teams", "Teams", "Zoom"}
+
+def f_downdetector_prensa():
+    """Downdetector no permite lectura automática: se agrupan, por servicio, las noticias que citan sus picos (6 h)."""
+    out = []
+    arts = [a for a in _rss('Downdetector (outage OR down OR "not working")', "en") if (NOW - a["t"]).total_seconds() <= 6 * 3600]
+    arts += [a for a in _rss('Downdetector (caída OR "no funciona" OR avería) ("Puerto Rico" OR Claro OR Liberty)', "es")
+             if (NOW - a["t"]).total_seconds() <= 6 * 3600]
+    grupos = {}
+    for a in arts:
+        tit = a["titulo"].rsplit(" - ", 1)[0]
+        srv = next((sv for sv in SERVICIOS_CONOCIDOS if re.search(r"(?<![\w])" + re.escape(sv) + r"(?![\w])", tit)), None)
+        g = grupos.setdefault(srv or "Otros servicios", {"arts": [], "medios": set()})
+        g["arts"].append(a); g["medios"].add(a["medio"])
+    for srv, g in grupos.items():
+        g["arts"].sort(key=lambda a: a["t"])
+        primero, ultimo = g["arts"][0], g["arts"][-1]
+        recuperado = bool(re.search(r"back|restored|recover|resolved|restablec", ultimo["titulo"], re.I))
+        comm = srv in COMUNICACION
+        n = (2 if comm and len(g["medios"]) >= 3 else 1) if not recuperado else 0
+        _int(srv, "Servicio (reportes de usuarios)", f"Downdetector vía prensa ({len(g['arts'])} noticias, {len(g['medios'])} medios)",
+             primero["t"].isoformat(timespec="minutes"),
+             ("RECUPERADO · " if recuperado else "") + ultimo["titulo"].rsplit(" - ", 1)[0][:180], n, ultimo["url"])
+        if n >= 2:
+            out.append(senal("Downdetector (prensa)", "Interrupción comunicaciones", 2,
+                             f"Caída reportada de {srv}: {len(g['arts'])} noticias de {len(g['medios'])} medios en 6 h",
+                             ultimo["titulo"][:200], url="https://downdetector.com/", clave=f"dd-{srv}-{NOW:%Y%m%d}", seccion="eeuu"))
+    return out
+
 FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
            ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
@@ -749,7 +958,10 @@ FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Aviones militares Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam),
            ("Aeronaves cerca de PR (registro)", f_aeronaves_pr), ("Buques militares (reportes)", f_buques),
            ("Puertos que abastecen a PR", f_puertos),
-           ("Restricciones aéreas (FAA TFR)", f_restricciones_aereas), ("Espacio aéreo (FAA NAS)", f_espacio_aereo)]
+           ("Restricciones aéreas (FAA TFR)", f_restricciones_aereas), ("Espacio aéreo (FAA NAS)", f_espacio_aereo),
+           ("Cloudflare Radar (cortes y anomalías)", f_cloudflare_radar), ("NetBlocks (cortes nacionales)", f_netblocks),
+           ("IODA por proveedor (ISP)", f_ioda_isp), ("Páginas de estado (AWS, Google, Azure…)", f_servicios),
+           ("Downdetector (vía prensa)", f_downdetector_prensa)]
 
 
 # ------------------------------------------------------------------ evaluación
@@ -757,7 +969,7 @@ def evaluar(senales):
     nivel = max([s["nivel"] for s in senales], default=0)
     # Convergencia: señales elevadas de CATEGORÍAS distintas (no 3 noticias iguales)
     # La prensa cuenta como UNA sola categoría y nunca basta por sí sola.
-    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith(("Prensa", "Medidor", "Puertos", "Buques"))}
+    ofic = {s["categoria"] for s in senales if s["nivel"] >= 2 and not s["fuente"].startswith(("Prensa", "Medidor", "Puertos", "Buques", "Downdetector"))}
     prensa = any(s["nivel"] >= 2 and s["fuente"].startswith("Prensa") for s in senales)
     cats = ofic | ({"Prensa"} if prensa else set())
     conv = CFG.get("convergencia_senales", 3)
@@ -812,6 +1024,9 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "log_buques": ESTADO_REF.get("log_buques", [])[:20],
         "puertos": PUERTOS_EST,
         "tfrs": TFRS[:60], "espacio_aereo": ESPACIO_AEREO,
+        "interrupciones": sorted(sorted(INTERRUPCIONES, key=lambda x: x["desde_utc"], reverse=True),
+                                 key=lambda x: -x["nivel"])[:80],
+        "netblocks": NETBLOCKS[:15],
     }
     pulso = {"actualizado_utc": status["actualizado_utc"], "nivel": nivel, "motor": status["motor"]}
     json.dump(pulso, open(os.path.join(DOCS, "pulso.json"), "w"), indent=1)

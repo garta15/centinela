@@ -117,11 +117,32 @@ function pintar(d){
   const ea=d.espacio_aereo||{};
   const gsl=(ea.ground_stops||[]).map(g=>`<li>⛔ <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
   const cl=(ea.cierres||[]).map(c=>`<li>🚫 <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
+  const its=(d.interrupciones||[]);
+  const itf=its.map(x=>`<tr><td><span class="dot" style="display:inline-block;background:${COL[x.nivel]}"></span></td>
+      <td><a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener"><b>${esc(x.nombre)}</b></a>${x.zona?` <span class="det">· ${esc(x.zona)}</span>`:""}
+      <div class="det">${esc(x.estado)}</div></td><td>${esc(x.tipo)}</td><td class="det">${esc(x.fuente)}</td><td>${x.desde_utc?fechaPR(x.desde_utc):""}</td></tr>`).join("")
+      ||`<tr><td colspan="5" class="det">Sin interrupciones reportadas ahora mismo.</td></tr>`;
+  const activas=its.filter(x=>x.nivel>=2).length;
+  const nb=(d.netblocks||[]).slice(0,8).map(n=>`<li><div class="det">${fechaPR(n.hora_utc)} · NetBlocks</div><a href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener">${esc(n.texto)}</a></li>`).join("");
+  const crOk=(d.fuentes||{})["Cloudflare Radar (cortes y anomalías)"]?.ok;
   const app=document.getElementById("app");
   app.innerHTML=`<div class="hero" style="background:${COL[n]}"><div class="h1">${EMO[n]} ${NIV[n]}</div>
     <p>${esc(d.resumen)}</p><p class="peq">Revisado ${hace(d.actualizado_utc)} · motor ${esc(d.motor)}</p></div>
     <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
     <div class="gridm">${med}</div>
+    <h2 class="titsec">🌐 Interrupciones de servicios e internet <span class="det">${activas} importante(s) · ${its.length} en total</span></h2>
+    <div class="card tabla">
+      ${crOk?"":`<p class="det" style="margin:0 0 8px">⚠️ Cloudflare Radar aún no está conectado (falta su token gratuito). Las demás fuentes funcionan.</p>`}
+      <table><thead><tr><th></th><th>Servicio / proveedor</th><th>Tipo</th><th>Fuente</th><th>Desde (hora PR)</th></tr></thead><tbody>${itf}</tbody></table>
+      <p class="det" style="margin-top:10px">Ver en vivo:
+        <a href="https://radar.cloudflare.com/outage-center" target="_blank" rel="noopener">Cloudflare Outage Center</a> ·
+        <a href="https://radar.cloudflare.com/pr" target="_blank" rel="noopener">Radar PR</a> ·
+        <a href="https://radar.cloudflare.com/us" target="_blank" rel="noopener">Radar EE. UU.</a> ·
+        <a href="https://downdetector.com/" target="_blank" rel="noopener">Downdetector</a> ·
+        <a href="https://netblocks.org/" target="_blank" rel="noopener">NetBlocks</a> ·
+        <a href="https://www.logicmonitor.com/outages" target="_blank" rel="noopener">LogicMonitor Outages</a> ·
+        <a href="https://ioda.inetintel.cc.gatech.edu/country/PR" target="_blank" rel="noopener">IODA PR</a></p></div>
+    ${nb?`<details class="card"><summary><b>📣 Últimos reportes de NetBlocks</b> <span class="det">cortes nacionales confirmados en el mundo</span></summary><ul class="lista">${nb}</ul></details>`:""}
     <h2 class="titsec">🚢 Puertos que abastecen a Puerto Rico <span class="det">por si hay crisis de suministros</span></h2>
     <div class="gridm">${pts}</div>
     <h2 class="titsec">✈️ Últimas 20 aeronaves militares o no identificadas · Caribe / PR <span class="det">hora de PR</span></h2>
