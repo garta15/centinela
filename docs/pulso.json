@@ -1,8 +1,9 @@
 {
- "actualizado_utc": "2026-11-25T16:55:15+00:00",
+ "actualizado_utc": "2026-11-25T16:58:04+00:00",
  "nivel": 2,
  "motor": "github",
  "fuentes_con_falla": [
+  "Aviones militares Caribe (ADS-B)",
   "Buques AIS (AISStream)"
  ]
 }
