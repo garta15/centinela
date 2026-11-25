@@ -37,9 +37,25 @@
   "ad303a83f19b": "2026-11-25T17:40:21+00:00",
   "3982f920427d": "2026-11-25T18:00:28+00:00",
   "f0968cf8fc90": "2026-11-25T18:20:21+00:00",
-  "43ff6d2cf3e8": "2026-11-25T18:50:34+00:00"
+  "43ff6d2cf3e8": "2026-11-25T18:50:34+00:00",
+  "6bffe90c9fb8": "2026-11-25T19:30:36+00:00"
  },
  "historial": [
+  {
+   "id": "6bffe90c9fb8",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Terrorismo y seguridad interna",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛡️ Terrorismo y seguridad interna: índice 73/100 (6 en 3 h · 52 en 24 h)",
+   "detalle": "Report: New York police agencies reject 13,000 ICE detainers - The Center Square",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQNVdmSGRoOHRMbGY1aVhJV0hNMmViRm04TTZ5Si1JbG1ZN3dWRlJ3OWZPNWZTN2x4cDUtbmhkbEFDamwtZ0lZX09QWm03UHhHZEZhQ25MT21CTlk1czFEQU1vRDc5VEhiVS1iWnR2Q3ZTUmhhN211MlV6cGt5Rm1SNGVOVXo2eXVGbWxHcFdLcFBJX3F10gGaAUFVX3lxTE5objJqMEVNcm0tb3E2bGVPellOTmM5RkcxQk9VM3h2U2hBVklqcmpPd0xZcXZpVklpTWJsd2FVY0QyeVRfN09na24zUUpfb3RGYlF2cnEwNjFia0IteHhIem1tc1NYRkFRdHdKZmRZWWxtMmJRZ2xRWFlwR1hCeGgybXpMSDg3d0RaVEZUclRQdjJEeG1WdC1CQ2c?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T19:30:36+00:00"
+  },
   {
    "id": "43ff6d2cf3e8",
    "fuente": "Medidor de prensa",
@@ -627,7 +643,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  3,
   6,
   6,
   3,
@@ -722,7 +737,8 @@
   2,
   2,
   1,
-  2
+  2,
+  3
  ],
  "medidores_base": {
   "telecom": [
@@ -836,6 +852,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -973,6 +990,7 @@
    30,
    30,
    22,
+   30,
    30
   ],
   "electrica": [
@@ -1098,7 +1116,8 @@
    59,
    52,
    56,
-   60
+   60,
+   51
   ],
   "ataque": [
    94,
@@ -1222,6 +1241,7 @@
    97,
    96,
    97,
+   96,
    96,
    96
   ],
@@ -1348,7 +1368,8 @@
    44,
    20,
    44,
-   28
+   28,
+   52
   ],
   "emergencia": [
    95,
@@ -1473,7 +1494,8 @@
    46,
    47,
    52,
-   53
+   53,
+   52
   ],
   "espacio": [
    10,
@@ -1598,7 +1620,8 @@
    20,
    20,
    20,
-   16
+   16,
+   20
   ],
   "caribe": [
    21,
@@ -1723,7 +1746,8 @@
    22,
    19,
    44,
-   20
+   20,
+   44
   ],
   "pr": [
    0,
@@ -1848,6 +1872,7 @@
    29,
    60,
    61,
+   29,
    29
   ]
  },
@@ -1862,7 +1887,7 @@
    "lat": 14.6,
    "lon": -60.99,
    "alt": 0,
-   "visto_utc": "2026-11-25T19:20+00:00",
+   "visto_utc": "2026-11-25T19:30+00:00",
    "dist_pr_km": 720,
    "primera_vez_utc": "2026-11-22T00:12+00:00",
    "trazas": [
@@ -1897,6 +1922,86 @@
      "rumbo": 0.0,
      "nudos": 0.7,
      "alt": 0
+    },
+    {
+     "lat": 14.6,
+     "lon": -60.99,
+     "t": "2026-11-25T19:30+00:00",
+     "rumbo": 0.0,
+     "nudos": 0.7,
+     "alt": 0
+    }
+   ]
+  },
+  {
+   "hex": "ae4ae5",
+   "callsign": "C2713",
+   "tipo": "C27J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.7,
+   "lon": -82.75,
+   "alt": 3075,
+   "visto_utc": "2026-11-25T19:30+00:00",
+   "dist_pr_km": 1958,
+   "primera_vez_utc": "2026-11-24T16:16+00:00",
+   "trazas": [
+    {
+     "lat": 27.97,
+     "lon": -82.83,
+     "t": "2026-11-25T16:40+00:00",
+     "rumbo": 171.16,
+     "nudos": 182.2,
+     "alt": 2975
+    },
+    {
+     "lat": 27.82,
+     "lon": -82.69,
+     "t": "2026-11-25T16:50+00:00",
+     "rumbo": 4.87,
+     "nudos": 129.5,
+     "alt": 1650
+    },
+    {
+     "lat": 27.91,
+     "lon": -82.69,
+     "t": "2026-11-25T16:55+00:00",
+     "rumbo": null,
+     "nudos": 9.8,
+     "alt": "ground"
+    },
+    {
+     "lat": 27.7,
+     "lon": -82.75,
+     "t": "2026-11-25T19:30+00:00",
+     "rumbo": 126.8,
+     "nudos": 163.6,
+     "alt": 3075
+    }
+   ]
+  },
+  {
+   "hex": "ae03ae",
+   "callsign": "sin identificar",
+   "tipo": "?",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.73,
+   "lon": -82.63,
+   "alt": 1725,
+   "visto_utc": "2026-11-25T19:30+00:00",
+   "dist_pr_km": 1950,
+   "primera_vez_utc": "2026-11-25T13:00+00:00",
+   "trazas": [
+    {
+     "lat": 27.73,
+     "lon": -82.63,
+     "t": "2026-11-25T19:30+00:00",
+     "rumbo": 30.0,
+     "nudos": 202.0,
+     "alt": 1725
     }
    ]
   },
@@ -2125,46 +2230,6 @@
    ]
   },
   {
-   "hex": "ae4ae5",
-   "callsign": "C2713",
-   "tipo": "C27J",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.91,
-   "lon": -82.69,
-   "alt": "ground",
-   "visto_utc": "2026-11-25T16:55+00:00",
-   "dist_pr_km": 1965,
-   "primera_vez_utc": "2026-11-24T16:16+00:00",
-   "trazas": [
-    {
-     "lat": 27.97,
-     "lon": -82.83,
-     "t": "2026-11-25T16:40+00:00",
-     "rumbo": 171.16,
-     "nudos": 182.2,
-     "alt": 2975
-    },
-    {
-     "lat": 27.82,
-     "lon": -82.69,
-     "t": "2026-11-25T16:50+00:00",
-     "rumbo": 4.87,
-     "nudos": 129.5,
-     "alt": 1650
-    },
-    {
-     "lat": 27.91,
-     "lon": -82.69,
-     "t": "2026-11-25T16:55+00:00",
-     "rumbo": null,
-     "nudos": 9.8,
-     "alt": "ground"
-    }
-   ]
-  },
-  {
    "hex": "ab19b6",
    "callsign": "sin identificar",
    "tipo": "?",
@@ -2177,16 +2242,7 @@
    "visto_utc": "2026-11-25T16:30+00:00",
    "dist_pr_km": 206,
    "primera_vez_utc": "2026-11-25T16:30+00:00",
-   "trazas": [
-    {
-     "lat": 19.78,
-     "lon": -67.64,
-     "t": "2026-11-25T16:30+00:00",
-     "rumbo": 109.54,
-     "nudos": 490.2,
-     "alt": 45000
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "af3be1",
@@ -2231,21 +2287,6 @@
    "visto_utc": "2026-11-25T14:20+00:00",
    "dist_pr_km": 1834,
    "primera_vez_utc": "2026-11-25T14:00+00:00",
-   "trazas": []
-  },
-  {
-   "hex": "ae03ae",
-   "callsign": "sin identificar",
-   "tipo": "?",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.62,
-   "lon": -83.27,
-   "alt": 25000,
-   "visto_utc": "2026-11-25T13:10+00:00",
-   "dist_pr_km": 1999,
-   "primera_vez_utc": "2026-11-25T13:00+00:00",
    "trazas": []
   },
   {
@@ -3104,6 +3145,7 @@
   7,
   7,
   7,
+  8,
   8
  ],
  "tfr_geo": {
