@@ -1270,7 +1270,7 @@ def f_buques_ais():
     import asyncio, websockets
     vistos, tipos = {}, {}
     async def leer():
-        async with websockets.connect("wss://stream.aisstream.io/v0/stream", open_timeout=20) as ws:
+        async with websockets.connect("wss://stream.aisstream.io/v0/stream", open_timeout=40, ping_interval=None) as ws:
             await ws.send(json.dumps({"APIKey": key, "BoundingBoxes": [[[CARIBE[0], CARIBE[2]], [CARIBE[1], CARIBE[3]]]],
                                       "FilterMessageTypes": ["PositionReport", "ShipStaticData"]}))
             fin = time.time() + 45
@@ -1286,7 +1286,13 @@ def f_buques_ais():
                     p = m["Message"]["PositionReport"]
                     vistos[mmsi] = {"nombre": (md.get("ShipName") or "").strip(), "lat": p.get("Latitude"),
                                     "lon": p.get("Longitude"), "rumbo": p.get("Cog"), "nudos": p.get("Sog")}
-    asyncio.run(leer())
+    for intento in range(3):              # AISStream a veces tarda en aceptar la conexión
+        try:
+            asyncio.run(leer()); break
+        except Exception as e:
+            print("  ! AISStream intento", intento + 1, str(e)[:80])
+            if intento == 2: raise
+            time.sleep(5)
     log = ESTADO_REF.setdefault("log_buques_ais", {})
     ahora = NOW.isoformat(timespec="minutes")
     for mmsi, v in vistos.items():
