@@ -1,8 +1,9 @@
 {
- "actualizado_utc": "2026-11-25T12:40:20+00:00",
+ "actualizado_utc": "2026-11-25T12:50:22+00:00",
  "nivel": 2,
  "motor": "github",
  "fuentes_con_falla": [
-  "Buques AIS (AISStream)"
+  "Buques AIS (AISStream)",
+  "Cloudflare Radar (cortes y anomal\u00edas)"
  ]
 }
