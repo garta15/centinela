@@ -32,9 +32,25 @@
   "3be56c5ef642": "2026-11-25T14:00:31+00:00",
   "85ef3a85a573": "2026-11-25T15:00:34+00:00",
   "b023097312c3": "2026-11-25T16:40:20+00:00",
-  "50b7f1168a5f": "2026-11-25T17:00:38+00:00"
+  "50b7f1168a5f": "2026-11-25T17:00:38+00:00",
+  "2f41b461a5c1": "2026-11-25T17:30:26+00:00"
  },
  "historial": [
+  {
+   "id": "2f41b461a5c1",
+   "fuente": "Puertos (prensa)",
+   "categoria": "Puertos y suministros",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Estibadores (huelga ILA, costa Este): Varios reportes de cierre o problemas",
+   "detalle": "Asia-US West Coast container spot rates fall below $8,000 as US avoids LA-Long Beach port strike - FreightWaves",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOLWJkQWtlSzNIQVNFdTZBbzRfd2JrazBZQjdTcDdZODM1VHRIX29CVnVBMHU0OWVyX1ltUkRwRTJYeDgzMTNaVjNqY0p4ZURTeG1oeEoxMzBqbVM4Uk9IdzB0NmZ0ZXdqSmhNUWpqSkd5bThNY1ZDNWZfejB5dV9ZZ0hqODJWd3FjLWVjUDUxcGhSdlZ5Y2dGc3ltR1JJbFpwVmNZRW9DbDNLWnhmVGRJZFB1VHdLVFFmWlBWWFRQUEFWbkRDNFA0?oc=5",
+   "alcance": "global",
+   "seccion": "pr",
+   "hora_utc": "2026-11-25T17:30:26+00:00"
+  },
   {
    "id": "50b7f1168a5f",
    "fuente": "Medidor de prensa",
@@ -545,9 +561,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  0,
   0,
   1,
   1,
@@ -642,6 +657,7 @@
   0,
   0,
   0,
+  0,
   0
  ],
  "medidores_base": {
@@ -678,6 +694,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -865,6 +882,7 @@
    30,
    30,
    30,
+   30,
    30
   ],
   "electrica": [
@@ -976,6 +994,7 @@
    79,
    61,
    51,
+   73,
    73
   ],
   "ataque": [
@@ -1087,7 +1106,8 @@
    87,
    87,
    96,
-   96
+   96,
+   87
   ],
   "terror": [
    98,
@@ -1198,7 +1218,8 @@
    22,
    22,
    36,
-   21
+   21,
+   43
   ],
   "emergencia": [
    95,
@@ -1309,7 +1330,8 @@
    42,
    41,
    42,
-   49
+   49,
+   43
   ],
   "espacio": [
    10,
@@ -1420,7 +1442,8 @@
    23,
    24,
    20,
-   19
+   19,
+   22
   ],
   "caribe": [
    21,
@@ -1531,7 +1554,8 @@
    24,
    47,
    48,
-   47
+   47,
+   46
   ],
   "pr": [
    0,
@@ -1642,6 +1666,7 @@
    59,
    60,
    60,
+   29,
    29
   ]
  },
@@ -1763,16 +1788,7 @@
    "visto_utc": "2026-11-25T14:30+00:00",
    "dist_pr_km": 1945,
    "primera_vez_utc": "2026-11-25T14:20+00:00",
-   "trazas": [
-    {
-     "lat": 27.86,
-     "lon": -82.49,
-     "t": "2026-11-25T14:30+00:00",
-     "rumbo": null,
-     "nudos": 0.0,
-     "alt": "ground"
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae595b",
@@ -2612,6 +2628,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
