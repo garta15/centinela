@@ -627,7 +627,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  2,
   3,
   6,
   6,
@@ -722,7 +721,8 @@
   2,
   2,
   2,
-  1
+  1,
+  2
  ],
  "medidores_base": {
   "telecom": [
@@ -836,6 +836,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -971,7 +972,8 @@
    31,
    30,
    30,
-   22
+   22,
+   30
   ],
   "electrica": [
    13,
@@ -1095,7 +1097,8 @@
    81,
    59,
    52,
-   56
+   56,
+   60
   ],
   "ataque": [
    94,
@@ -1219,6 +1222,7 @@
    97,
    96,
    97,
+   96,
    96
   ],
   "terror": [
@@ -1343,7 +1347,8 @@
    45,
    44,
    20,
-   44
+   44,
+   28
   ],
   "emergencia": [
    95,
@@ -1467,7 +1472,8 @@
    52,
    46,
    47,
-   52
+   52,
+   53
   ],
   "espacio": [
    10,
@@ -1591,7 +1597,8 @@
    20,
    20,
    20,
-   20
+   20,
+   16
   ],
   "caribe": [
    21,
@@ -1715,7 +1722,8 @@
    20,
    22,
    19,
-   44
+   44,
+   20
   ],
   "pr": [
    0,
@@ -1839,7 +1847,8 @@
    58,
    29,
    60,
-   61
+   61,
+   29
   ]
  },
  "log_aviones": [
@@ -1853,7 +1862,7 @@
    "lat": 14.6,
    "lon": -60.99,
    "alt": 0,
-   "visto_utc": "2026-11-25T19:10+00:00",
+   "visto_utc": "2026-11-25T19:20+00:00",
    "dist_pr_km": 720,
    "primera_vez_utc": "2026-11-22T00:12+00:00",
    "trazas": [
@@ -1880,6 +1889,46 @@
      "rumbo": 0.0,
      "nudos": 0.7,
      "alt": 0
+    },
+    {
+     "lat": 14.6,
+     "lon": -60.99,
+     "t": "2026-11-25T19:20+00:00",
+     "rumbo": 0.0,
+     "nudos": 0.7,
+     "alt": 0
+    }
+   ]
+  },
+  {
+   "hex": "ae0242",
+   "callsign": "58-0065",
+   "tipo": "K35R",
+   "desc": "KC-135 (reabastecimiento)",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.8,
+   "lon": -82.56,
+   "alt": 850,
+   "visto_utc": "2026-11-25T19:20+00:00",
+   "dist_pr_km": 1948,
+   "primera_vez_utc": "2026-11-24T16:51+00:00",
+   "trazas": [
+    {
+     "lat": 27.68,
+     "lon": -82.69,
+     "t": "2026-11-25T19:00+00:00",
+     "rumbo": 83.0,
+     "nudos": 174.0,
+     "alt": 2050
+    },
+    {
+     "lat": 27.8,
+     "lon": -82.56,
+     "t": "2026-11-25T19:20+00:00",
+     "rumbo": 48.0,
+     "nudos": 119.0,
+     "alt": 850
     }
    ]
   },
@@ -1904,30 +1953,6 @@
      "rumbo": null,
      "nudos": null,
      "alt": 25075
-    }
-   ]
-  },
-  {
-   "hex": "ae0242",
-   "callsign": "58-0065",
-   "tipo": "K35R",
-   "desc": "KC-135 (reabastecimiento)",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.68,
-   "lon": -82.69,
-   "alt": 2050,
-   "visto_utc": "2026-11-25T19:00+00:00",
-   "dist_pr_km": 1953,
-   "primera_vez_utc": "2026-11-24T16:51+00:00",
-   "trazas": [
-    {
-     "lat": 27.68,
-     "lon": -82.69,
-     "t": "2026-11-25T19:00+00:00",
-     "rumbo": 83.0,
-     "nudos": 174.0,
-     "alt": 2050
     }
    ]
   },
@@ -2955,7 +2980,8 @@
   "6/9741": "2026-11-25T01:14+00:00",
   "6/9740": "2026-11-25T01:14+00:00",
   "6/9736": "2026-11-25T01:14+00:00",
-  "6/9735": "2026-11-25T01:14+00:00"
+  "6/9735": "2026-11-25T01:14+00:00",
+  "6/9784": "2026-11-25T19:20+00:00"
  },
  "tfr_base": [
   24,
@@ -3077,7 +3103,8 @@
   7,
   7,
   7,
-  7
+  7,
+  8
  ],
  "tfr_geo": {
   "6/9689": {
@@ -10656,6 +10683,182 @@
    "motivo": "Temporary flight restrictions for Special Security Reasons",
    "texto": "!FDC 6/9735 ZAB AZ..AIRSPACE LIBBY AAF, AZ..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 25-26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. ANY PERSON WHO KNOWINGLY OR WILLFULLY VIOLATES THE RULES CONCERNING OPS IN THIS AIRSPACE MAY BE SUBJECT TO CERTAIN CRIMINAL PENALTIES UNDER 49 USC 40103(B)(3). PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 313405N1101136W (FHU086008.4) TO 313513N1103020W (FHU256007.7) THEN CLOCKWISE ON A 8 NM ARC CENTERED ON 313439N1102058W (FHU146000.8) TO THE POINT OF ORIGIN 9000FT MSL-17999FT MSL EFFECTIVE 2611260600 UTC (2300 LOCAL 11/25/26) UNTIL 2611261300 UTC (0600 LOCAL 11/26/26). EXC AS SPECIFIED BLW AND/OR UNLESS AUTH BY ATC: 1. ALL AIRCRAFT ENTERING OR EXITING THE TFR MUST BE ON A DISCRETE CODE ASSIGNED BY AN AIR TRAFFIC CONTROL (ATC) FACILITY. 2. AIRCRAFT MUST BE SQUAWKING THE DISCRETE CODE AT ALL TIMES WHILE IN THE TFR. 3. ALL AIRCRAFT ENTERING OR",
    "altitud": "From and including 9000 feet MSL  up to and including 17999 feet MSL"
+  },
+  "6/9784": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       35.42835913,
+       -78.05638889
+      ],
+      [
+       35.42810548,
+       -78.05284748
+      ],
+      [
+       35.42735225,
+       -78.04941373
+      ],
+      [
+       35.42612234,
+       -78.04619204
+      ],
+      [
+       35.42445313,
+       -78.04328035
+      ],
+      [
+       35.42239537,
+       -78.04076713
+      ],
+      [
+       35.42001161,
+       -78.03872877
+      ],
+      [
+       35.41737431,
+       -78.03722716
+      ],
+      [
+       35.41456362,
+       -78.03630789
+      ],
+      [
+       35.41166495,
+       -78.03599884
+      ],
+      [
+       35.40876638,
+       -78.03630933
+      ],
+      [
+       35.40595598,
+       -78.03722986
+      ],
+      [
+       35.40331913,
+       -78.03873241
+      ],
+      [
+       35.40093593,
+       -78.04077128
+      ],
+      [
+       35.39887876,
+       -78.04328449
+      ],
+      [
+       35.39721011,
+       -78.04619569
+      ],
+      [
+       35.39598064,
+       -78.04941643
+      ],
+      [
+       35.39522771,
+       -78.05284891
+      ],
+      [
+       35.39497416,
+       -78.05638889
+      ],
+      [
+       35.39522771,
+       -78.05992887
+      ],
+      [
+       35.39598064,
+       -78.06336135
+      ],
+      [
+       35.39721011,
+       -78.06658209
+      ],
+      [
+       35.39887876,
+       -78.06949329
+      ],
+      [
+       35.40093593,
+       -78.0720065
+      ],
+      [
+       35.40331913,
+       -78.07404537
+      ],
+      [
+       35.40595598,
+       -78.07554792
+      ],
+      [
+       35.40876638,
+       -78.07646845
+      ],
+      [
+       35.41166495,
+       -78.07677894
+      ],
+      [
+       35.41456362,
+       -78.07646989
+      ],
+      [
+       35.41737431,
+       -78.07555062
+      ],
+      [
+       35.42001161,
+       -78.07404901
+      ],
+      [
+       35.42239537,
+       -78.07201065
+      ],
+      [
+       35.42445313,
+       -78.06949743
+      ],
+      [
+       35.42612234,
+       -78.06658574
+      ],
+      [
+       35.42735225,
+       -78.06336405
+      ],
+      [
+       35.42810548,
+       -78.0599303
+      ],
+      [
+       35.42835913,
+       -78.05638889
+      ],
+      [
+       35.41166667,
+       -78.05638889
+      ],
+      [
+       35.41166667,
+       -78.05638889
+      ],
+      [
+       35.37094753,
+       -77.55831522
+      ],
+      [
+       35.37094753,
+       -77.55831522
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9784 ZDC NC..AIRSPACE GOLDSBORO, NC..TEMPORARY FLIGHT RESTRICTIONS. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 1NM RADIUS OF 352442N0780323W (ISO281024.6) SFC-1000FT AGL EFFECTIVE IMMEDIATELY UNTIL 2611252330 UTC (1830 LOCAL 11/25/26). UNLESS AUTH BY ATC IN CONSULTATION WITH ",
+   "altitud": ""
   }
  },
  "tle_cache": {
