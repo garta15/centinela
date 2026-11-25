@@ -1113,7 +1113,9 @@ def f_energia_pr():
 SATELITES = []
 def clase_satelite(nombre):
     n = nombre.upper()
-    if re.search(r"^USA[ -]\d|NROL|SBIRS|WGS|AEHF|MUOS|DSP|NOSS|MILSTAR|ORS-|STPSAT|X-37|OTV", n): return "eeuu", "EE. UU. militar"
+    if re.search(r"^USA[ -]\d|NROL|SBIRS|WGS|AEHF|MUOS|DSP|NOSS|MILSTAR|ORS-|STPSAT|X-37|OTV|PRAETORIAN|SDA|VICTUS|TETRA|SILENTBARKER", n): return "eeuu", "EE. UU. militar"
+    if re.search(r"NAVSTAR|^GPS", n): return "eeuu", "EE. UU. · GPS (Fuerza Espacial)"
+    if re.search(r"SAR-LUPE|SARAH|SAPPHIRE|CSO-|SICRAL|SKYNET|HELIOS|COSMO-SKYMED|OFEQ", n): return "eeuu", "Aliado (OTAN/socio)"
     if re.search(r"COSMOS|KOSMOS|BARS|LOTOS|PION|NIVELIR|LUCH|OLYMP|RAZDAN|TUNDRA|MERIDIAN", n): return "adversario", "Rusia"
     if re.search(r"YAOGAN|SHIYAN|SHIJIAN|TJS|TONGXIN JISHU|CHUANGXIN|JILIN-1 KUANFU|HUOYAN|GAOFEN|QIANFAN", n): return "adversario", "China"
     if re.search(r"NOOR|KHAYYAM|PARS|SORAYA|ZAFAR|KOWSAR|HODHOD", n): return "adversario", "Irán"
@@ -1121,14 +1123,41 @@ def clase_satelite(nombre):
     if re.search(r"OBJECT [A-Z]+$|^TBA|UNKNOWN|^OBJECT", n): return "no_identificado", "No identificado"
     return None, None
 
-def _tle(grupo):
+CONSULTAS_TLE = [("military", {"GROUP": "military"}), ("gps-ops", {"GROUP": "gps-ops"}),
+                 ("usa", {"NAME": "USA"}), ("cosmos", {"NAME": "COSMOS 2"}), ("yaogan", {"NAME": "YAOGAN"}),
+                 ("shiyan", {"NAME": "SHIYAN"}), ("shijian", {"NAME": "SHIJIAN"}), ("tjs", {"NAME": "TJS"}),
+                 ("last-30-days", {"GROUP": "last-30-days"})]
+_BASURA = re.compile(r"\bDEB\b|R/B|\bAKM\b|PLATFORM|FRAG|COOLANT|\bOBJECT [A-Z]{2,}\b.*DEB")
+
+def _filtrar_tle(txt):
+    """Quita escombros/cohetes y objetos con elementos viejos (ya reingresados); deja el caché pequeño."""
+    l = [x.rstrip() for x in txt.splitlines() if x.strip()]
+    out = []
+    hoy = NOW.timetuple().tm_yday + (NOW.year % 100) * 1000
+    for i in range(0, len(l) - 2, 3):
+        n, l1, l2 = l[i].strip(), l[i + 1], l[i + 2]
+        if not l1.startswith("1 ") or not l2.startswith("2 ") or _BASURA.search(n.upper()): continue
+        try:
+            ep = float(l1[18:32]); edad = (NOW - (datetime(2000 + int(ep // 1000), 1, 1, tzinfo=timezone.utc)
+                                                  + timedelta(days=ep % 1000 - 1))).days
+        except Exception:
+            continue
+        if edad > 45: continue
+        out += [n, l1, l2]
+    return "\n".join(out)
+
+def _tle(nombre, params):
     cache = ESTADO_REF.setdefault("tle_cache", {})
-    c = cache.get(grupo)
-    if c and (NOW - datetime.fromisoformat(c["t"])).total_seconds() < 2 * 3600:   # CelesTrak pide no bajar más de 1 vez cada 2 h
+    c = cache.get(nombre)
+    if c and (NOW - datetime.fromisoformat(c["t"])).total_seconds() < 4 * 3600:   # CelesTrak pide no repetir la misma consulta seguido
         return c["txt"]
-    txt = get("https://celestrak.org/NORAD/elements/gp.php", params={"GROUP": grupo, "FORMAT": "tle"}).text
-    if "1 " in txt:
-        cache[grupo] = {"t": NOW.isoformat(timespec="minutes"), "txt": txt}
+    txt = get("https://celestrak.org/NORAD/elements/gp.php", params={**params, "FORMAT": "tle"}).text
+    if "\n1 " in txt:
+        txt = _filtrar_tle(txt)
+        cache[nombre] = {"t": NOW.isoformat(timespec="minutes"), "txt": txt}
+        time.sleep(1)
+    elif c:
+        return c["txt"]
     return txt
 
 def _subpunto(sat, dt):
@@ -1151,9 +1180,9 @@ def f_satelites():
     out = []
     nuevos_ids = set()
     textos = {}
-    for g in ("military", "last-30-days"):
+    for g, prm in CONSULTAS_TLE:
         try:
-            textos[g] = _tle(g)
+            textos[g] = _tle(g, prm)
         except Exception as e:
             print("  ! TLE", g, e)
     vistos = set()
@@ -1187,7 +1216,10 @@ def f_satelites():
                               "url": f"https://celestrak.org/satcat/table-satcat.php?CATNR={norad}"})
     orden = {"adversario": 0, "no_identificado": 1, "eeuu": 2}
     SATELITES.sort(key=lambda s: (orden[s["categoria"]], not s["nuevo"], s["dist_min_km"]))
-    del SATELITES[45:]
+    tope = {"adversario": 20, "no_identificado": 10, "eeuu": 18}
+    cuenta = {}
+    SATELITES[:] = [s for s in SATELITES if cuenta.setdefault(s["categoria"], 0) < tope[s["categoria"]]
+                    and not cuenta.__setitem__(s["categoria"], cuenta[s["categoria"]] + 1)]
     nuevos_adv = [s for s in SATELITES if s["categoria"] in ("adversario", "no_identificado") and s["nuevo"] and s["dist_min_km"] < 1500]
     if nuevos_adv:
         out.append(senal("CelesTrak", "Satélites", 1,

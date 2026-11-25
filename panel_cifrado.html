@@ -104,7 +104,9 @@ h2,.titsec,.mtit,.igr-t,.nivel,.marca,.big,.gnum{font-family:"Barlow Condensed",
 .det{color:var(--mut)}
 .titsec{font-size:22px;font-weight:700;margin:30px 0 8px;padding-left:12px;border-left:4px solid #3B8CF6;line-height:1.15}
 .titsec .det{font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:400}
-summary.titsec{border-left-color:#3B8CF6}
+summary.titsec{border-left-color:#3B8CF6;margin:18px 0 6px;padding:6px 0 6px 12px}
+summary.titsec>span:first-child::before{margin-right:8px;font-size:.8em}
+.plegable[open]>summary.titsec{margin-bottom:10px}
 .pill{border-radius:6px;font-weight:600;padding:2px 8px;color:#06121F}
 /* cabecera */
 .cab{display:flex;justify-content:space-between;align-items:center;padding:4px 2px 12px;border-bottom:1px solid var(--line)}
@@ -269,6 +271,7 @@ document.addEventListener("toggle",e=>{const t=e.target;if(t.classList&&t.classL
 function fechaPR(iso){try{return new Date(iso).toLocaleString("es-PR",{timeZone:"America/Puerto_Rico",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}catch(e){return iso}}
 function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
 const VISTA="{{VISTA}}";
+function sec(id,tit,det,cuerpo,def=false){return `<details class="plegable" data-id="${id}" ${abierto(id,def)?"open":""}><summary class="titsec"><span>${tit}</span><span class="det">${det?det+" · ":""}<span class="ver"></span></span></summary>${cuerpo}</details>`}
 function mapaHTML(d,alto){return `    <h2 class="titsec">🗺️ Mapa táctico · Puerto Rico y alrededores <span class="det">toca cualquier elemento</span></h2>
     <div class="mapwrap"><div class="hud">
       <button data-capa="aviones" onclick="toggleCapa(this)">✈ AERONAVES ${(d.mapa?.aviones||[]).length}</button>
@@ -291,7 +294,7 @@ function mapaBoton(d){const m=d.mapa||{};
     <div class="det">✈ ${(m.aviones||[]).length} aeronaves · ⚓ ${(m.buques||[]).length} buques · ✦ ${(m.satelites||[]).length} satélites · ▢ ${(m.tfr||[]).length} restricciones · ▲ ${(m.aeropuertos||[]).length} aeropuertos · ● puertos</div></div><div class="mapbtn-fl">›</div></a>`;}
 function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";const c=COL[r.color];
   const ch=r.categorias.map(k=>`<span class="chip" style="background:${COL[k.nivel]}">${esc(k.nombre)}: ${NIV[k.nivel]}</span>`).join("");
-  const pl=r.planes.map((p,i)=>`<details class="plan" ${i===0?"open":""}><summary><b>${esc(p.titulo)}</b>${p.motivos.length?` <span class="det">· ${esc(p.motivos[0])}</span>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
+  const pl=r.planes.map((p,i)=>`<details class="plan"><summary><b>${esc(p.titulo)}</b>${p.motivos.length?` <span class="det">· ${esc(p.motivos[0])}</span>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
   return `<section class="rf" style="border-left:8px solid ${c}"><div class="top"><div class="big" style="color:${c}">${r.indice}</div>
     <div><div style="font-weight:800;font-size:20px">Riesgo familiar: ${esc(r.etiqueta)}</div><div class="det">Puerto Rico y alrededores · 0–100</div></div></div>
     <div class="chips">${ch}</div>${pl}<p class="det" style="margin-top:10px">${esc(r.nota)}</p></section>`;}
@@ -300,14 +303,14 @@ function energiaHTML(d){const e=d.energia||{},pr=e.pr||{},us=e.us||{};
   const rg=(us.regiones||[]).map(r=>{const v=Math.max(-30,Math.min(30,r.desviacion_pct)),col=r.desviacion_pct<=-10?COL[3]:r.desviacion_pct<=-5?COL[2]:COL[0];
     return `<div style="margin:6px 0"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${esc(r.nombre)}</span><span>${r.demanda_mw.toLocaleString("es-PR")} MW · ${r.desviacion_pct>0?"+":""}${r.desviacion_pct}%</span></div>
       <div class="bar"><i style="width:${50+v*1.6}%;background:${col}"></i></div></div>`}).join("");
-  return `<h2 class="titsec">⚡ Producción y distribución eléctrica</h2><div class="en">
+  return sec("energia","⚡ Producción y distribución eléctrica",`PR: ${esc(pr.estado||"sin datos")}`,`<div class="en">
    <section class="card" style="border-left:8px solid ${COL[pr.nivel||0]}"><h2><span>🇵🇷 Puerto Rico</span><span class="pill" style="background:${COL[pr.nivel||0]}">${esc(pr.estado||"Sin datos")}</span></h2>
      ${pr.clientes_sin_servicio?`<p style="font-size:22px;font-weight:800;margin:4px 0">${pr.clientes_sin_servicio.toLocaleString("es-PR")} clientes sin servicio</p>`:""}
      ${ev?`<ul class="lista">${ev}</ul>`:'<p class="det">Sin reportes recientes de apagones o averías de generación.</p>'}
      <p class="det">${esc(pr.nota||"")}</p><p class="det">${(pr.enlaces||[]).map(l=>enlace(l.url,l.nombre)).join(" · ")}</p></section>
    <section class="card" style="border-left:8px solid ${COL[us.nivel||0]}"><h2><span>🇺🇸 Estados Unidos</span><span class="pill" style="background:${COL[us.nivel||0]}">${NIV[us.nivel||0]}</span></h2>
      <p class="det">${esc(us.estado||"")}. Demanda real frente a la pronosticada (una caída fuerte puede indicar apagones):</p>${rg}
-     <p class="det">${enlace(us.url||"https://www.eia.gov/electricity/gridmonitor/",us.fuente||"EIA")}</p></section></div>`;}
+     <p class="det">${enlace(us.url||"https://www.eia.gov/electricity/gridmonitor/",us.fuente||"EIA")}</p></section></div>`);}
 function pintar(d){
   const n=d.nivel, sen=d.senales||[];
   const tarjetas=Object.entries(SEC).map(([k,[ico,nom]])=>{
@@ -390,9 +393,8 @@ function pintar(d){
     ${riesgoHTML(d)}
     ${energiaHTML(d)}
     ${mapaBoton(d)}
-    <h2 class="titsec">🧭 Medidores de seguridad nacional <span class="det">toca uno para ver sus noticias</span></h2>
-    <div class="gridm">${med}</div>
-    <details class="plegable" data-id="interrupciones" ${abierto("interrupciones",true)?"open":""}>
+    ${sec("medidores","🧭 Medidores de seguridad nacional","toca uno para ver sus noticias",`<div class="gridm">${med}</div>`)}
+    <details class="plegable" data-id="interrupciones" ${abierto("interrupciones",false)?"open":""}>
     <summary class="titsec"><span>🌐 Interrupciones de servicios e internet</span><span class="det">${activas} importante(s) · ${its.length} en total · <span class="ver"></span></span></summary>
     <div class="card tabla">
       ${crOk?"":`<p class="det" style="margin:0 0 8px">⚠️ Cloudflare Radar aún no está conectado (falta su token gratuito). Las demás fuentes funcionan.</p>`}
@@ -406,25 +408,20 @@ function pintar(d){
         <a href="https://www.logicmonitor.com/outages" target="_blank" rel="noopener">LogicMonitor Outages</a> ·
         <a href="https://ioda.inetintel.cc.gatech.edu/country/PR" target="_blank" rel="noopener">IODA PR</a></p></div>
     </details>
-    ${nb?`<details class="card"><summary><b>📣 Últimos reportes de NetBlocks</b> <span class="det">cortes nacionales confirmados en el mundo</span></summary><ul class="lista">${nb}</ul></details>`:""}
-    <h2 class="titsec">🚢 Puertos que abastecen a Puerto Rico <span class="det">por si hay crisis de suministros</span></h2>
-    <div class="gridm">${pts}</div>
-    <h2 class="titsec">✈️ Últimas 20 aeronaves militares o no identificadas · Caribe / PR <span class="det">hora de PR</span></h2>
-    <div class="card tabla"><table><thead><tr><th>Visto</th><th>Aeronave</th><th>País</th><th>Tipo</th><th>Distancia a PR</th></tr></thead><tbody>${avs}</tbody></table></div>
-    <h2 class="titsec">🛩️ Restricciones aéreas por seguridad nacional <span class="det">FAA · oficial</span></h2>
-    <div class="card tabla"><p class="det" style="margin:0 0 8px">Se muestran las de Puerto Rico, las instrucciones especiales para todo EE. UU. y las de seguridad/VIP creadas en las últimas 48 h.</p>
+    ${nb?sec("netblocks","📣 Últimos reportes de NetBlocks","cortes nacionales en el mundo",`<section class="card"><ul class="lista">${nb}</ul></section>`):""}
+    ${sec("puertos","🚢 Puertos que abastecen a Puerto Rico","crisis de suministros",`<div class="gridm">${pts}</div>`)}
+    ${sec("aeronaves","✈️ Últimas 20 aeronaves militares o no identificadas","Caribe / PR · hora de PR",`<div class="card tabla"><table><thead><tr><th>Visto</th><th>Aeronave</th><th>País</th><th>Tipo</th><th>Distancia a PR</th></tr></thead><tbody>${avs}</tbody></table></div>`)}
+    ${sec("tfr","🛩️ Restricciones aéreas y espacio aéreo","FAA · oficial",`<div class="card tabla"><p class="det" style="margin:0 0 8px">Se muestran las de Puerto Rico, las instrucciones especiales para todo EE. UU. y las de seguridad/VIP creadas en las últimas 48 h.</p>
       <table><thead><tr><th>NOTAM</th><th>Tipo</th><th>Lugar / alcance</th><th>Estado</th><th>Creada</th></tr></thead><tbody>${tf}</tbody></table></div>
     <section class="card"><h2><span>🛫 Estado del espacio aéreo de EE. UU.</span><span class="det">${esc(ea.actualizado||"")}</span></h2>
       <ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin ground stops ni cierres de aeropuertos en este momento.</p>':""}
-      <p class="det">Demoras programadas: ${(ea.demoras_programadas||[]).length} aeropuerto(s).</p></section>
-    <h2 class="titsec">⚓ Reportes de buques militares en el Caribe <span class="det">con fecha del reporte</span></h2>
-    <section class="card"><ul class="lista">${bqs}</ul></section>
-    <h2 class="titsec">📌 Señales oficiales y técnicas</h2>
-    <div class="grid">${tarjetas}</div>
-    <section class="card"><h2><span>📰 Titulares en vivo</span><span class="det">prensa · sin verificar</span></h2><ul class="lista">${tit}</ul></section>
-    <div class="grid"><section class="card"><h2>🕘 Historial de alertas</h2><ul>${hist}</ul></section>
-    <section class="card"><h2>🔌 Fuentes</h2><ul class="cols">${fu}</ul></section>
-    <section class="card"><h2>🔎 Consulta manual</h2><ul class="cols">${man}</ul></section></div>
+      <p class="det">Demoras programadas: ${(ea.demoras_programadas||[]).length} aeropuerto(s).</p></section>`)}
+    ${sec("buques","⚓ Reportes de buques militares en el Caribe","con fecha del reporte",`<section class="card"><ul class="lista">${bqs}</ul></section>`)}
+    ${sec("senales","📌 Señales oficiales y técnicas","",`<div class="grid">${tarjetas}</div>`)}
+    ${sec("titulares","📰 Titulares en vivo","prensa · sin verificar",`<section class="card"><ul class="lista">${tit}</ul></section>`)}
+    ${sec("historial","🕘 Historial de alertas","",`<section class="card"><ul>${hist}</ul></section>`)}
+    ${sec("fuentes","🔌 Fuentes y consulta manual","",`<div class="grid"><section class="card"><h2>🔌 Fuentes</h2><ul class="cols">${fu}</ul></section>
+    <section class="card"><h2>🔎 Consulta manual</h2><ul class="cols">${man}</ul></section></div>`)}
     <p class="det"><button id="salir" class="sec2">Cerrar sesión en este dispositivo</button></p>`;
   document.getElementById("login").hidden=true; app.hidden=false;
 
