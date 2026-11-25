@@ -142,6 +142,56 @@ button{background:#3B8CF6}
 #hoja{background:#0F2036;border-top:1px solid var(--line)}
 .leaflet-container{background:#05101C}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ================= Diseño simple y amigable ================= */
+body{background-image:radial-gradient(circle at 15% -10%,#163357 0,transparent 55%);font-size:17px}
+main{max-width:720px}
+.cab{border-bottom:0;padding-bottom:4px}.marca{font-family:"IBM Plex Sans",sans-serif;font-size:17px;font-weight:600}
+.hero2{border-radius:20px;padding:22px 20px 20px}
+.hz{font-size:15px}
+.nivel{font-size:clamp(52px,15vw,88px);text-transform:uppercase;margin:4px 0 16px}
+.pel{font-family:"IBM Plex Sans",sans-serif;font-size:11px;height:40px;border-radius:8px}.pel.on{height:50px;margin-top:-10px;font-size:12px}
+.que{font-size:19px;line-height:1.4;font-weight:500;margin:16px 0 0;color:#F2F6FB}
+.porque{margin-top:10px}.porque summary{color:var(--mut);font-size:15px;cursor:pointer}.porque p{color:#C9D6E6;font-size:15px;margin:6px 0 0}
+.gtit{font:600 14px/1 "IBM Plex Sans",sans-serif;color:var(--mut);margin:28px 6px 8px;letter-spacing:0}
+.grupo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.fila{border-top:1px solid var(--line)}.fila:first-child{border-top:0}
+.fila>summary,.mapbtn2{display:flex;align-items:center;gap:12px;padding:14px 14px;min-height:64px;cursor:pointer;list-style:none;margin:0;font-weight:400}
+.fila>summary::-webkit-details-marker{display:none}
+.fila>summary:hover{background:rgba(255,255,255,.03)}
+.fico{flex:0 0 38px;height:38px;border-radius:10px;background:var(--carta);display:grid;place-items:center;font-size:20px}
+.ftx{flex:1;min-width:0;display:flex;flex-direction:column}.ftx b{font-weight:600;font-size:17px}
+.ftx small{color:var(--mut);font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fest{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:color-mix(in srgb,var(--c) 75%,#fff);
+  background:color-mix(in srgb,var(--c) 16%,transparent);border-radius:99px;padding:3px 10px;white-space:nowrap;vertical-align:middle;font-family:"IBM Plex Sans",sans-serif}
+.fest::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.fchev{flex:none;width:9px;height:9px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(-45deg);margin:0 4px 0 2px;transition:transform .15s}
+.fila[open]>summary .fchev{transform:rotate(45deg)}
+.fcont{padding:4px 16px 18px;border-top:1px dashed var(--line)}
+.fcont .card{background:var(--carta);border-radius:12px}
+.bloque{margin-top:14px}.bloque h3,.fcont h3{font:600 16px/1.3 "IBM Plex Sans",sans-serif;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cifra{font-size:22px;font-weight:700;margin:2px 0}
+.mapbtn2{margin-top:16px;background:linear-gradient(120deg,#0E2744,#123A63);border:1px solid #2B5A8C;border-radius:16px;text-decoration:none;color:#E8EEF6}
+.mapbtn2 .fico{background:rgba(255,255,255,.08)}.mapbtn2 small{color:#A9C2DD}
+.rf2{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.rf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.rf2 h2{font:600 20px/1.2 "IBM Plex Sans",sans-serif;margin:0}.rf2 .det{margin:2px 0 0;font-size:14px}
+.rf-num{text-align:right}.rf-num b{display:block;font:800 40px/1 "Barlow Condensed",sans-serif;color:var(--c)}.rf-num span{font-size:13px;color:var(--mut)}
+.cats{list-style:none;margin:14px 0 0;padding:0}.cats li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.cats li span:nth-child(2){flex:1}.cats .dot{margin:0}
+.planes{margin-top:14px}.ptit{font-weight:600;font-size:15px;margin-bottom:2px}
+.plan{border-top:1px solid var(--line);padding:0;margin:0}.plan>summary{padding:11px 0;margin:0;font-weight:500;display:flex;flex-direction:column}
+.plan>summary small{color:var(--mut);font-size:13px;font-weight:400}.plan ol{margin:0 0 12px}
+.nota2{font-size:13px!important;margin-top:12px!important}
+.lista li{padding:11px 0}.lista a{font-weight:500}
+.gridm{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}.gridm .med{margin:0;padding:10px 8px}.gridm .med[open]{padding:14px}.gridm .gauge{width:96px;height:56px}.gridm .mtit{font:600 14px/1.25 "IBM Plex Sans",sans-serif;margin:2px 0}.gridm .med[open] .mtit{font-size:16px}
+.gridp{display:grid;gap:10px}.gridp .puerto{margin:0}
+.grid{grid-template-columns:1fr;gap:0}
+.cols{columns:1}
+.igr-t{font-family:"IBM Plex Sans",sans-serif;font-size:15px;font-weight:600}
+.sec2{background:transparent;border:1px solid var(--line);color:var(--mut);width:auto;font-size:14px}
+@media (max-width:600px){.fila>summary,.mapbtn2{padding:12px}.fest{font-size:12px;padding:3px 8px}.ftx b{font-size:16px}}
+@media (prefers-reduced-motion:reduce){.fchev{transition:none}}
+body.vmapa main{max-width:1240px}
 </style></head><body><main>
 <div id="login" class="card login">
   <div class="marca" style="margin-bottom:6px"><span class="faro" style="--c:#3B8CF6"></span>Centinela Familiar</div>
@@ -198,7 +248,7 @@ function pintarMapa(d){
   const m=d.mapa||{};
   if(!MAPA){MAPA=L.map("mapa",{zoomControl:false,worldCopyJump:true,attributionControl:true}).setView([19.2,-67.5],window.innerWidth<600?6:5);
     L.control.zoom({position:"bottomright"}).addTo(MAPA);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:12,className:"oscuro",
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:12,className:"oscuro",referrerPolicy:"strict-origin-when-cross-origin",
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(MAPA);
     L.circle([18.22,-66.59],{radius:250000,color:"#4da3ff",weight:1,dashArray:"4 6",fill:false,interactive:false}).addTo(MAPA);
   }
@@ -289,28 +339,40 @@ function mapaHTML(d,alto){return `    <h2 class="titsec">🗺️ Mapa táctico �
       <span><span class="tri" style="border-bottom-color:#e53935"></span>Aeropuerto con problemas</span><span>— — dirección probable</span></div>
     ${(d.mapa?.buques||[]).length?"":'<p class="det">⚓ Los buques aparecerán cuando se active la clave gratuita de AISStream.</p>'}
 `;}
+const FR=["Normal","Atención","Elevado","Alto","Crítico"];
+const QUE=["Todo tranquilo. No hay que hacer nada.",
+  "Hay algo que vigilar, pero pueden seguir su día normal.",
+  "Hay señales que merecen atención. Tengan el teléfono cargado y estén pendientes.",
+  "Situación seria. Repasen el plan familiar y confirmen dónde está cada uno.",
+  "Emergencia. Sigan el plan familiar ahora y las instrucciones oficiales."];
+function est(n,txt){return n==null?"":`<span class="fest" style="--c:${COL[n]}">${txt||FR[n]}</span>`}
+function fila(id,ico,tit,sub,n,cuerpo,txt){return `<details class="fila plegable" data-id="${id}" ${abierto(id,false)?"open":""}>
+  <summary><span class="fico">${ico}</span><span class="ftx"><b>${tit}</b><small>${sub||""}</small></span>${est(n,txt)}<span class="fchev" aria-hidden="true"></span></summary>
+  <div class="fcont">${cuerpo}</div></details>`}
+function grupo(t,filas){return filas.trim()?`<h2 class="gtit">${t}</h2><div class="grupo">${filas}</div>`:""}
 function mapaBoton(d){const m=d.mapa||{};
-  return `<a class="card mapbtn" href="mapa.html"><div class="mapbtn-ico">🗺️</div><div><div style="font-weight:800;font-size:18px">Abrir mapa táctico</div>
-    <div class="det">✈ ${(m.aviones||[]).length} aeronaves · ⚓ ${(m.buques||[]).length} buques · ✦ ${(m.satelites||[]).length} satélites · ▢ ${(m.tfr||[]).length} restricciones · ▲ ${(m.aeropuertos||[]).length} aeropuertos · ● puertos</div></div><div class="mapbtn-fl">›</div></a>`;}
-function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";const c=COL[r.color];
-  const ch=r.categorias.map(k=>`<span class="chip" style="background:${COL[k.nivel]}">${esc(k.nombre)}: ${NIV[k.nivel]}</span>`).join("");
-  const pl=r.planes.map((p,i)=>`<details class="plan"><summary><b>${esc(p.titulo)}</b>${p.motivos.length?` <span class="det">· ${esc(p.motivos[0])}</span>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
-  return `<section class="rf" style="border-left:8px solid ${c}"><div class="top"><div class="big" style="color:${c}">${r.indice}</div>
-    <div><div style="font-weight:800;font-size:20px">Riesgo familiar: ${esc(r.etiqueta)}</div><div class="det">Puerto Rico y alrededores · 0–100</div></div></div>
-    <div class="chips">${ch}</div>${pl}<p class="det" style="margin-top:10px">${esc(r.nota)}</p></section>`;}
+  return `<a class="mapbtn2" href="mapa.html"><span class="fico">🗺️</span><span class="ftx"><b>Ver el mapa</b>
+    <small>${(m.aviones||[]).length} aviones · ${(m.buques||[]).length} barcos · ${(m.satelites||[]).length} satélites · ${(m.tfr||[]).length} zonas restringidas</small></span><span class="fchev"></span></a>`;}
+function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";
+  const filas=r.categorias.map(k=>`<li><span class="dot" style="background:${COL[k.nivel]}"></span><span>${esc(k.nombre)}</span>${est(k.nivel)}</li>`).join("");
+  const pl=r.planes.map(p=>`<details class="plan"><summary>${esc(p.titulo)}${p.motivos.length?`<small>${esc(p.motivos[0])}</small>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
+  return `<section class="rf2"><div class="rf-top"><div><h2>Tu familia</h2><p class="det">Riesgo en Puerto Rico y alrededores</p></div>
+    <div class="rf-num" style="--c:${COL[r.color]}"><b>${r.indice}</b><span>de 100 · ${esc(r.etiqueta.toLowerCase())}</span></div></div>
+    <ul class="cats">${filas}</ul><div class="planes"><div class="ptit">Qué hacer</div>${pl}</div>
+    <p class="det nota2">${esc(r.nota)}</p></section>`;}
 function energiaHTML(d){const e=d.energia||{},pr=e.pr||{},us=e.us||{};
   const ev=(pr.evidencia||[]).slice(0,5).map(x=>`<li>${enlace(x.url,x.texto)}<div class="det">${esc(x.fuente)} · ${fechaPR(x.hora_utc)}</div></li>`).join("");
   const rg=(us.regiones||[]).map(r=>{const v=Math.max(-30,Math.min(30,r.desviacion_pct)),col=r.desviacion_pct<=-10?COL[3]:r.desviacion_pct<=-5?COL[2]:COL[0];
-    return `<div style="margin:6px 0"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${esc(r.nombre)}</span><span>${r.demanda_mw.toLocaleString("es-PR")} MW · ${r.desviacion_pct>0?"+":""}${r.desviacion_pct}%</span></div>
+    return `<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>${esc(r.nombre)}</span><span class="det">${r.desviacion_pct>0?"+":""}${r.desviacion_pct}%</span></div>
       <div class="bar"><i style="width:${50+v*1.6}%;background:${col}"></i></div></div>`}).join("");
-  return sec("energia","⚡ Producción y distribución eléctrica",`PR: ${esc(pr.estado||"sin datos")}`,`<div class="en">
-   <section class="card" style="border-left:8px solid ${COL[pr.nivel||0]}"><h2><span>🇵🇷 Puerto Rico</span><span class="pill" style="background:${COL[pr.nivel||0]}">${esc(pr.estado||"Sin datos")}</span></h2>
-     ${pr.clientes_sin_servicio?`<p style="font-size:22px;font-weight:800;margin:4px 0">${pr.clientes_sin_servicio.toLocaleString("es-PR")} clientes sin servicio</p>`:""}
-     ${ev?`<ul class="lista">${ev}</ul>`:'<p class="det">Sin reportes recientes de apagones o averías de generación.</p>'}
-     <p class="det">${esc(pr.nota||"")}</p><p class="det">${(pr.enlaces||[]).map(l=>enlace(l.url,l.nombre)).join(" · ")}</p></section>
-   <section class="card" style="border-left:8px solid ${COL[us.nivel||0]}"><h2><span>🇺🇸 Estados Unidos</span><span class="pill" style="background:${COL[us.nivel||0]}">${NIV[us.nivel||0]}</span></h2>
-     <p class="det">${esc(us.estado||"")}. Demanda real frente a la pronosticada (una caída fuerte puede indicar apagones):</p>${rg}
-     <p class="det">${enlace(us.url||"https://www.eia.gov/electricity/gridmonitor/",us.fuente||"EIA")}</p></section></div>`);}
+  return `<div class="bloque"><h3>Puerto Rico ${est(pr.nivel||0)}</h3>
+     ${pr.clientes_sin_servicio?`<p class="cifra">${pr.clientes_sin_servicio.toLocaleString("es-PR")} clientes sin luz</p>`:""}
+     <p>${esc(pr.estado||"Sin datos")}</p>
+     ${ev?`<ul class="lista">${ev}</ul>`:""}
+     <p class="det">${(pr.enlaces||[]).map(l=>enlace(l.url,l.nombre)).join(" · ")}</p></div>
+   <div class="bloque"><h3>Estados Unidos ${est(us.nivel||0)}</h3>
+     <p class="det">Consumo real comparado con lo esperado. Una caída fuerte puede indicar apagones.</p>${rg}
+     <p class="det">${enlace(us.url||"https://www.eia.gov/electricity/gridmonitor/",us.fuente||"EIA")}</p></div>`;}
 function pintar(d){
   const n=d.nivel, sen=d.senales||[];
   const tarjetas=Object.entries(SEC).map(([k,[ico,nom]])=>{
@@ -325,12 +387,12 @@ function pintar(d){
         av.map(a=>`<li>${a.cerca_pr?"📍":"✈️"} <b>${esc(a.callsign)}</b> ${esc(a.tipo)} ${a.desc?"· "+esc(a.desc):""}
         <span class="det">${a.lat}, ${a.lon}${a.alt?" · "+esc(a.alt)+" ft":""}</span></li>`).join("")}</ul></details>`
         :`<p class="det">Ninguna aeronave militar con transpondedor visible ahora sobre el Caribe (muchas vuelan sin él).</p>`;}
-    return `<section class="card sec"><h2><span>${ico} ${nom}</span><span class="pill" style="background:${COL[peor]}">${NIV[peor]}</span></h2>
-      ${filas?`<ul class="lista">${filas}</ul>`:`<p class="det">Sin novedades.</p>`}${extra}</section>`;}).join("");
+    return `<div class="bloque"><h3>${ico} ${nom} ${est(peor)}</h3>
+      ${filas?`<ul class="lista">${filas}</ul>`:`<p class="det">Sin novedades.</p>`}${extra}</div>`;}).join("");
   const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const ico=SECT[t.seccion]||(SEC[t.seccion]||["📰"])[0];
     return `<li class="nota"><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a>
     <div class="det">${ico} ${esc(t.tema)} · ${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin titulares recientes.</li>`;
-  const hist=(d.historial||[]).slice(0,15).map(h=>`<li>${EMO[h.nivel]} ${esc(h.titulo)} <span class="det">· ${hace(h.hora_utc)}</span></li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
+  const hist=(d.historial||[]).slice(0,15).map(h=>`<li class="sig"><span class="dot" style="background:${COL[h.nivel]}"></span><div>${esc(h.titulo)}<div class="det">${hace(h.hora_utc)}</div></div></li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
   const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)}</li>`).join("");
   const man=(d.consulta_manual||[]).map(m=>`<li><a href="${esc(safeUrl(m.url))}" target="_blank" rel="noopener">${esc(m.nombre)}</a></li>`).join("");
   const med=(d.medidores||[]).map(m=>{const pct=Math.max(0,Math.min(100,m.indice)),c=COL[m.nivel];
@@ -342,21 +404,21 @@ function pintar(d){
       <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${lleno} ${arco}"/>
       <text x="50" y="48" text-anchor="middle" class="gnum">${pct}</text></svg>
       <div class="mtit">${m.icono} ${esc(m.nombre)}</div>
-      <div class="det"><span class="pill" style="background:${c}">${NIV[m.nivel]}</span> ${m.n3} en 3 h · ${m.n24} en 24 h</div>
-      <div class="det">${esc(m.motivo||tend)}</div></summary><ul class="lista">${tl}</ul></details>`}).join("");
+      <div style="margin-top:4px">${est(m.nivel)}</div></summary>
+      <p class="det">${m.n3} noticias en 3 h · ${m.n24} en 24 h · ${esc(m.motivo||tend)}</p><ul class="lista">${tl}</ul></details>`}).join("");
   const pts=(d.puertos||[]).map(p=>{const rep=(p.reportes||[]).map(r=>{const [h,f]=fuenteDe(r.titulo);
       return `<li><a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener">${esc(h)}</a><div class="det">${esc(f)} · ${fechaPR(r.hora_utc)}</div></li>`}).join("");
     return `<div class="card puerto" style="border-left:6px solid ${COL[p.nivel]}"><div class="mtit">${esc(p.nombre)}</div>
       <div class="det">${esc(p.rol)}</div><div style="margin-top:6px"><span class="pill" style="background:${COL[p.nivel]}">${esc(p.estado)}</span>
       <span class="det"> · ${p.revisados??0} noticias revisadas (48 h)</span></div>${rep?`<ul class="lista">${rep}</ul>`:""}</div>`}).join("");
-  const avs=(d.log_aviones||[]).map(a=>`<tr><td>${fechaPR(a.visto_utc)}</td><td><b>${esc(a.callsign)}</b><div class="det">${esc(a.tipo)}${a.desc?" · "+esc(a.desc):""}</div></td>
-      <td>${esc(a.pais)}</td><td>${a.clase==="no identificada"?"❓ no identificada":"🎖️ militar"}</td><td>${a.dist_pr_km} km</td></tr>`).join("")
-      ||`<tr><td colspan="5" class="det">Todavía no se ha registrado ninguna. El registro se llena con cada revisión.</td></tr>`;
+  const avs=(d.log_aviones||[]).map(a=>`<li><b>${esc(a.callsign)}</b> <span class="det">· ${a.clase==="no identificada"?"no identificado":"militar"} · ${esc(a.pais)}</span>
+      <div class="det">${esc(a.tipo)}${a.desc?" · "+esc(a.desc):""} · a ${a.dist_pr_km} km de PR · ${fechaPR(a.visto_utc)}</div></li>`).join("")
+      ||`<li class="det">Todavía no se ha registrado ninguno.</li>`;
   const bqs=(d.log_buques||[]).map(b=>`<li><div class="det">${fechaPR(b.fecha_utc)} · ${esc(b.fuente)}</div>
       <a href="${esc(safeUrl(b.url))}" target="_blank" rel="noopener">${esc(b.texto)}</a></li>`).join("")||`<li class="det">Sin reportes todavía.</li>`;
-  const tf=(d.tfrs||[]).map(t=>`<tr><td>${t.pr?"🇵🇷 ":t.nacional?"🇺🇸 ":""}${t.nuevo?'<span class="pill" style="background:#dd6b20">NUEVA</span> ':""}<a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(t.id)}</a></td>
-      <td>${esc(t.tipo)}</td><td>${esc(t.lugar||(t.nacional?"Todo EE. UU. (instrucción especial)":""))}</td><td>${esc(t.estado)}</td><td>${esc(t.creado)}</td></tr>`).join("")
-      ||`<tr><td colspan="5" class="det">Sin restricciones relevantes.</td></tr>`;
+  const tf=(d.tfrs||[]).map(t=>`<li>${t.nuevo?'<span class="fest" style="--c:#F07A2B">Nueva</span> ':""}<a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(t.lugar||(t.nacional?"Todo EE. UU.":t.id))}</a>
+      <div class="det">${esc(t.tipo)} · ${esc(t.estado)} · creada ${esc(t.creado)} · ${esc(t.id)}</div></li>`).join("")
+      ||`<li class="det">Sin restricciones relevantes.</li>`;
   const ea=d.espacio_aereo||{};
   const gsl=(ea.ground_stops||[]).map(g=>`<li>⛔ <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
   const cl=(ea.cierres||[]).map(c=>`<li>🚫 <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
@@ -379,50 +441,52 @@ function pintar(d){
   const crOk=(d.fuentes||{})["Cloudflare Radar (cortes y anomalías)"]?.ok;
   const app=document.getElementById("app");
   if(VISTA==="mapa"){
+    document.body.classList.add("vmapa");
     app.innerHTML=`<div class="mapbar" style="border-left:8px solid ${COL[n]}"><a href="./" class="volver">‹ Panel</a>
       <div><b>${EMO[n]} ${NIV[n]}</b> <span class="det">· Riesgo familiar: ${esc(d.riesgo_familiar?.etiqueta||"")} · revisado ${hace(d.actualizado_utc)}</span></div></div>
       ${mapaHTML(d,"calc(100vh - 230px)")}`;
     document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
   }
-  const esc5=NIV.map((t,i)=>`<li class="pel${i===n?" on":""}${i<n?" bajo":""}" style="--c:${COL[i]}"><span>${t}</span></li>`).join("");
+  const esc5=NIV.map((t,i)=>`<li class="pel${i===n?" on":""}${i<n?" bajo":""}" style="--c:${COL[i]}"><span>${FR[i]}</span></li>`).join("");
+  const mx=a=>a.reduce((x,y)=>Math.max(x,y||0),0);
+  const e=d.energia||{},prE=e.pr||{};
+  const itsPR=its.filter(x=>(x.prox??1)<=1);
+  const senOf=sen.filter(s=>s.seccion!=="medidores");
+  const medMax=(d.medidores||[]).reduce((a,m)=>m.nivel>(a?.nivel??-1)?m:a,null);
+  const ptsMal=(d.puertos||[]).filter(p=>p.nivel>0).length;
+  const nuevasTfr=(d.tfrs||[]).filter(t=>t.nuevo).length;
+  const fallas=Object.values(d.fuentes||{}).filter(v=>!v.ok).length;
+  const ultAv=(d.log_aviones||[])[0], ultBq=(d.log_buques||[])[0];
   app.innerHTML=`<header class="cab"><div class="marca"><span class="faro" style="--c:${COL[n]}"></span>Centinela Familiar</div>
-      <div class="det">Revisado ${hace(d.actualizado_utc)}</div></header>
-    <section class="hero2" style="--c:${COL[n]}"><div class="hz">Nivel de amenaza · Puerto Rico</div>
-      <div class="nivel">${NIV[n]}</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
-      <p class="resumen">${esc(d.resumen)}</p></section>
+      <div class="det">Actualizado ${hace(d.actualizado_utc)}</div></header>
+    <section class="hero2" style="--c:${COL[n]}"><div class="hz">Nivel de amenaza en Puerto Rico</div>
+      <div class="nivel">${FR[n]}</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
+      <p class="que">${QUE[n]}</p>
+      ${n>0?`<details class="porque"><summary>¿Por qué?</summary><p>${esc(d.resumen)}</p></details>`:""}</section>
     ${riesgoHTML(d)}
-    ${energiaHTML(d)}
     ${mapaBoton(d)}
-    ${sec("medidores","🧭 Medidores de seguridad nacional","toca uno para ver sus noticias",`<div class="gridm">${med}</div>`)}
-    <details class="plegable" data-id="interrupciones" ${abierto("interrupciones",false)?"open":""}>
-    <summary class="titsec"><span>🌐 Interrupciones de servicios e internet</span><span class="det">${activas} importante(s) · ${its.length} en total · <span class="ver"></span></span></summary>
-    <div class="card tabla">
-      ${crOk?"":`<p class="det" style="margin:0 0 8px">⚠️ Cloudflare Radar aún no está conectado (falta su token gratuito). Las demás fuentes funcionan.</p>`}
-      ${itf}
-      <p class="det" style="margin-top:10px">Ver en vivo:
-        <a href="https://radar.cloudflare.com/outage-center" target="_blank" rel="noopener">Cloudflare Outage Center</a> ·
-        <a href="https://radar.cloudflare.com/pr" target="_blank" rel="noopener">Radar PR</a> ·
-        <a href="https://radar.cloudflare.com/us" target="_blank" rel="noopener">Radar EE. UU.</a> ·
-        <a href="https://downdetector.com/" target="_blank" rel="noopener">Downdetector</a> ·
-        <a href="https://netblocks.org/" target="_blank" rel="noopener">NetBlocks</a> ·
-        <a href="https://www.logicmonitor.com/outages" target="_blank" rel="noopener">LogicMonitor Outages</a> ·
-        <a href="https://ioda.inetintel.cc.gatech.edu/country/PR" target="_blank" rel="noopener">IODA PR</a></p></div>
-    </details>
-    ${nb?sec("netblocks","📣 Últimos reportes de NetBlocks","cortes nacionales en el mundo",`<section class="card"><ul class="lista">${nb}</ul></section>`):""}
-    ${sec("puertos","🚢 Puertos que abastecen a Puerto Rico","crisis de suministros",`<div class="gridm">${pts}</div>`)}
-    ${sec("aeronaves","✈️ Últimas 20 aeronaves militares o no identificadas","Caribe / PR · hora de PR",`<div class="card tabla"><table><thead><tr><th>Visto</th><th>Aeronave</th><th>País</th><th>Tipo</th><th>Distancia a PR</th></tr></thead><tbody>${avs}</tbody></table></div>`)}
-    ${sec("tfr","🛩️ Restricciones aéreas y espacio aéreo","FAA · oficial",`<div class="card tabla"><p class="det" style="margin:0 0 8px">Se muestran las de Puerto Rico, las instrucciones especiales para todo EE. UU. y las de seguridad/VIP creadas en las últimas 48 h.</p>
-      <table><thead><tr><th>NOTAM</th><th>Tipo</th><th>Lugar / alcance</th><th>Estado</th><th>Creada</th></tr></thead><tbody>${tf}</tbody></table></div>
-    <section class="card"><h2><span>🛫 Estado del espacio aéreo de EE. UU.</span><span class="det">${esc(ea.actualizado||"")}</span></h2>
-      <ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin ground stops ni cierres de aeropuertos en este momento.</p>':""}
-      <p class="det">Demoras programadas: ${(ea.demoras_programadas||[]).length} aeropuerto(s).</p></section>`)}
-    ${sec("buques","⚓ Reportes de buques militares en el Caribe","con fecha del reporte",`<section class="card"><ul class="lista">${bqs}</ul></section>`)}
-    ${sec("senales","📌 Señales oficiales y técnicas","",`<div class="grid">${tarjetas}</div>`)}
-    ${sec("titulares","📰 Titulares en vivo","prensa · sin verificar",`<section class="card"><ul class="lista">${tit}</ul></section>`)}
-    ${sec("historial","🕘 Historial de alertas","",`<section class="card"><ul>${hist}</ul></section>`)}
-    ${sec("fuentes","🔌 Fuentes y consulta manual","",`<div class="grid"><section class="card"><h2>🔌 Fuentes</h2><ul class="cols">${fu}</ul></section>
-    <section class="card"><h2>🔎 Consulta manual</h2><ul class="cols">${man}</ul></section></div>`)}
-    <p class="det"><button id="salir" class="sec2">Cerrar sesión en este dispositivo</button></p>`;
+    ${grupo("En Puerto Rico",
+      fila("energia","⚡","Electricidad",esc(prE.estado||"Sin datos"),prE.nivel||0,energiaHTML(d))+
+      fila("interrupciones","🌐","Internet y aplicaciones",`${itsPR.length?itsPR.length+" problema(s) que pueden afectar a PR":"Sin problemas que afecten a PR"}`,mx(itsPR.map(x=>x.nivel)),
+        `${crOk?"":`<p class="det">Cloudflare Radar no está conectado; las demás fuentes funcionan.</p>`}${itf}
+        <p class="det" style="margin-top:12px">Ver en vivo: ${enlace("https://radar.cloudflare.com/pr","Cloudflare Radar PR")} · ${enlace("https://downdetector.com/","Downdetector")} · ${enlace("https://ioda.inetintel.cc.gatech.edu/country/PR","IODA PR")}</p>`)+
+      fila("puertos","🚢","Puertos y suministros",ptsMal?`${ptsMal} puerto(s) con posible problema`:`Los ${(d.puertos||[]).length} puertos principales operan normal`,mx((d.puertos||[]).map(p=>p.nivel)),`<div class="gridp">${pts}</div>`)+
+      fila("senales","📌","Avisos oficiales",senOf.length?`${senOf.length} aviso(s) de agencias y sensores`:"Sin avisos",mx(senOf.map(s=>s.nivel)),`<div class="grid">${tarjetas}</div>`))}
+    ${grupo("Militar y espacio aéreo",
+      fila("aeronaves","✈️","Aviones militares cerca",ultAv?`Último: ${esc(ultAv.callsign)}, ${fechaPR(ultAv.visto_utc)}`:"Ninguno registrado",null,`<ul class="lista">${avs}</ul>`)+
+      fila("buques","⚓","Barcos militares en el Caribe",ultBq?`Último reporte: ${fechaPR(ultBq.fecha_utc)}`:"Sin reportes",null,`<ul class="lista">${bqs}</ul>`)+
+      fila("tfr","🛩️","Espacio aéreo",nuevasTfr?`${nuevasTfr} restricción(es) nueva(s)`:`${(d.tfrs||[]).length} restricción(es) vigente(s)`,nuevasTfr?1:0,
+        `<p class="det">Restricciones de vuelo de la FAA en PR, las especiales para todo EE. UU. y las de seguridad de las últimas 48 h.</p><ul class="lista">${tf}</ul>
+        <div class="bloque"><h3>Aeropuertos de EE. UU.</h3><ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin aeropuertos detenidos ni cerrados.</p>':""}
+        <p class="det">Con demoras programadas: ${(ea.demoras_programadas||[]).length}.</p></div>`))}
+    ${grupo("Noticias",
+      fila("medidores","🧭","Termómetro de noticias",medMax?`Lo más alto: ${esc(medMax.nombre)}`:"",medMax?medMax.nivel:0,`<p class="det">Cuánto se habla de cada tema comparado con lo normal. Toca uno para ver sus noticias.</p><div class="gridm">${med}</div>`)+
+      fila("titulares","📰","Titulares","Prensa sin verificar",null,`<ul class="lista">${tit}</ul>`)+
+      (nb?fila("netblocks","📣","Cortes de internet en el mundo","Reportes de NetBlocks",null,`<ul class="lista">${nb}</ul>`):""))}
+    ${grupo("Más",
+      fila("historial","🕘","Historial de alertas","",null,`<ul class="lista">${hist}</ul>`)+
+      fila("fuentes","🔌","Fuentes",fallas?`${fallas} sin responder ahora`:"Todas responden",null,`<ul class="cols">${fu}</ul><h3 style="margin-top:14px">Consulta manual</h3><ul class="cols">${man}</ul>`))}
+    <p><button id="salir" class="sec2">Cerrar sesión en este teléfono</button></p>`;
   document.getElementById("login").hidden=true; app.hidden=false;
 
   document.getElementById("salir").onclick=()=>{try{localStorage.removeItem("cf_k")}catch(e){} location.reload()};
