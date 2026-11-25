@@ -1146,19 +1146,30 @@ def _filtrar_tle(txt):
         out += [n, l1, l2]
     return "\n".join(out)
 
+_TLE_FALLOS = [0]
 def _tle(nombre, params):
     cache = ESTADO_REF.setdefault("tle_cache", {})
     c = cache.get(nombre)
     if c and (NOW - datetime.fromisoformat(c["t"])).total_seconds() < 4 * 3600:   # CelesTrak pide no repetir la misma consulta seguido
         return c["txt"]
-    txt = get("https://celestrak.org/NORAD/elements/gp.php", params={**params, "FORMAT": "tle"}).text
+    txt = ""
+    if _TLE_FALLOS[0] < 2:                     # si CelesTrak está caído, no insistir en cada consulta
+        for base in ("https://celestrak.org", "https://celestrak.com"):
+            try:
+                txt = get(base + "/NORAD/elements/gp.php", params={**params, "FORMAT": "tle"}).text
+                break
+            except Exception as e:
+                print("  ! TLE", nombre, base, str(e)[:60])
+        if "\n1 " not in txt:
+            _TLE_FALLOS[0] += 1
     if "\n1 " in txt:
         txt = _filtrar_tle(txt)
         cache[nombre] = {"t": NOW.isoformat(timespec="minutes"), "txt": txt}
         time.sleep(1)
-    elif c:
+        return txt
+    if c and (NOW - datetime.fromisoformat(c["t"])).total_seconds() < 4 * 86400:   # usar la copia guardada (vale unos días)
         return c["txt"]
-    return txt
+    raise RuntimeError("CelesTrak no responde y no hay copia guardada")
 
 def _subpunto(sat, dt):
     from sgp4.api import jday
