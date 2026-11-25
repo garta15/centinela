@@ -1,9 +1,10 @@
 {
- "actualizado_utc": "2026-11-25T16:58:04+00:00",
+ "actualizado_utc": "2026-11-25T17:00:38+00:00",
  "nivel": 2,
  "motor": "github",
  "fuentes_con_falla": [
-  "Aviones militares Caribe (ADS-B)",
-  "Buques AIS (AISStream)"
+  "Buques AIS (AISStream)",
+  "IODA por proveedor (ISP)",
+  "Internet PR/EE. UU. (IODA)"
  ]
 }

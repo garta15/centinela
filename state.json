@@ -31,9 +31,25 @@
   "0861bbf31deb": "2026-11-25T13:10:22+00:00",
   "3be56c5ef642": "2026-11-25T14:00:31+00:00",
   "85ef3a85a573": "2026-11-25T15:00:34+00:00",
-  "b023097312c3": "2026-11-25T16:40:20+00:00"
+  "b023097312c3": "2026-11-25T16:40:20+00:00",
+  "50b7f1168a5f": "2026-11-25T17:00:38+00:00"
  },
  "historial": [
+  {
+   "id": "50b7f1168a5f",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 85/100 (10 en 3 h · 59 en 24 h)",
+   "detalle": "Metro y Metrobús CDMX hoy: Estaciones sin servicio, desvíos y avance de trenes este miércoles 25 de noviembre - Tele Urban",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQaldqT1JjeURYQ3RwT0d5WDlGQjN6SjBQalh6VWk4VTE2NUpJdmZENkdXdFBZZ1JlQVo3bzY2TUFoSXdBY1hoRkQyUWRoSVIyMkpxNTBHYjJxY0hqX2R3MFJqZjZ3QkIwdmJfOUtzNU1vcDlZa2pTU3JPcUxOUVE1MENJT2dha09TX3ZhSGF5SGV6TjU5X3ZrLXZtaVBvU280SnVrbFBDVzJsWV9YdXdUYWVHbldzdE9XckE?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T17:00:38+00:00"
+  },
   {
    "id": "b023097312c3",
    "fuente": "Medidor de prensa",
@@ -531,7 +547,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  3,
   0,
   2,
   1,
@@ -626,7 +641,8 @@
   0,
   1,
   1,
-  1
+  1,
+  0
  ],
  "medidores_base": {
   "telecom": [
@@ -662,6 +678,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -841,7 +858,8 @@
    21,
    30,
    30,
-   21
+   21,
+   30
   ],
   "electrica": [
    13,
@@ -948,7 +966,8 @@
    80,
    67,
    62,
-   78
+   78,
+   79
   ],
   "ataque": [
    94,
@@ -1055,7 +1074,8 @@
    88,
    96,
    87,
-   96
+   96,
+   87
   ],
   "terror": [
    98,
@@ -1161,6 +1181,7 @@
    22,
    22,
    36,
+   22,
    22,
    22
   ],
@@ -1269,7 +1290,8 @@
    50,
    49,
    40,
-   50
+   50,
+   42
   ],
   "espacio": [
    10,
@@ -1376,7 +1398,8 @@
    23,
    20,
    20,
-   20
+   20,
+   23
   ],
   "caribe": [
    21,
@@ -1483,7 +1506,8 @@
    48,
    24,
    48,
-   47
+   47,
+   24
   ],
   "pr": [
    0,
@@ -1587,6 +1611,7 @@
    28,
    29,
    29,
+   59,
    59,
    59,
    59,
@@ -1752,14 +1777,6 @@
    "dist_pr_km": 1834,
    "primera_vez_utc": "2026-11-25T14:00+00:00",
    "trazas": [
-    {
-     "lat": 26.01,
-     "lon": -80.6,
-     "t": "2026-11-25T14:00+00:00",
-     "rumbo": 333.0,
-     "nudos": 297.0,
-     "alt": 14025
-    },
     {
      "lat": 26.71,
      "lon": -80.98,
@@ -2601,6 +2618,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
