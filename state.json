@@ -568,6 +568,7 @@
   1,
   2,
   0,
+  0,
   0
  ],
  "medidores_base": {
@@ -604,6 +605,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -743,6 +745,7 @@
    30,
    30,
    19,
+   30,
    30
   ],
   "electrica": [
@@ -830,7 +833,8 @@
    57,
    79,
    70,
-   56
+   56,
+   47
   ],
   "ataque": [
    94,
@@ -917,6 +921,7 @@
    90,
    95,
    96,
+   88,
    88
   ],
   "terror": [
@@ -1004,7 +1009,8 @@
    33,
    35,
    20,
-   22
+   22,
+   20
   ],
   "emergencia": [
    95,
@@ -1091,7 +1097,8 @@
    37,
    38,
    40,
-   37
+   37,
+   48
   ],
   "espacio": [
    10,
@@ -1178,7 +1185,8 @@
    31,
    32,
    30,
-   24
+   24,
+   28
   ],
   "caribe": [
    21,
@@ -1265,7 +1273,8 @@
    45,
    46,
    47,
-   46
+   46,
+   23
   ],
   "pr": [
    0,
@@ -1351,6 +1360,7 @@
    58,
    28,
    59,
+   28,
    28,
    28
   ]
@@ -2261,6 +2271,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
@@ -4217,182 +4228,6 @@
    ],
    "motivo": "Temporary flight restrictions for VIP Movement",
    "texto": "!FDC 6/9446 ZID OH..AIRSPACE CINCINNATI, OHIO..TEMPORARY FLIGHT RESTRICTIONS. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 91.141, ALL ACFT FLT OPS INCLUDING REMOTE CONTROLLED ACFT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 5NM RADIUS OF 390255N0844004W (FLM329029.2) SFC-4999FT AGL EFFECTIVE 2611242245 UTC UNTIL 2611250015 UTC. WI AN AREA DEFINED AS 5NM RADIUS OF 390731N08427",
-   "altitud": ""
-  },
-  "6/9435": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       38.31668433,
-       -79.79166667
-      ],
-      [
-       38.3164308,
-       -79.78798933
-      ],
-      [
-       38.31567792,
-       -79.78442381
-      ],
-      [
-       38.31444858,
-       -79.7810785
-      ],
-      [
-       38.31278016,
-       -79.77805509
-      ],
-      [
-       38.31072337,
-       -79.77544548
-      ],
-      [
-       38.30834074,
-       -79.77332896
-      ],
-      [
-       38.3057047,
-       -79.77176981
-      ],
-      [
-       38.30289535,
-       -79.77081535
-      ],
-      [
-       38.29999809,
-       -79.77049453
-      ],
-      [
-       38.29710094,
-       -79.77081701
-      ],
-      [
-       38.29429192,
-       -79.77177292
-      ],
-      [
-       38.29165638,
-       -79.77333316
-      ],
-      [
-       38.28927437,
-       -79.77545025
-      ],
-      [
-       38.28721824,
-       -79.77805986
-      ],
-      [
-       38.28555043,
-       -79.7810827
-      ],
-      [
-       38.28432159,
-       -79.78442693
-      ],
-      [
-       38.28356903,
-       -79.78799099
-      ],
-      [
-       38.28331562,
-       -79.79166667
-      ],
-      [
-       38.28356903,
-       -79.79534234
-      ],
-      [
-       38.28432159,
-       -79.79890641
-      ],
-      [
-       38.28555043,
-       -79.80225064
-      ],
-      [
-       38.28721824,
-       -79.80527347
-      ],
-      [
-       38.28927437,
-       -79.80788308
-      ],
-      [
-       38.29165638,
-       -79.81000017
-      ],
-      [
-       38.29429192,
-       -79.81156041
-      ],
-      [
-       38.29710094,
-       -79.81251632
-      ],
-      [
-       38.29999809,
-       -79.81283881
-      ],
-      [
-       38.30289535,
-       -79.81251798
-      ],
-      [
-       38.3057047,
-       -79.81156353
-      ],
-      [
-       38.30834074,
-       -79.81000437
-      ],
-      [
-       38.31072337,
-       -79.80788785
-      ],
-      [
-       38.31278016,
-       -79.80527824
-      ],
-      [
-       38.31444858,
-       -79.80225484
-      ],
-      [
-       38.31567792,
-       -79.79890952
-      ],
-      [
-       38.3164308,
-       -79.795344
-      ],
-      [
-       38.31668433,
-       -79.79166667
-      ],
-      [
-       38.3,
-       -79.79166667
-      ],
-      [
-       38.3,
-       -79.79166667
-      ],
-      [
-       38.91443583,
-       -80.0992725
-      ],
-      [
-       38.91443583,
-       -80.0992725
-      ]
-     ]
-    }
-   ],
-   "motivo": "TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS",
-   "texto": "!FDC 6/9435 ZDC VA..AIRSPACE 69NM NW LYNCHBURG, VA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 1NM RADIUS OF 381800N0794730W (EKN166039.6) SFC-5200FT MSL EFFECTIVE 2611231400 UTC UNTIL 2611302300 UTC DLY 1400-2300. TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS VIRGINIA INTERAGENCY COORDINATION CENTER , LITTLE RIDGE, TEL 434-423-2002, /FREQ 123.125 IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE WASHINGTON /ZDC/ ARTCC, TEL 703-771-3470, IS THE CDN FAC. 2611231400-2611302300",
    "altitud": ""
   },
   "6/9432": {
