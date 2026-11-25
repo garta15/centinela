@@ -18,9 +18,25 @@
   "1262577aa1e4": "2026-11-25T01:14:31+00:00",
   "a80d33cc1656": "2026-11-25T05:10:24+00:00",
   "9afcc9953d5f": "2026-11-25T05:10:24+00:00",
-  "ae9b9df055ea": "2026-11-25T06:10:23+00:00"
+  "ae9b9df055ea": "2026-11-25T06:10:23+00:00",
+  "4016a71b6e2f": "2026-11-25T06:20:23+00:00"
  },
  "historial": [
+  {
+   "id": "4016a71b6e2f",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 78/100 (2 en 3 h · 31 en 24 h)",
+   "detalle": "Aurora alert: Solar wind may trigger northern lights in Maine and other U.S. states on Thanksgiving - Starlust.org",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNU3Y2bGM3b1o0NkxaQlZPWEF1X3RuLUEwYkpqMFQzYkU0YTRHdHJoZ1Z4SmJQV1NSOS1DVnBBTmhGbF9NNkVrVkYyRVhacWFQYVZNRmZmclNlQ2UybVRXRU9RU2d2cnB3bm1HX3pzWE1vd1FrUUZLTWVlS2hJM2tNdi10ajU2N2ZkaXlPdmlBRG53OFFBbGZickZHMUg5aHZHNW5nMzF5Sjd4V3VUYUxaajFVWlBncTBkVmtF?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T06:20:23+00:00"
+  },
   {
    "id": "ae9b9df055ea",
    "fuente": "Medidor de prensa",
@@ -363,6 +379,7 @@
   1,
   1,
   1,
+  1,
   1
  ],
  "medidores_base": {
@@ -399,6 +416,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -448,7 +466,8 @@
    26,
    18,
    18,
-   26
+   26,
+   18
   ],
   "electrica": [
    13,
@@ -490,7 +509,8 @@
    56,
    45,
    62,
-   45
+   45,
+   61
   ],
   "ataque": [
    94,
@@ -532,7 +552,8 @@
    89,
    99,
    99,
-   99
+   99,
+   91
   ],
   "terror": [
    98,
@@ -574,7 +595,8 @@
    35,
    33,
    34,
-   21
+   21,
+   34
   ],
   "emergencia": [
    95,
@@ -616,7 +638,8 @@
    52,
    31,
    51,
-   30
+   30,
+   52
   ],
   "espacio": [
    10,
@@ -658,7 +681,8 @@
    31,
    31,
    27,
-   27
+   27,
+   31
   ],
   "caribe": [
    21,
@@ -700,6 +724,7 @@
    54,
    57,
    55,
+   28,
    28
   ],
   "pr": [
@@ -742,7 +767,8 @@
    53,
    55,
    27,
-   56
+   56,
+   58
   ]
  },
  "log_aviones": [
@@ -753,21 +779,13 @@
    "desc": "KC-135 (reabastecimiento)",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.92,
-   "lon": -79.71,
-   "alt": 22000,
-   "visto_utc": "2026-11-25T06:10+00:00",
+   "lat": 26.95,
+   "lon": -79.69,
+   "alt": 21975,
+   "visto_utc": "2026-11-25T06:20+00:00",
    "dist_pr_km": 1657,
    "primera_vez_utc": "2026-11-25T05:00+00:00",
    "trazas": [
-    {
-     "lat": 27.09,
-     "lon": -79.71,
-     "t": "2026-11-25T05:20+00:00",
-     "rumbo": 131.0,
-     "nudos": 551.0,
-     "alt": 21975
-    },
     {
      "lat": 27.08,
      "lon": -79.72,
@@ -807,6 +825,14 @@
      "rumbo": 208.0,
      "nudos": 438.0,
      "alt": 22000
+    },
+    {
+     "lat": 26.95,
+     "lon": -79.69,
+     "t": "2026-11-25T06:20+00:00",
+     "rumbo": 208.0,
+     "nudos": 357.0,
+     "alt": 21975
     }
    ]
   },
@@ -1582,6 +1608,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
