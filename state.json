@@ -15,9 +15,41 @@
   "2b479e7b7631": "2026-11-24T17:16:31+00:00",
   "0fb612b859f6": "2026-11-24T20:05:36+00:00",
   "d40c0c16ee64": "2026-11-24T20:05:36+00:00",
-  "1262577aa1e4": "2026-11-25T01:14:31+00:00"
+  "1262577aa1e4": "2026-11-25T01:14:31+00:00",
+  "a80d33cc1656": "2026-11-25T05:10:24+00:00",
+  "9afcc9953d5f": "2026-11-25T05:10:24+00:00"
  },
  "historial": [
+  {
+   "id": "9afcc9953d5f",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 100/100 (15 en 3 h · 48 en 24 h)",
+   "detalle": "Jennifer Barreto, la primera madre en ganar una corona de Miss Universo - Ellas.pa",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNeFJFWkJUOU9qU2J5eFVkUUh3Nkg5QWFlVUtYUzFoMU9nbEZ5SnpRdl93cDZmQThxUFpyWlBjTWVBQ1Z3U3YwRmNQMVR6WHNSMVNXLUtwMERCd29KLVZQYlJDTGU5RjRTdmMtYWNGVVlWSF91SnNUYTRwZHBfNDRYNXNSUDJyeFdTTW9VblR3LUh4aFZ1VnNDMTZsZE1JU0FiMXc?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T05:10:24+00:00"
+  },
+  {
+   "id": "a80d33cc1656",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 82/100 (1 en 3 h · 31 en 24 h)",
+   "detalle": "Airborne-Innovation 11.24.26: False UAV Report, DCA Heli Procedures, F-35C - Aero-News Network",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNRkF3WmxVcXFLUjJzV043NEdTRmI1UnZyYzd4WGlaOUpjN1d1eXJkblpNRzJBbmZKV2xBakZLQzdNYU1KcUNwcFZ0QjM1X0pOVVRNdW5CcHpnLVVQR1JkbXBmS2JCMWhZOFBvZDhUWW1FRFlKSXl2MFY4Z1NrY2Qtd1oxMlJOZllKOGNRd2NJQXkxVnpOMnE0?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T05:10:24+00:00"
+  },
   {
    "id": "1262577aa1e4",
    "fuente": "Medidor de prensa",
@@ -273,7 +305,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -308,7 +340,8 @@
   3,
   3,
   2,
-  1
+  1,
+  2
  ],
  "medidores_base": {
   "telecom": [
@@ -344,6 +377,7 @@
    1,
    1,
    0,
+   1,
    1
   ],
   "ciber": [
@@ -379,7 +413,8 @@
    26,
    32,
    0,
-   18
+   18,
+   26
   ],
   "electrica": [
    13,
@@ -414,7 +449,8 @@
    65,
    69,
    0,
-   59
+   59,
+   58
   ],
   "ataque": [
    94,
@@ -449,7 +485,8 @@
    100,
    95,
    0,
-   91
+   91,
+   99
   ],
   "terror": [
    98,
@@ -484,7 +521,8 @@
    23,
    34,
    0,
-   17
+   17,
+   18
   ],
   "emergencia": [
    95,
@@ -519,6 +557,7 @@
    25,
    33,
    0,
+   32,
    32
   ],
   "espacio": [
@@ -554,7 +593,8 @@
    26,
    28,
    0,
-   28
+   28,
+   31
   ],
   "caribe": [
    21,
@@ -589,6 +629,7 @@
    48,
    26,
    0,
+   55,
    55
   ],
   "pr": [
@@ -624,7 +665,8 @@
    26,
    33,
    0,
-   27
+   27,
+   48
   ]
  },
  "log_aviones": [
@@ -635,11 +677,11 @@
    "desc": "KC-135 (reabastecimiento)",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.56,
-   "lon": -79.9,
-   "alt": 22000,
-   "visto_utc": "2026-11-25T05:00+00:00",
-   "dist_pr_km": 1651,
+   "lat": 26.73,
+   "lon": -79.8,
+   "alt": 22025,
+   "visto_utc": "2026-11-25T05:10+00:00",
+   "dist_pr_km": 1652,
    "primera_vez_utc": "2026-11-25T05:00+00:00",
    "trazas": [
     {
@@ -649,6 +691,38 @@
      "rumbo": 227.0,
      "nudos": 319.0,
      "alt": 22000
+    },
+    {
+     "lat": 26.73,
+     "lon": -79.8,
+     "t": "2026-11-25T05:10+00:00",
+     "rumbo": 204.0,
+     "nudos": 426.0,
+     "alt": 22025
+    }
+   ]
+  },
+  {
+   "hex": "add70a",
+   "callsign": "BAT91",
+   "tipo": "DH8B",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 10.6,
+   "lon": -61.37,
+   "alt": 450,
+   "visto_utc": "2026-11-25T05:10+00:00",
+   "dist_pr_km": 1017,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 10.6,
+     "lon": -61.37,
+     "t": "2026-11-25T05:10+00:00",
+     "rumbo": 90.67,
+     "nudos": 86.0,
+     "alt": 450
     }
    ]
   },
@@ -724,21 +798,6 @@
    "alt": 11950,
    "visto_utc": "2026-11-24T20:05+00:00",
    "dist_pr_km": 1777,
-   "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": []
-  },
-  {
-   "hex": "add70a",
-   "callsign": "BAT91",
-   "tipo": "DH8B",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 10.6,
-   "lon": -61.41,
-   "alt": 1200,
-   "visto_utc": "2026-11-24T20:05+00:00",
-   "dist_pr_km": 1015,
    "primera_vez_utc": "2026-11-24T20:05+00:00",
    "trazas": []
   },
@@ -1415,6 +1474,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7
