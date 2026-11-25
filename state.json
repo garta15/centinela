@@ -24,9 +24,25 @@
   "52ebbfc0d87e": "2026-11-25T07:20:21+00:00",
   "d0b9d2f11015": "2026-11-25T07:20:21+00:00",
   "e6bbc6d981a6": "2026-11-25T08:00:27+00:00",
-  "df080bfc8add": "2026-11-25T10:00:42+00:00"
+  "df080bfc8add": "2026-11-25T10:00:42+00:00",
+  "3f22ffef2cca": "2026-11-25T11:30:25+00:00"
  },
  "historial": [
+  {
+   "id": "3f22ffef2cca",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 72/100 (9 en 3 h · 47 en 24 h)",
+   "detalle": "WHO pledges $2m to support Cuba's healthcare - News of Bahrain",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOM2xMZDk4d0w0eE9KRS1sZjN2N0hPSUZ3QTA0R3Bkc24zX0E2bTgtVjZyUElpRklWbVJyQkc1bkpaS2ZEVWpXanFWcEMxZTQtRnpkUm9BVlUtVnJVNEVSV29xUWNvMlMyNmVPcFVXalVsbGtObkIzOVdSX3QzVWpLMWtjVWN4bkZXUkQ0?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T11:30:25+00:00"
+  },
   {
    "id": "df080bfc8add",
    "fuente": "Medidor de prensa",
@@ -417,7 +433,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -491,6 +507,7 @@
   0,
   1,
   0,
+  0,
   0
  ],
  "medidores_base": {
@@ -527,6 +544,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -640,7 +658,8 @@
    18,
    18,
    27,
-   29
+   29,
+   27
   ],
   "electrica": [
    13,
@@ -714,7 +733,8 @@
    46,
    64,
    47,
-   75
+   75,
+   59
   ],
   "ataque": [
    94,
@@ -788,7 +808,8 @@
    90,
    90,
    96,
-   90
+   90,
+   96
   ],
   "terror": [
    98,
@@ -862,7 +883,8 @@
    31,
    34,
    32,
-   34
+   34,
+   33
   ],
   "emergencia": [
    95,
@@ -936,6 +958,7 @@
    48,
    48,
    49,
+   36,
    36
   ],
   "espacio": [
@@ -1010,7 +1033,8 @@
    25,
    26,
    32,
-   32
+   32,
+   26
   ],
   "caribe": [
    21,
@@ -1084,7 +1108,8 @@
    24,
    42,
    26,
-   45
+   45,
+   47
   ],
   "pr": [
    0,
@@ -1158,7 +1183,8 @@
    27,
    27,
    60,
-   60
+   60,
+   27
   ]
  },
  "log_aviones": [
@@ -1176,14 +1202,6 @@
    "dist_pr_km": 44,
    "primera_vez_utc": "2026-11-25T08:10+00:00",
    "trazas": [
-    {
-     "lat": 18.43,
-     "lon": -66.14,
-     "t": "2026-11-25T08:30+00:00",
-     "rumbo": 90.72,
-     "nudos": 160.0,
-     "alt": 1975
-    },
     {
      "lat": 18.5,
      "lon": -66.29,
@@ -1208,14 +1226,6 @@
    "dist_pr_km": 1949,
    "primera_vez_utc": "2026-11-25T05:00+00:00",
    "trazas": [
-    {
-     "lat": 27.31,
-     "lon": -81.0,
-     "t": "2026-11-25T08:30+00:00",
-     "rumbo": 188.0,
-     "nudos": 292.0,
-     "alt": 21000
-    },
     {
      "lat": 27.24,
      "lon": -81.09,
@@ -2035,6 +2045,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
