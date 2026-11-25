@@ -208,6 +208,8 @@ body.vmapa main{max-width:1240px}
 .leyenda span{display:inline-flex;align-items:center;gap:6px}.leyenda .sw{width:12px;height:12px;border-radius:3px;display:inline-block}.leyenda .sw.r{border-radius:50%}
 .ico-pto{width:16px;height:16px;border-radius:4px;border:2px solid #fff;box-shadow:0 0 3px #000}
 .leyenda .i{width:16px;height:16px;color:#fff}.leyenda .tri{display:inline-block}
+.nnum{font:600 16px/1 "IBM Plex Sans",sans-serif;color:var(--c);margin:-8px 0 16px}
+.pel{display:flex;flex-direction:column;justify-content:flex-end;gap:2px}.pnum{font:800 18px/1 "Barlow Condensed",sans-serif;opacity:.9}.pel.on .pnum{font-size:22px}
 </style>
 <link rel="icon" type="image/svg+xml" href="icono.svg"><link rel="apple-touch-icon" href="icono-180.png">
 </head><body><main>
@@ -505,11 +507,11 @@ function pintar(d){
   if(VISTA==="mapa"){
     document.body.classList.add("vmapa");
     app.innerHTML=`<div class="mapbar" style="border-left:8px solid ${COL[n]}"><a href="./" class="volver">‹ Panel</a>
-      <div><span class="dot" style="background:${COL[n]};display:inline-block;margin:0 4px 0 0"></span><b>${FR[n]}</b> <span class="det">· Riesgo familiar ${esc((d.riesgo_familiar?.etiqueta||"").toLowerCase())} · actualizado ${hace(d.actualizado_utc)}</span></div></div>
+      <div><span class="dot" style="background:${COL[n]};display:inline-block;margin:0 4px 0 0"></span><b>Nivel ${n} · ${FR[n]}</b> <span class="det">· Riesgo familiar ${esc((d.riesgo_familiar?.etiqueta||"").toLowerCase())} · actualizado ${hace(d.actualizado_utc)}</span></div></div>
       ${mapaHTML(d,"calc(100vh - 230px)")}`;
     document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
   }
-  const esc5=NIV.map((t,i)=>`<li class="pel${i===n?" on":""}${i<n?" bajo":""}" style="--c:${COL[i]}"><span>${FR[i]}</span></li>`).join("");
+  const esc5=NIV.map((t,i)=>`<li class="pel${i===n?" on":""}${i<n?" bajo":""}" style="--c:${COL[i]}"><b class="pnum">${i}</b><span>${FR[i]}</span></li>`).join("");
   const mx=a=>a.reduce((x,y)=>Math.max(x,y||0),0);
   const e=d.energia||{},prE=e.pr||{};
   const itsPR=its.filter(x=>(x.prox??1)<=1);
@@ -522,7 +524,7 @@ function pintar(d){
   app.innerHTML=`<header class="cab"><div class="marca">${ic("logo","logo")}Centinela Familiar</div>
       <div class="det">Actualizado ${hace(d.actualizado_utc)}</div></header>
     <section class="hero2" style="--c:${COL[n]}"><div class="hz">Nivel de amenaza en Puerto Rico</div>
-      <div class="nivel">${FR[n]}</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
+      <div class="nivel">${FR[n]}</div><div class="nnum">Nivel ${n} de 4</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
       <p class="que">${QUE[n]}</p>
       ${n>0?`<details class="porque"><summary>¿Por qué?</summary><p>${esc(d.resumen)}</p></details>`:""}</section>
     ${riesgoHTML(d)}
