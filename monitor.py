@@ -1147,6 +1147,22 @@ def _filtrar_tle(txt):
     return "\n".join(out)
 
 _TLE_FALLOS = [0]
+_ST = {"s": None}
+_ST_CONSULTA = {"gps-ops": "OBJECT_NAME/~~NAVSTAR", "usa": "OBJECT_NAME/^USA", "cosmos": "OBJECT_NAME/~~COSMOS 2",
+                "yaogan": "OBJECT_NAME/~~YAOGAN", "shiyan": "OBJECT_NAME/~~SHIYAN", "shijian": "OBJECT_NAME/~~SHIJIAN",
+                "tjs": "OBJECT_NAME/^TJS", "military": "OBJECT_NAME/~~PRAETORIAN", "last-30-days": "LAUNCH_DATE/>now-30"}
+def _spacetrack(nombre):
+    """Respaldo gratis (requiere cuenta): Space-Track.org, del Comando Espacial de EE. UU."""
+    u, pw = os.getenv("SPACETRACK_USER"), os.getenv("SPACETRACK_PASS")
+    if not (u and pw) or nombre not in _ST_CONSULTA: return ""
+    if _ST["s"] is None:
+        ses = requests.Session()
+        r = ses.post("https://www.space-track.org/ajaxauth/login", data={"identity": u, "password": pw}, timeout=30)
+        r.raise_for_status()
+        _ST["s"] = ses
+    q = f"https://www.space-track.org/basicspacedata/query/class/gp/{_ST_CONSULTA[nombre]}/DECAY_DATE/null-val/EPOCH/%3Enow-10/OBJECT_TYPE/PAYLOAD/format/3le"
+    r = _ST["s"].get(q.replace(" ", "%20"), timeout=60); r.raise_for_status()
+    return "\n".join(x[2:] if x.startswith("0 ") else x for x in r.text.splitlines())
 def _tle(nombre, params):
     cache = ESTADO_REF.setdefault("tle_cache", {})
     c = cache.get(nombre)
@@ -1162,6 +1178,11 @@ def _tle(nombre, params):
                 print("  ! TLE", nombre, base, str(e)[:60])
         if "\n1 " not in txt:
             _TLE_FALLOS[0] += 1
+    if "\n1 " not in txt:
+        try:
+            txt = _spacetrack(nombre)
+        except Exception as e:
+            print("  ! Space-Track", nombre, str(e)[:80])
     if "\n1 " in txt:
         txt = _filtrar_tle(txt)
         cache[nombre] = {"t": NOW.isoformat(timespec="minutes"), "txt": txt}

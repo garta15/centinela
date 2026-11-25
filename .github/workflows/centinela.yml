@@ -62,6 +62,8 @@ jobs:
           FAMILY_KEY: ${{ secrets.FAMILY_KEY }}
           CLOUDFLARE_RADAR_TOKEN: ${{ secrets.CLOUDFLARE_RADAR_TOKEN }}
           AISSTREAM_KEY: ${{ secrets.AISSTREAM_KEY }}
+          SPACETRACK_USER: ${{ secrets.SPACETRACK_USER }}
+          SPACETRACK_PASS: ${{ secrets.SPACETRACK_PASS }}
           ZONAS_FAMILIA: ${{ secrets.ZONAS_FAMILIA }}
           PAISES_FAMILIA: ${{ secrets.PAISES_FAMILIA }}
         run: python monitor.py
