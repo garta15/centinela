@@ -29,9 +29,25 @@
   "3493ee15eb38": "2026-11-25T11:40:22+00:00",
   "3ce49ac41311": "2026-11-25T12:00:29+00:00",
   "0861bbf31deb": "2026-11-25T13:10:22+00:00",
-  "3be56c5ef642": "2026-11-25T14:00:31+00:00"
+  "3be56c5ef642": "2026-11-25T14:00:31+00:00",
+  "85ef3a85a573": "2026-11-25T15:00:34+00:00"
  },
  "historial": [
+  {
+   "id": "85ef3a85a573",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 94/100 (12 en 3 h · 59 en 24 h)",
+   "detalle": "Jennifer Baretto hace historia: primera madre Miss Universe - AhoraMismo.com",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNOEJOQVhfS0xHUjNLcTFWZE1rUXB2NEdTcy1OOVVvaWJSeHZPcWdpNkpPZXhibFdYU2l5UU5DNmVpYlQ1bzBRQ2FWaVN6WGRYTmQ5MEwyVEF0SGRNelFoUkxiTU1sN2JnYWUwLUg5TGhLVWd6a0FjR2hpMUItd3BvaDQwdTVyUWdPUng0TmFmRm1Fckg4aUZvMUJvOExiUEVKa24xbHNYdzY?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T15:00:34+00:00"
+  },
   {
    "id": "3be56c5ef642",
    "fuente": "Medidor de prensa",
@@ -497,7 +513,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -592,6 +608,7 @@
   2,
   1,
   0,
+  1,
   1
  ],
  "medidores_base": {
@@ -628,6 +645,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -783,6 +801,7 @@
    20,
    30,
    31,
+   21,
    21
   ],
   "electrica": [
@@ -878,7 +897,8 @@
    48,
    69,
    84,
-   71
+   71,
+   61
   ],
   "ataque": [
    94,
@@ -972,6 +992,7 @@
    88,
    95,
    87,
+   95,
    95,
    95
   ],
@@ -1068,7 +1089,8 @@
    22,
    35,
    34,
-   35
+   35,
+   22
   ],
   "emergencia": [
    95,
@@ -1163,7 +1185,8 @@
    48,
    49,
    48,
-   40
+   40,
+   49
   ],
   "espacio": [
    10,
@@ -1258,7 +1281,8 @@
    23,
    28,
    27,
-   26
+   26,
+   23
   ],
   "caribe": [
    21,
@@ -1353,7 +1377,8 @@
    49,
    49,
    48,
-   50
+   50,
+   25
   ],
   "pr": [
    0,
@@ -1448,22 +1473,23 @@
    59,
    59,
    59,
-   28
+   28,
+   59
   ]
  },
  "log_aviones": [
   {
    "hex": "af3be1",
-   "callsign": "6064",
+   "callsign": "C6064",
    "tipo": "H60",
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 27.91,
-   "lon": -82.7,
-   "alt": 75,
-   "visto_utc": "2026-11-25T14:50+00:00",
-   "dist_pr_km": 1965,
+   "lat": 27.92,
+   "lon": -82.74,
+   "alt": 825,
+   "visto_utc": "2026-11-25T15:00+00:00",
+   "dist_pr_km": 1970,
    "primera_vez_utc": "2026-11-25T14:50+00:00",
    "trazas": [
     {
@@ -1473,6 +1499,14 @@
      "rumbo": 0.0,
      "nudos": 0.7,
      "alt": 75
+    },
+    {
+     "lat": 27.92,
+     "lon": -82.74,
+     "t": "2026-11-25T15:00+00:00",
+     "rumbo": 269.48,
+     "nudos": 111.0,
+     "alt": 825
     }
    ]
   },
@@ -2445,6 +2479,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
