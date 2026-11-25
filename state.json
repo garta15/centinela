@@ -758,7 +758,6 @@
   1,
   1,
   1,
-  1,
   2,
   2,
   2,
@@ -848,6 +847,7 @@
   4,
   3,
   4,
+  7,
   7
  ],
  "medidores_base": {
@@ -962,6 +962,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1137,7 +1138,8 @@
    21,
    33,
    21,
-   22
+   22,
+   0
   ],
   "electrica": [
    13,
@@ -1281,7 +1283,8 @@
    64,
    76,
    62,
-   64
+   64,
+   0
   ],
   "ataque": [
    94,
@@ -1425,7 +1428,8 @@
    97,
    94,
    97,
-   95
+   95,
+   0
   ],
   "terror": [
    98,
@@ -1569,7 +1573,8 @@
    53,
    26,
    26,
-   26
+   26,
+   0
   ],
   "emergencia": [
    95,
@@ -1713,7 +1718,8 @@
    81,
    84,
    83,
-   80
+   80,
+   0
   ],
   "espacio": [
    10,
@@ -1857,7 +1863,8 @@
    23,
    23,
    24,
-   24
+   24,
+   0
   ],
   "caribe": [
    21,
@@ -2001,7 +2008,8 @@
    21,
    21,
    43,
-   43
+   43,
+   0
   ],
   "pr": [
    0,
@@ -2145,7 +2153,8 @@
    57,
    56,
    58,
-   29
+   29,
+   0
   ]
  },
  "log_aviones": [
@@ -2156,21 +2165,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.17,
-   "lon": -79.86,
-   "alt": 3175,
-   "visto_utc": "2026-11-25T22:10+00:00",
-   "dist_pr_km": 1625,
+   "lat": 26.07,
+   "lon": -80.14,
+   "alt": 175,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 1644,
    "primera_vez_utc": "2026-11-25T18:40+00:00",
    "trazas": [
-    {
-     "lat": 27.99,
-     "lon": -82.76,
-     "t": "2026-11-25T21:20+00:00",
-     "rumbo": 311.26,
-     "nudos": 206.2,
-     "alt": 1975
-    },
     {
      "lat": 27.48,
      "lon": -82.51,
@@ -2210,6 +2211,14 @@
      "rumbo": 108.26,
      "nudos": 210.6,
      "alt": 3175
+    },
+    {
+     "lat": 26.07,
+     "lon": -80.14,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 271.15,
+     "nudos": 100.0,
+     "alt": 175
     }
    ]
   },
@@ -2220,11 +2229,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.18,
-   "lon": -80.11,
-   "alt": 6175,
-   "visto_utc": "2026-11-25T22:10+00:00",
-   "dist_pr_km": 1647,
+   "lat": 26.07,
+   "lon": -80.05,
+   "alt": 1975,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 1636,
    "primera_vez_utc": "2026-11-25T18:50+00:00",
    "trazas": [
     {
@@ -2266,6 +2275,14 @@
      "rumbo": 84.31,
      "nudos": 272.3,
      "alt": 6175
+    },
+    {
+     "lat": 26.07,
+     "lon": -80.05,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 268.09,
+     "nudos": 120.1,
+     "alt": 1975
     }
    ]
   },
@@ -2276,11 +2293,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.36,
-   "lon": -81.82,
-   "alt": 4175,
-   "visto_utc": "2026-11-25T22:10+00:00",
-   "dist_pr_km": 1808,
+   "lat": 26.59,
+   "lon": -81.86,
+   "alt": 700,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 1822,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
     {
@@ -2322,6 +2339,14 @@
      "rumbo": 234.29,
      "nudos": 157.6,
      "alt": 4175
+    },
+    {
+     "lat": 26.59,
+     "lon": -81.86,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 50.81,
+     "nudos": 118.7,
+     "alt": 700
     }
    ]
   },
@@ -2332,11 +2357,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.26,
-   "lon": -82.15,
-   "alt": 25950,
-   "visto_utc": "2026-11-25T22:10+00:00",
-   "dist_pr_km": 1831,
+   "lat": 25.87,
+   "lon": -80.92,
+   "alt": 16075,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 1702,
    "primera_vez_utc": "2026-11-25T22:00+00:00",
    "trazas": [
     {
@@ -2354,6 +2379,14 @@
      "rumbo": 94.1,
      "nudos": 420.1,
      "alt": 25950
+    },
+    {
+     "lat": 25.87,
+     "lon": -80.92,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 111.1,
+     "nudos": 333.3,
+     "alt": 16075
     }
    ]
   },
@@ -2366,19 +2399,11 @@
    "pais": "Francia",
    "lat": 16.2,
    "lon": -61.49,
-   "alt": 125,
-   "visto_utc": "2026-11-25T22:10+00:00",
-   "dist_pr_km": 586,
+   "alt": 400,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 587,
    "primera_vez_utc": "2026-11-25T20:10+00:00",
    "trazas": [
-    {
-     "lat": 16.24,
-     "lon": -61.52,
-     "t": "2026-11-25T20:10+00:00",
-     "rumbo": 213.98,
-     "nudos": 55.5,
-     "alt": 400
-    },
     {
      "lat": 16.14,
      "lon": -61.47,
@@ -2418,6 +2443,70 @@
      "rumbo": 78.11,
      "nudos": 19.4,
      "alt": 125
+    },
+    {
+     "lat": 16.2,
+     "lon": -61.49,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 254.62,
+     "nudos": 41.5,
+     "alt": 400
+    }
+   ]
+  },
+  {
+   "hex": "e401af",
+   "callsign": "PRHCD",
+   "tipo": "?",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Brasil",
+   "lat": 19.36,
+   "lon": -77.1,
+   "alt": 42975,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 1113,
+   "primera_vez_utc": "2026-11-25T22:10+00:00",
+   "trazas": [
+    {
+     "lat": 18.16,
+     "lon": -76.7,
+     "t": "2026-11-25T22:10+00:00",
+     "rumbo": 342.25,
+     "nudos": 396.9,
+     "alt": 43000
+    },
+    {
+     "lat": 19.36,
+     "lon": -77.1,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 344.36,
+     "nudos": 408.1,
+     "alt": 42975
+    }
+   ]
+  },
+  {
+   "hex": "ae1bf5",
+   "callsign": "07-46312",
+   "tipo": "C30J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.42,
+   "lon": -80.22,
+   "alt": 8150,
+   "visto_utc": "2026-11-25T22:20+00:00",
+   "dist_pr_km": 1729,
+   "primera_vez_utc": "2026-11-25T22:20+00:00",
+   "trazas": [
+    {
+     "lat": 27.42,
+     "lon": -80.22,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 306.0,
+     "nudos": 280.0,
+     "alt": 8150
     }
    ]
   },
@@ -2442,30 +2531,6 @@
      "rumbo": 351.56,
      "nudos": 5.2,
      "alt": "ground"
-    }
-   ]
-  },
-  {
-   "hex": "e401af",
-   "callsign": "PRHCD",
-   "tipo": "?",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Brasil",
-   "lat": 18.16,
-   "lon": -76.7,
-   "alt": 43000,
-   "visto_utc": "2026-11-25T22:10+00:00",
-   "dist_pr_km": 1067,
-   "primera_vez_utc": "2026-11-25T22:10+00:00",
-   "trazas": [
-    {
-     "lat": 18.16,
-     "lon": -76.7,
-     "t": "2026-11-25T22:10+00:00",
-     "rumbo": 342.25,
-     "nudos": 396.9,
-     "alt": 43000
     }
    ]
   },
@@ -2882,16 +2947,7 @@
    "visto_utc": "2026-11-25T19:20+00:00",
    "dist_pr_km": 1948,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
-   "trazas": [
-    {
-     "lat": 27.8,
-     "lon": -82.56,
-     "t": "2026-11-25T19:20+00:00",
-     "rumbo": 48.0,
-     "nudos": 119.0,
-     "alt": 850
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "a655d5",
@@ -3674,7 +3730,8 @@
   "6/9784": "2026-11-25T19:20+00:00",
   "6/9791": "2026-11-25T20:20+00:00",
   "6/9794": "2026-11-25T20:30+00:00",
-  "6/9797": "2026-11-25T22:00+00:00"
+  "6/9797": "2026-11-25T22:00+00:00",
+  "6/9800": "2026-11-25T22:20+00:00"
  },
  "tfr_base": [
   24,
@@ -3816,7 +3873,8 @@
   6,
   6,
   6,
-  6
+  6,
+  7
  ],
  "tfr_geo": {
   "6/9689": {
@@ -11042,6 +11100,182 @@
    ],
    "motivo": "Temporary flight restrictions",
    "texto": "!FDC 6/9797 ZHU LA..AIRSPACE NEW ORLEANS, LA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 0.3NM RADIUS OF 295610N0900337W (HRV328006.0) SFC-1000FT AGL EFFECTIVE 2611252145 UTC UNTIL 2701182000 UTC. US COAST GUARD , PROVIDE SAFE OPERATIONS FOR SAR, TEL 855-485-3727, IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE HOUSTON /ZHU/ ARTCC, TEL 281-230-5560, IS THE CDN FAC. 2611252145-2701182000",
+   "altitud": ""
+  },
+  "6/9800": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       39.97750645,
+       -86.13
+      ],
+      [
+       39.97737973,
+       -86.1281176
+      ],
+      [
+       39.97700344,
+       -86.12629242
+      ],
+      [
+       39.976389,
+       -86.12457993
+      ],
+      [
+       39.9755551,
+       -86.12303218
+      ],
+      [
+       39.97452708,
+       -86.1216962
+      ],
+      [
+       39.97333618,
+       -86.12061258
+      ],
+      [
+       39.9720186,
+       -86.11981425
+      ],
+      [
+       39.97061437,
+       -86.11932545
+      ],
+      [
+       39.96916616,
+       -86.119161
+      ],
+      [
+       39.96771799,
+       -86.1193259
+      ],
+      [
+       39.96631385,
+       -86.1198151
+      ],
+      [
+       39.9649964,
+       -86.12061372
+      ],
+      [
+       39.96380566,
+       -86.1216975
+      ],
+      [
+       39.96277781,
+       -86.12303348
+      ],
+      [
+       39.96194407,
+       -86.12458107
+      ],
+      [
+       39.96132977,
+       -86.12629327
+      ],
+      [
+       39.96095356,
+       -86.12811805
+      ],
+      [
+       39.96082688,
+       -86.13
+      ],
+      [
+       39.96095356,
+       -86.13188195
+      ],
+      [
+       39.96132977,
+       -86.13370673
+      ],
+      [
+       39.96194407,
+       -86.13541893
+      ],
+      [
+       39.96277781,
+       -86.13696652
+      ],
+      [
+       39.96380566,
+       -86.1383025
+      ],
+      [
+       39.9649964,
+       -86.13938628
+      ],
+      [
+       39.96631385,
+       -86.1401849
+      ],
+      [
+       39.96771799,
+       -86.1406741
+      ],
+      [
+       39.96916616,
+       -86.140839
+      ],
+      [
+       39.97061437,
+       -86.14067455
+      ],
+      [
+       39.9720186,
+       -86.14018575
+      ],
+      [
+       39.97333618,
+       -86.13938742
+      ],
+      [
+       39.97452708,
+       -86.1383038
+      ],
+      [
+       39.9755551,
+       -86.13696782
+      ],
+      [
+       39.976389,
+       -86.13542007
+      ],
+      [
+       39.97700344,
+       -86.13370758
+      ],
+      [
+       39.97737973,
+       -86.1318824
+      ],
+      [
+       39.97750645,
+       -86.13
+      ],
+      [
+       39.96916667,
+       -86.13
+      ],
+      [
+       39.96916667,
+       -86.13
+      ],
+      [
+       39.81472906,
+       -86.36749978
+      ],
+      [
+       39.81472906,
+       -86.36749978
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9800 ZID IN..AIRSPACE CARMEL, IN..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 26-DECEMBER 24, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. ANY PERSON WHO KNOWINGLY OR WILLFULLY VIOLATES THE RULES CONCERNING OPS IN THIS AIRSPACE MAY BE SUBJECT TO CERTAIN CRIMINAL PENALTIES UNDER 49 USC 40103(B)(3). PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 0.5NM RADIUS OF 395809N0860748W (VHP049014.4) SFC-400FT AGL EFFECTIVE 2611262030 UTC (1530 LOCAL 11/26/26) UNTIL 2612250200 UTC (2100 LOCAL 12/24/26) DLY 2030-0200 (1530-2100 LOCAL). EXC AS SPECIFIED BLW: A. UAS OPS MAY BE AUTH WI THE DEFINED SSI AIRSPACE IF IN COMPLIANCE WITH THE RQMNTS LISTED BLW: 1) UAS OPS IN DCT SUPPORT OF AN ACT NTL DEFENSE, HOMELAND SECURITY, LAW ENFORCEMENT, FIREFIGHTING, SAR, OR DISASTER RESPONSE MISSION; 2) UAS OPS IN SUPPORT OF EVENT OPS; 3) COMMERCIAL UAS OPS WITH A VALID STATEME",
    "altitud": ""
   }
  },
