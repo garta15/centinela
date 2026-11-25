@@ -30,9 +30,25 @@
   "3ce49ac41311": "2026-11-25T12:00:29+00:00",
   "0861bbf31deb": "2026-11-25T13:10:22+00:00",
   "3be56c5ef642": "2026-11-25T14:00:31+00:00",
-  "85ef3a85a573": "2026-11-25T15:00:34+00:00"
+  "85ef3a85a573": "2026-11-25T15:00:34+00:00",
+  "b023097312c3": "2026-11-25T16:40:20+00:00"
  },
  "historial": [
+  {
+   "id": "b023097312c3",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 85/100 (10 en 3 h · 59 en 24 h)",
+   "detalle": "Para instalar nuevos generadores: ordenan a Genera PR presentar planes de decomiso de unidades de emergencia - El Nuevo Día",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOcm1wbXE4Y0NadEFRVXFCTlpSTXMtcXpTWFdxSk5ZLW1vb1luc1FHbl9KdzNtRzFUY1BLWlYyUXJCNTllanhPWGNSSVFmSmtkakRjZHVicjVrNTM4alBRbk9mZUVjRUpxb2xJSjZCLVpCeFNsckx4VXA1VHFYTi1GTWRlY0txY2IxaTJHWDUtZ0dibGdGQjFLNUJhTEJ1dFhmbjN0cFlicUptWU54M2pxUVdYSk1saDBfcmZ0OTNNTDVmWk96T0lEcjhFVm5rbW1DTnJmLWxjeGtfWkVfNVpNcTZpY2htcG9hUlNyX2tSdw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T16:40:20+00:00"
+  },
   {
    "id": "85ef3a85a573",
    "fuente": "Medidor de prensa",
@@ -513,9 +529,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  1,
   0,
   5,
   3,
@@ -610,7 +625,8 @@
   0,
   0,
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -646,6 +662,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -817,6 +834,7 @@
    29,
    21,
    21,
+   21,
    21
   ],
   "electrica": [
@@ -920,7 +938,8 @@
    62,
    61,
    60,
-   61
+   61,
+   80
   ],
   "ataque": [
    94,
@@ -1023,7 +1042,8 @@
    87,
    95,
    95,
-   87
+   87,
+   88
   ],
   "terror": [
    98,
@@ -1126,6 +1146,7 @@
    23,
    23,
    21,
+   22,
    22
   ],
   "emergencia": [
@@ -1229,7 +1250,8 @@
    41,
    50,
    40,
-   40
+   40,
+   50
   ],
   "espacio": [
    10,
@@ -1332,7 +1354,8 @@
    22,
    25,
    21,
-   24
+   24,
+   23
   ],
   "caribe": [
    21,
@@ -1435,7 +1458,8 @@
    26,
    25,
    49,
-   23
+   23,
+   48
   ],
   "pr": [
    0,
@@ -1538,10 +1562,43 @@
    28,
    28,
    29,
-   29
+   29,
+   59
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae4ae5",
+   "callsign": "C2713",
+   "tipo": "C27J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.97,
+   "lon": -82.83,
+   "alt": 2975,
+   "visto_utc": "2026-11-25T16:40+00:00",
+   "dist_pr_km": 1980,
+   "primera_vez_utc": "2026-11-24T16:16+00:00",
+   "trazas": [
+    {
+     "lat": 27.99,
+     "lon": -82.72,
+     "t": "2026-11-25T14:10+00:00",
+     "rumbo": 335.06,
+     "nudos": 173.1,
+     "alt": 1875
+    },
+    {
+     "lat": 27.97,
+     "lon": -82.83,
+     "t": "2026-11-25T16:40+00:00",
+     "rumbo": 171.16,
+     "nudos": 182.2,
+     "alt": 2975
+    }
+   ]
+  },
   {
    "hex": "ab19b6",
    "callsign": "sin identificar",
@@ -1675,30 +1732,6 @@
      "rumbo": 320.0,
      "nudos": 321.0,
      "alt": 24000
-    }
-   ]
-  },
-  {
-   "hex": "ae4ae5",
-   "callsign": "C2713",
-   "tipo": "C27J",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.99,
-   "lon": -82.72,
-   "alt": 1875,
-   "visto_utc": "2026-11-25T14:10+00:00",
-   "dist_pr_km": 1971,
-   "primera_vez_utc": "2026-11-24T16:16+00:00",
-   "trazas": [
-    {
-     "lat": 27.99,
-     "lon": -82.72,
-     "t": "2026-11-25T14:10+00:00",
-     "rumbo": 335.06,
-     "nudos": 173.1,
-     "alt": 1875
     }
    ]
   },
@@ -2525,6 +2558,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
