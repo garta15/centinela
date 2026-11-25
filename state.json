@@ -41,9 +41,25 @@
   "9fe09df1baef": "2026-11-25T19:50:21+00:00",
   "438faf556bac": "2026-11-25T20:00:30+00:00",
   "b2e1cd771f15": "2026-11-25T20:04:45+00:00",
-  "33ba1e20f9e8": "2026-11-25T21:00:35+00:00"
+  "33ba1e20f9e8": "2026-11-25T21:00:35+00:00",
+  "7898832a2ffc": "2026-11-25T22:00:28+00:00"
  },
  "historial": [
+  {
+   "id": "7898832a2ffc",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 100/100 (31 en 3 h · 83 en 24 h)",
+   "detalle": "State of Emergency declared as Nor'easter weather batters East Coast forcing Macy Day's Parade... - Daily Mail",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQM2RMMHdHemNxWXlKX2RCNTE0c1RWd2lIZVpHRTBValk2NFVhRi1Vc2xFdENBelNrZEhla3o2dS14MWUyVjczOFBBeTFIdXp4NzVqeTBjaXNPSUlqTnloQnpvd0lWaF80NlRNZG8xaFlIUy1fTHlPb25MQTFYUF9PbElLcms0azA0emplTUx4U3lFWnNvZFdzcUdPWnBmYUd5S2lxSXZwcEdJQldoWW9FR3RZbkU1OVJu0gG-AUFVX3lxTE1CMVZhQ0NiTW14amdySl8xTl9uSEpiWjNBRXdYQWtuQXNSNXZUYUVJQ3dOMnNBcXJRMmdNM05zNjZUaWpXM3Nkc2pCLUIyV1pJWTR0WHVnMjhaRFBPd0RRWkVscWIyR0xhVUp5R21yNGVUOEcxVGJvUy1sNTRlNUQwckw0SVZCWHNOd2lIMFBuZlJET2twV0JWNmJPVnRHRTZ1UTlPRmhzYlN4NjhsTlFJaXlhYzJkYzV3WXdrNHc?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T22:00:28+00:00"
+  },
   {
    "id": "33ba1e20f9e8",
    "fuente": "Medidor de prensa",
@@ -728,7 +744,6 @@
   1,
   1,
   1,
-  1,
   2,
   2,
   2,
@@ -816,7 +831,8 @@
   1,
   4,
   4,
-  3
+  3,
+  4
  ],
  "medidores_base": {
   "telecom": [
@@ -930,6 +946,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1101,7 +1118,8 @@
    32,
    21,
    21,
-   33
+   33,
+   21
   ],
   "electrica": [
    13,
@@ -1243,7 +1261,8 @@
    51,
    76,
    64,
-   76
+   76,
+   62
   ],
   "ataque": [
    94,
@@ -1385,7 +1404,8 @@
    92,
    97,
    97,
-   94
+   94,
+   97
   ],
   "terror": [
    98,
@@ -1527,6 +1547,7 @@
    27,
    27,
    53,
+   26,
    26
   ],
   "emergencia": [
@@ -1669,7 +1690,8 @@
    79,
    81,
    81,
-   84
+   84,
+   83
   ],
   "espacio": [
    10,
@@ -1811,7 +1833,8 @@
    23,
    19,
    23,
-   23
+   23,
+   24
   ],
   "caribe": [
    21,
@@ -1953,7 +1976,8 @@
    43,
    44,
    21,
-   21
+   21,
+   43
   ],
   "pr": [
    0,
@@ -2095,7 +2119,8 @@
    58,
    57,
    57,
-   56
+   56,
+   58
   ]
  },
  "log_aviones": [
@@ -2106,11 +2131,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.38,
-   "lon": -81.47,
-   "alt": 12050,
-   "visto_utc": "2026-11-25T21:50+00:00",
-   "dist_pr_km": 1778,
+   "lat": 26.12,
+   "lon": -80.68,
+   "alt": 6150,
+   "visto_utc": "2026-11-25T22:00+00:00",
+   "dist_pr_km": 1694,
    "primera_vez_utc": "2026-11-25T18:40+00:00",
    "trazas": [
     {
@@ -2144,6 +2169,14 @@
      "rumbo": 121.45,
      "nudos": 283.7,
      "alt": 12050
+    },
+    {
+     "lat": 26.12,
+     "lon": -80.68,
+     "t": "2026-11-25T22:00+00:00",
+     "rumbo": 96.6,
+     "nudos": 269.8,
+     "alt": 6150
     }
    ]
   },
@@ -2154,29 +2187,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.54,
-   "lon": -81.78,
-   "alt": 13075,
-   "visto_utc": "2026-11-25T21:50+00:00",
-   "dist_pr_km": 1813,
+   "lat": 26.15,
+   "lon": -80.97,
+   "alt": 6150,
+   "visto_utc": "2026-11-25T22:00+00:00",
+   "dist_pr_km": 1721,
    "primera_vez_utc": "2026-11-25T18:50+00:00",
    "trazas": [
-    {
-     "lat": 27.79,
-     "lon": -82.67,
-     "t": "2026-11-25T18:52+00:00",
-     "rumbo": 352.68,
-     "nudos": 109.9,
-     "alt": 2150
-    },
-    {
-     "lat": 27.9,
-     "lon": -82.69,
-     "t": "2026-11-25T18:56+00:00",
-     "rumbo": 351.09,
-     "nudos": 103.2,
-     "alt": 200
-    },
     {
      "lat": 27.78,
      "lon": -82.59,
@@ -2200,6 +2217,14 @@
      "rumbo": 151.15,
      "nudos": 269.4,
      "alt": 13075
+    },
+    {
+     "lat": 26.15,
+     "lon": -80.97,
+     "t": "2026-11-25T22:00+00:00",
+     "rumbo": 94.2,
+     "nudos": 286.8,
+     "alt": 6150
     }
    ]
   },
@@ -2210,11 +2235,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.37,
-   "lon": -80.96,
-   "alt": 7375,
-   "visto_utc": "2026-11-25T21:50+00:00",
-   "dist_pr_km": 1731,
+   "lat": 26.45,
+   "lon": -81.4,
+   "alt": 4175,
+   "visto_utc": "2026-11-25T22:00+00:00",
+   "dist_pr_km": 1775,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
     {
@@ -2240,6 +2265,62 @@
      "rumbo": 321.65,
      "nudos": 146.7,
      "alt": 7375
+    },
+    {
+     "lat": 26.45,
+     "lon": -81.4,
+     "t": "2026-11-25T22:00+00:00",
+     "rumbo": 271.95,
+     "nudos": 147.1,
+     "alt": 4175
+    }
+   ]
+  },
+  {
+   "hex": "ae0945",
+   "callsign": "SAM973",
+   "tipo": "B737",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.82,
+   "lon": -83.33,
+   "alt": 35000,
+   "visto_utc": "2026-11-25T22:00+00:00",
+   "dist_pr_km": 1919,
+   "primera_vez_utc": "2026-11-25T22:00+00:00",
+   "trazas": [
+    {
+     "lat": 25.82,
+     "lon": -83.33,
+     "t": "2026-11-25T22:00+00:00",
+     "rumbo": 73.52,
+     "nudos": 500.6,
+     "alt": 35000
+    }
+   ]
+  },
+  {
+   "hex": "0c43bf",
+   "callsign": "sin identificar",
+   "tipo": "?",
+   "desc": "",
+   "clase": "no identificada",
+   "pais": "Rep. Dominicana",
+   "lat": 16.65,
+   "lon": -66.51,
+   "alt": 35975,
+   "visto_utc": "2026-11-25T22:00+00:00",
+   "dist_pr_km": 175,
+   "primera_vez_utc": "2026-11-25T22:00+00:00",
+   "trazas": [
+    {
+     "lat": 16.65,
+     "lon": -66.51,
+     "t": "2026-11-25T22:00+00:00",
+     "rumbo": null,
+     "nudos": null,
+     "alt": 35975
     }
    ]
   },
@@ -2538,14 +2619,6 @@
    "primera_vez_utc": "2026-11-25T18:50+00:00",
    "trazas": [
     {
-     "lat": 27.58,
-     "lon": -82.96,
-     "t": "2026-11-25T18:52+00:00",
-     "rumbo": 256.0,
-     "nudos": 342.0,
-     "alt": 23525
-    },
-    {
      "lat": 27.82,
      "lon": -82.55,
      "t": "2026-11-25T20:30+00:00",
@@ -2697,14 +2770,6 @@
    "dist_pr_km": 1948,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
    "trazas": [
-    {
-     "lat": 27.68,
-     "lon": -82.69,
-     "t": "2026-11-25T19:00+00:00",
-     "rumbo": 83.0,
-     "nudos": 174.0,
-     "alt": 2050
-    },
     {
      "lat": 27.8,
      "lon": -82.56,
@@ -3519,7 +3584,8 @@
   "6/9735": "2026-11-25T01:14+00:00",
   "6/9784": "2026-11-25T19:20+00:00",
   "6/9791": "2026-11-25T20:20+00:00",
-  "6/9794": "2026-11-25T20:30+00:00"
+  "6/9794": "2026-11-25T20:30+00:00",
+  "6/9797": "2026-11-25T22:00+00:00"
  },
  "tfr_base": [
   24,
@@ -3653,6 +3719,7 @@
   7,
   7,
   7,
+  6,
   6,
   6,
   6,
@@ -10711,7 +10778,7 @@
    "texto": "!FDC 6/9735 ZAB AZ..AIRSPACE LIBBY AAF, AZ..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 25-26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. ANY PERSON WHO KNOWINGLY OR WILLFULLY VIOLATES THE RULES CONCERNING OPS IN THIS AIRSPACE MAY BE SUBJECT TO CERTAIN CRIMINAL PENALTIES UNDER 49 USC 40103(B)(3). PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 313405N1101136W (FHU086008.4) TO 313513N1103020W (FHU256007.7) THEN CLOCKWISE ON A 8 NM ARC CENTERED ON 313439N1102058W (FHU146000.8) TO THE POINT OF ORIGIN 9000FT MSL-17999FT MSL EFFECTIVE 2611260600 UTC (2300 LOCAL 11/25/26) UNTIL 2611261300 UTC (0600 LOCAL 11/26/26). EXC AS SPECIFIED BLW AND/OR UNLESS AUTH BY ATC: 1. ALL AIRCRAFT ENTERING OR EXITING THE TFR MUST BE ON A DISCRETE CODE ASSIGNED BY AN AIR TRAFFIC CONTROL (ATC) FACILITY. 2. AIRCRAFT MUST BE SQUAWKING THE DISCRETE CODE AT ALL TIMES WHILE IN THE TFR. 3. ALL AIRCRAFT ENTERING OR",
    "altitud": "From and including 9000 feet MSL  up to and including 17999 feet MSL"
   },
-  "6/9794": {
+  "6/9797": {
    "areas": [
     {
      "tipo": "poligono",
@@ -10884,7 +10951,7 @@
     }
    ],
    "motivo": "Temporary flight restrictions",
-   "texto": "!FDC 6/9794 ZHU LA..AIRSPACE NEW ORLEANS, LA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 0.3NM RADIUS OF 295610N0900337W (HRV328006.0) SFC-1000FT AGL EFFECTIVE 2611252015 UTC UNTIL 2611262014 UTC. US COAST GUARD , PROVIDE SAFE OPERATIONS FOR SAR, TEL 855-485-3727, IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE HOUSTON /ZHU/ ARTCC, TEL 281-230-5560, IS THE CDN FAC. 2611252015-2611262014",
+   "texto": "!FDC 6/9797 ZHU LA..AIRSPACE NEW ORLEANS, LA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 0.3NM RADIUS OF 295610N0900337W (HRV328006.0) SFC-1000FT AGL EFFECTIVE 2611252145 UTC UNTIL 2701182000 UTC. US COAST GUARD , PROVIDE SAFE OPERATIONS FOR SAR, TEL 855-485-3727, IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE HOUSTON /ZHU/ ARTCC, TEL 281-230-5560, IS THE CDN FAC. 2611252145-2701182000",
    "altitud": ""
   }
  },
