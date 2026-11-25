@@ -19,9 +19,25 @@
   "a80d33cc1656": "2026-11-25T05:10:24+00:00",
   "9afcc9953d5f": "2026-11-25T05:10:24+00:00",
   "ae9b9df055ea": "2026-11-25T06:10:23+00:00",
-  "4016a71b6e2f": "2026-11-25T06:20:23+00:00"
+  "4016a71b6e2f": "2026-11-25T06:20:23+00:00",
+  "17a34f591200": "2026-11-25T07:10:24+00:00"
  },
  "historial": [
+  {
+   "id": "17a34f591200",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 100/100 (21 en 3 h · 59 en 24 h)",
+   "detalle": "El 25 de noviembre en imágenes - DW.com",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE4zZW5fYi1OOWZ4S2ROSGQ4dnB2a1NkbXhUbEo5Y09wR2tWSUdjbnk2VzIyQnRQQUJLSGZkMmpySXIzOHlkclhBdVo1NGxqdS1EdXFwM2FsU1JpVmRKZzJscXdBcWd4S1VSUTNjLXA2RjVteHNUQVNJ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T07:10:24+00:00"
+  },
   {
    "id": "4016a71b6e2f",
    "fuente": "Medidor de prensa",
@@ -337,7 +353,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -384,6 +400,7 @@
   2,
   1,
   1,
+  1,
   1
  ],
  "medidores_base": {
@@ -420,6 +437,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -479,7 +497,8 @@
    17,
    29,
    19,
-   19
+   19,
+   28
   ],
   "electrica": [
    13,
@@ -526,7 +545,8 @@
    56,
    62,
    57,
-   61
+   61,
+   59
   ],
   "ataque": [
    94,
@@ -573,7 +593,8 @@
    99,
    99,
    91,
-   98
+   98,
+   91
   ],
   "terror": [
    98,
@@ -620,7 +641,8 @@
    21,
    21,
    21,
-   33
+   33,
+   22
   ],
   "emergencia": [
    95,
@@ -667,6 +689,7 @@
    52,
    52,
    51,
+   30,
    30
   ],
   "espacio": [
@@ -714,6 +737,7 @@
    31,
    26,
    26,
+   27,
    27
   ],
   "caribe": [
@@ -761,7 +785,8 @@
    53,
    28,
    28,
-   28
+   28,
+   26
   ],
   "pr": [
    0,
@@ -808,7 +833,8 @@
    27,
    58,
    27,
-   27
+   27,
+   59
   ]
  },
  "log_aviones": [
@@ -819,21 +845,13 @@
    "desc": "KC-135 (reabastecimiento)",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 27.29,
-   "lon": -81.04,
+   "lat": 27.16,
+   "lon": -81.1,
    "alt": 22000,
-   "visto_utc": "2026-11-25T07:00+00:00",
-   "dist_pr_km": 1789,
+   "visto_utc": "2026-11-25T07:10+00:00",
+   "dist_pr_km": 1787,
    "primera_vez_utc": "2026-11-25T05:00+00:00",
    "trazas": [
-    {
-     "lat": 26.92,
-     "lon": -79.71,
-     "t": "2026-11-25T06:10+00:00",
-     "rumbo": 208.0,
-     "nudos": 438.0,
-     "alt": 22000
-    },
     {
      "lat": 26.95,
      "lon": -79.69,
@@ -872,6 +890,14 @@
      "t": "2026-11-25T07:00+00:00",
      "rumbo": 239.0,
      "nudos": 329.0,
+     "alt": 22000
+    },
+    {
+     "lat": 27.16,
+     "lon": -81.1,
+     "t": "2026-11-25T07:10+00:00",
+     "rumbo": 168.0,
+     "nudos": 319.0,
      "alt": 22000
     }
    ]
@@ -1672,6 +1698,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
