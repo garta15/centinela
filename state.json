@@ -43,9 +43,25 @@
   "b2e1cd771f15": "2026-11-25T20:04:45+00:00",
   "33ba1e20f9e8": "2026-11-25T21:00:35+00:00",
   "7898832a2ffc": "2026-11-25T22:00:28+00:00",
-  "9f088444b847": "2026-11-25T22:10:26+00:00"
+  "9f088444b847": "2026-11-25T22:10:26+00:00",
+  "39b46e5cbd21": "2026-11-25T22:50:21+00:00"
  },
  "historial": [
+  {
+   "id": "39b46e5cbd21",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 70/100 (7 en 3 h · 59 en 24 h)",
+   "detalle": "Al menos 31 muertos por la explosión de un camión con cilindros de gas en Egipto - Ecuavisa",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPODVwR3NoTWVHRF9yUEFrWUZVUV8tdlR4cFQ4UmFmd3hGOUswX0gyWkNUYURzcG5kb1ZsMlhYcWxha2hoR3gzY2JnY0dDVGhNRWlyNmFtZ3BJLXY2MWEzci1ORGN5dVpiaUROMkxLdEVzSVJYaHpqWGZzZkRaN19zR3RDZnM3ek1BMzNwWmZHcHBNbGZ2UDJNbGZVa2pISzDSAaQBQVVfeXFMTm9heERxd0FwSkpzRGNjTXNZU0FaWXBCb1hqYnVYUmJvWVpjeFBkbVRHUWxad2YzT3JGYVpwb0daMmZHeXEwWmlZMDVXOGtjNzl0a2VOQXZqeEExdDFOTDM4OVI2cEhSbDNMSlNvU3ZyMHNrSmhJUXp6OFNZdnIxb3V6bXlSWVhBVUxGbF9mUXU0dzdJTFlqN3V1bmZXM3Fna2JSVTY?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T22:50:21+00:00"
+  },
   {
    "id": "9f088444b847",
    "fuente": "ADS-B (adsb.lol)",
@@ -755,7 +771,6 @@
  "mil_caribe": [
   1,
   1,
-  1,
   2,
   2,
   2,
@@ -848,12 +863,12 @@
   7,
   7,
   4,
+  3,
   3
  ],
  "medidores_base": {
   "telecom": [
    3,
-   3,
    0,
    1,
    0,
@@ -961,6 +976,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -998,7 +1014,6 @@
    0
   ],
   "ciber": [
-   30,
    30,
    0,
    27,
@@ -1141,10 +1156,10 @@
    22,
    0,
    34,
-   33
+   33,
+   34
   ],
   "electrica": [
-   77,
    76,
    0,
    50,
@@ -1287,10 +1302,10 @@
    64,
    0,
    57,
+   78,
    78
   ],
   "ataque": [
-   94,
    94,
    0,
    96,
@@ -1433,10 +1448,10 @@
    95,
    0,
    95,
-   96
+   96,
+   98
   ],
   "terror": [
-   98,
    98,
    0,
    40,
@@ -1579,10 +1594,10 @@
    26,
    0,
    26,
+   24,
    24
   ],
   "emergencia": [
-   95,
    95,
    0,
    95,
@@ -1725,10 +1740,10 @@
    80,
    0,
    87,
-   85
+   85,
+   80
   ],
   "espacio": [
-   11,
    11,
    0,
    7,
@@ -1871,10 +1886,10 @@
    24,
    0,
    20,
-   24
+   24,
+   25
   ],
   "caribe": [
-   21,
    21,
    0,
    41,
@@ -2017,10 +2032,10 @@
    43,
    0,
    22,
-   22
+   22,
+   44
   ],
   "pr": [
-   27,
    27,
    0,
    27,
@@ -2163,7 +2178,8 @@
    29,
    0,
    59,
-   58
+   58,
+   59
   ]
  },
  "log_aviones": [
@@ -2174,21 +2190,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.73,
-   "lon": -81.74,
-   "alt": 5400,
-   "visto_utc": "2026-11-25T22:40+00:00",
-   "dist_pr_km": 1819,
+   "lat": 26.42,
+   "lon": -81.41,
+   "alt": 7150,
+   "visto_utc": "2026-11-25T22:50+00:00",
+   "dist_pr_km": 1774,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
-    {
-     "lat": 26.37,
-     "lon": -80.96,
-     "t": "2026-11-25T21:50+00:00",
-     "rumbo": 321.65,
-     "nudos": 146.7,
-     "alt": 7375
-    },
     {
      "lat": 26.45,
      "lon": -81.4,
@@ -2228,6 +2236,102 @@
      "rumbo": 70.5,
      "nudos": 152.8,
      "alt": 5400
+    },
+    {
+     "lat": 26.42,
+     "lon": -81.41,
+     "t": "2026-11-25T22:50+00:00",
+     "rumbo": 146.89,
+     "nudos": 164.8,
+     "alt": 7150
+    }
+   ]
+  },
+  {
+   "hex": "e401af",
+   "callsign": "PRHCD",
+   "tipo": "?",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Brasil",
+   "lat": 22.61,
+   "lon": -78.04,
+   "alt": 42975,
+   "visto_utc": "2026-11-25T22:50+00:00",
+   "dist_pr_km": 1289,
+   "primera_vez_utc": "2026-11-25T22:10+00:00",
+   "trazas": [
+    {
+     "lat": 18.16,
+     "lon": -76.7,
+     "t": "2026-11-25T22:10+00:00",
+     "rumbo": 342.25,
+     "nudos": 396.9,
+     "alt": 43000
+    },
+    {
+     "lat": 19.36,
+     "lon": -77.1,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 344.36,
+     "nudos": 408.1,
+     "alt": 42975
+    },
+    {
+     "lat": 21.43,
+     "lon": -77.7,
+     "t": "2026-11-25T22:40+00:00",
+     "rumbo": 344.85,
+     "nudos": 424.8,
+     "alt": 43000
+    },
+    {
+     "lat": 22.61,
+     "lon": -78.04,
+     "t": "2026-11-25T22:50+00:00",
+     "rumbo": 344.89,
+     "nudos": 441.2,
+     "alt": 42975
+    }
+   ]
+  },
+  {
+   "hex": "3b7b22",
+   "callsign": "F-ZBGO",
+   "tipo": "B350",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 14.6,
+   "lon": -60.95,
+   "alt": 2875,
+   "visto_utc": "2026-11-25T22:50+00:00",
+   "dist_pr_km": 723,
+   "primera_vez_utc": "2026-11-20T17:45+00:00",
+   "trazas": [
+    {
+     "lat": 14.59,
+     "lon": -61.02,
+     "t": "2026-11-25T22:10+00:00",
+     "rumbo": 351.56,
+     "nudos": 5.2,
+     "alt": "ground"
+    },
+    {
+     "lat": 14.58,
+     "lon": -61.04,
+     "t": "2026-11-25T22:30+00:00",
+     "rumbo": 78.51,
+     "nudos": 125.5,
+     "alt": 425
+    },
+    {
+     "lat": 14.6,
+     "lon": -60.95,
+     "t": "2026-11-25T22:50+00:00",
+     "rumbo": 79.49,
+     "nudos": 126.1,
+     "alt": 2875
     }
    ]
   },
@@ -2284,46 +2388,6 @@
      "rumbo": 267.78,
      "nudos": 129.1,
      "alt": 275
-    }
-   ]
-  },
-  {
-   "hex": "e401af",
-   "callsign": "PRHCD",
-   "tipo": "?",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Brasil",
-   "lat": 21.43,
-   "lon": -77.7,
-   "alt": 43000,
-   "visto_utc": "2026-11-25T22:40+00:00",
-   "dist_pr_km": 1215,
-   "primera_vez_utc": "2026-11-25T22:10+00:00",
-   "trazas": [
-    {
-     "lat": 18.16,
-     "lon": -76.7,
-     "t": "2026-11-25T22:10+00:00",
-     "rumbo": 342.25,
-     "nudos": 396.9,
-     "alt": 43000
-    },
-    {
-     "lat": 19.36,
-     "lon": -77.1,
-     "t": "2026-11-25T22:20+00:00",
-     "rumbo": 344.36,
-     "nudos": 408.1,
-     "alt": 42975
-    },
-    {
-     "lat": 21.43,
-     "lon": -77.7,
-     "t": "2026-11-25T22:40+00:00",
-     "rumbo": 344.85,
-     "nudos": 424.8,
-     "alt": 43000
     }
    ]
   },
@@ -2388,38 +2452,6 @@
      "rumbo": 162.35,
      "nudos": 23.1,
      "alt": 325
-    }
-   ]
-  },
-  {
-   "hex": "3b7b22",
-   "callsign": "F-ZBGO",
-   "tipo": "B350",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Francia",
-   "lat": 14.58,
-   "lon": -61.04,
-   "alt": 425,
-   "visto_utc": "2026-11-25T22:30+00:00",
-   "dist_pr_km": 717,
-   "primera_vez_utc": "2026-11-20T17:45+00:00",
-   "trazas": [
-    {
-     "lat": 14.59,
-     "lon": -61.02,
-     "t": "2026-11-25T22:10+00:00",
-     "rumbo": 351.56,
-     "nudos": 5.2,
-     "alt": "ground"
-    },
-    {
-     "lat": 14.58,
-     "lon": -61.04,
-     "t": "2026-11-25T22:30+00:00",
-     "rumbo": 78.51,
-     "nudos": 125.5,
-     "alt": 425
     }
    ]
   },
@@ -2613,14 +2645,6 @@
    "dist_pr_km": 1951,
    "primera_vez_utc": "2026-11-24T16:16+00:00",
    "trazas": [
-    {
-     "lat": 27.99,
-     "lon": -82.75,
-     "t": "2026-11-25T19:50+00:00",
-     "rumbo": 296.3,
-     "nudos": 196.3,
-     "alt": 1725
-    },
     {
      "lat": 27.58,
      "lon": -82.77,
@@ -2856,14 +2880,6 @@
     {
      "lat": 14.6,
      "lon": -60.99,
-     "t": "2026-11-25T19:50+00:00",
-     "rumbo": 0.0,
-     "nudos": 0.7,
-     "alt": 0
-    },
-    {
-     "lat": 14.6,
-     "lon": -60.99,
      "t": "2026-11-25T20:00+00:00",
      "rumbo": 0.0,
      "nudos": 0.7,
@@ -2909,14 +2925,6 @@
    "dist_pr_km": 1965,
    "primera_vez_utc": "2026-11-25T19:50+00:00",
    "trazas": [
-    {
-     "lat": 27.9,
-     "lon": -82.88,
-     "t": "2026-11-25T19:50+00:00",
-     "rumbo": 182.08,
-     "nudos": 193.1,
-     "alt": 3100
-    },
     {
      "lat": 27.85,
      "lon": -82.68,
@@ -3890,6 +3898,7 @@
   6,
   6,
   6,
+  7,
   7,
   7,
   7
