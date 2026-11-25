@@ -34,9 +34,25 @@
   "b023097312c3": "2026-11-25T16:40:20+00:00",
   "50b7f1168a5f": "2026-11-25T17:00:38+00:00",
   "2f41b461a5c1": "2026-11-25T17:30:26+00:00",
-  "ad303a83f19b": "2026-11-25T17:40:21+00:00"
+  "ad303a83f19b": "2026-11-25T17:40:21+00:00",
+  "3982f920427d": "2026-11-25T18:00:28+00:00"
  },
  "historial": [
+  {
+   "id": "3982f920427d",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Red eléctrica",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚡ Red eléctrica: índice 73/100 (22 en 3 h · 83 en 24 h)",
+   "detalle": "LUMA evalúa sus alternativas tras la decisión del Supremo - Metro Puerto Rico",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQc1FDSWRwTmdDY2F0MkYzME95QWZtcjBwekdZQ1ByVXJPQ2Y5WlczNEY2bGN1YlBvemkwMkFtQ2RBYnNLZlNUR0pHbG1JbmFTaWJOdEZZRF82alFMVEw4NWVKZ1haZDR3dHkyOHk0bmdIcE1WNENiM0xPN3VxZXNYby1ScnZCMnpybW5Zc2szS3VYUlFJbFl0NERFdHhneHdM?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T18:00:28+00:00"
+  },
   {
    "id": "ad303a83f19b",
    "fuente": "Medidor de prensa",
@@ -579,7 +595,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  1,
   0,
   2,
   0,
@@ -674,6 +689,7 @@
   0,
   0,
   1,
+  0,
   0
  ],
  "medidores_base": {
@@ -789,6 +805,7 @@
    1,
    1,
    0,
+   0,
    0
   ],
   "ciber": [
@@ -903,7 +920,8 @@
    30,
    30,
    30,
-   21
+   21,
+   30
   ],
   "electrica": [
    13,
@@ -1017,7 +1035,8 @@
    73,
    73,
    82,
-   73
+   73,
+   83
   ],
   "ataque": [
    94,
@@ -1130,6 +1149,7 @@
    96,
    96,
    87,
+   96,
    96,
    96
   ],
@@ -1245,7 +1265,8 @@
    21,
    43,
    43,
-   21
+   21,
+   43
   ],
   "emergencia": [
    95,
@@ -1359,7 +1380,8 @@
    49,
    43,
    44,
-   45
+   45,
+   50
   ],
   "espacio": [
    10,
@@ -1473,7 +1495,8 @@
    19,
    22,
    22,
-   18
+   18,
+   17
   ],
   "caribe": [
    21,
@@ -1587,7 +1610,8 @@
    47,
    46,
    46,
-   45
+   45,
+   44
   ],
   "pr": [
    0,
@@ -1701,7 +1725,8 @@
    29,
    29,
    29,
-   58
+   58,
+   28
   ]
  },
  "log_aviones": [
@@ -1807,14 +1832,6 @@
    "dist_pr_km": 1987,
    "primera_vez_utc": "2026-11-25T14:50+00:00",
    "trazas": [
-    {
-     "lat": 27.92,
-     "lon": -82.74,
-     "t": "2026-11-25T15:00+00:00",
-     "rumbo": 269.48,
-     "nudos": 111.0,
-     "alt": 825
-    },
     {
      "lat": 27.95,
      "lon": -82.93,
@@ -2663,6 +2680,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
