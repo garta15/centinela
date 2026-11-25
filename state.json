@@ -28,9 +28,25 @@
   "3f22ffef2cca": "2026-11-25T11:30:25+00:00",
   "3493ee15eb38": "2026-11-25T11:40:22+00:00",
   "3ce49ac41311": "2026-11-25T12:00:29+00:00",
-  "0861bbf31deb": "2026-11-25T13:10:22+00:00"
+  "0861bbf31deb": "2026-11-25T13:10:22+00:00",
+  "3be56c5ef642": "2026-11-25T14:00:31+00:00"
  },
  "historial": [
+  {
+   "id": "3be56c5ef642",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 93/100 (11 en 3 h · 60 en 24 h)",
+   "detalle": "Costa Rica será sede de la edición de 2027 de Miss Universo - Periódico Zócalo",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNbkp0bWJwLV9FU25uSGpJTF9pTzhkV3MzUjJZT0d0cG9ySXFVeHgxbVJjQ0lrYWQ3a0Exdl9iRnNja2xqVEEtZ09hQ1ZZWm9FWmF2Um5nNEZVMG9zQUREN2JlT0dCTFM4S1E2LTNnZU1XMUVZcXJXRnh5REh1akJkYnNpRE9tRGw0ZHd5YzdaQQ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T14:00:31+00:00"
+  },
   {
    "id": "0861bbf31deb",
    "fuente": "Medidor de prensa",
@@ -570,7 +586,8 @@
   0,
   0,
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -606,6 +623,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -749,7 +767,8 @@
    19,
    30,
    30,
-   30
+   30,
+   29
   ],
   "electrica": [
    13,
@@ -838,7 +857,8 @@
    70,
    56,
    47,
-   70
+   70,
+   47
   ],
   "ataque": [
    94,
@@ -927,7 +947,8 @@
    96,
    88,
    88,
-   96
+   96,
+   88
   ],
   "terror": [
    98,
@@ -1016,7 +1037,8 @@
    20,
    22,
    20,
-   22
+   22,
+   35
   ],
   "emergencia": [
    95,
@@ -1105,6 +1127,7 @@
    40,
    37,
    48,
+   37,
    37
   ],
   "espacio": [
@@ -1194,7 +1217,8 @@
    30,
    24,
    28,
-   23
+   23,
+   28
   ],
   "caribe": [
    21,
@@ -1283,7 +1307,8 @@
    47,
    46,
    23,
-   48
+   48,
+   24
   ],
   "pr": [
    0,
@@ -1372,10 +1397,35 @@
    28,
    28,
    28,
+   60,
    60
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae595b",
+   "callsign": "SHARK25",
+   "tipo": "C30J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.01,
+   "lon": -80.6,
+   "alt": 14025,
+   "visto_utc": "2026-11-25T14:00+00:00",
+   "dist_pr_km": 1681,
+   "primera_vez_utc": "2026-11-25T14:00+00:00",
+   "trazas": [
+    {
+     "lat": 26.01,
+     "lon": -80.6,
+     "t": "2026-11-25T14:00+00:00",
+     "rumbo": 333.0,
+     "nudos": 297.0,
+     "alt": 14025
+    }
+   ]
+  },
   {
    "hex": "ae03ae",
    "callsign": "sin identificar",
@@ -1422,14 +1472,6 @@
    "dist_pr_km": 1599,
    "primera_vez_utc": "2026-11-25T08:10+00:00",
    "trazas": [
-    {
-     "lat": 18.5,
-     "lon": -66.29,
-     "t": "2026-11-25T11:00+00:00",
-     "rumbo": 253.59,
-     "nudos": 375.3,
-     "alt": 11425
-    },
     {
      "lat": 17.59,
      "lon": -75.95,
@@ -2281,6 +2323,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
