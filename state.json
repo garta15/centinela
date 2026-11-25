@@ -17,9 +17,25 @@
   "d40c0c16ee64": "2026-11-24T20:05:36+00:00",
   "1262577aa1e4": "2026-11-25T01:14:31+00:00",
   "a80d33cc1656": "2026-11-25T05:10:24+00:00",
-  "9afcc9953d5f": "2026-11-25T05:10:24+00:00"
+  "9afcc9953d5f": "2026-11-25T05:10:24+00:00",
+  "ae9b9df055ea": "2026-11-25T06:10:23+00:00"
  },
  "historial": [
+  {
+   "id": "ae9b9df055ea",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 100/100 (22 en 3 h · 56 en 24 h)",
+   "detalle": "¡Histórico! Jennifer Barreto de Puerto Rico, la primera madre en conquistar Miss Universo - Tabasco HOY",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPbThVWUlDcEY2WWZBVC1rT2JnWmpqRkVOVUxhRi1IRDVLblBCNURkT2Y2X0RjejZmVFJjVzBJMWY2WnpoOGVKUEJEbXFfNlRyMVNENWNYellVNmdrdjBnOXpRVF9lRFpLSFAwa3FaNEZlLUs2XzhRdi1JNmdaR3ZJRXdfdDdITGpUTG1CSlFZY0hKU1pNdUZCZmhpbU91Q0JMdWtIT2ViM3psOUQyd3RIdkJ4eGg?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T06:10:23+00:00"
+  },
   {
    "id": "9afcc9953d5f",
    "fuente": "Medidor de prensa",
@@ -305,7 +321,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -346,6 +362,7 @@
   1,
   1,
   1,
+  1,
   1
  ],
  "medidores_base": {
@@ -382,6 +399,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -429,7 +447,8 @@
    27,
    26,
    18,
-   18
+   18,
+   26
   ],
   "electrica": [
    13,
@@ -470,7 +489,8 @@
    45,
    56,
    45,
-   62
+   62,
+   45
   ],
   "ataque": [
    94,
@@ -510,6 +530,7 @@
    99,
    99,
    89,
+   99,
    99,
    99
   ],
@@ -552,7 +573,8 @@
    32,
    35,
    33,
-   34
+   34,
+   21
   ],
   "emergencia": [
    95,
@@ -593,7 +615,8 @@
    52,
    52,
    31,
-   51
+   51,
+   30
   ],
   "espacio": [
    10,
@@ -634,6 +657,7 @@
    31,
    31,
    31,
+   27,
    27
   ],
   "caribe": [
@@ -675,7 +699,8 @@
    27,
    54,
    57,
-   55
+   55,
+   28
   ],
   "pr": [
    0,
@@ -716,7 +741,8 @@
    54,
    53,
    55,
-   27
+   27,
+   56
   ]
  },
  "log_aviones": [
@@ -727,21 +753,13 @@
    "desc": "KC-135 (reabastecimiento)",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.96,
-   "lon": -79.7,
-   "alt": 21975,
-   "visto_utc": "2026-11-25T06:00+00:00",
-   "dist_pr_km": 1658,
+   "lat": 26.92,
+   "lon": -79.71,
+   "alt": 22000,
+   "visto_utc": "2026-11-25T06:10+00:00",
+   "dist_pr_km": 1657,
    "primera_vez_utc": "2026-11-25T05:00+00:00",
    "trazas": [
-    {
-     "lat": 26.73,
-     "lon": -79.8,
-     "t": "2026-11-25T05:10+00:00",
-     "rumbo": 204.0,
-     "nudos": 426.0,
-     "alt": 22025
-    },
     {
      "lat": 27.09,
      "lon": -79.71,
@@ -781,6 +799,14 @@
      "rumbo": 192.0,
      "nudos": 423.0,
      "alt": 21975
+    },
+    {
+     "lat": 26.92,
+     "lon": -79.71,
+     "t": "2026-11-25T06:10+00:00",
+     "rumbo": 208.0,
+     "nudos": 438.0,
+     "alt": 22000
     }
    ]
   },
@@ -1556,6 +1582,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
