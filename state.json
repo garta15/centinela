@@ -15,9 +15,25 @@
   "24261f9cbab0": "2026-11-24T17:08:32+00:00",
   "2b479e7b7631": "2026-11-24T17:16:31+00:00",
   "0fb612b859f6": "2026-11-24T20:05:36+00:00",
-  "d40c0c16ee64": "2026-11-24T20:05:36+00:00"
+  "d40c0c16ee64": "2026-11-24T20:05:36+00:00",
+  "1262577aa1e4": "2026-11-25T01:14:31+00:00"
  },
  "historial": [
+  {
+   "id": "1262577aa1e4",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 76/100 (1 en 3 h · 28 en 24 h)",
+   "detalle": "Airborne-Innovation 11.24.26: False UAV Report, DCA Heli Procedures, F-35C - Aero-News Network",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNRVd3X0ZtX0JiX0JNeENGdXAtUVRHOU5JVEV4Q2dvSS1yZWZOZUFwc1JsNExrRGdQNFFWTWY3UzhDVkxpZHZOT0FiTEhBcW5WdlZLWmFQQXRmcGxKajMwR0lXS0JTU3ZBaUx5NkRvc2dQTGdhWmZvN04xenQ1T1hwX1AwWGttaW1JZGxmRVpISGpFeFRNR3VZ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T01:14:31+00:00"
+  },
   {
    "id": "d40c0c16ee64",
    "fuente": "Medidor de prensa",
@@ -290,6 +306,7 @@
   3,
   6,
   6,
+  3,
   3
  ],
  "medidores_base": {
@@ -323,6 +340,7 @@
    0,
    0,
    0,
+   1,
    1
   ],
   "ciber": [
@@ -355,7 +373,8 @@
    27,
    27,
    27,
-   26
+   26,
+   32
   ],
   "electrica": [
    13,
@@ -387,7 +406,8 @@
    40,
    39,
    39,
-   65
+   65,
+   69
   ],
   "ataque": [
    94,
@@ -419,7 +439,8 @@
    99,
    99,
    99,
-   100
+   100,
+   95
   ],
   "terror": [
    98,
@@ -451,7 +472,8 @@
    22,
    21,
    15,
-   23
+   23,
+   34
   ],
   "emergencia": [
    95,
@@ -483,7 +505,8 @@
    57,
    57,
    23,
-   25
+   25,
+   33
   ],
   "espacio": [
    10,
@@ -515,7 +538,8 @@
    27,
    28,
    27,
-   26
+   26,
+   28
   ],
   "caribe": [
    21,
@@ -547,7 +571,8 @@
    25,
    27,
    43,
-   48
+   48,
+   26
   ],
   "pr": [
    0,
@@ -579,10 +604,83 @@
    29,
    29,
    28,
-   26
+   26,
+   33
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae2913",
+   "callsign": "C6036",
+   "tipo": "H60",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.75,
+   "lon": -82.81,
+   "alt": 900,
+   "visto_utc": "2026-11-25T01:14+00:00",
+   "dist_pr_km": 1966,
+   "primera_vez_utc": "2026-11-19T19:27+00:00",
+   "trazas": [
+    {
+     "lat": 27.75,
+     "lon": -82.81,
+     "t": "2026-11-25T01:14+00:00",
+     "rumbo": 116.57,
+     "nudos": 80.5,
+     "alt": 900
+    }
+   ]
+  },
+  {
+   "hex": "ae2689",
+   "callsign": "C6551",
+   "tipo": "AS65",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.99,
+   "lon": -80.06,
+   "alt": -25,
+   "visto_utc": "2026-11-25T01:14+00:00",
+   "dist_pr_km": 1633,
+   "primera_vez_utc": "2026-11-20T01:26+00:00",
+   "trazas": [
+    {
+     "lat": 25.99,
+     "lon": -80.06,
+     "t": "2026-11-25T01:14+00:00",
+     "rumbo": 101.31,
+     "nudos": 5.1,
+     "alt": -25
+    }
+   ]
+  },
+  {
+   "hex": "ae11eb",
+   "callsign": "SNTRY25",
+   "tipo": "E3TF",
+   "desc": "E-3 AWACS",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 26.56,
+   "lon": -79.8,
+   "alt": 31050,
+   "visto_utc": "2026-11-25T01:14+00:00",
+   "dist_pr_km": 1643,
+   "primera_vez_utc": "2026-11-25T01:14+00:00",
+   "trazas": [
+    {
+     "lat": 26.56,
+     "lon": -79.8,
+     "t": "2026-11-25T01:14+00:00",
+     "rumbo": 12.0,
+     "nudos": 417.0,
+     "alt": 31050
+    }
+   ]
+  },
   {
    "hex": "ae0375",
    "callsign": "58-0042",
@@ -596,16 +694,7 @@
    "visto_utc": "2026-11-24T20:05+00:00",
    "dist_pr_km": 1948,
    "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": [
-    {
-     "lat": 27.84,
-     "lon": -82.53,
-     "t": "2026-11-24T20:05+00:00",
-     "rumbo": 40.56,
-     "nudos": 146.1,
-     "alt": 25
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "adfdd0",
@@ -620,16 +709,7 @@
    "visto_utc": "2026-11-24T20:05+00:00",
    "dist_pr_km": 1777,
    "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": [
-    {
-     "lat": 27.36,
-     "lon": -80.84,
-     "t": "2026-11-24T20:05+00:00",
-     "rumbo": 216.73,
-     "nudos": 240.8,
-     "alt": 11950
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "add70a",
@@ -644,16 +724,7 @@
    "visto_utc": "2026-11-24T20:05+00:00",
    "dist_pr_km": 1015,
    "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": [
-    {
-     "lat": 10.6,
-     "lon": -61.41,
-     "t": "2026-11-24T20:05+00:00",
-     "rumbo": 88.53,
-     "nudos": 117.0,
-     "alt": 1200
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae04c0",
@@ -668,32 +739,7 @@
    "visto_utc": "2026-11-24T17:20+00:00",
    "dist_pr_km": 1904,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
-   "trazas": [
-    {
-     "lat": 26.59,
-     "lon": -81.77,
-     "t": "2026-11-24T17:08+00:00",
-     "rumbo": 351.0,
-     "nudos": 370.0,
-     "alt": 22025
-    },
-    {
-     "lat": 27.35,
-     "lon": -82.06,
-     "t": "2026-11-24T17:16+00:00",
-     "rumbo": 322.0,
-     "nudos": 347.0,
-     "alt": 21350
-    },
-    {
-     "lat": 27.69,
-     "lon": -82.12,
-     "t": "2026-11-24T17:20+00:00",
-     "rumbo": 355.0,
-     "nudos": 336.0,
-     "alt": 13100
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae2237",
@@ -708,32 +754,7 @@
    "visto_utc": "2026-11-24T17:20+00:00",
    "dist_pr_km": 1569,
    "primera_vez_utc": "2026-11-20T23:24+00:00",
-   "trazas": [
-    {
-     "lat": 25.9,
-     "lon": -80.04,
-     "t": "2026-11-24T17:08+00:00",
-     "rumbo": 95.6,
-     "nudos": 153.7,
-     "alt": 1425
-    },
-    {
-     "lat": 25.77,
-     "lon": -79.66,
-     "t": "2026-11-24T17:16+00:00",
-     "rumbo": 108.0,
-     "nudos": 168.2,
-     "alt": 1425
-    },
-    {
-     "lat": 25.73,
-     "lon": -79.49,
-     "t": "2026-11-24T17:20+00:00",
-     "rumbo": 105.43,
-     "nudos": 169.1,
-     "alt": 1425
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae0242",
@@ -748,24 +769,7 @@
    "visto_utc": "2026-11-24T17:20+00:00",
    "dist_pr_km": 1902,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
-   "trazas": [
-    {
-     "lat": 27.32,
-     "lon": -82.04,
-     "t": "2026-11-24T17:16+00:00",
-     "rumbo": 324.0,
-     "nudos": 291.0,
-     "alt": 22175
-    },
-    {
-     "lat": 27.66,
-     "lon": -82.12,
-     "t": "2026-11-24T17:20+00:00",
-     "rumbo": 353.0,
-     "nudos": 357.0,
-     "alt": 14000
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae4ae5",
@@ -780,24 +784,7 @@
    "visto_utc": "2026-11-24T17:20+00:00",
    "dist_pr_km": 1574,
    "primera_vez_utc": "2026-11-24T16:16+00:00",
-   "trazas": [
-    {
-     "lat": 25.25,
-     "lon": -79.54,
-     "t": "2026-11-24T17:16+00:00",
-     "rumbo": 306.6,
-     "nudos": 256.6,
-     "alt": 10425
-    },
-    {
-     "lat": 25.29,
-     "lon": -79.8,
-     "t": "2026-11-24T17:20+00:00",
-     "rumbo": 271.36,
-     "nudos": 253.1,
-     "alt": 10425
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae5bb5",
@@ -812,24 +799,7 @@
    "visto_utc": "2026-11-24T17:20+00:00",
    "dist_pr_km": 1724,
    "primera_vez_utc": "2026-11-24T17:16+00:00",
-   "trazas": [
-    {
-     "lat": 26.92,
-     "lon": -80.48,
-     "t": "2026-11-24T17:16+00:00",
-     "rumbo": 276.38,
-     "nudos": 152.9,
-     "alt": 1050
-    },
-    {
-     "lat": 26.94,
-     "lon": -80.5,
-     "t": "2026-11-24T17:20+00:00",
-     "rumbo": 87.33,
-     "nudos": 150.2,
-     "alt": 850
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "e40090",
@@ -844,40 +814,7 @@
    "visto_utc": "2026-11-24T17:20+00:00",
    "dist_pr_km": 456,
    "primera_vez_utc": "2026-11-24T17:20+00:00",
-   "trazas": [
-    {
-     "lat": 16.2,
-     "lon": -62.89,
-     "t": "2026-11-24T17:20+00:00",
-     "rumbo": 279.76,
-     "nudos": 413.0,
-     "alt": 35000
-    }
-   ]
-  },
-  {
-   "hex": "ae2913",
-   "callsign": "C6036",
-   "tipo": "H60",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.97,
-   "lon": -82.8,
-   "alt": 500,
-   "visto_utc": "2026-11-24T17:16+00:00",
-   "dist_pr_km": 1978,
-   "primera_vez_utc": "2026-11-19T19:27+00:00",
-   "trazas": [
-    {
-     "lat": 27.97,
-     "lon": -82.8,
-     "t": "2026-11-24T17:16+00:00",
-     "rumbo": 337.38,
-     "nudos": 117.0,
-     "alt": 500
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae4ae1",
@@ -892,16 +829,7 @@
    "visto_utc": "2026-11-24T17:08+00:00",
    "dist_pr_km": 1965,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
-   "trazas": [
-    {
-     "lat": 27.9,
-     "lon": -82.69,
-     "t": "2026-11-24T17:08+00:00",
-     "rumbo": null,
-     "nudos": 15.5,
-     "alt": "ground"
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae7817",
@@ -1051,21 +979,6 @@
    "visto_utc": "2026-11-21T19:53+00:00",
    "dist_pr_km": 1820,
    "primera_vez_utc": "2026-11-21T19:53+00:00",
-   "trazas": []
-  },
-  {
-   "hex": "ae2689",
-   "callsign": "C6551",
-   "tipo": "AS65",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.87,
-   "lon": -80.87,
-   "alt": 600,
-   "visto_utc": "2026-11-20T17:45+00:00",
-   "dist_pr_km": 1698,
-   "primera_vez_utc": "2026-11-20T01:26+00:00",
    "trazas": []
   },
   {
@@ -1451,7 +1364,11 @@
   "6/9716": "2026-11-24T16:16+00:00",
   "6/9689": "2026-11-24T16:16+00:00",
   "6/9684": "2026-11-24T16:16+00:00",
-  "6/9722": "2026-11-24T20:05+00:00"
+  "6/9722": "2026-11-24T20:05+00:00",
+  "6/9741": "2026-11-25T01:14+00:00",
+  "6/9740": "2026-11-25T01:14+00:00",
+  "6/9736": "2026-11-25T01:14+00:00",
+  "6/9735": "2026-11-25T01:14+00:00"
  },
  "tfr_base": [
   24,
@@ -1481,185 +1398,10 @@
   7,
   7,
   7,
-  6
+  6,
+  7
  ],
  "tfr_geo": {
-  "6/9716": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       34.50839004,
-       -89.40833333
-      ],
-      [
-       34.50788257,
-       -89.40132927
-      ],
-      [
-       34.5063756,
-       -89.39453826
-      ],
-      [
-       34.50391497,
-       -89.38816688
-      ],
-      [
-       34.50057552,
-       -89.38240888
-      ],
-      [
-       34.49645882,
-       -89.37743929
-      ],
-      [
-       34.49169005,
-       -89.37340911
-      ],
-      [
-       34.48641421,
-       -89.37044072
-      ],
-      [
-       34.48079168,
-       -89.36862414
-      ],
-      [
-       34.47499335,
-       -89.36801435
-      ],
-      [
-       34.46919541,
-       -89.36862963
-      ],
-      [
-       34.46357402,
-       -89.37045104
-      ],
-      [
-       34.45829993,
-       -89.37342302
-      ],
-      [
-       34.4535333,
-       -89.3774551
-      ],
-      [
-       34.44941888,
-       -89.38242469
-      ],
-      [
-       34.44608157,
-       -89.38818079
-      ],
-      [
-       34.44362269,
-       -89.39454859
-      ],
-      [
-       34.44211686,
-       -89.40133476
-      ],
-      [
-       34.44160978,
-       -89.40833333
-      ],
-      [
-       34.44211686,
-       -89.41533191
-      ],
-      [
-       34.44362269,
-       -89.42211808
-      ],
-      [
-       34.44608157,
-       -89.42848588
-      ],
-      [
-       34.44941888,
-       -89.43424197
-      ],
-      [
-       34.4535333,
-       -89.43921156
-      ],
-      [
-       34.45829993,
-       -89.44324364
-      ],
-      [
-       34.46357402,
-       -89.44621563
-      ],
-      [
-       34.46919541,
-       -89.44803704
-      ],
-      [
-       34.47499335,
-       -89.44865232
-      ],
-      [
-       34.48079168,
-       -89.44804253
-      ],
-      [
-       34.48641421,
-       -89.44622595
-      ],
-      [
-       34.49169005,
-       -89.44325755
-      ],
-      [
-       34.49645882,
-       -89.43922738
-      ],
-      [
-       34.50057552,
-       -89.43425779
-      ],
-      [
-       34.50391497,
-       -89.42849978
-      ],
-      [
-       34.5063756,
-       -89.4221284
-      ],
-      [
-       34.50788257,
-       -89.4153374
-      ],
-      [
-       34.50839004,
-       -89.40833333
-      ],
-      [
-       34.475,
-       -89.40833333
-      ],
-      [
-       34.475,
-       -89.40833333
-      ],
-      [
-       34.77024542,
-       -89.49651892
-      ],
-      [
-       34.77024542,
-       -89.49651892
-      ]
-     ]
-    }
-   ],
-   "motivo": "TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS",
-   "texto": "!FDC 6/9716 ZME MS..AIRSPACE 8NM NE OXFORD, MS..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 2NM RADIUS OF 342830N0892430W (HLI163018.3) SFC-1800FT MSL EFFECTIVE 2611241555 UTC UNTIL 2611262345 UTC. TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS MISSISSIPPI INTERANGECY COORDINATION CENTER , BAGLEY FIRE, TEL 601-420-6005, /FREQ 122.925 IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE MEMPHIS /ZME/ ARTCC, TEL 901-368-8234, IS THE CDN FAC. 2611241555-2611262345",
-   "altitud": ""
-  },
   "6/9689": {
    "areas": [
     {
@@ -9896,12 +9638,394 @@
    "motivo": "Temporary flight restrictions",
    "texto": "!FDC 6/9722 ZAU IA..AIRSPACE MIDDLETOWN, IA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(1), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 4NM RADIUS OF 404742N0911453W (BRL281015.3) SFC-4000FT MSL EFFECTIVE 2611241854 UTC UNTIL 2611251852 UTC. DEPT OF ARMY, WILLIAM VANCE, TEL 309-756-9203, IS IN CHARGE OF THE OPS. THE CHICAGO /ZAU/ ARTCC, TEL 630-906-8341, IS THE CDN FAC. 2611241854-2611251852",
    "altitud": ""
+  },
+  "6/9741": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       38.33336862,
+       -79.79166667
+      ],
+      [
+       38.33286145,
+       -79.78431034
+      ],
+      [
+       38.33135536,
+       -79.77717783
+      ],
+      [
+       38.32889618,
+       -79.77048612
+      ],
+      [
+       38.32555871,
+       -79.76443873
+      ],
+      [
+       38.32144447,
+       -79.75921952
+      ],
+      [
+       38.3166786,
+       -79.75498705
+      ],
+      [
+       38.31140601,
+       -79.75186983
+      ],
+      [
+       38.305787,
+       -79.74996238
+      ],
+      [
+       38.29999236,
+       -79.74932239
+      ],
+      [
+       38.29419817,
+       -79.74996901
+      ],
+      [
+       38.28858047,
+       -79.7518823
+      ],
+      [
+       38.28330989,
+       -79.75500384
+      ],
+      [
+       38.27854648,
+       -79.75923862
+      ],
+      [
+       38.27443487,
+       -79.76445784
+      ],
+      [
+       38.27109986,
+       -79.77050292
+      ],
+      [
+       38.26864269,
+       -79.7771903
+      ],
+      [
+       38.2671379,
+       -79.78431697
+      ],
+      [
+       38.26663119,
+       -79.79166667
+      ],
+      [
+       38.2671379,
+       -79.79901636
+      ],
+      [
+       38.26864269,
+       -79.80614303
+      ],
+      [
+       38.27109986,
+       -79.81283041
+      ],
+      [
+       38.27443487,
+       -79.8188755
+      ],
+      [
+       38.27854648,
+       -79.82409472
+      ],
+      [
+       38.28330989,
+       -79.82832949
+      ],
+      [
+       38.28858047,
+       -79.83145104
+      ],
+      [
+       38.29419817,
+       -79.83336432
+      ],
+      [
+       38.29999236,
+       -79.83401094
+      ],
+      [
+       38.305787,
+       -79.83337095
+      ],
+      [
+       38.31140601,
+       -79.83146351
+      ],
+      [
+       38.3166786,
+       -79.82834629
+      ],
+      [
+       38.32144447,
+       -79.82411382
+      ],
+      [
+       38.32555871,
+       -79.8188946
+      ],
+      [
+       38.32889618,
+       -79.81284721
+      ],
+      [
+       38.33135536,
+       -79.8061555
+      ],
+      [
+       38.33286145,
+       -79.79902299
+      ],
+      [
+       38.33336862,
+       -79.79166667
+      ],
+      [
+       38.3,
+       -79.79166667
+      ],
+      [
+       38.3,
+       -79.79166667
+      ],
+      [
+       38.91443583,
+       -80.0992725
+      ],
+      [
+       38.91443583,
+       -80.0992725
+      ]
+     ]
+    }
+   ],
+   "motivo": "TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS",
+   "texto": "!FDC 6/9741 ZDC VA..AIRSPACE 41NM SW HARRISONBURG, VA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 2NM RADIUS OF 381800N0794730W (EKN166039.6) SFC-5200FT MSL EFFECTIVE 2611251400 UTC UNTIL 2611302300 UTC DLY 1400-2300. TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS VIRGINIA INTERAGENCY COORDINATION CENTER , LITTLE RIDGE FIRE, TEL 434-423-2002, /FREQ 123.125 IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE WASHINGTON /ZDC/ ARTCC, TEL 703-771-3470, IS THE CDN FAC. 2611251400-2611302300",
+   "altitud": ""
+  },
+  "6/9740": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       40.40257077,
+       -83.10083333
+      ],
+      [
+       40.40104825,
+       -83.07810359
+      ],
+      [
+       40.39652716,
+       -83.05606747
+      ],
+      [
+       40.38914544,
+       -83.03539715
+      ],
+      [
+       40.37912826,
+       -83.01672265
+      ],
+      [
+       40.36678107,
+       -83.0006124
+      ],
+      [
+       40.35248017,
+       -82.9875559
+      ],
+      [
+       40.33666117,
+       -82.97794881
+      ],
+      [
+       40.3198056,
+       -82.97208109
+      ],
+      [
+       40.30242617,
+       -82.97012838
+      ],
+      [
+       40.28505114,
+       -82.97214705
+      ],
+      [
+       40.26820824,
+       -82.97807278
+      ],
+      [
+       40.25240865,
+       -82.98772293
+      ],
+      [
+       40.23813157,
+       -83.00080234
+      ],
+      [
+       40.22580971,
+       -83.01691258
+      ],
+      [
+       40.21581634,
+       -83.03556418
+      ],
+      [
+       40.20845404,
+       -83.05619144
+      ],
+      [
+       40.20394561,
+       -83.07816955
+      ],
+      [
+       40.20242749,
+       -83.10083333
+      ],
+      [
+       40.20394561,
+       -83.12349711
+      ],
+      [
+       40.20845404,
+       -83.14547522
+      ],
+      [
+       40.21581634,
+       -83.16610248
+      ],
+      [
+       40.22580971,
+       -83.18475408
+      ],
+      [
+       40.23813157,
+       -83.20086432
+      ],
+      [
+       40.25240865,
+       -83.21394373
+      ],
+      [
+       40.26820824,
+       -83.22359388
+      ],
+      [
+       40.28505114,
+       -83.22951961
+      ],
+      [
+       40.30242617,
+       -83.23153828
+      ],
+      [
+       40.3198056,
+       -83.22958557
+      ],
+      [
+       40.33666117,
+       -83.22371785
+      ],
+      [
+       40.35248017,
+       -83.21411076
+      ],
+      [
+       40.36678107,
+       -83.20105426
+      ],
+      [
+       40.37912826,
+       -83.18494401
+      ],
+      [
+       40.38914544,
+       -83.16626951
+      ],
+      [
+       40.39652716,
+       -83.14559919
+      ],
+      [
+       40.40104825,
+       -83.12356307
+      ],
+      [
+       40.40257077,
+       -83.10083333
+      ],
+      [
+       40.3025,
+       -83.10083333
+      ],
+      [
+       40.3025,
+       -83.10083333
+      ],
+      [
+       40.15106272,
+       -82.58830136
+      ],
+      [
+       40.15106272,
+       -82.58830136
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions for VIP Movement",
+   "texto": "!FDC 6/9740 ZID OH..AIRSPACE DELAWARE, OHIO..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 91.141, ALL ACFT FLT OPS INCLUDING REMOTE CONTROLLED ACFT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 6NM RADIUS OF 401809N0830603W (APE297025.2) SFC-4999FT AGL EFFECTIVE 2611261430 UTC (0930 LOCAL 11/26/26) UNTIL 2611262330 UTC (183",
+   "altitud": ""
+  },
+  "6/9736": {
+   "areas": [
+    {
+     "tipo": "circulo",
+     "centro": [
+      31.5775,
+      -110.34944444
+     ],
+     "radio_m": 14816.0
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9736 ZAB AZ..AIRSPACE LIBBY AAF, AZ..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 29, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. ANY PERSON WHO KNOWINGLY OR WILLFULLY VIOLATES THE RULES CONCERNING OPS IN THIS AIRSPACE MAY BE SUBJECT TO CERTAIN CRIMINAL PENALTIES UNDER 49 USC 40103(B)(3). PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 313405N1101136W (FHU086008.4) TO 313513N1103020W (FHU256007.7) THEN CLOCKWISE ON A 8 NM ARC CENTERED ON 313439N1102058W (FHU146000.8) TO THE POINT OF ORIGIN 9000FT MSL-17999FT MSL EFFECTIVE 2611291300 UTC (0600 LOCAL 11/29/26) UNTIL 2611300600 UTC (2300 LOCAL 11/29/26). EXC AS SPECIFIED BLW AND/OR UNLESS AUTH BY ATC: 1. ALL AIRCRAFT ENTERING OR EXITING THE TFR MUST BE ON A DISCRETE CODE ASSIGNED BY AN AIR TRAFFIC CONTROL (ATC) FACILITY. 2. AIRCRAFT MUST BE SQUAWKING THE DISCRETE CODE AT ALL TIMES WHILE IN THE TFR. 3. ALL AIRCRAFT ENTERING OR EX",
+   "altitud": "From and including 9000 feet MSL  up to and including 17999 feet MSL"
+  },
+  "6/9735": {
+   "areas": [
+    {
+     "tipo": "circulo",
+     "centro": [
+      31.5775,
+      -110.34944444
+     ],
+     "radio_m": 14816.0
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9735 ZAB AZ..AIRSPACE LIBBY AAF, AZ..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 25-26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. ANY PERSON WHO KNOWINGLY OR WILLFULLY VIOLATES THE RULES CONCERNING OPS IN THIS AIRSPACE MAY BE SUBJECT TO CERTAIN CRIMINAL PENALTIES UNDER 49 USC 40103(B)(3). PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 313405N1101136W (FHU086008.4) TO 313513N1103020W (FHU256007.7) THEN CLOCKWISE ON A 8 NM ARC CENTERED ON 313439N1102058W (FHU146000.8) TO THE POINT OF ORIGIN 9000FT MSL-17999FT MSL EFFECTIVE 2611260600 UTC (2300 LOCAL 11/25/26) UNTIL 2611261300 UTC (0600 LOCAL 11/26/26). EXC AS SPECIFIED BLW AND/OR UNLESS AUTH BY ATC: 1. ALL AIRCRAFT ENTERING OR EXITING THE TFR MUST BE ON A DISCRETE CODE ASSIGNED BY AN AIR TRAFFIC CONTROL (ATC) FACILITY. 2. AIRCRAFT MUST BE SQUAWKING THE DISCRETE CODE AT ALL TIMES WHILE IN THE TFR. 3. ALL AIRCRAFT ENTERING OR",
+   "altitud": "From and including 9000 feet MSL  up to and including 17999 feet MSL"
   }
  },
  "tle_cache": {
   "military": {
-   "t": "2026-11-24T16:51+00:00",
-   "txt": "SAR-LUPE 2              \r\n1 31797U 07030A   26328.16565138  .00045328  00000+0  41331-3 0  9999\r\n2 31797  98.1126  95.2765 0005414 246.5791 113.4899 15.67762069 81887\r\nSAPPHIRE                \r\n1 39088U 13009C   26328.01618264  .00000060  00000+0  35955-4 0  9996\r\n2 39088  98.4303 143.7723 0012054 129.6166 230.6086 14.35276974719502\r\nPRAETORIAN SDA_602      \r\n1 65565U 25203A   26328.45374654  .00000113  00000+0  90999-4 0  9992\r\n2 65565  81.3038 222.4152 0006803 115.1117 245.0746 13.83899545 60867\r\nPRAETORIAN SDA_603      \r\n1 65566U 25203B   26328.40272866  .00000189  00000+0  15906-3 0  9997\r\n2 65566  81.3042 222.3765 0010439 113.8052 246.4200 13.83973610 60861\r\nPRAETORIAN SDA_604      \r\n1 65567U 25203C   26328.45488941  .00000119  00000+0  97742-4 0  9998\r\n2 65567  81.3059 222.9952 0006260 119.1560 241.0223 13.83062953 60836\r\nPRAETORIAN SDA_605      \r\n1 65568U 25203D   26328.40488163  .00000092  00000+0  72698-4 0  9993\r\n2 65568  81.3026 222.6126 0009164 113.4058 246.8063 13.83123351 60842\r\nPRAETORIAN SDA_606      \r\n1 65569U 25203E   26328.45745236  .00000088  00000+0  69385-4 0  9990\r\n2 65569  81.3062 222.8420 0006898 113.7109 246.4772 13.83217759 60842\r\nPRAETORIAN SDA_607      \r\n1 65570U 25203F   26327.45489159  .00000132  00000+0  10820-3 0  9999\r\n2 65570  81.3045 223.2520 0009667 115.7638 244.4518 13.83771032 60730\r\nPRAETORIAN SDA_608      \r\n1 65571U 25203G   26328.44386248  .00000098  00000+0  77546-4 0  9995\r\n2 65571  81.3014 222.4450 0006775 117.8886 242.2957 13.83831795 60854\r\nPRAETORIAN SDA_609      \r\n1 65572U 25203H   26328.40344859  .00000175  00000+0  14656-3 0  9992\r\n2 65572  81.3056 222.4386 0007681 112.9053 247.2915 13.84224580 60867\r\nPRAETORIAN SDA_610      \r\n1 65573U 25203J   26328.45354170  .00000098  00000+0  78085-4 0  9996\r\n2 65573  81.3016 222.4625 0007503 117.9675 242.2242 13.83540215 60850\r\nPRAETORIAN SDA_611      \r\n1 65574U 25203K   26327.47077679  .00000245  00000+0  21183-3 0  9994\r\n2 65574  81.3021 223.5945 0006318 124.1525 236.0231 13.83321271 60703\r\nPRAETORIAN SDA_612      \r\n1 65575U 25203L   26328.41772471  .00000140  00000+0  11300-3 0  9996\r\n2 65575  81.3037 221.9133 0010014 113.0339 247.1876 13.85046841 60897\r\nPRAETORIAN SDA_613      \r\n1 65576U 25203M   26327.46760593  .00000103  00000+0  83686-4 0  9999\r\n2 65576  81.3007 223.7185 0006483 115.1847 244.9981 13.82779055 60691\r\nPRAETORIAN SDA_614      \r\n1 65577U 25203N   26328.43673731  .00000090  00000+0  69576-4 0  9992\r\n2 65577  81.3021 222.0119 0007978 110.7903 249.4109 13.84791002 60893\r\nPRAETORIAN SDA_615      \r\n1 65578U 25203P   26327.00773094  .00000144  00000+0  11762-3 0  9991\r\n2 65578  81.3032 223.4007 0009846 115.5234 244.6942 13.84448679 60681\r\nPRAETORIAN SDA_616      \r\n1 65579U 25203Q   26327.47458765  .00000164  00000+0  13860-3 0  9991\r\n2 65579  81.3070 223.8426 0006186 122.1441 238.0316 13.83282342 60708\r\nPRAETORIAN SDA_617      \r\n1 65580U 25203R   26327.43745805  .00000085  00000+0  66958-4 0  9992\r\n2 65580  81.3044 223.6934 0008210 114.5100 245.6913 13.83163549 60704\r\nPRAETORIAN SDA_618      \r\n1 65581U 25203S   26328.44077500  .00000104  00000+0  82360-4 0  9992\r\n2 65581  81.3030 222.0465 0010574 116.0228 244.2018 13.84237110 60883\r\nPRAETORIAN SDA_619      \r\n1 65582U 25203T   26328.46218567  .00000211  00000+0  17962-3 0  9999\r\n2 65582  81.3053 222.4874 0009071 111.9951 248.2170 13.83738294 61493\r\nPRAETORIAN SDA_620      \r\n1 65583U 25203U   26328.40354285  .00000172  00000+0  14621-3 0  9997\r\n2 65583  81.3035 222.6645 0008308 110.3772 249.8278 13.83219213 60847\r\nPRAETORIAN SDA_621      \r\n1 65584U 25203V   26328.45787941  .00000126  00000+0  10253-3 0  9998\r\n2 65584  81.3028 222.3772 0008279 106.8000 253.4065 13.83817081 60863\r\nPRAETORIAN SDA_601      \r\n1 65585U 25203W   26328.42958435  .00000053  00000+0  37942-4 0  9998\r\n2 65585  81.3049 222.8830 0006243 123.1288 237.0468 13.83182638 60831\r\nVICTUS HAZE PUMA        \r\n1 69646U 26142A   26328.04860515  .00002767  00000+0  12431-3 0  9991\r\n2 69646  97.4489 223.9164 0015855 263.8703  96.0727 15.21896224 23976\r\n"
+   "t": "2026-11-25T01:14+00:00",
+   "txt": "SAR-LUPE 2              \r\n1 31797U 07030A   26328.80390907  .00029999  00000+0  27395-3 0  9990\r\n2 31797  98.1129  96.0130 0005495 244.1232 115.9460 15.67808247 81989\r\nSAPPHIRE                \r\n1 39088U 13009C   26328.78302766  .00000048  00000+0  31838-4 0  9999\r\n2 39088  98.4302 144.5216 0012089 127.5306 232.6981 14.35277104719612\r\nPRAETORIAN SDA_602      \r\n1 65565U 25203A   26328.45374654  .00000113  00000+0  90999-4 0  9992\r\n2 65565  81.3038 222.4152 0006803 115.1117 245.0746 13.83899545 60867\r\nPRAETORIAN SDA_603      \r\n1 65566U 25203B   26328.40272866  .00000189  00000+0  15906-3 0  9997\r\n2 65566  81.3042 222.3765 0010439 113.8052 246.4200 13.83973610 60861\r\nPRAETORIAN SDA_604      \r\n1 65567U 25203C   26328.45488941  .00000119  00000+0  97742-4 0  9998\r\n2 65567  81.3059 222.9952 0006260 119.1560 241.0223 13.83062953 60836\r\nPRAETORIAN SDA_605      \r\n1 65568U 25203D   26328.40488163  .00000092  00000+0  72698-4 0  9993\r\n2 65568  81.3026 222.6126 0009164 113.4058 246.8063 13.83123351 60842\r\nPRAETORIAN SDA_606      \r\n1 65569U 25203E   26328.45745236  .00000088  00000+0  69385-4 0  9990\r\n2 65569  81.3062 222.8420 0006898 113.7109 246.4772 13.83217759 60842\r\nPRAETORIAN SDA_607      \r\n1 65570U 25203F   26327.45489159  .00000132  00000+0  10820-3 0  9999\r\n2 65570  81.3045 223.2520 0009667 115.7638 244.4518 13.83771032 60730\r\nPRAETORIAN SDA_608      \r\n1 65571U 25203G   26328.44386248  .00000098  00000+0  77546-4 0  9995\r\n2 65571  81.3014 222.4450 0006775 117.8886 242.2957 13.83831795 60854\r\nPRAETORIAN SDA_609      \r\n1 65572U 25203H   26328.40344859  .00000175  00000+0  14656-3 0  9992\r\n2 65572  81.3056 222.4386 0007681 112.9053 247.2915 13.84224580 60867\r\nPRAETORIAN SDA_610      \r\n1 65573U 25203J   26328.45354170  .00000098  00000+0  78085-4 0  9996\r\n2 65573  81.3016 222.4625 0007503 117.9675 242.2242 13.83540215 60850\r\nPRAETORIAN SDA_611      \r\n1 65574U 25203K   26327.47077679  .00000245  00000+0  21183-3 0  9994\r\n2 65574  81.3021 223.5945 0006318 124.1525 236.0231 13.83321271 60703\r\nPRAETORIAN SDA_612      \r\n1 65575U 25203L   26328.41772471  .00000140  00000+0  11300-3 0  9996\r\n2 65575  81.3037 221.9133 0010014 113.0339 247.1876 13.85046841 60897\r\nPRAETORIAN SDA_613      \r\n1 65576U 25203M   26327.46760593  .00000103  00000+0  83686-4 0  9999\r\n2 65576  81.3007 223.7185 0006483 115.1847 244.9981 13.82779055 60691\r\nPRAETORIAN SDA_614      \r\n1 65577U 25203N   26328.72574727  .00000090  00000+0  69071-4 0  9999\r\n2 65577  81.3021 221.7440 0007993 110.0735 250.1283 13.84791032 60939\r\nPRAETORIAN SDA_615      \r\n1 65578U 25203P   26327.00773094  .00000144  00000+0  11762-3 0  9991\r\n2 65578  81.3032 223.4007 0009846 115.5234 244.6942 13.84448679 60681\r\nPRAETORIAN SDA_616      \r\n1 65579U 25203Q   26327.47458765  .00000164  00000+0  13860-3 0  9991\r\n2 65579  81.3070 223.8426 0006186 122.1441 238.0316 13.83282342 60708\r\nPRAETORIAN SDA_617      \r\n1 65580U 25203R   26327.43745805  .00000085  00000+0  66958-4 0  9992\r\n2 65580  81.3044 223.6934 0008210 114.5100 245.6913 13.83163549 60704\r\nPRAETORIAN SDA_618      \r\n1 65581U 25203S   26328.44077500  .00000104  00000+0  82360-4 0  9992\r\n2 65581  81.3030 222.0465 0010574 116.0228 244.2018 13.84237110 60883\r\nPRAETORIAN SDA_619      \r\n1 65582U 25203T   26328.46218567  .00000211  00000+0  17962-3 0  9999\r\n2 65582  81.3053 222.4874 0009071 111.9951 248.2170 13.83738294 61493\r\nPRAETORIAN SDA_620      \r\n1 65583U 25203U   26328.40354285  .00000172  00000+0  14621-3 0  9997\r\n2 65583  81.3035 222.6645 0008308 110.3772 249.8278 13.83219213 60847\r\nPRAETORIAN SDA_621      \r\n1 65584U 25203V   26328.45787941  .00000126  00000+0  10253-3 0  9998\r\n2 65584  81.3028 222.3772 0008279 106.8000 253.4065 13.83817081 60863\r\nPRAETORIAN SDA_601      \r\n1 65585U 25203W   26328.42958435  .00000053  00000+0  37942-4 0  9998\r\n2 65585  81.3049 222.8830 0006243 123.1288 237.0468 13.83182638 60831\r\nVICTUS HAZE PUMA        \r\n1 69646U 26142A   26328.77184936  .00002588  00000+0  11645-3 0  9994\r\n2 69646  97.4489 224.6327 0015866 261.0770  98.8670 15.21899833 24080\r\n"
   }
  },
  "log_buques_ais": {}
