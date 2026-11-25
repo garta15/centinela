@@ -1,8 +1,6 @@
 {
- "actualizado_utc": "2026-11-25T22:20:30+00:00",
+ "actualizado_utc": "2026-11-25T22:30:25+00:00",
  "nivel": 2,
  "motor": "github",
- "fuentes_con_falla": [
-  "Downdetector (v\u00eda prensa)"
- ]
+ "fuentes_con_falla": []
 }
