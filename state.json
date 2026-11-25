@@ -35,9 +35,25 @@
   "50b7f1168a5f": "2026-11-25T17:00:38+00:00",
   "2f41b461a5c1": "2026-11-25T17:30:26+00:00",
   "ad303a83f19b": "2026-11-25T17:40:21+00:00",
-  "3982f920427d": "2026-11-25T18:00:28+00:00"
+  "3982f920427d": "2026-11-25T18:00:28+00:00",
+  "f0968cf8fc90": "2026-11-25T18:20:21+00:00"
  },
  "historial": [
+  {
+   "id": "f0968cf8fc90",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Seguridad en Puerto Rico",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🇵🇷 Seguridad en Puerto Rico: índice 89/100 (11 en 3 h · 59 en 24 h)",
+   "detalle": "Nuevo ataque con explosivos generó temor en la vía Panamericana - HSB Noticias",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQMnktZHJhOVZVeTBBSmk1SkZ3UThEMXNFQ2F0VUpXUWlLanhPZmotWWhXVkRJQ0ltYmY4V2hyN3hPQ1MyaTJFczI1bXlSbXQ4TG1JZWxoNHVGekFCbnVCQzB5RW45N21tUzlsQ1A1T0JPZG9HRGRrRXJ0elNoVm9LZTlSdE9wNFV0anpLVXBvSGh2cFNkd3RrS283N0c?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T18:20:21+00:00"
+  },
   {
    "id": "3982f920427d",
    "fuente": "Medidor de prensa",
@@ -595,7 +611,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  2,
   0,
   1,
   0,
@@ -690,7 +705,8 @@
   1,
   0,
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -804,6 +820,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -923,7 +940,8 @@
    30,
    21,
    30,
-   30
+   30,
+   22
   ],
   "electrica": [
    13,
@@ -1039,7 +1057,8 @@
    82,
    73,
    83,
-   49
+   49,
+   57
   ],
   "ataque": [
    94,
@@ -1155,7 +1174,8 @@
    96,
    96,
    96,
-   96
+   96,
+   87
   ],
   "terror": [
    98,
@@ -1271,6 +1291,7 @@
    43,
    21,
    43,
+   22,
    22
   ],
   "emergencia": [
@@ -1387,6 +1408,7 @@
    44,
    45,
    50,
+   46,
    46
   ],
   "espacio": [
@@ -1503,7 +1525,8 @@
    22,
    18,
    17,
-   17
+   17,
+   21
   ],
   "caribe": [
    21,
@@ -1619,7 +1642,8 @@
    46,
    45,
    44,
-   21
+   21,
+   43
   ],
   "pr": [
    0,
@@ -1735,10 +1759,35 @@
    29,
    58,
    28,
-   28
+   28,
+   59
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae04f9",
+   "callsign": "SAM019",
+   "tipo": "GLF5",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.78,
+   "lon": -82.67,
+   "alt": 41000,
+   "visto_utc": "2026-11-25T18:20+00:00",
+   "dist_pr_km": 1956,
+   "primera_vez_utc": "2026-11-25T18:20+00:00",
+   "trazas": [
+    {
+     "lat": 27.78,
+     "lon": -82.67,
+     "t": "2026-11-25T18:20+00:00",
+     "rumbo": 168.0,
+     "nudos": 413.0,
+     "alt": 41000
+    }
+   ]
+  },
   {
    "hex": "ae04c0",
    "callsign": "58-0124",
@@ -2680,6 +2729,7 @@
   7,
   7,
   6,
+  7,
   7,
   7,
   7,
