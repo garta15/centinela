@@ -1294,12 +1294,12 @@ def f_buques_ais():
             if intento == 2: raise
             time.sleep(5)
     log = ESTADO_REF.setdefault("log_buques_ais", {})
+    for k in [k for k, v in log.items() if v.get("clase") == "gobierno EE. UU."]: log.pop(k)   # criterio viejo, daba falsos positivos
     ahora = NOW.isoformat(timespec="minutes")
     for mmsi, v in vistos.items():
         t = tipos.get(mmsi)
         nom = v["nombre"].upper()
         clase = ("militar" if t == 35 else "fuerzas del orden" if t == 55 else
-                 "gobierno EE. UU." if mmsi.startswith("3669") else
                  "militar" if re.search(r"WARSHIP|NAVY|USNS|USCGC|COAST GUARD|ARMADA|GUARDACOSTA", nom) else None)
         if not clase: continue
         reg = log.setdefault(mmsi, {"mmsi": mmsi, "nombre": v["nombre"] or "sin nombre", "clase": clase, "trazas": []})
