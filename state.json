@@ -38,9 +38,41 @@
   "3982f920427d": "2026-11-25T18:00:28+00:00",
   "f0968cf8fc90": "2026-11-25T18:20:21+00:00",
   "43ff6d2cf3e8": "2026-11-25T18:50:34+00:00",
-  "6bffe90c9fb8": "2026-11-25T19:30:36+00:00"
+  "6bffe90c9fb8": "2026-11-25T19:30:36+00:00",
+  "c0af0fee9a5c": "2026-11-25T19:50:21+00:00",
+  "9fe09df1baef": "2026-11-25T19:50:21+00:00"
  },
  "historial": [
+  {
+   "id": "9fe09df1baef",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 72/100 (18 en 3 h · 58 en 24 h)",
+   "detalle": "NJ declares state of emergency ahead of Thanksgiving storm - NJBIZ",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBzdXlPSHUxOVhCMmxYRGJfQUdvMGJmVjQtNmF0T0V2V0RtQTZ6UDlWc05xWEdfRHNCQi1hdkMyUkl5QmxiNGxSUVM2ampwVWRnVFlvaFdEbDloVy1iTWtFeVprcEtlZzB5dk5qcFJzOXF2S2Z2Mnc?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T19:50:21+00:00"
+  },
+  {
+   "id": "c0af0fee9a5c",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Red eléctrica",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚡ Red eléctrica: índice 72/100 (25 en 3 h · 62 en 24 h)",
+   "detalle": "Miguel Romero advierte que transición de LUMA no debe retrasar obras en San Juan - Metro Puerto Rico",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSTNPM1Z6ZTRlMzJySmxHdlRNcTZoeU1Yb2I3VnpDUHZHZXRVZ3I4NEhWalVmaXBmLW95alRkRTlBRmdSRW1OZWQ5cklJLWZTRVZDaUFVSTNfZ21DdkIxRkpKTE1tcjVBMDVHcFVGQk9oMEQ5alVtR3BMSW53aXdMMFRBa1NHbEE2S3dIbndTN2FnNER6TXBnbjJBbkZ0VFl1dnlXQkxmMXZrcmpfakNRRVdicUFjeUIxWTdGVG84dw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T19:50:21+00:00"
+  },
   {
    "id": "6bffe90c9fb8",
    "fuente": "Medidor de prensa",
@@ -643,7 +675,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  6,
   3,
   3,
   2,
@@ -738,7 +769,8 @@
   1,
   2,
   3,
-  3
+  3,
+  4
  ],
  "medidores_base": {
   "telecom": [
@@ -852,6 +884,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -993,7 +1026,8 @@
    22,
    30,
    30,
-   22
+   22,
+   30
   ],
   "electrica": [
    13,
@@ -1120,7 +1154,8 @@
    56,
    60,
    51,
-   51
+   51,
+   62
   ],
   "ataque": [
    94,
@@ -1247,6 +1282,7 @@
    96,
    96,
    96,
+   89,
    89
   ],
   "terror": [
@@ -1374,7 +1410,8 @@
    44,
    28,
    52,
-   28
+   28,
+   52
   ],
   "emergencia": [
    95,
@@ -1501,7 +1538,8 @@
    52,
    53,
    52,
-   56
+   56,
+   58
   ],
   "espacio": [
    10,
@@ -1628,7 +1666,8 @@
    20,
    16,
    20,
-   21
+   21,
+   22
   ],
   "caribe": [
    21,
@@ -1755,7 +1794,8 @@
    44,
    20,
    44,
-   21
+   21,
+   23
   ],
   "pr": [
    0,
@@ -1882,7 +1922,8 @@
    61,
    29,
    29,
-   60
+   60,
+   61
   ]
  },
  "log_aviones": [
@@ -1896,18 +1937,10 @@
    "lat": 14.6,
    "lon": -60.99,
    "alt": 0,
-   "visto_utc": "2026-11-25T19:40+00:00",
+   "visto_utc": "2026-11-25T19:50+00:00",
    "dist_pr_km": 720,
    "primera_vez_utc": "2026-11-22T00:12+00:00",
    "trazas": [
-    {
-     "lat": 14.6,
-     "lon": -60.99,
-     "t": "2026-11-25T18:56+00:00",
-     "rumbo": 0.0,
-     "nudos": 0.7,
-     "alt": 0
-    },
     {
      "lat": 14.6,
      "lon": -60.99,
@@ -1947,6 +1980,14 @@
      "rumbo": 0.0,
      "nudos": 0.7,
      "alt": 0
+    },
+    {
+     "lat": 14.6,
+     "lon": -60.99,
+     "t": "2026-11-25T19:50+00:00",
+     "rumbo": 0.0,
+     "nudos": 0.7,
+     "alt": 0
     }
    ]
   },
@@ -1957,21 +1998,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 27.88,
-   "lon": -82.77,
-   "alt": 2100,
-   "visto_utc": "2026-11-25T19:40+00:00",
-   "dist_pr_km": 1970,
+   "lat": 27.99,
+   "lon": -82.75,
+   "alt": 1725,
+   "visto_utc": "2026-11-25T19:50+00:00",
+   "dist_pr_km": 1975,
    "primera_vez_utc": "2026-11-24T16:16+00:00",
    "trazas": [
-    {
-     "lat": 27.82,
-     "lon": -82.69,
-     "t": "2026-11-25T16:50+00:00",
-     "rumbo": 4.87,
-     "nudos": 129.5,
-     "alt": 1650
-    },
     {
      "lat": 27.91,
      "lon": -82.69,
@@ -1995,6 +2028,14 @@
      "rumbo": 184.11,
      "nudos": 181.5,
      "alt": 2100
+    },
+    {
+     "lat": 27.99,
+     "lon": -82.75,
+     "t": "2026-11-25T19:50+00:00",
+     "rumbo": 296.3,
+     "nudos": 196.3,
+     "alt": 1725
     }
    ]
   },
@@ -2005,11 +2046,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 19.81,
-   "lon": -84.63,
+   "lat": 19.31,
+   "lon": -83.72,
    "alt": 31000,
-   "visto_utc": "2026-11-25T19:40+00:00",
-   "dist_pr_km": 1904,
+   "visto_utc": "2026-11-25T19:50+00:00",
+   "dist_pr_km": 1807,
    "primera_vez_utc": "2026-11-25T19:40+00:00",
    "trazas": [
     {
@@ -2019,6 +2060,38 @@
      "rumbo": 119.77,
      "nudos": 352.5,
      "alt": 31000
+    },
+    {
+     "lat": 19.31,
+     "lon": -83.72,
+     "t": "2026-11-25T19:50+00:00",
+     "rumbo": 120.03,
+     "nudos": 347.7,
+     "alt": 31000
+    }
+   ]
+  },
+  {
+   "hex": "ae5def",
+   "callsign": "C2016",
+   "tipo": "C30J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.9,
+   "lon": -82.88,
+   "alt": 3100,
+   "visto_utc": "2026-11-25T19:50+00:00",
+   "dist_pr_km": 1981,
+   "primera_vez_utc": "2026-11-25T19:50+00:00",
+   "trazas": [
+    {
+     "lat": 27.9,
+     "lon": -82.88,
+     "t": "2026-11-25T19:50+00:00",
+     "rumbo": 182.08,
+     "nudos": 193.1,
+     "alt": 3100
     }
    ]
   },
@@ -3188,6 +3261,7 @@
   7,
   8,
   8,
+  7,
   7
  ],
  "tfr_geo": {
