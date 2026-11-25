@@ -61,7 +61,7 @@ details summary{cursor:pointer;margin-top:8px;font-weight:600}.av{padding-left:4
 .leaflet-container{font:inherit}.leaflet-control-attribution{font-size:10px!important}
 .ico-avion{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:16px solid;filter:drop-shadow(0 0 3px #000)}
 .ico-tri{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:16px solid;filter:drop-shadow(0 0 2px #000)}
-.ico-sat{font-size:16px;line-height:16px;text-shadow:0 0 4px #000}
+.ico-sat{width:18px;height:18px;filter:drop-shadow(0 0 2px #000)}.ico-sat .i{width:18px;height:18px;stroke-width:2.2}
 /* ---- ventana inferior (bottom sheet) ---- */
 #hoja{position:fixed;left:0;right:0;bottom:0;z-index:3000;max-height:62vh;overflow:auto;background:var(--card);color:var(--fg);
   border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:0 -8px 30px rgba(0,0,0,.45);padding:8px 18px 22px;
@@ -192,9 +192,22 @@ main{max-width:720px}
 @media (max-width:600px){.fila>summary,.mapbtn2{padding:12px}.fest{font-size:12px;padding:3px 8px}.ftx b{font-size:16px}}
 @media (prefers-reduced-motion:reduce){.fchev{transition:none}}
 body.vmapa main{max-width:1240px}
-</style></head><body><main>
+</style><style>
+.i{width:1.15em;height:1.15em;vertical-align:-.2em;flex:none}
+.fico{color:#fff}.fico .i{width:22px;height:22px}
+.logo{width:26px;height:26px;color:#fff;flex:none}.login .logo{width:30px;height:30px}
+.hud button .i{width:14px;height:14px;vertical-align:-.25em}
+.rf2 h2{display:flex;align-items:center;gap:8px;justify-content:flex-start}
+.maptit{font:600 20px/1.3 "IBM Plex Sans",sans-serif;margin:22px 0 0;display:flex;align-items:center;gap:10px;justify-content:flex-start}.maptit .i{width:24px;height:24px}
+.hud button{font:600 13px/1 "IBM Plex Sans",sans-serif!important;letter-spacing:0!important;color:#fff!important}.mapstamp{font:12px "IBM Plex Sans",sans-serif!important;color:#C9D6E6!important}
+.mapbar{border-left-width:1px!important;border-radius:16px}.volver{color:#fff}.rf2 h2 .i{width:22px;height:22px}
+.mtit .i{display:block;margin:2px auto 4px;width:20px;height:20px}.med[open] .mtit .i{display:inline-block;margin:0 4px 0 0}
+.igr-t .i,.bloque h3 .i,#hoja h3 .i{color:#fff}
+</style>
+<link rel="icon" type="image/svg+xml" href="icono.svg"><link rel="apple-touch-icon" href="icono-180.png">
+</head><body><main>
 <div id="login" class="card login">
-  <div class="marca" style="margin-bottom:6px"><span class="faro" style="--c:#3B8CF6"></span>{{NOMBRE}}</div>
+  <div class="marca" style="margin-bottom:6px"><svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5V5"/><path d="M7.5 10.5a4.5 4.5 0 0 1 9 0"/><path d="M6.5 10.5h11"/><path d="M8 10.5V19h8v-8.5"/><path d="M10.5 19v-3a1.5 1.5 0 0 1 3 0v3"/><path d="M5 19h14"/><path d="M3 7.2a10 10 0 0 1 3.5-3.2" opacity=".55"/><path d="M21 7.2a10 10 0 0 0-3.5-3.2" opacity=".55"/></svg>{{NOMBRE}}</div>
   <h2 style="font-size:28px">Acceso familiar</h2>
   <p class="det">Contenido cifrado. Escribe la frase clave familiar.</p>
   <form id="f"><input id="k" type="password" autocomplete="current-password" placeholder="Frase clave" aria-label="Frase clave" required>
@@ -205,6 +218,37 @@ body.vmapa main{max-width:1240px}
 <div id="hoja" role="dialog" aria-modal="false" aria-labelledby="hojaTit"><div class="asa"></div><button class="cerrar" aria-label="Cerrar" onclick="cerrarHoja()">✕</button><div id="hojaCont"></div></div>
 </main>
 <script>
+const IC={
+logo:'<path d="M12 3.5V5"/><path d="M7.5 10.5a4.5 4.5 0 0 1 9 0"/><path d="M6.5 10.5h11"/><path d="M8 10.5V19h8v-8.5"/><path d="M10.5 19v-3a1.5 1.5 0 0 1 3 0v3"/><path d="M5 19h14"/><path d="M3 7.2a10 10 0 0 1 3.5-3.2" opacity=".55"/><path d="M21 7.2a10 10 0 0 0-3.5-3.2" opacity=".55"/>',
+rayo:'<path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/>',
+globo:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13.5 13.5 0 0 1 0 18a13.5 13.5 0 0 1 0-18z"/>',
+puerto:'<path d="M2.5 15h19l-2.5 5h-14z"/><path d="M5.5 15v-3.5h5V15"/><path d="M10.5 15V9h5v6"/><path d="M18 15V5"/><path d="M18 5h-4.5"/>',
+aviso:'<path d="M4 10v4h3l7 4.5v-13L7 10z"/><path d="M17.5 9a4 4 0 0 1 0 6"/><path d="M7 14l1 5"/>',
+avion:'<path d="M12 2.5c.8 0 1.5.7 1.5 1.5v5l7.5 4.5v2l-7.5-2.5V18l2 1.5V21L12 20l-3.5 1v-1.5l2-1.5v-5L3 15.5v-2l7.5-4.5V4c0-.8.7-1.5 1.5-1.5z"/>',
+barco:'<path d="M3 15.5h18l-2.5 4.5h-13z"/><path d="M7 15.5v-4h9v4"/><path d="M11.5 11.5V5"/><path d="M9 7.5h5"/>',
+radar:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6.4-6.4"/><circle cx="12" cy="12" r=".6" fill="currentColor"/>',
+medidor:'<path d="M3.5 17a8.5 8.5 0 1 1 17 0"/><path d="M12 17l4.2-5"/><circle cx="12" cy="17" r="1.2"/><path d="M6 13.5l1 .6M12 8.5v1.2M18 13.5l-1 .6"/>',
+diario:'<path d="M4 5h12.5v14H6a2 2 0 0 1-2-2z"/><path d="M16.5 9H20v8a2 2 0 0 1-2 2h-1.5"/><path d="M7 9h6.5M7 12.5h6.5M7 16h4"/>',
+sinred:'<path d="M4.5 12a10.5 10.5 0 0 1 15 0"/><path d="M8 15.5a5.5 5.5 0 0 1 8 0"/><path d="M12 19h.01"/><path d="M3 3l18 18"/>',
+reloj:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+base:'<ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/>',
+mapa:'<path d="M3 6.5l6-2.5 6 2.5 6-2.5v13.5l-6 2.5-6-2.5-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/>',
+casa:'<path d="M3 11l9-7.5 9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>',
+satelite:'<rect x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="2.5" y="9" width="5" height="6" rx=".8"/><rect x="16.5" y="9" width="5" height="6" rx=".8"/><path d="M7.5 12h2M14.5 12h2M12 9.5V7"/><path d="M9.5 4.8a3.5 3.5 0 0 1 5 0"/>',
+antena:'<circle cx="12" cy="9" r="2"/><path d="M12 11v10"/><path d="M8.5 21h7"/><path d="M7.5 4.5a6.5 6.5 0 0 0 0 9"/><path d="M16.5 4.5a6.5 6.5 0 0 1 0 9"/>',
+ciber:'<rect x="3" y="4.5" width="18" height="12" rx="1.5"/><path d="M8.5 20h7M12 16.5V20"/><path d="M10 8.5l-2 2 2 2M14 8.5l2 2-2 2"/>',
+mira:'<circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/>',
+escudo:'<path d="M12 3l7.5 3v5.5c0 4.6-3.2 7.7-7.5 9-4.3-1.3-7.5-4.4-7.5-9V6z"/><path d="M9 12l2 2 4-4"/>',
+alerta:'<path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4.5"/><path d="M12 17.3h.01"/>',
+ancla:'<circle cx="12" cy="5" r="2"/><path d="M12 7v14"/><path d="M8.5 10.5h7"/><path d="M4.5 13.5a7.5 7.5 0 0 0 15 0"/>',
+pin:'<path d="M12 21s-7-6.2-7-11.2a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.5"/>',
+bandera:'<path d="M5 21V3.5"/><path d="M5 4h12.5l-2.5 4 2.5 4H5"/>',
+cerrar:'<circle cx="12" cy="12" r="9"/><path d="M8.5 15.5l7-7"/>',
+pregunta:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8 1c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17h.01"/>',
+aeropuerto:'<path d="M12 3.5 21.5 20h-19z"/><path d="M12 9.5l3 6h-6z"/>',
+ok:'<circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/>'
+};
+function ic(n,c){return `<svg class="${c||"i"}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]||""}</svg>`}
 const NIV=["NORMAL","VIGILANCIA","ELEVADO","ALTO","CRÍTICO"],EMO=["🟢","🔵","🟡","🟠","🔴"],
       COL=["#2FBF71","#3B8CF6","#E9A825","#F07A2B","#E5484D"];
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
@@ -221,9 +265,10 @@ async function descifrar(clave){
   const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(e.iv)},key,b64(e.ct));
   return JSON.parse(new TextDecoder().decode(pt));
 }
-const SEC={pr:["🇵🇷","Puerto Rico"],eeuu:["🇺🇸","Estados Unidos"],amenazas:["⚠️","Amenazas a Norteamérica"],
-  militar:["⚓","Militar y naval · Caribe"],infra:["🛰️","Infraestructura y espacio"]};
-const SECT={telecom:"📡",ciber:"💻",electrica:"⚡",ataque:"🚀",terror:"🛡️",emergencia:"🚨",espacio:"🛰️",caribe:"⚓",pr:"🇵🇷"};
+const SEC={pr:["pin","Puerto Rico"],eeuu:["bandera","Estados Unidos"],amenazas:["alerta","Amenazas a Norteamérica"],
+  militar:["ancla","Militar y naval · Caribe"],infra:["satelite","Infraestructura y espacio"]};
+const SECT={telecom:"antena",ciber:"ciber",electrica:"rayo",ataque:"mira",terror:"escudo",emergencia:"alerta",espacio:"satelite",caribe:"ancla",pr:"pin"};
+const EIC={"📡":"antena","💻":"ciber","⚡":"rayo","🚀":"mira","🛡️":"escudo","🛡":"escudo","🚨":"alerta","🛰️":"satelite","🛰":"satelite","⚓":"ancla","🇵🇷":"pin"};
 function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);
   if(m<1)return"ahora"; if(m<60)return`hace ${m} min`; const h=Math.round(m/60); return h<24?`hace ${h} h`:`hace ${Math.round(h/24)} d`;}
 
@@ -257,7 +302,7 @@ function pintarMapa(d){
   // --- restricciones aéreas ---
   const lt=g("tfr");
   (m.tfr||[]).forEach(t=>{const c=t.nueva?"#ff2d2d":"#ff8c1a";
-    const ab=()=>abrirHoja(`<h3 id="hojaTit">🛩️ Restricción aérea ${esc(t.id)}</h3><p><span class="pill" style="background:${c}">${t.nueva?"NUEVA (≤48 h)":"Vigente"}</span> ${esc(t.tipo)}</p>`+
+    const ab=()=>abrirHoja(`<h3 id="hojaTit">${ic("radar")} Restricción aérea ${esc(t.id)}</h3><p><span class="pill" style="background:${c}">${t.nueva?"NUEVA (≤48 h)":"Vigente"}</span> ${esc(t.tipo)}</p>`+
       dl([["Lugar",esc(t.lugar)],["Motivo",esc(t.motivo||"No indicado")],["Altitud",esc(t.altitud)],["Estado",esc(t.estado)],["Creada",esc(t.creado)]])+
       (t.texto?`<details><summary>Texto oficial del NOTAM</summary><pre>${esc(t.texto)}</pre></details>`:"")+`<p>${enlace(t.url,"Ver en la FAA")}</p>`);
     (t.areas||[]).forEach(a=>{let f;
@@ -269,14 +314,14 @@ function pintarMapa(d){
   (m.puertos||[]).forEach(p=>{const c=CPUERTO(p.nivel);
     const txt={0:"Operando: sin riesgo de cierre",1:"Posible riesgo de cierre",2:"Posible riesgo de cierre por seguridad",3:"Cierre parcial o total"}[p.nivel];
     L.circleMarker([p.lat,p.lon],{radius:9,color:"#fff",weight:2,fillColor:c,fillOpacity:1}).bindTooltip(p.nombre,{direction:"top"})
-     .on("click",()=>abrirHoja(`<h3 id="hojaTit">🚢 ${esc(p.nombre)}</h3><p><span class="pill" style="background:${c}">${txt}</span></p><p class="det">${esc(p.rol)}</p>`+
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">${ic("puerto")} ${esc(p.nombre)}</h3><p><span class="pill" style="background:${c}">${txt}</span></p><p class="det">${esc(p.rol)}</p>`+
        ((p.reportes||[]).length?`<ul class="lista">${p.reportes.map(r=>`<li>${enlace(r.url,fuenteDe(r.titulo)[0])}<div class="det">${fechaPR(r.hora_utc)}</div></li>`).join("")}</ul>`:'<p class="det">Sin reportes de cierre en las últimas 48 h.</p>'))).addTo(lp);});
   // --- aeropuertos con problemas (triángulos) ---
   const la=g("aeropuertos");
   (m.aeropuertos||[]).forEach(a=>{const c=CTRI(a.nivel);
     L.marker([a.lat,a.lon],{icon:L.divIcon({className:"",html:`<div class="ico-tri" style="border-bottom-color:${c}"></div>`,iconSize:[18,16],iconAnchor:[9,8]})})
      .bindTooltip(a.arpt,{direction:"top"})
-     .on("click",()=>abrirHoja(`<h3 id="hojaTit">▲ Aeropuerto ${esc(a.arpt)}</h3>`+a.problemas.map(p=>dl([["Situación",`<b>${esc(p.tipo)}</b>`],["Motivo",esc(p.motivo)],["Hasta",esc(p.fin)]])).join("")+`<p>${enlace("https://nasstatus.faa.gov/","Estado oficial FAA")}</p>`)).addTo(la);});
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">${ic("aeropuerto")} Aeropuerto ${esc(a.arpt)}</h3>`+a.problemas.map(p=>dl([["Situación",`<b>${esc(p.tipo)}</b>`],["Motivo",esc(p.motivo)],["Hasta",esc(p.fin)]])).join("")+`<p>${enlace("https://nasstatus.faa.gov/","Estado oficial FAA")}</p>`)).addTo(la);});
   // --- aeronaves (últimas 6 posiciones en 3 h + dirección) ---
   const lv=g("aviones");
   (m.aviones||[]).forEach(a=>{const c=a.clase==="no identificada"?"#ffd34d":COLPAIS(a.pais),tr=a.trazas||[];if(!tr.length)return;
@@ -284,7 +329,7 @@ function pintarMapa(d){
     L.polyline(pts,{color:c,weight:2,opacity:.85}).addTo(lv);
     tr.slice(0,-1).forEach(p=>L.circleMarker([p.lat,p.lon],{radius:2.5,color:c,fillOpacity:1}).addTo(lv));
     if(u.rumbo!=null&&u.nudos)L.polyline([[u.lat,u.lon],destino(u.lat,u.lon,u.rumbo,u.nudos*1.852/3)],{color:c,weight:2,dashArray:"5 6",opacity:.9}).addTo(lv);
-    const ab=()=>abrirHoja(`<h3 id="hojaTit">✈️ ${esc(a.callsign)}</h3><p><span class="pill" style="background:${c};color:#000">${a.clase==="no identificada"?"❓ No identificada":"🎖️ Militar"}</span> ${esc(a.pais)}</p>`+
+    const ab=()=>abrirHoja(`<h3 id="hojaTit">${ic("avion")} ${esc(a.callsign)}</h3><p><span class="pill" style="background:${c};color:#000">${a.clase==="no identificada"?"No identificada":"Militar"}</span> ${esc(a.pais)}</p>`+
       dl([["Tipo",esc(a.tipo)+(a.desc?" · "+esc(a.desc):"")],["Última vez",fechaPR(u.t)],["Altitud",u.alt?esc(u.alt)+" ft":""],["Rumbo",u.rumbo!=null?Math.round(u.rumbo)+"°":""],
           ["Velocidad",u.nudos?Math.round(u.nudos)+" nudos":""],["Distancia a PR",a.dist_pr_km+" km"],["Posiciones (3 h)",tr.length]])+
       `<p class="det">La línea discontinua es la dirección probable en los próximos 20 min, según su rumbo y velocidad.</p><p>${enlace("https://globe.adsb.lol/?icao="+encodeURIComponent(a.hex),"Ver en ADS-B en vivo")}</p>`);
@@ -296,7 +341,7 @@ function pintarMapa(d){
     L.polyline(tr.map(p=>[p.lat,p.lon]),{color:c,weight:2}).addTo(lb);
     if(u.rumbo!=null&&u.nudos)L.polyline([[u.lat,u.lon],destino(u.lat,u.lon,u.rumbo,u.nudos*1.852)],{color:c,weight:2,dashArray:"5 6"}).addTo(lb);
     L.circleMarker([u.lat,u.lon],{radius:7,color:"#fff",weight:2,fillColor:c,fillOpacity:1}).bindTooltip(b.nombre)
-     .on("click",()=>abrirHoja(`<h3 id="hojaTit">⚓ ${esc(b.nombre)}</h3><p><span class="pill" style="background:${c};color:#000">${esc(b.clase)}</span></p>`+
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">${ic("barco")} ${esc(b.nombre)}</h3><p><span class="pill" style="background:${c};color:#000">${esc(b.clase)}</span></p>`+
        dl([["MMSI",esc(b.mmsi)],["Última vez",fechaPR(u.t)],["Rumbo",u.rumbo!=null?Math.round(u.rumbo)+"°":""],["Velocidad",u.nudos!=null?u.nudos+" nudos":""],["Posiciones (3 h)",tr.length]])+
        `<p class="det">La línea discontinua es la dirección probable en la próxima hora.</p><p>${enlace("https://www.marinetraffic.com/en/ais/details/ships/mmsi:"+encodeURIComponent(b.mmsi),"Ver buque")}</p>`)).addTo(lb);});
   // --- satélites ---
@@ -306,9 +351,9 @@ function pintarMapa(d){
     partir(pas).forEach(seg=>L.polyline(seg,{color:c,weight:1.5,opacity:.45,dashArray:"2 5"}).addTo(ls));
     partir(fut).forEach(seg=>L.polyline(seg,{color:c,weight:2,opacity:.8}).addTo(ls));
     const etq=s.categoria==="eeuu"?"EE. UU. militar":s.categoria==="adversario"?"Adversario de EE. UU.":"No identificado";
-    L.marker([s.lat,s.lon],{icon:L.divIcon({className:"",html:`<div class="ico-sat" style="color:${c}">✦</div>`,iconSize:[16,16],iconAnchor:[8,8]})})
+    L.marker([s.lat,s.lon],{icon:L.divIcon({className:"",html:`<div class="ico-sat" style="color:${c}">${ic("satelite")}</div>`,iconSize:[18,18],iconAnchor:[9,9]})})
      .bindTooltip(s.nombre,{direction:"top"})
-     .on("click",()=>abrirHoja(`<h3 id="hojaTit">🛰️ ${esc(s.nombre)}</h3><p><span class="pill" style="background:${c}">${etq}</span> ${esc(s.pais)} ${s.nuevo?'<span class="pill" style="background:#7c3aed">Lanzado en los últimos 30 días</span>':""}</p>`+
+     .on("click",()=>abrirHoja(`<h3 id="hojaTit">${ic("satelite")} ${esc(s.nombre)}</h3><p><span class="pill" style="background:${c}">${etq}</span> ${esc(s.pais)} ${s.nuevo?'<span class="pill" style="background:#7c3aed">Lanzado en los últimos 30 días</span>':""}</p>`+
        dl([["NORAD",esc(s.norad)],["Altura actual",s.alt_km?s.alt_km+" km":""],["Paso más cercano a PR",s.dist_min_km+" km"]])+
        `<p class="det">Línea continua: trayectoria de los próximos 60 min. Punteada: últimos 30 min. Calculada con datos orbitales públicos (CelesTrak).</p><p>${enlace(s.url,"Ficha del satélite")}</p>`)).addTo(ls);});
   document.querySelectorAll(".hud button").forEach(b=>{if(b.classList.contains("off")&&CAPAS[b.dataset.capa])MAPA.removeLayer(CAPAS[b.dataset.capa]);});
@@ -322,22 +367,22 @@ function fechaPR(iso){try{return new Date(iso).toLocaleString("es-PR",{timeZone:
 function fuenteDe(t){const i=t.lastIndexOf(" - ");return i>0?[t.slice(0,i),t.slice(i+3)]:[t,""];}
 const VISTA="{{VISTA}}";
 function sec(id,tit,det,cuerpo,def=false){return `<details class="plegable" data-id="${id}" ${abierto(id,def)?"open":""}><summary class="titsec"><span>${tit}</span><span class="det">${det?det+" · ":""}<span class="ver"></span></span></summary>${cuerpo}</details>`}
-function mapaHTML(d,alto){return `    <h2 class="titsec">🗺️ Mapa táctico · Puerto Rico y alrededores <span class="det">toca cualquier elemento</span></h2>
+function mapaHTML(d,alto){return `    <h2 class="maptit">${ic("mapa")} Mapa de Puerto Rico y alrededores</h2><p class="det" style="margin:2px 0 0">Toca cualquier elemento para ver sus detalles.</p>
     <div class="mapwrap"><div class="hud">
-      <button data-capa="aviones" onclick="toggleCapa(this)">✈ AERONAVES ${(d.mapa?.aviones||[]).length}</button>
-      <button data-capa="buques" onclick="toggleCapa(this)">⚓ BUQUES ${(d.mapa?.buques||[]).length}</button>
-      <button data-capa="satelites" onclick="toggleCapa(this)">✦ SATÉLITES ${(d.mapa?.satelites||[]).length}</button>
-      <button data-capa="puertos" onclick="toggleCapa(this)">● PUERTOS</button>
-      <button data-capa="tfr" onclick="toggleCapa(this)">▢ RESTRICCIONES ${(d.mapa?.tfr||[]).length}</button>
-      <button data-capa="aeropuertos" onclick="toggleCapa(this)">▲ AEROPUERTOS ${(d.mapa?.aeropuertos||[]).length}</button></div>
-      <div id="mapa" style="height:${alto}" role="application" aria-label="Mapa táctico"></div><div class="mapstamp">ACTUALIZADO ${hace(d.actualizado_utc).toUpperCase()}</div></div>
+      <button data-capa="aviones" onclick="toggleCapa(this)">${ic("avion")} Aviones ${(d.mapa?.aviones||[]).length}</button>
+      <button data-capa="buques" onclick="toggleCapa(this)">${ic("barco")} Barcos ${(d.mapa?.buques||[]).length}</button>
+      <button data-capa="satelites" onclick="toggleCapa(this)">${ic("satelite")} Satélites ${(d.mapa?.satelites||[]).length}</button>
+      <button data-capa="puertos" onclick="toggleCapa(this)">${ic("puerto")} Puertos</button>
+      <button data-capa="tfr" onclick="toggleCapa(this)">${ic("radar")} Zonas restringidas ${(d.mapa?.tfr||[]).length}</button>
+      <button data-capa="aeropuertos" onclick="toggleCapa(this)">${ic("aeropuerto")} Aeropuertos ${(d.mapa?.aeropuertos||[]).length}</button></div>
+      <div id="mapa" style="height:${alto}" role="application" aria-label="Mapa táctico"></div><div class="mapstamp">Actualizado ${hace(d.actualizado_utc)}</div></div>
     <div class="leg"><span><span class="sw" style="background:#4da3ff"></span>EE. UU. militar</span><span><span class="sw" style="background:#ff4d4d"></span>Adversario</span>
       <span><span class="sw" style="background:#ffd34d"></span>No identificado / otro país</span><span><span class="sw" style="background:#c77dff"></span>Satélite no identificado</span>
       <span><span class="sw" style="background:#7ee0ff"></span>Buque</span><span><span class="sw" style="background:#ff2d2d"></span>Restricción nueva</span>
       <span><span class="sw" style="background:#ff8c1a"></span>Restricción vigente</span><span><span class="sw" style="background:#22c55e;border-radius:50%"></span>Puerto OK</span>
       <span><span class="sw" style="background:#f2c230;border-radius:50%"></span>Posible riesgo</span><span><span class="sw" style="background:#e53935;border-radius:50%"></span>Cierre</span>
       <span><span class="tri" style="border-bottom-color:#e53935"></span>Aeropuerto con problemas</span><span>— — dirección probable</span></div>
-    ${(d.mapa?.buques||[]).length?"":'<p class="det">⚓ Los buques aparecerán cuando se active la clave gratuita de AISStream.</p>'}
+    ${(d.mapa?.buques||[]).length?"":'<p class="det">Ahora mismo no hay buques militares o de gobierno transmitiendo su posición cerca.</p>'}
 `;}
 const FR=["Normal","Atención","Elevado","Alto","Crítico"];
 const QUE=["Todo tranquilo. No hay que hacer nada.",
@@ -347,16 +392,16 @@ const QUE=["Todo tranquilo. No hay que hacer nada.",
   "Emergencia. Sigan el plan familiar ahora y las instrucciones oficiales."];
 function est(n,txt){return n==null?"":`<span class="fest" style="--c:${COL[n]}">${txt||FR[n]}</span>`}
 function fila(id,ico,tit,sub,n,cuerpo,txt){return `<details class="fila plegable" data-id="${id}" ${abierto(id,false)?"open":""}>
-  <summary><span class="fico">${ico}</span><span class="ftx"><b>${tit}</b><small>${sub||""}</small></span>${est(n,txt)}<span class="fchev" aria-hidden="true"></span></summary>
+  <summary><span class="fico">${ic(ico)}</span><span class="ftx"><b>${tit}</b><small>${sub||""}</small></span>${est(n,txt)}<span class="fchev" aria-hidden="true"></span></summary>
   <div class="fcont">${cuerpo}</div></details>`}
 function grupo(t,filas){return filas.trim()?`<h2 class="gtit">${t}</h2><div class="grupo">${filas}</div>`:""}
 function mapaBoton(d){const m=d.mapa||{};
-  return `<a class="mapbtn2" href="mapa.html"><span class="fico">🗺️</span><span class="ftx"><b>Ver el mapa</b>
+  return `<a class="mapbtn2" href="mapa.html"><span class="fico">${ic("mapa")}</span><span class="ftx"><b>Ver el mapa</b>
     <small>${(m.aviones||[]).length} aviones · ${(m.buques||[]).length} barcos · ${(m.satelites||[]).length} satélites · ${(m.tfr||[]).length} zonas restringidas</small></span><span class="fchev"></span></a>`;}
 function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";
   const filas=r.categorias.map(k=>`<li><span class="dot" style="background:${COL[k.nivel]}"></span><span>${esc(k.nombre)}</span>${est(k.nivel)}</li>`).join("");
-  const pl=r.planes.map(p=>`<details class="plan"><summary>${esc(p.titulo)}${p.motivos.length?`<small>${esc(p.motivos[0])}</small>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
-  return `<section class="rf2"><div class="rf-top"><div><h2>Tu familia</h2><p class="det">Riesgo en Puerto Rico y alrededores</p></div>
+  const pl=r.planes.map(p=>`<details class="plan"><summary>${esc(p.titulo.replace(/^[^\p{L}]+/u,""))}${p.motivos.length?`<small>${esc(p.motivos[0])}</small>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
+  return `<section class="rf2"><div class="rf-top"><div><h2>${ic("casa")} Tu familia</h2><p class="det">Riesgo en Puerto Rico y alrededores</p></div>
     <div class="rf-num" style="--c:${COL[r.color]}"><b>${r.indice}</b><span>de 100 · ${esc(r.etiqueta.toLowerCase())}</span></div></div>
     <ul class="cats">${filas}</ul><div class="planes"><div class="ptit">Qué hacer</div>${pl}</div>
     <p class="det nota2">${esc(r.nota)}</p></section>`;}
@@ -384,16 +429,16 @@ function pintar(d){
     let extra="";
     if(k==="militar"){const av=d.aviones_militares||[];
       extra= av.length?`<details><summary>${av.length} aeronave(s) militar(es) con transpondedor</summary><ul class="av">${
-        av.map(a=>`<li>${a.cerca_pr?"📍":"✈️"} <b>${esc(a.callsign)}</b> ${esc(a.tipo)} ${a.desc?"· "+esc(a.desc):""}
+        av.map(a=>`<li>${ic(a.cerca_pr?"pin":"avion")} <b>${esc(a.callsign)}</b> ${esc(a.tipo)} ${a.desc?"· "+esc(a.desc):""}
         <span class="det">${a.lat}, ${a.lon}${a.alt?" · "+esc(a.alt)+" ft":""}</span></li>`).join("")}</ul></details>`
         :`<p class="det">Ninguna aeronave militar con transpondedor visible ahora sobre el Caribe (muchas vuelan sin él).</p>`;}
-    return `<div class="bloque"><h3>${ico} ${nom} ${est(peor)}</h3>
+    return `<div class="bloque"><h3>${ic(ico)} ${nom} ${est(peor)}</h3>
       ${filas?`<ul class="lista">${filas}</ul>`:`<p class="det">Sin novedades.</p>`}${extra}</div>`;}).join("");
-  const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const ico=SECT[t.seccion]||(SEC[t.seccion]||["📰"])[0];
+  const tit=(d.titulares||[]).map(t=>{const [h,f]=fuenteDe(t.titulo);const ico=ic(SECT[t.seccion]||(SEC[t.seccion]||["diario"])[0]);
     return `<li class="nota"><a href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">${esc(h)}</a>
     <div class="det">${ico} ${esc(t.tema)} · ${esc(f)} · ${hace(t.hora_utc)}</div></li>`}).join("")||`<li class="det">Sin titulares recientes.</li>`;
   const hist=(d.historial||[]).slice(0,15).map(h=>`<li class="sig"><span class="dot" style="background:${COL[h.nivel]}"></span><div>${esc(h.titulo)}<div class="det">${hace(h.hora_utc)}</div></div></li>`).join("")||`<li class="det">Sin alertas registradas.</li>`;
-  const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li>${v.ok?"✅":"⚠️"} ${esc(k)}</li>`).join("");
+  const fu=Object.entries(d.fuentes||{}).map(([k,v])=>`<li><span class="dot" style="background:${v.ok?COL[0]:COL[3]};display:inline-block;margin:0 6px 0 0"></span>${esc(k)}</li>`).join("");
   const man=(d.consulta_manual||[]).map(m=>`<li><a href="${esc(safeUrl(m.url))}" target="_blank" rel="noopener">${esc(m.nombre)}</a></li>`).join("");
   const med=(d.medidores||[]).map(m=>{const pct=Math.max(0,Math.min(100,m.indice)),c=COL[m.nivel];
     const arco=Math.PI*40, lleno=arco*pct/100;
@@ -403,7 +448,7 @@ function pintar(d){
       <svg viewBox="0 0 100 58" class="gauge" aria-hidden="true"><path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
       <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${lleno} ${arco}"/>
       <text x="50" y="48" text-anchor="middle" class="gnum">${pct}</text></svg>
-      <div class="mtit">${m.icono} ${esc(m.nombre)}</div>
+      <div class="mtit">${ic(EIC[m.icono]||"medidor")} ${esc(m.nombre)}</div>
       <div style="margin-top:4px">${est(m.nivel)}</div></summary>
       <p class="det">${m.n3} noticias en 3 h · ${m.n24} en 24 h · ${esc(m.motivo||tend)}</p><ul class="lista">${tl}</ul></details>`}).join("");
   const pts=(d.puertos||[]).map(p=>{const rep=(p.reportes||[]).map(r=>{const [h,f]=fuenteDe(r.titulo);
@@ -420,10 +465,10 @@ function pintar(d){
       <div class="det">${esc(t.tipo)} · ${esc(t.estado)} · creada ${esc(t.creado)} · ${esc(t.id)}</div></li>`).join("")
       ||`<li class="det">Sin restricciones relevantes.</li>`;
   const ea=d.espacio_aereo||{};
-  const gsl=(ea.ground_stops||[]).map(g=>`<li>⛔ <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
-  const cl=(ea.cierres||[]).map(c=>`<li>🚫 <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
+  const gsl=(ea.ground_stops||[]).map(g=>`<li>${ic("cerrar")} <b>${esc(g.arpt)}</b> ground stop <span class="det">· ${esc(g.motivo)}${g.fin?" · hasta "+esc(g.fin):""}</span></li>`).join("");
+  const cl=(ea.cierres||[]).map(c=>`<li>${ic("cerrar")} <b>${esc(c.arpt)}</b> cerrado <span class="det">· ${esc(c.motivo)}</span></li>`).join("");
   const its=(d.interrupciones||[]);
-  const GRUPO=["🇵🇷 Afecta a Puerto Rico","🇺🇸 Estados Unidos · puede afectar a PR","🌎 Resto del mundo"];
+  const GRUPO=[ic("pin")+" Afecta a Puerto Rico",ic("bandera")+" Estados Unidos · puede afectar a PR",ic("globo")+" Resto del mundo"];
   const diaDe=iso=>{try{const f=new Date(iso),h=new Date(),a=new Date(Date.now()-864e5),o={timeZone:"America/Puerto_Rico"};
     const k=x=>x.toLocaleDateString("es-PR",o);return k(f)===k(h)?"Hoy":k(f)===k(a)?"Ayer":f.toLocaleDateString("es-PR",{...o,weekday:"long",day:"numeric",month:"short"});}catch(e){return""}};
   const horaPR=iso=>{try{return new Date(iso).toLocaleTimeString("es-PR",{timeZone:"America/Puerto_Rico",hour:"numeric",minute:"2-digit"})}catch(e){return""}};
@@ -443,7 +488,7 @@ function pintar(d){
   if(VISTA==="mapa"){
     document.body.classList.add("vmapa");
     app.innerHTML=`<div class="mapbar" style="border-left:8px solid ${COL[n]}"><a href="./" class="volver">‹ Panel</a>
-      <div><b>${EMO[n]} ${NIV[n]}</b> <span class="det">· Riesgo familiar: ${esc(d.riesgo_familiar?.etiqueta||"")} · revisado ${hace(d.actualizado_utc)}</span></div></div>
+      <div><span class="dot" style="background:${COL[n]};display:inline-block;margin:0 4px 0 0"></span><b>${FR[n]}</b> <span class="det">· Riesgo familiar ${esc((d.riesgo_familiar?.etiqueta||"").toLowerCase())} · actualizado ${hace(d.actualizado_utc)}</span></div></div>
       ${mapaHTML(d,"calc(100vh - 230px)")}`;
     document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
   }
@@ -457,7 +502,7 @@ function pintar(d){
   const nuevasTfr=(d.tfrs||[]).filter(t=>t.nuevo).length;
   const fallas=Object.values(d.fuentes||{}).filter(v=>!v.ok).length;
   const ultAv=(d.log_aviones||[])[0], ultBq=(d.log_buques||[])[0];
-  app.innerHTML=`<header class="cab"><div class="marca"><span class="faro" style="--c:${COL[n]}"></span>Centinela Familiar</div>
+  app.innerHTML=`<header class="cab"><div class="marca">${ic("logo","logo")}Centinela Familiar</div>
       <div class="det">Actualizado ${hace(d.actualizado_utc)}</div></header>
     <section class="hero2" style="--c:${COL[n]}"><div class="hz">Nivel de amenaza en Puerto Rico</div>
       <div class="nivel">${FR[n]}</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
@@ -466,26 +511,26 @@ function pintar(d){
     ${riesgoHTML(d)}
     ${mapaBoton(d)}
     ${grupo("En Puerto Rico",
-      fila("energia","⚡","Electricidad",esc(prE.estado||"Sin datos"),prE.nivel||0,energiaHTML(d))+
-      fila("interrupciones","🌐","Internet y aplicaciones",`${itsPR.length?itsPR.length+" problema(s) que pueden afectar a PR":"Sin problemas que afecten a PR"}`,mx(itsPR.map(x=>x.nivel)),
+      fila("energia","rayo","Electricidad",esc(prE.estado||"Sin datos"),prE.nivel||0,energiaHTML(d))+
+      fila("interrupciones","globo","Internet y aplicaciones",`${itsPR.length?itsPR.length+" problema(s) que pueden afectar a PR":"Sin problemas que afecten a PR"}`,mx(itsPR.map(x=>x.nivel)),
         `${crOk?"":`<p class="det">Cloudflare Radar no está conectado; las demás fuentes funcionan.</p>`}${itf}
         <p class="det" style="margin-top:12px">Ver en vivo: ${enlace("https://radar.cloudflare.com/pr","Cloudflare Radar PR")} · ${enlace("https://downdetector.com/","Downdetector")} · ${enlace("https://ioda.inetintel.cc.gatech.edu/country/PR","IODA PR")}</p>`)+
-      fila("puertos","🚢","Puertos y suministros",ptsMal?`${ptsMal} puerto(s) con posible problema`:`Los ${(d.puertos||[]).length} puertos principales operan normal`,mx((d.puertos||[]).map(p=>p.nivel)),`<div class="gridp">${pts}</div>`)+
-      fila("senales","📌","Avisos oficiales",senOf.length?`${senOf.length} aviso(s) de agencias y sensores`:"Sin avisos",mx(senOf.map(s=>s.nivel)),`<div class="grid">${tarjetas}</div>`))}
+      fila("puertos","puerto","Puertos y suministros",ptsMal?`${ptsMal} puerto(s) con posible problema`:`Los ${(d.puertos||[]).length} puertos principales operan normal`,mx((d.puertos||[]).map(p=>p.nivel)),`<div class="gridp">${pts}</div>`)+
+      fila("senales","aviso","Avisos oficiales",senOf.length?`${senOf.length} aviso(s) de agencias y sensores`:"Sin avisos",mx(senOf.map(s=>s.nivel)),`<div class="grid">${tarjetas}</div>`))}
     ${grupo("Militar y espacio aéreo",
-      fila("aeronaves","✈️","Aviones militares cerca",ultAv?`Último: ${esc(ultAv.callsign)}, ${fechaPR(ultAv.visto_utc)}`:"Ninguno registrado",null,`<ul class="lista">${avs}</ul>`)+
-      fila("buques","⚓","Barcos militares en el Caribe",ultBq?`Último reporte: ${fechaPR(ultBq.fecha_utc)}`:"Sin reportes",null,`<ul class="lista">${bqs}</ul>`)+
-      fila("tfr","🛩️","Espacio aéreo",nuevasTfr?`${nuevasTfr} restricción(es) nueva(s)`:`${(d.tfrs||[]).length} restricción(es) vigente(s)`,nuevasTfr?1:0,
+      fila("aeronaves","avion","Aviones militares cerca",ultAv?`Último: ${esc(ultAv.callsign)}, ${fechaPR(ultAv.visto_utc)}`:"Ninguno registrado",null,`<ul class="lista">${avs}</ul>`)+
+      fila("buques","barco","Barcos militares en el Caribe",ultBq?`Último reporte: ${fechaPR(ultBq.fecha_utc)}`:"Sin reportes",null,`<ul class="lista">${bqs}</ul>`)+
+      fila("tfr","radar","Espacio aéreo",nuevasTfr?`${nuevasTfr} restricción(es) nueva(s)`:`${(d.tfrs||[]).length} restricción(es) vigente(s)`,nuevasTfr?1:0,
         `<p class="det">Restricciones de vuelo de la FAA en PR, las especiales para todo EE. UU. y las de seguridad de las últimas 48 h.</p><ul class="lista">${tf}</ul>
         <div class="bloque"><h3>Aeropuertos de EE. UU.</h3><ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin aeropuertos detenidos ni cerrados.</p>':""}
         <p class="det">Con demoras programadas: ${(ea.demoras_programadas||[]).length}.</p></div>`))}
     ${grupo("Noticias",
-      fila("medidores","🧭","Termómetro de noticias",medMax?`Lo más alto: ${esc(medMax.nombre)}`:"",medMax?medMax.nivel:0,`<p class="det">Cuánto se habla de cada tema comparado con lo normal. Toca uno para ver sus noticias.</p><div class="gridm">${med}</div>`)+
-      fila("titulares","📰","Titulares","Prensa sin verificar",null,`<ul class="lista">${tit}</ul>`)+
-      (nb?fila("netblocks","📣","Cortes de internet en el mundo","Reportes de NetBlocks",null,`<ul class="lista">${nb}</ul>`):""))}
+      fila("medidores","medidor","Termómetro de noticias",medMax?`Lo más alto: ${esc(medMax.nombre)}`:"",medMax?medMax.nivel:0,`<p class="det">Cuánto se habla de cada tema comparado con lo normal. Toca uno para ver sus noticias.</p><div class="gridm">${med}</div>`)+
+      fila("titulares","diario","Titulares","Prensa sin verificar",null,`<ul class="lista">${tit}</ul>`)+
+      (nb?fila("netblocks","sinred","Cortes de internet en el mundo","Reportes de NetBlocks",null,`<ul class="lista">${nb}</ul>`):""))}
     ${grupo("Más",
-      fila("historial","🕘","Historial de alertas","",null,`<ul class="lista">${hist}</ul>`)+
-      fila("fuentes","🔌","Fuentes",fallas?`${fallas} sin responder ahora`:"Todas responden",null,`<ul class="cols">${fu}</ul><h3 style="margin-top:14px">Consulta manual</h3><ul class="cols">${man}</ul>`))}
+      fila("historial","reloj","Historial de alertas","",null,`<ul class="lista">${hist}</ul>`)+
+      fila("fuentes","base","Fuentes",fallas?`${fallas} sin responder ahora`:"Todas responden",null,`<ul class="cols">${fu}</ul><h3 style="margin-top:14px">Consulta manual</h3><ul class="cols">${man}</ul>`))}
     <p><button id="salir" class="sec2">Cerrar sesión en este teléfono</button></p>`;
   document.getElementById("login").hidden=true; app.hidden=false;
 
