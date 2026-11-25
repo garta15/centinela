@@ -42,9 +42,25 @@
   "c0af0fee9a5c": "2026-11-25T19:50:21+00:00",
   "9fe09df1baef": "2026-11-25T19:50:21+00:00",
   "438faf556bac": "2026-11-25T20:00:30+00:00",
-  "b2e1cd771f15": "2026-11-25T20:04:45+00:00"
+  "b2e1cd771f15": "2026-11-25T20:04:45+00:00",
+  "33ba1e20f9e8": "2026-11-25T21:00:35+00:00"
  },
  "historial": [
+  {
+   "id": "33ba1e20f9e8",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 100/100 (31 en 3 h · 73 en 24 h)",
+   "detalle": "Morocco's New MA-INDAR Emergency Alert System is Here! - lovin.co",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNNWNvcm81OUIzbU1WcGhlbVRnSl9DR2xVd21jRmkxWkh4WVlZakFfV3JLMWUxM05zeEpoYnFHWVN2dkpUS2ptRUs4Yk5jOWRHbkVReFcyVWNoNkpvanVOQzBfN2hlbGNxQmYtWjZhVEdaeGhXMG92Um1HU1BNZndiMHpDWXhCcGIySHFpNw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-25T21:00:35+00:00"
+  },
   {
    "id": "b2e1cd771f15",
    "fuente": "Medidor de prensa",
@@ -711,7 +727,6 @@
   1,
   1,
   1,
-  1,
   2,
   1,
   1,
@@ -801,6 +816,7 @@
   4,
   4,
   3,
+  2,
   2,
   2
  ],
@@ -916,6 +932,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1073,6 +1090,7 @@
    30,
    22,
    32,
+   22,
    22
   ],
   "electrica": [
@@ -1208,7 +1226,8 @@
    66,
    62,
    64,
-   64
+   64,
+   60
   ],
   "ataque": [
    94,
@@ -1343,7 +1362,8 @@
    95,
    95,
    96,
-   90
+   90,
+   92
   ],
   "terror": [
    98,
@@ -1478,7 +1498,8 @@
    52,
    26,
    52,
-   28
+   28,
+   54
   ],
   "emergencia": [
    95,
@@ -1613,7 +1634,8 @@
    71,
    75,
    75,
-   76
+   76,
+   73
   ],
   "espacio": [
    10,
@@ -1748,7 +1770,8 @@
    22,
    19,
    19,
-   22
+   22,
+   19
   ],
   "caribe": [
    21,
@@ -1883,7 +1906,8 @@
    44,
    24,
    44,
-   45
+   45,
+   46
   ],
   "pr": [
    0,
@@ -2018,10 +2042,123 @@
    29,
    29,
    59,
-   29
+   29,
+   60
   ]
  },
  "log_aviones": [
+  {
+   "hex": "add70a",
+   "callsign": "BAT91",
+   "tipo": "DH8B",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 10.73,
+   "lon": -61.06,
+   "alt": 10975,
+   "visto_utc": "2026-11-25T21:00+00:00",
+   "dist_pr_km": 1023,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 10.6,
+     "lon": -61.49,
+     "t": "2026-11-25T20:00+00:00",
+     "rumbo": 95.86,
+     "nudos": 196.0,
+     "alt": 2750
+    },
+    {
+     "lat": 10.6,
+     "lon": -61.35,
+     "t": "2026-11-25T20:04+00:00",
+     "rumbo": 88.49,
+     "nudos": 76.0,
+     "alt": 75
+    },
+    {
+     "lat": 10.59,
+     "lon": -61.35,
+     "t": "2026-11-25T20:10+00:00",
+     "rumbo": null,
+     "nudos": 0.0,
+     "alt": "ground"
+    },
+    {
+     "lat": 10.59,
+     "lon": -61.35,
+     "t": "2026-11-25T20:20+00:00",
+     "rumbo": null,
+     "nudos": 0.0,
+     "alt": "ground"
+    },
+    {
+     "lat": 10.59,
+     "lon": -61.35,
+     "t": "2026-11-25T20:50+00:00",
+     "rumbo": null,
+     "nudos": 2.8,
+     "alt": "ground"
+    },
+    {
+     "lat": 10.73,
+     "lon": -61.06,
+     "t": "2026-11-25T21:00+00:00",
+     "rumbo": 42.2,
+     "nudos": 159.3,
+     "alt": 10975
+    }
+   ]
+  },
+  {
+   "hex": "3b7b7f",
+   "callsign": "DRAG971",
+   "tipo": "EC45",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 16.01,
+   "lon": -61.38,
+   "alt": 775,
+   "visto_utc": "2026-11-25T21:00+00:00",
+   "dist_pr_km": 605,
+   "primera_vez_utc": "2026-11-25T20:10+00:00",
+   "trazas": [
+    {
+     "lat": 16.24,
+     "lon": -61.52,
+     "t": "2026-11-25T20:10+00:00",
+     "rumbo": 213.98,
+     "nudos": 55.5,
+     "alt": 400
+    },
+    {
+     "lat": 16.14,
+     "lon": -61.47,
+     "t": "2026-11-25T20:20+00:00",
+     "rumbo": 148.43,
+     "nudos": 112.7,
+     "alt": 800
+    },
+    {
+     "lat": 15.89,
+     "lon": -61.31,
+     "t": "2026-11-25T20:30+00:00",
+     "rumbo": 77.2,
+     "nudos": 22.6,
+     "alt": 275
+    },
+    {
+     "lat": 16.01,
+     "lon": -61.38,
+     "t": "2026-11-25T21:00+00:00",
+     "rumbo": 328.88,
+     "nudos": 129.7,
+     "alt": 775
+    }
+   ]
+  },
   {
    "hex": "ae04f9",
    "callsign": "SAM019",
@@ -2075,62 +2212,6 @@
      "rumbo": 345.0,
      "nudos": 548.0,
      "alt": 35475
-    }
-   ]
-  },
-  {
-   "hex": "add70a",
-   "callsign": "BAT91",
-   "tipo": "DH8B",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 10.59,
-   "lon": -61.35,
-   "alt": "ground",
-   "visto_utc": "2026-11-25T20:50+00:00",
-   "dist_pr_km": 1019,
-   "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": [
-    {
-     "lat": 10.6,
-     "lon": -61.49,
-     "t": "2026-11-25T20:00+00:00",
-     "rumbo": 95.86,
-     "nudos": 196.0,
-     "alt": 2750
-    },
-    {
-     "lat": 10.6,
-     "lon": -61.35,
-     "t": "2026-11-25T20:04+00:00",
-     "rumbo": 88.49,
-     "nudos": 76.0,
-     "alt": 75
-    },
-    {
-     "lat": 10.59,
-     "lon": -61.35,
-     "t": "2026-11-25T20:10+00:00",
-     "rumbo": null,
-     "nudos": 0.0,
-     "alt": "ground"
-    },
-    {
-     "lat": 10.59,
-     "lon": -61.35,
-     "t": "2026-11-25T20:20+00:00",
-     "rumbo": null,
-     "nudos": 0.0,
-     "alt": "ground"
-    },
-    {
-     "lat": 10.59,
-     "lon": -61.35,
-     "t": "2026-11-25T20:50+00:00",
-     "rumbo": null,
-     "nudos": 2.8,
-     "alt": "ground"
     }
    ]
   },
@@ -2195,46 +2276,6 @@
      "rumbo": 126.13,
      "nudos": 339.2,
      "alt": 31000
-    }
-   ]
-  },
-  {
-   "hex": "3b7b7f",
-   "callsign": "DRAG971",
-   "tipo": "EC45",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Francia",
-   "lat": 15.89,
-   "lon": -61.31,
-   "alt": 275,
-   "visto_utc": "2026-11-25T20:30+00:00",
-   "dist_pr_km": 618,
-   "primera_vez_utc": "2026-11-25T20:10+00:00",
-   "trazas": [
-    {
-     "lat": 16.24,
-     "lon": -61.52,
-     "t": "2026-11-25T20:10+00:00",
-     "rumbo": 213.98,
-     "nudos": 55.5,
-     "alt": 400
-    },
-    {
-     "lat": 16.14,
-     "lon": -61.47,
-     "t": "2026-11-25T20:20+00:00",
-     "rumbo": 148.43,
-     "nudos": 112.7,
-     "alt": 800
-    },
-    {
-     "lat": 15.89,
-     "lon": -61.31,
-     "t": "2026-11-25T20:30+00:00",
-     "rumbo": 77.2,
-     "nudos": 22.6,
-     "alt": 275
     }
    ]
   },
@@ -3518,7 +3559,8 @@
   7,
   7,
   7,
-  7
+  7,
+  6
  ],
  "tfr_geo": {
   "6/9689": {
@@ -10745,182 +10787,6 @@
    "motivo": "Temporary flight restrictions for Special Security Reasons",
    "texto": "!FDC 6/9735 ZAB AZ..AIRSPACE LIBBY AAF, AZ..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 25-26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. ANY PERSON WHO KNOWINGLY OR WILLFULLY VIOLATES THE RULES CONCERNING OPS IN THIS AIRSPACE MAY BE SUBJECT TO CERTAIN CRIMINAL PENALTIES UNDER 49 USC 40103(B)(3). PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 313405N1101136W (FHU086008.4) TO 313513N1103020W (FHU256007.7) THEN CLOCKWISE ON A 8 NM ARC CENTERED ON 313439N1102058W (FHU146000.8) TO THE POINT OF ORIGIN 9000FT MSL-17999FT MSL EFFECTIVE 2611260600 UTC (2300 LOCAL 11/25/26) UNTIL 2611261300 UTC (0600 LOCAL 11/26/26). EXC AS SPECIFIED BLW AND/OR UNLESS AUTH BY ATC: 1. ALL AIRCRAFT ENTERING OR EXITING THE TFR MUST BE ON A DISCRETE CODE ASSIGNED BY AN AIR TRAFFIC CONTROL (ATC) FACILITY. 2. AIRCRAFT MUST BE SQUAWKING THE DISCRETE CODE AT ALL TIMES WHILE IN THE TFR. 3. ALL AIRCRAFT ENTERING OR",
    "altitud": "From and including 9000 feet MSL  up to and including 17999 feet MSL"
-  },
-  "6/9784": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       35.42835913,
-       -78.05638889
-      ],
-      [
-       35.42810548,
-       -78.05284748
-      ],
-      [
-       35.42735225,
-       -78.04941373
-      ],
-      [
-       35.42612234,
-       -78.04619204
-      ],
-      [
-       35.42445313,
-       -78.04328035
-      ],
-      [
-       35.42239537,
-       -78.04076713
-      ],
-      [
-       35.42001161,
-       -78.03872877
-      ],
-      [
-       35.41737431,
-       -78.03722716
-      ],
-      [
-       35.41456362,
-       -78.03630789
-      ],
-      [
-       35.41166495,
-       -78.03599884
-      ],
-      [
-       35.40876638,
-       -78.03630933
-      ],
-      [
-       35.40595598,
-       -78.03722986
-      ],
-      [
-       35.40331913,
-       -78.03873241
-      ],
-      [
-       35.40093593,
-       -78.04077128
-      ],
-      [
-       35.39887876,
-       -78.04328449
-      ],
-      [
-       35.39721011,
-       -78.04619569
-      ],
-      [
-       35.39598064,
-       -78.04941643
-      ],
-      [
-       35.39522771,
-       -78.05284891
-      ],
-      [
-       35.39497416,
-       -78.05638889
-      ],
-      [
-       35.39522771,
-       -78.05992887
-      ],
-      [
-       35.39598064,
-       -78.06336135
-      ],
-      [
-       35.39721011,
-       -78.06658209
-      ],
-      [
-       35.39887876,
-       -78.06949329
-      ],
-      [
-       35.40093593,
-       -78.0720065
-      ],
-      [
-       35.40331913,
-       -78.07404537
-      ],
-      [
-       35.40595598,
-       -78.07554792
-      ],
-      [
-       35.40876638,
-       -78.07646845
-      ],
-      [
-       35.41166495,
-       -78.07677894
-      ],
-      [
-       35.41456362,
-       -78.07646989
-      ],
-      [
-       35.41737431,
-       -78.07555062
-      ],
-      [
-       35.42001161,
-       -78.07404901
-      ],
-      [
-       35.42239537,
-       -78.07201065
-      ],
-      [
-       35.42445313,
-       -78.06949743
-      ],
-      [
-       35.42612234,
-       -78.06658574
-      ],
-      [
-       35.42735225,
-       -78.06336405
-      ],
-      [
-       35.42810548,
-       -78.0599303
-      ],
-      [
-       35.42835913,
-       -78.05638889
-      ],
-      [
-       35.41166667,
-       -78.05638889
-      ],
-      [
-       35.41166667,
-       -78.05638889
-      ],
-      [
-       35.37094753,
-       -77.55831522
-      ],
-      [
-       35.37094753,
-       -77.55831522
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions for Special Security Reasons",
-   "texto": "!FDC 6/9784 ZDC NC..AIRSPACE GOLDSBORO, NC..TEMPORARY FLIGHT RESTRICTIONS. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS, ALL ACFT FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 1NM RADIUS OF 352442N0780323W (ISO281024.6) SFC-1000FT AGL EFFECTIVE IMMEDIATELY UNTIL 2611252330 UTC (1830 LOCAL 11/25/26). UNLESS AUTH BY ATC IN CONSULTATION WITH ",
-   "altitud": ""
   },
   "6/9791": {
    "areas": [
