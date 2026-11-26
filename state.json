@@ -53,9 +53,25 @@
   "ab59dde86ab6": "2026-11-26T05:00:39+00:00",
   "aa34f0d90371": "2026-11-26T05:10:19+00:00",
   "4d72705cfa7f": "2026-11-26T06:00:28+00:00",
-  "601055d28e2a": "2026-11-26T12:30:25+00:00"
+  "601055d28e2a": "2026-11-26T12:30:25+00:00",
+  "a4b5901041cd": "2026-11-26T13:30:34+00:00"
  },
  "historial": [
+  {
+   "id": "a4b5901041cd",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 84/100 (11 en 3 h · 60 en 24 h)",
+   "detalle": "Ransomware Attacks in Africa Could Cost Businesses Over $368,000 Per Incident - FF News",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZDY2eS1IdVNaVFI4OFNXZFZnR2xnOXBSQWtacFpoMzVreUpWNzUwWVdEbTl3VzY0NVBXQWZKcjQxMWNSQWdHaGptdTBKc1d4RnpuZTR2ZFZ2clU5ZmppRDktUjVJVWViaG03RndGbDRibDBNbHRCaGVSemVxQjBIZDdlRG9fZmNJT1E?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T13:30:34+00:00"
+  },
   {
    "id": "601055d28e2a",
    "fuente": "Medidor de prensa",
@@ -956,9 +972,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  4,
   3,
   4,
   7,
@@ -1053,7 +1068,8 @@
   0,
   0,
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -1076,7 +1092,7 @@
    1,
    1,
    1,
-   1,
+   0,
    0,
    0,
    0,
@@ -1203,7 +1219,6 @@
    0
   ],
   "ciber": [
-   30,
    31,
    21,
    21,
@@ -1346,10 +1361,10 @@
    58,
    27,
    26,
-   26
+   26,
+   60
   ],
   "electrica": [
-   69,
    84,
    71,
    61,
@@ -1492,10 +1507,10 @@
    64,
    70,
    100,
-   73
+   73,
+   71
   ],
   "ataque": [
-   87,
    95,
    95,
    95,
@@ -1638,10 +1653,10 @@
    91,
    91,
    91,
-   95
+   95,
+   89
   ],
   "terror": [
-   35,
    34,
    35,
    22,
@@ -1784,10 +1799,10 @@
    40,
    40,
    39,
+   20,
    20
   ],
   "emergencia": [
-   49,
    48,
    40,
    49,
@@ -1930,10 +1945,10 @@
    87,
    88,
    95,
+   95,
    95
   ],
   "espacio": [
-   28,
    27,
    26,
    23,
@@ -2076,10 +2091,10 @@
    19,
    19,
    17,
+   14,
    14
   ],
   "caribe": [
-   49,
    48,
    50,
    25,
@@ -2222,10 +2237,10 @@
    45,
    44,
    45,
-   44
+   44,
+   46
   ],
   "pr": [
-   59,
    59,
    28,
    59,
@@ -2368,10 +2383,35 @@
    28,
    0,
    28,
-   62
+   62,
+   61
   ]
  },
  "log_aviones": [
+  {
+   "hex": "3b7b7f",
+   "callsign": "DRAG971",
+   "tipo": "EC45",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 16.26,
+   "lon": -61.52,
+   "alt": 425,
+   "visto_utc": "2026-11-26T13:30+00:00",
+   "dist_pr_km": 581,
+   "primera_vez_utc": "2026-11-25T20:10+00:00",
+   "trazas": [
+    {
+     "lat": 16.26,
+     "lon": -61.52,
+     "t": "2026-11-26T13:30+00:00",
+     "rumbo": 172.2,
+     "nudos": 73.7,
+     "alt": 425
+    }
+   ]
+  },
   {
    "hex": "add70a",
    "callsign": "BAT91",
@@ -2411,21 +2451,6 @@
      "alt": 12975
     }
    ]
-  },
-  {
-   "hex": "3b7b7f",
-   "callsign": "DRAG971",
-   "tipo": "EC45",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Francia",
-   "lat": 16.24,
-   "lon": -61.52,
-   "alt": 50,
-   "visto_utc": "2026-11-26T02:20+00:00",
-   "dist_pr_km": 581,
-   "primera_vez_utc": "2026-11-25T20:10+00:00",
-   "trazas": []
   },
   {
    "hex": "ae2689",
@@ -3483,7 +3508,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3515,6 +3539,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
