@@ -47,9 +47,25 @@
   "39b46e5cbd21": "2026-11-25T22:50:21+00:00",
   "5ad79e188192": "2026-11-25T23:00:31+00:00",
   "c24503d040b1": "2026-11-26T00:10:20+00:00",
-  "9cb481386767": "2026-11-26T01:00:33+00:00"
+  "9cb481386767": "2026-11-26T01:00:33+00:00",
+  "20f87ab2c1fa": "2026-11-26T02:00:35+00:00"
  },
  "historial": [
+  {
+   "id": "20f87ab2c1fa",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 71/100 (14 en 3 h · 90 en 24 h)",
+   "detalle": "Los Angeles declared a state of emergency due to a chemical reaction at a landfill releasing toxic gases - Noticias Ambientales",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOelBUT2UyWWdSYUYzakdQNFBGTzhJRTJhNkVVMm9oRWp4VUxhRTRXdlAySF92Q0NvVVZ5WUk0WFRqaGowLWU2S2l3OHVRc3RxR3k5Q3pUR293MVpLbWpKYy1sOVRPTDNmME1RalNEODkzck9WN2dqZ3oyUGxNaVFETmhLVEduOFlEamVtUkFRN0M5VnBzemExZHVXZmpaUkZJNjJELXdad3BObzhXTVZXOS1FZDFNd2Z2eVFfV1NxaGRaODQ3UC1qYzhQY1VMdjRQSHo0TGJBeWFrSEhlS3pqM1Y3ZTV0M2PSAewBQVVfeXFMTVNWOE96dTNaU2NsYjBFMm5obUhpR3QtcURmQkVUSTE1cDQ0VmdldktIWW9uU19BWEVjaDZ2dVFyYlhwTUlpNGhvREk1YmFnTEtjLUJLNnpwN2RFdWc2ck5UU3ItLXN6cTg3c1dpREs2NERQdlptZllTUTlOUjY3M3E3TDZRNTR6TVpGM3hhWVhFZUZMOVdPNU44cXE3cHhvRXR2Q25sTDNkYzRROUxhNDFTcDZiOV9iOWdFNWpuWFRjQzhaS1hLNzR0dklreGFOYUdURzI4R0F2eU9TWnlNdENieTVZZ1c2V2lXd3A?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T02:00:35+00:00"
+  },
   {
    "id": "9cb481386767",
    "fuente": "Medidor de prensa",
@@ -818,7 +834,6 @@
  "ultimo_nivel": 2,
  "mil_caribe": [
   0,
-  0,
   1,
   0,
   0,
@@ -907,6 +922,7 @@
   3,
   1,
   1,
+  0,
   0,
   0,
   0,
@@ -924,7 +940,6 @@
    0,
    0,
    0,
-   0,
    1,
    1,
    0,
@@ -1006,6 +1021,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1062,7 +1078,6 @@
    0
   ],
   "ciber": [
-   24,
    53,
    13,
    23,
@@ -1205,10 +1220,10 @@
    38,
    24,
    38,
-   38
+   38,
+   24
   ],
   "electrica": [
-   28,
    63,
    51,
    42,
@@ -1351,10 +1366,10 @@
    66,
    71,
    71,
-   75
+   75,
+   72
   ],
   "ataque": [
-   98,
    97,
    87,
    96,
@@ -1497,10 +1512,10 @@
    95,
    96,
    92,
-   94
+   94,
+   93
   ],
   "terror": [
-   10,
    24,
    8,
    12,
@@ -1643,10 +1658,10 @@
    21,
    47,
    49,
-   19
+   19,
+   47
   ],
   "emergencia": [
-   24,
    49,
    48,
    26,
@@ -1789,10 +1804,10 @@
    88,
    92,
    91,
+   90,
    90
   ],
   "espacio": [
-   6,
    12,
    13,
    26,
@@ -1935,10 +1950,10 @@
    25,
    25,
    25,
-   20
+   20,
+   25
   ],
   "caribe": [
-   20,
    42,
    25,
    29,
@@ -2081,10 +2096,10 @@
    42,
    42,
    42,
-   42
+   42,
+   21
   ],
   "pr": [
-   19,
    22,
    26,
    27,
@@ -2227,7 +2242,8 @@
    28,
    28,
    28,
-   59
+   59,
+   27
   ]
  },
  "log_aviones": [
@@ -2414,14 +2430,6 @@
    "primera_vez_utc": "2026-11-25T22:10+00:00",
    "trazas": [
     {
-     "lat": 23.85,
-     "lon": -78.41,
-     "t": "2026-11-25T23:00+00:00",
-     "rumbo": 344.4,
-     "nudos": 453.7,
-     "alt": 42975
-    },
-    {
      "lat": 25.0,
      "lon": -78.42,
      "t": "2026-11-25T23:10+00:00",
@@ -2470,14 +2478,6 @@
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
     {
-     "lat": 26.22,
-     "lon": -80.94,
-     "t": "2026-11-25T23:00+00:00",
-     "rumbo": 101.63,
-     "nudos": 173.6,
-     "alt": 4075
-    },
-    {
      "lat": 26.03,
      "lon": -80.51,
      "t": "2026-11-25T23:10+00:00",
@@ -2516,16 +2516,7 @@
    "visto_utc": "2026-11-25T23:00+00:00",
    "dist_pr_km": 710,
    "primera_vez_utc": "2026-11-20T17:45+00:00",
-   "trazas": [
-    {
-     "lat": 14.57,
-     "lon": -61.13,
-     "t": "2026-11-25T23:00+00:00",
-     "rumbo": 88.33,
-     "nudos": 137.1,
-     "alt": 1800
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae01ed",
@@ -3477,7 +3468,6 @@
   "6/9800": "2026-11-25T22:20+00:00"
  },
  "tfr_base": [
-  1,
   4,
   5,
   5,
@@ -3610,6 +3600,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
