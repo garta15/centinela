@@ -63,9 +63,25 @@
   "68df5b76bd48": "2026-11-26T17:10:22+00:00",
   "901386fcc057": "2026-11-26T18:00:31+00:00",
   "a1f8cfb4eee1": "2026-11-26T18:40:22+00:00",
-  "aa5529e58654": "2026-11-26T18:40:22+00:00"
+  "aa5529e58654": "2026-11-26T18:40:22+00:00",
+  "da6ae267cd03": "2026-11-26T19:20:23+00:00"
  },
  "historial": [
+  {
+   "id": "da6ae267cd03",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 72/100 (7 en 3 h · 41 en 24 h)",
+   "detalle": "U.S. Official Issues Stern Warning to Cuban Regime - CubaHeadlines",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBGQkpVN2FWQWFDQVN5bXlDX1Z3YzVuTEYzRlF2QVN1RXpPakRlR3BfaWpZbEl3NjJqYkJqZlJpaU1NQVpPV0JyZTNBVXZKZVVhbE1CY1NVdms?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T19:20:23+00:00"
+  },
   {
    "id": "aa5529e58654",
    "fuente": "Medidor de prensa",
@@ -1116,7 +1132,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -1128,7 +1144,6 @@
   0,
   0,
   0,
-  0,
   1,
   0,
   0,
@@ -1213,6 +1228,7 @@
   0,
   0,
   0,
+  1,
   1
  ],
  "medidores_base": {
@@ -1363,7 +1379,6 @@
    0
   ],
   "ciber": [
-   30,
    22,
    30,
    30,
@@ -1506,10 +1521,10 @@
    59,
    27,
    27,
+   27,
    27
   ],
   "electrica": [
-   62,
    52,
    72,
    80,
@@ -1652,10 +1667,10 @@
    60,
    76,
    60,
-   57
+   57,
+   70
   ],
   "ataque": [
-   89,
    96,
    92,
    90,
@@ -1798,10 +1813,10 @@
    94,
    95,
    94,
-   96
+   96,
+   94
   ],
   "terror": [
-   52,
    28,
    51,
    27,
@@ -1944,10 +1959,10 @@
    29,
    17,
    19,
-   19
+   19,
+   28
   ],
   "emergencia": [
-   58,
    61,
    65,
    69,
@@ -2090,10 +2105,10 @@
    86,
    87,
    95,
-   87
+   87,
+   96
   ],
   "espacio": [
-   22,
    21,
    19,
    18,
@@ -2236,10 +2251,10 @@
    21,
    21,
    21,
-   23
+   23,
+   19
   ],
   "caribe": [
-   23,
    24,
    24,
    47,
@@ -2382,10 +2397,10 @@
    43,
    22,
    21,
-   20
+   20,
+   41
   ],
   "pr": [
-   61,
    60,
    29,
    28,
@@ -2528,7 +2543,8 @@
    45,
    44,
    28,
-   41
+   41,
+   45
   ]
  },
  "log_aviones": [
@@ -2539,11 +2555,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 24.55,
-   "lon": -77.27,
+   "lat": 24.93,
+   "lon": -77.94,
    "alt": 24000,
-   "visto_utc": "2026-11-26T19:10+00:00",
-   "dist_pr_km": 1310,
+   "visto_utc": "2026-11-26T19:20+00:00",
+   "dist_pr_km": 1389,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
    "trazas": [
     {
@@ -2552,6 +2568,14 @@
      "t": "2026-11-26T19:10+00:00",
      "rumbo": 301.65,
      "nudos": 257.3,
+     "alt": 24000
+    },
+    {
+     "lat": 24.93,
+     "lon": -77.94,
+     "t": "2026-11-26T19:20+00:00",
+     "rumbo": 300.77,
+     "nudos": 256.0,
      "alt": 24000
     }
    ]
@@ -2771,14 +2795,6 @@
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
     {
-     "lat": 25.86,
-     "lon": -80.86,
-     "t": "2026-11-26T16:20+00:00",
-     "rumbo": 210.67,
-     "nudos": 100.0,
-     "alt": 450
-    },
-    {
      "lat": 25.94,
      "lon": -80.59,
      "t": "2026-11-26T16:30+00:00",
@@ -2809,16 +2825,7 @@
    "visto_utc": "2026-11-26T16:20+00:00",
    "dist_pr_km": 57,
    "primera_vez_utc": "2026-11-25T06:30+00:00",
-   "trazas": [
-    {
-     "lat": 18.41,
-     "lon": -66.09,
-     "t": "2026-11-26T16:20+00:00",
-     "rumbo": 325.97,
-     "nudos": 92.9,
-     "alt": 450
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae2689",
@@ -3793,7 +3800,6 @@
   7,
   7,
   7,
-  7,
   6,
   6,
   6,
@@ -3814,6 +3820,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
