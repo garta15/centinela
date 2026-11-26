@@ -54,9 +54,25 @@
   "aa34f0d90371": "2026-11-26T05:10:19+00:00",
   "4d72705cfa7f": "2026-11-26T06:00:28+00:00",
   "601055d28e2a": "2026-11-26T12:30:25+00:00",
-  "a4b5901041cd": "2026-11-26T13:30:34+00:00"
+  "a4b5901041cd": "2026-11-26T13:30:34+00:00",
+  "22a6efe7d02f": "2026-11-26T14:30:26+00:00"
  },
  "historial": [
+  {
+   "id": "22a6efe7d02f",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 85/100 (11 en 3 h · 61 en 24 h)",
+   "detalle": "12 GB of data stolen — FIFA confirms cyberattack on its own resources - Українські Національні Новини (УНН)",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQWlNGdzg3ZHBJYzRjSXNUanVTbDJaNDdpYkJ6UjlCekVCSHRHVHNRclhxR0JfLTZFMW96S1drQ3owZm13SU9xNzFkZ1MzV3FPSV9CaWR1VHNsS3RkSG9kc1hScjM3Mk9uckdScUtLRFh3Z3lLRlZCU29UZzJKV2R3MTNwZzRtNndicjc4aXNxZkNQSnUw0gGTAUFVX3lxTE8tSE80MWZBWE5wWjhQS3RaX3lyTy1ZTmxOQ2w2R3UxeDU2bjNhNk5MWW1RY21GQmJKeDhjNGNvYnZsT1BnS2IzYmpWb3pnY3ZhR0p2eHZMUjlVVDlaSEEyWUd5Si1UU1kxTUFxa0RkdUJZeFVsbmNSNDJFbkctdU54MU1wRFdHQ0pBX2tVYnREZDNMYw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T14:30:26+00:00"
+  },
   {
    "id": "a4b5901041cd",
    "fuente": "Medidor de prensa",
@@ -972,9 +988,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  4,
   3,
   3,
   3,
@@ -1069,7 +1084,8 @@
   2,
   1,
   2,
-  2
+  2,
+  3
  ],
  "medidores_base": {
   "telecom": [
@@ -1086,7 +1102,7 @@
    1,
    1,
    1,
-   1,
+   0,
    0,
    0,
    0,
@@ -1219,7 +1235,6 @@
    0
   ],
   "ciber": [
-   29,
    29,
    21,
    21,
@@ -1362,10 +1377,10 @@
    58,
    27,
    27,
-   27
+   27,
+   61
   ],
   "electrica": [
-   68,
    62,
    61,
    60,
@@ -1508,10 +1523,10 @@
    102,
    76,
    98,
-   107
+   107,
+   68
   ],
   "ataque": [
-   95,
    87,
    95,
    95,
@@ -1654,10 +1669,10 @@
    93,
    91,
    95,
-   92
+   92,
+   96
   ],
   "terror": [
-   24,
    23,
    23,
    21,
@@ -1800,10 +1815,10 @@
    40,
    39,
    39,
+   20,
    20
   ],
   "emergencia": [
-   41,
    41,
    50,
    40,
@@ -1946,11 +1961,11 @@
    95,
    95,
    88,
-   94
+   94,
+   90
   ],
   "espacio": [
    22,
-   22,
    25,
    21,
    24,
@@ -2092,10 +2107,10 @@
    14,
    13,
    13,
-   15
+   15,
+   13
   ],
   "caribe": [
-   25,
    26,
    25,
    49,
@@ -2236,12 +2251,12 @@
    46,
    22,
    22,
+   47,
    47,
    47,
    47
   ],
   "pr": [
-   57,
    28,
    28,
    29,
@@ -2384,6 +2399,7 @@
    28,
    28,
    30,
+   29,
    29
   ]
  },
@@ -2396,10 +2412,10 @@
    "clase": "militar",
    "pais": "EE. UU.",
    "lat": 25.45,
-   "lon": -79.75,
-   "alt": 1500,
-   "visto_utc": "2026-11-26T14:20+00:00",
-   "dist_pr_km": 1577,
+   "lon": -79.84,
+   "alt": 2500,
+   "visto_utc": "2026-11-26T14:30+00:00",
+   "dist_pr_km": 1585,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
     {
@@ -2433,6 +2449,70 @@
      "rumbo": 352.09,
      "nudos": 145.4,
      "alt": 1500
+    },
+    {
+     "lat": 25.45,
+     "lon": -79.84,
+     "t": "2026-11-26T14:30+00:00",
+     "rumbo": 40.86,
+     "nudos": 166.6,
+     "alt": 2500
+    }
+   ]
+  },
+  {
+   "hex": "ae4ae1",
+   "callsign": "C2709",
+   "tipo": "C27J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.42,
+   "lon": -82.43,
+   "alt": 17625,
+   "visto_utc": "2026-11-26T14:30+00:00",
+   "dist_pr_km": 1916,
+   "primera_vez_utc": "2026-11-24T17:08+00:00",
+   "trazas": [
+    {
+     "lat": 27.93,
+     "lon": -82.74,
+     "t": "2026-11-26T14:20+00:00",
+     "rumbo": 240.44,
+     "nudos": 154.1,
+     "alt": 2975
+    },
+    {
+     "lat": 27.42,
+     "lon": -82.43,
+     "t": "2026-11-26T14:30+00:00",
+     "rumbo": 147.14,
+     "nudos": 228.6,
+     "alt": 17625
+    }
+   ]
+  },
+  {
+   "hex": "ae2689",
+   "callsign": "C6551",
+   "tipo": "AS65",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 25.93,
+   "lon": -80.34,
+   "alt": 1975,
+   "visto_utc": "2026-11-26T14:30+00:00",
+   "dist_pr_km": 1654,
+   "primera_vez_utc": "2026-11-20T01:26+00:00",
+   "trazas": [
+    {
+     "lat": 25.93,
+     "lon": -80.34,
+     "t": "2026-11-26T14:30+00:00",
+     "rumbo": 317.29,
+     "nudos": 53.1,
+     "alt": 1975
     }
    ]
   },
@@ -2473,30 +2553,6 @@
      "rumbo": 350.89,
      "nudos": 132.7,
      "alt": 900
-    }
-   ]
-  },
-  {
-   "hex": "ae4ae1",
-   "callsign": "C2709",
-   "tipo": "C27J",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.93,
-   "lon": -82.74,
-   "alt": 2975,
-   "visto_utc": "2026-11-26T14:20+00:00",
-   "dist_pr_km": 1970,
-   "primera_vez_utc": "2026-11-24T17:08+00:00",
-   "trazas": [
-    {
-     "lat": 27.93,
-     "lon": -82.74,
-     "t": "2026-11-26T14:20+00:00",
-     "rumbo": 240.44,
-     "nudos": 154.1,
-     "alt": 2975
     }
    ]
   },
@@ -2595,21 +2651,6 @@
      "alt": 12975
     }
    ]
-  },
-  {
-   "hex": "ae2689",
-   "callsign": "C6551",
-   "tipo": "AS65",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 25.9,
-   "lon": -80.38,
-   "alt": 550,
-   "visto_utc": "2026-11-26T00:50+00:00",
-   "dist_pr_km": 1657,
-   "primera_vez_utc": "2026-11-20T01:26+00:00",
-   "trazas": []
   },
   {
    "hex": "af3be1",
@@ -3586,7 +3627,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3618,6 +3658,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
