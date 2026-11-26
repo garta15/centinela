@@ -48,9 +48,25 @@
   "5ad79e188192": "2026-11-25T23:00:31+00:00",
   "c24503d040b1": "2026-11-26T00:10:20+00:00",
   "9cb481386767": "2026-11-26T01:00:33+00:00",
-  "20f87ab2c1fa": "2026-11-26T02:00:35+00:00"
+  "20f87ab2c1fa": "2026-11-26T02:00:35+00:00",
+  "c1cddbb16c41": "2026-11-26T02:20:32+00:00"
  },
  "historial": [
+  {
+   "id": "c1cddbb16c41",
+   "fuente": "IODA",
+   "categoria": "Internet",
+   "nivel": 3,
+   "nivel_txt": "ALTO",
+   "titulo": "Caída de internet en Us Virgin Islands: -21% (ping-slash24)",
+   "detalle": "Medido por IODA (Georgia Tech) en las últimas 3 h.",
+   "lat": null,
+   "lon": null,
+   "url": "https://ioda.inetintel.cc.gatech.edu/country/VI",
+   "alcance": "familia",
+   "seccion": "pr",
+   "hora_utc": "2026-11-26T02:20:32+00:00"
+  },
   {
    "id": "20f87ab2c1fa",
    "fuente": "Medidor de prensa",
@@ -831,9 +847,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 2,
+ "ultimo_nivel": 3,
  "mil_caribe": [
-  1,
   0,
   0,
   0,
@@ -928,6 +943,7 @@
   0,
   0,
   0,
+  1,
   1
  ],
  "medidores_base": {
@@ -938,7 +954,6 @@
    0,
    0,
    0,
-   0,
    1,
    1,
    0,
@@ -1020,6 +1035,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1078,7 +1094,6 @@
    0
   ],
   "ciber": [
-   13,
    23,
    24,
    24,
@@ -1221,10 +1236,10 @@
    38,
    38,
    24,
-   40
+   40,
+   0
   ],
   "electrica": [
-   51,
    42,
    56,
    65,
@@ -1367,10 +1382,10 @@
    71,
    75,
    72,
-   75
+   75,
+   0
   ],
   "ataque": [
-   87,
    96,
    0,
    99,
@@ -1513,10 +1528,10 @@
    92,
    94,
    93,
-   94
+   94,
+   0
   ],
   "terror": [
-   8,
    12,
    14,
    23,
@@ -1659,10 +1674,10 @@
    49,
    19,
    47,
-   47
+   47,
+   0
   ],
   "emergencia": [
-   48,
    26,
    25,
    23,
@@ -1805,10 +1820,10 @@
    91,
    90,
    90,
-   90
+   90,
+   0
   ],
   "espacio": [
-   13,
    26,
    28,
    27,
@@ -1951,10 +1966,10 @@
    25,
    20,
    25,
-   25
+   25,
+   0
   ],
   "caribe": [
-   25,
    29,
    27,
    26,
@@ -2097,10 +2112,10 @@
    42,
    42,
    21,
-   41
+   41,
+   0
   ],
   "pr": [
-   26,
    27,
    0,
    26,
@@ -2243,7 +2258,8 @@
    28,
    59,
    27,
-   59
+   59,
+   0
   ]
  },
  "log_aviones": [
@@ -2254,21 +2270,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "Francia",
-   "lat": 15.9,
-   "lon": -61.38,
-   "alt": 950,
-   "visto_utc": "2026-11-26T02:10+00:00",
-   "dist_pr_km": 611,
+   "lat": 16.24,
+   "lon": -61.52,
+   "alt": 50,
+   "visto_utc": "2026-11-26T02:20+00:00",
+   "dist_pr_km": 581,
    "primera_vez_utc": "2026-11-25T20:10+00:00",
    "trazas": [
-    {
-     "lat": 16.21,
-     "lon": -61.49,
-     "t": "2026-11-25T23:20+00:00",
-     "rumbo": 135.0,
-     "nudos": 107.5,
-     "alt": 975
-    },
     {
      "lat": 15.92,
      "lon": -61.37,
@@ -2300,6 +2308,14 @@
      "rumbo": 338.28,
      "nudos": 132.4,
      "alt": 950
+    },
+    {
+     "lat": 16.24,
+     "lon": -61.52,
+     "t": "2026-11-26T02:20+00:00",
+     "rumbo": 57.99,
+     "nudos": 9.5,
+     "alt": 50
     }
    ]
   },
@@ -2317,14 +2333,6 @@
    "dist_pr_km": 1657,
    "primera_vez_utc": "2026-11-20T01:26+00:00",
    "trazas": [
-    {
-     "lat": 25.91,
-     "lon": -80.16,
-     "t": "2026-11-25T23:20+00:00",
-     "rumbo": 93.04,
-     "nudos": 132.2,
-     "alt": 625
-    },
     {
      "lat": 25.74,
      "lon": -80.21,
@@ -2438,14 +2446,6 @@
    "primera_vez_utc": "2026-11-25T22:10+00:00",
    "trazas": [
     {
-     "lat": 25.95,
-     "lon": -77.76,
-     "t": "2026-11-25T23:20+00:00",
-     "rumbo": 19.23,
-     "nudos": 409.9,
-     "alt": 22000
-    },
-    {
      "lat": 26.87,
      "lon": -78.23,
      "t": "2026-11-25T23:30+00:00",
@@ -2477,14 +2477,6 @@
    "dist_pr_km": 1647,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
-    {
-     "lat": 25.92,
-     "lon": -80.16,
-     "t": "2026-11-25T23:20+00:00",
-     "rumbo": 260.88,
-     "nudos": 82.0,
-     "alt": 1750
-    },
     {
      "lat": 25.91,
      "lon": -80.28,
@@ -3461,7 +3453,6 @@
  },
  "tfr_base": [
   5,
-  5,
   7,
   7,
   7,
@@ -3591,6 +3582,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
@@ -3606,527 +3598,6 @@
   1
  ],
  "tfr_geo": {
-  "6/9689": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       40.78889416,
-       -73.97
-      ],
-      [
-       40.78876747,
-       -73.96809488
-      ],
-      [
-       40.78839122,
-       -73.96624767
-      ],
-      [
-       40.78777687,
-       -73.96451451
-      ],
-      [
-       40.78694309,
-       -73.96294808
-      ],
-      [
-       40.78591521,
-       -73.96159597
-      ],
-      [
-       40.78472447,
-       -73.96049929
-      ],
-      [
-       40.78340707,
-       -73.95969132
-      ],
-      [
-       40.78200304,
-       -73.95919663
-      ],
-      [
-       40.78055504,
-       -73.95903021
-      ],
-      [
-       40.77910707,
-       -73.9591971
-      ],
-      [
-       40.77770313,
-       -73.95969221
-      ],
-      [
-       40.77638586,
-       -73.96050048
-      ],
-      [
-       40.7751953,
-       -73.96159733
-      ],
-      [
-       40.77416759,
-       -73.96294943
-      ],
-      [
-       40.77333398,
-       -73.9645157
-      ],
-      [
-       40.77271976,
-       -73.96624855
-      ],
-      [
-       40.77234361,
-       -73.96809535
-      ],
-      [
-       40.77221694,
-       -73.97
-      ],
-      [
-       40.77234361,
-       -73.97190465
-      ],
-      [
-       40.77271976,
-       -73.97375145
-      ],
-      [
-       40.77333398,
-       -73.9754843
-      ],
-      [
-       40.77416759,
-       -73.97705057
-      ],
-      [
-       40.7751953,
-       -73.97840267
-      ],
-      [
-       40.77638586,
-       -73.97949952
-      ],
-      [
-       40.77770313,
-       -73.98030779
-      ],
-      [
-       40.77910707,
-       -73.9808029
-      ],
-      [
-       40.78055504,
-       -73.98096979
-      ],
-      [
-       40.78200304,
-       -73.98080337
-      ],
-      [
-       40.78340707,
-       -73.98030868
-      ],
-      [
-       40.78472447,
-       -73.97950071
-      ],
-      [
-       40.78591521,
-       -73.97840403
-      ],
-      [
-       40.78694309,
-       -73.97705192
-      ],
-      [
-       40.78777687,
-       -73.97548549
-      ],
-      [
-       40.78839122,
-       -73.97375233
-      ],
-      [
-       40.78876747,
-       -73.97190512
-      ],
-      [
-       40.78889416,
-       -73.97
-      ],
-      [
-       40.78055556,
-       -73.97
-      ],
-      [
-       40.78055556,
-       -73.97
-      ],
-      [
-       40.78371475,
-       -73.86859914
-      ],
-      [
-       40.78371475,
-       -73.86859914
-      ]
-     ]
-    },
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       40.75333652,
-       -73.98861111
-      ],
-      [
-       40.75326051,
-       -73.98746865
-      ],
-      [
-       40.75303477,
-       -73.9863609
-      ],
-      [
-       40.75266618,
-       -73.98532155
-      ],
-      [
-       40.75216592,
-       -73.98438216
-      ],
-      [
-       40.75154921,
-       -73.98357129
-      ],
-      [
-       40.75083479,
-       -73.98291358
-      ],
-      [
-       40.75004436,
-       -73.982429
-      ],
-      [
-       40.74920194,
-       -73.98213228
-      ],
-      [
-       40.74833314,
-       -73.98203241
-      ],
-      [
-       40.74746435,
-       -73.98213244
-      ],
-      [
-       40.74662197,
-       -73.98242932
-      ],
-      [
-       40.74583159,
-       -73.982914
-      ],
-      [
-       40.74511723,
-       -73.98357178
-      ],
-      [
-       40.74450058,
-       -73.98438265
-      ],
-      [
-       40.74400039,
-       -73.98532197
-      ],
-      [
-       40.74363184,
-       -73.98636122
-      ],
-      [
-       40.74340614,
-       -73.98746882
-      ],
-      [
-       40.74333013,
-       -73.98861111
-      ],
-      [
-       40.74340614,
-       -73.9897534
-      ],
-      [
-       40.74363184,
-       -73.990861
-      ],
-      [
-       40.74400039,
-       -73.99190025
-      ],
-      [
-       40.74450058,
-       -73.99283957
-      ],
-      [
-       40.74511723,
-       -73.99365044
-      ],
-      [
-       40.74583159,
-       -73.99430822
-      ],
-      [
-       40.74662197,
-       -73.9947929
-      ],
-      [
-       40.74746435,
-       -73.99508978
-      ],
-      [
-       40.74833314,
-       -73.99518981
-      ],
-      [
-       40.74920194,
-       -73.99508994
-      ],
-      [
-       40.75004436,
-       -73.99479322
-      ],
-      [
-       40.75083479,
-       -73.99430864
-      ],
-      [
-       40.75154921,
-       -73.99365093
-      ],
-      [
-       40.75216592,
-       -73.99284006
-      ],
-      [
-       40.75266618,
-       -73.99190067
-      ],
-      [
-       40.75303477,
-       -73.99086132
-      ],
-      [
-       40.75326051,
-       -73.98975357
-      ],
-      [
-       40.75333652,
-       -73.98861111
-      ],
-      [
-       40.74833333,
-       -73.98861111
-      ],
-      [
-       40.74833333,
-       -73.98861111
-      ],
-      [
-       40.78371475,
-       -73.86859914
-      ],
-      [
-       40.78371475,
-       -73.86859914
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions for Special Security Reasons",
-   "texto": "!FDC 6/9689 ZNY NY..AIRSPACE MANHATTAN, NY..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 0.5NM RADIUS OF 404650N0735812W (LGA280004.6) SFC-1000FT AGL EFFECTIVE 2611261130 UTC (0630 LOCAL 11/26/26) UNTI",
-   "altitud": ""
-  },
-  "6/9684": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       40.78972749,
-       -73.97416667
-      ],
-      [
-       40.7896008,
-       -73.97226153
-      ],
-      [
-       40.78922455,
-       -73.97041429
-      ],
-      [
-       40.7886102,
-       -73.96868111
-      ],
-      [
-       40.78777642,
-       -73.96711466
-      ],
-      [
-       40.78674854,
-       -73.96576254
-      ],
-      [
-       40.7855578,
-       -73.96466584
-      ],
-      [
-       40.7842404,
-       -73.96385787
-      ],
-      [
-       40.78283637,
-       -73.96336316
-      ],
-      [
-       40.78138837,
-       -73.96319674
-      ],
-      [
-       40.7799404,
-       -73.96336363
-      ],
-      [
-       40.77853646,
-       -73.96385875
-      ],
-      [
-       40.77721919,
-       -73.96466703
-      ],
-      [
-       40.77602863,
-       -73.96576389
-      ],
-      [
-       40.77500093,
-       -73.96711601
-      ],
-      [
-       40.77416731,
-       -73.9686823
-      ],
-      [
-       40.77355309,
-       -73.97041517
-      ],
-      [
-       40.77317694,
-       -73.972262
-      ],
-      [
-       40.77305027,
-       -73.97416667
-      ],
-      [
-       40.77317694,
-       -73.97607134
-      ],
-      [
-       40.77355309,
-       -73.97791817
-      ],
-      [
-       40.77416731,
-       -73.97965104
-      ],
-      [
-       40.77500093,
-       -73.98121733
-      ],
-      [
-       40.77602863,
-       -73.98256945
-      ],
-      [
-       40.77721919,
-       -73.98366631
-      ],
-      [
-       40.77853646,
-       -73.98447459
-      ],
-      [
-       40.7799404,
-       -73.98496971
-      ],
-      [
-       40.78138837,
-       -73.9851366
-      ],
-      [
-       40.78283637,
-       -73.98497018
-      ],
-      [
-       40.7842404,
-       -73.98447547
-      ],
-      [
-       40.7855578,
-       -73.9836675
-      ],
-      [
-       40.78674854,
-       -73.9825708
-      ],
-      [
-       40.78777642,
-       -73.98121868
-      ],
-      [
-       40.7886102,
-       -73.97965223
-      ],
-      [
-       40.78922455,
-       -73.97791905
-      ],
-      [
-       40.7896008,
-       -73.97607181
-      ],
-      [
-       40.78972749,
-       -73.97416667
-      ],
-      [
-       40.78138889,
-       -73.97416667
-      ],
-      [
-       40.78138889,
-       -73.97416667
-      ],
-      [
-       40.78371475,
-       -73.86859914
-      ],
-      [
-       40.78371475,
-       -73.86859914
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions for Special Security Reasons",
-   "texto": "!FDC 6/9684 ZNY NY..AIRSPACE MANHATTAN, NY..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 25, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 0.5NM RADIUS OF 404653N0735827W (LGA280004.8) SFC-1000FT AGL EFFECTIVE 2611251600 UTC (1100 LOCAL 11/25/26) UNTI",
-   "altitud": ""
-  },
   "6/9661": {
    "areas": [
     {
