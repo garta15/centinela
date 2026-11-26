@@ -1,8 +1,9 @@
 {
- "actualizado_utc": "2026-11-26T12:10:20+00:00",
+ "actualizado_utc": "2026-11-26T12:20:20+00:00",
  "nivel": 1,
  "motor": "github",
  "fuentes_con_falla": [
-  "IODA por proveedor (ISP)"
+  "IODA por proveedor (ISP)",
+  "Internet PR/EE. UU. (IODA)"
  ]
 }
