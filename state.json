@@ -52,9 +52,25 @@
   "ea8bb6df3026": "2026-11-26T03:00:31+00:00",
   "22a276119fe3": "2026-11-26T03:00:31+00:00",
   "49f2de00d044": "2026-11-26T04:00:27+00:00",
-  "ab59dde86ab6": "2026-11-26T05:00:39+00:00"
+  "ab59dde86ab6": "2026-11-26T05:00:39+00:00",
+  "aa34f0d90371": "2026-11-26T05:10:19+00:00"
  },
  "historial": [
+  {
+   "id": "aa34f0d90371",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 76/100 (16 en 3 h · 94 en 24 h)",
+   "detalle": "State of Emergency Ahead of Storm - The Highlands Current",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CMzNSUmVveVBHb2ZEZS1hd0pLM2ViVDFJb1hySTQtWExxekZVUlpFU1l1SU95UjNET0k5U20xa1RJS3JnTHBpODNEaWI1RWs0SnV5QTBSdWFOSEI1dFNVSVhDZ2ZMa19acGtfeDQ2U0VMMmpfbnJqa0E3cnpiUWc?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T05:10:19+00:00"
+  },
   {
    "id": "ab59dde86ab6",
    "fuente": "IODA",
@@ -912,7 +928,6 @@
  ],
  "ultimo_nivel": 3,
  "mil_caribe": [
-  0,
   1,
   2,
   2,
@@ -1007,7 +1022,8 @@
   0,
   0,
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -1081,7 +1097,7 @@
    1,
    1,
    1,
-   1,
+   0,
    0,
    0,
    0,
@@ -1157,7 +1173,6 @@
    0
   ],
   "ciber": [
-   26,
    18,
    17,
    29,
@@ -1300,10 +1315,10 @@
    24,
    43,
    25,
-   44
+   44,
+   25
   ],
   "electrica": [
-   45,
    61,
    56,
    62,
@@ -1446,10 +1461,10 @@
    70,
    75,
    70,
-   70
+   70,
+   85
   ],
   "ataque": [
-   99,
    91,
    99,
    99,
@@ -1592,10 +1607,10 @@
    94,
    94,
    94,
-   95
+   95,
+   96
   ],
   "terror": [
-   21,
    34,
    21,
    21,
@@ -1738,10 +1753,10 @@
    44,
    16,
    16,
-   14
+   14,
+   15
   ],
   "emergencia": [
-   30,
    52,
    52,
    52,
@@ -1884,10 +1899,10 @@
    89,
    89,
    88,
-   87
+   87,
+   94
   ],
   "espacio": [
-   27,
    31,
    31,
    26,
@@ -2030,10 +2045,10 @@
    21,
    21,
    25,
+   21,
    21
   ],
   "caribe": [
-   28,
    28,
    53,
    28,
@@ -2176,10 +2191,10 @@
    20,
    20,
    20,
-   38
+   38,
+   19
   ],
   "pr": [
-   56,
    58,
    27,
    58,
@@ -2322,10 +2337,35 @@
    57,
    28,
    28,
-   28
+   28,
+   60
   ]
  },
  "log_aviones": [
+  {
+   "hex": "add70a",
+   "callsign": "BAT91",
+   "tipo": "DH8B",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 10.62,
+   "lon": -61.52,
+   "alt": 3525,
+   "visto_utc": "2026-11-26T05:10+00:00",
+   "dist_pr_km": 1006,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 10.62,
+     "lon": -61.52,
+     "t": "2026-11-26T05:10+00:00",
+     "rumbo": 179.65,
+     "nudos": 166.0,
+     "alt": 3525
+    }
+   ]
+  },
   {
    "hex": "3b7b7f",
    "callsign": "DRAG971",
@@ -2340,14 +2380,6 @@
    "dist_pr_km": 581,
    "primera_vez_utc": "2026-11-25T20:10+00:00",
    "trazas": [
-    {
-     "lat": 15.9,
-     "lon": -61.38,
-     "t": "2026-11-26T02:10+00:00",
-     "rumbo": 338.28,
-     "nudos": 132.4,
-     "alt": 950
-    },
     {
      "lat": 16.24,
      "lon": -61.52,
@@ -2521,21 +2553,6 @@
    "visto_utc": "2026-11-25T21:38+00:00",
    "dist_pr_km": 1951,
    "primera_vez_utc": "2026-11-24T16:16+00:00",
-   "trazas": []
-  },
-  {
-   "hex": "add70a",
-   "callsign": "BAT91",
-   "tipo": "DH8B",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 10.73,
-   "lon": -61.06,
-   "alt": 10975,
-   "visto_utc": "2026-11-25T21:00+00:00",
-   "dist_pr_km": 1023,
-   "primera_vez_utc": "2026-11-24T20:05+00:00",
    "trazas": []
   },
   {
@@ -3480,7 +3497,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3512,6 +3528,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
