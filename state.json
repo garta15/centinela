@@ -1084,10 +1084,9 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 2,
+ "ultimo_nivel": 1,
  "mil_caribe": [
   1,
-  1,
   0,
   0,
   0,
@@ -1181,7 +1180,8 @@
   2,
   2,
   2,
-  2
+  2,
+  0
  ],
  "medidores_base": {
   "telecom": [
@@ -1331,7 +1331,6 @@
    0
   ],
   "ciber": [
-   31,
    30,
    30,
    22,
@@ -1474,10 +1473,10 @@
    60,
    60,
    60,
-   27
+   27,
+   60
   ],
   "electrica": [
-   81,
    59,
    52,
    56,
@@ -1620,10 +1619,10 @@
    76,
    84,
    63,
-   71
+   71,
+   70
   ],
   "ataque": [
-   97,
    96,
    97,
    96,
@@ -1766,10 +1765,10 @@
    94,
    95,
    95,
-   95
+   95,
+   94
   ],
   "terror": [
-   45,
    44,
    20,
    44,
@@ -1912,10 +1911,10 @@
    33,
    32,
    32,
+   18,
    18
   ],
   "emergencia": [
-   52,
    46,
    47,
    52,
@@ -2058,13 +2057,13 @@
    87,
    93,
    93,
-   85
+   85,
+   93
   ],
   "espacio": [
    20,
    20,
    20,
-   20,
    16,
    20,
    21,
@@ -2204,10 +2203,10 @@
    18,
    18,
    19,
-   20
+   20,
+   21
   ],
   "caribe": [
-   20,
    22,
    19,
    44,
@@ -2350,10 +2349,10 @@
    22,
    44,
    45,
+   22,
    22
   ],
   "pr": [
-   58,
    29,
    60,
    61,
@@ -2496,6 +2495,7 @@
    28,
    27,
    28,
+   45,
    45
   ]
  },
@@ -2890,14 +2890,6 @@
    "dist_pr_km": 1290,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
    "trazas": [
-    {
-     "lat": 25.73,
-     "lon": -79.45,
-     "t": "2026-11-26T15:10+00:00",
-     "rumbo": 101.65,
-     "nudos": 326.7,
-     "alt": 23000
-    },
     {
      "lat": 25.23,
      "lon": -78.7,
@@ -3879,7 +3871,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3911,6 +3902,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
@@ -5632,182 +5624,6 @@
    "motivo": "TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS",
    "texto": "!FDC 6/9306 ZDC VA..AIRSPACE 20NM W LEXINGTON, VA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 375200N0795230W (MOL272036.5) TO 375100N0795000W (MOL270034.6) TO 374830N0795200W (MOL266036.4) TO 374900N0795400W (MOL268037.9) TO THE POINT OF ORIGIN SFC-4000FT MSL EFFECTIVE 2611221200 UTC UNTIL 2611292300 UTC DLY 1200-2300. TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS VIRGINIA INTERAGENCY COORDINATION CENTER , WHITE OAK FLAT FIRE, TEL 434-423-2002, /FREQ 123.125 IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE WASHINGTON /ZDC/ ARTCC, TEL 703-771-3470, IS THE CDN FAC. 2611221200-2611292300",
    "altitud": "From the surface  up to and including 4000 feet MSL"
-  },
-  "6/8989": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       29.77865192,
-       -95.37916667
-      ],
-      [
-       29.77839805,
-       -95.37584095
-      ],
-      [
-       29.77764417,
-       -95.37261634
-      ],
-      [
-       29.77641319,
-       -95.36959084
-      ],
-      [
-       29.77474254,
-       -95.36685643
-      ],
-      [
-       29.77268299,
-       -95.3644962
-      ],
-      [
-       29.77029714,
-       -95.36258186
-      ],
-      [
-       29.76765751,
-       -95.36117157
-      ],
-      [
-       29.76484432,
-       -95.36030814
-      ],
-      [
-       29.76194305,
-       -95.36001777
-      ],
-      [
-       29.75904187,
-       -95.36030923
-      ],
-      [
-       29.75622891,
-       -95.36117361
-      ],
-      [
-       29.75358965,
-       -95.36258461
-      ],
-      [
-       29.75120425,
-       -95.36449933
-      ],
-      [
-       29.74914517,
-       -95.36685956
-      ],
-      [
-       29.74747496,
-       -95.36959359
-      ],
-      [
-       29.74624435,
-       -95.37261838
-      ],
-      [
-       29.74549071,
-       -95.37584204
-      ],
-      [
-       29.74523692,
-       -95.37916667
-      ],
-      [
-       29.74549071,
-       -95.3824913
-      ],
-      [
-       29.74624435,
-       -95.38571496
-      ],
-      [
-       29.74747496,
-       -95.38873975
-      ],
-      [
-       29.74914517,
-       -95.39147378
-      ],
-      [
-       29.75120425,
-       -95.39383401
-      ],
-      [
-       29.75358965,
-       -95.39574873
-      ],
-      [
-       29.75622891,
-       -95.39715973
-      ],
-      [
-       29.75904187,
-       -95.39802411
-      ],
-      [
-       29.76194305,
-       -95.39831557
-      ],
-      [
-       29.76484432,
-       -95.3980252
-      ],
-      [
-       29.76765751,
-       -95.39716177
-      ],
-      [
-       29.77029714,
-       -95.39575148
-      ],
-      [
-       29.77268299,
-       -95.39383714
-      ],
-      [
-       29.77474254,
-       -95.39147691
-      ],
-      [
-       29.77641319,
-       -95.3887425
-      ],
-      [
-       29.77764417,
-       -95.385717
-      ],
-      [
-       29.77839805,
-       -95.38249239
-      ],
-      [
-       29.77865192,
-       -95.37916667
-      ],
-      [
-       29.76194444,
-       -95.37916667
-      ],
-      [
-       29.76194444,
-       -95.37916667
-      ],
-      [
-       29.95691703,
-       -95.34571903
-      ],
-      [
-       29.95691703,
-       -95.34571903
-      ]
-     ]
-    }
-   ],
-   "motivo": "The 77th annual HEB Thanksgiving Day Parade under sec 44812 c(2)",
-   "texto": "!FDC 6/8989 ZHU TX..AIRSPACE HOUSTON, TX..TEMPORARY FLIGHT RESTRICTIONS. PURSUANT TO 49 U.S.C. SECTION 44812 AS AMENDED BY SECTION 935 OF THE FAA REAUTHORIZATION ACT OF 2024 FOR PROTECTION OF LARGE PUBLIC GATHERINGS. UAS FLT OPS ARE PROHIBITED WI AN AREA DEFINED AS 1NM RADIUS OF 294543N0952245W (IAH184011.8) SFC-400FT AGL EFFECTIVE 2611261400 UTC UNTIL 2611261800 UTC. DUE TO THE 77TH ANNUAL HEB THANKSGIVING DAY PARADE UNDER SEC 44812 C(2) UAS OPS FOR OPERATIONAL, SAFETY, SECURITY, OR COMPLIANCE OVERSIGHT PURPOSES MUST CTC POINT OF CONTACT. UAS OPR WHO DO NOT COMPLY WITH APPLICABLE AIRSPACE RESTRICTIONS ARE WARNED THAT PURSUANT TO 10 U.S.C.SECTION 130I AND 6 U.S.C.SECTION 124N, THE DEPARTMENT OF DEFENSE (DOD), THE DEPARTMENT OF HOMELAND SECURITY (DHS) OR THE DEPARTMENT OF JUSTICE (DOJ) MAY TAKE SECURITY ACTION THAT RESULTS IN THE INTERFERENCE, DISRUPTION, SEIZURE, DAMAGING, OR DESTRUCTION OF UNMANNED ACFT DEEMED TO POSE A CREDIBLE SAFETY OR SECURITY THREAT TO PROTECTED PERSONNEL, FAC, OR ASSETS. THE HOUSTON POLICE DEPT, SGT CARL SEDITA, TEL 346-577-2775, IS THE POINT OF CONTACT. 2611261400-2611261800",
-   "altitud": ""
   },
   "6/8986": {
    "areas": [
