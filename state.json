@@ -45,9 +45,25 @@
   "7898832a2ffc": "2026-11-25T22:00:28+00:00",
   "9f088444b847": "2026-11-25T22:10:26+00:00",
   "39b46e5cbd21": "2026-11-25T22:50:21+00:00",
-  "5ad79e188192": "2026-11-25T23:00:31+00:00"
+  "5ad79e188192": "2026-11-25T23:00:31+00:00",
+  "c24503d040b1": "2026-11-26T00:10:20+00:00"
  },
  "historial": [
+  {
+   "id": "c24503d040b1",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 88/100 (20 en 3 h · 91 en 24 h)",
+   "detalle": "State of Emergency now in effect - https://themonmouthjournalcentral.com/",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUzd0Ym1hbzR2dm1ESVpjUGdBYUFIelpoQ0lGaG82dnROamNFbW12aTFNWWliaXVfLUN4ZFFsY0NhTnFRVEJpc1JFSExHM0hXTHI4dkhCbm5pVzB5QkdNQjNXVmJ0VXJlVERyaUk0ajBxajIzUGZTeDNyM2F2VG90UEdQRnRnSUtUdTdiRA?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T00:10:20+00:00"
+  },
   {
    "id": "5ad79e188192",
    "fuente": "Medidor de prensa",
@@ -785,7 +801,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  1,
   0,
   0,
   0,
@@ -880,11 +895,11 @@
   4,
   2,
   1,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
-   3,
    1,
    0,
    0,
@@ -985,6 +1000,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1030,7 +1046,6 @@
    0
   ],
   "ciber": [
-   23,
    2,
    17,
    15,
@@ -1173,10 +1188,10 @@
    35,
    34,
    0,
-   34
+   34,
+   37
   ],
   "electrica": [
-   56,
    46,
    47,
    49,
@@ -1319,10 +1334,10 @@
    65,
    79,
    0,
-   65
+   65,
+   70
   ],
   "ataque": [
-   99,
    95,
    95,
    93,
@@ -1465,10 +1480,10 @@
    94,
    96,
    0,
-   97
+   97,
+   95
   ],
   "terror": [
-   15,
    20,
    24,
    25,
@@ -1611,10 +1626,10 @@
    22,
    22,
    0,
-   22
+   22,
+   49
   ],
   "emergencia": [
-   58,
    51,
    45,
    44,
@@ -1757,10 +1772,10 @@
    82,
    82,
    0,
-   84
+   84,
+   91
   ],
   "espacio": [
-   7,
    9,
    8,
    7,
@@ -1903,10 +1918,10 @@
    20,
    25,
    0,
+   20,
    20
   ],
   "caribe": [
-   50,
    26,
    31,
    31,
@@ -2049,10 +2064,10 @@
    22,
    43,
    0,
+   43,
    43
   ],
   "pr": [
-   28,
    24,
    22,
    24,
@@ -2195,10 +2210,75 @@
    27,
    29,
    0,
+   28,
    28
   ]
  },
  "log_aviones": [
+  {
+   "hex": "3b7b7f",
+   "callsign": "DRAG971",
+   "tipo": "EC45",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 14.69,
+   "lon": -61.03,
+   "alt": 1375,
+   "visto_utc": "2026-11-26T00:10+00:00",
+   "dist_pr_km": 711,
+   "primera_vez_utc": "2026-11-25T20:10+00:00",
+   "trazas": [
+    {
+     "lat": 16.2,
+     "lon": -61.49,
+     "t": "2026-11-25T22:10+00:00",
+     "rumbo": 78.11,
+     "nudos": 19.4,
+     "alt": 125
+    },
+    {
+     "lat": 16.2,
+     "lon": -61.49,
+     "t": "2026-11-25T22:20+00:00",
+     "rumbo": 254.62,
+     "nudos": 41.5,
+     "alt": 400
+    },
+    {
+     "lat": 16.2,
+     "lon": -61.49,
+     "t": "2026-11-25T22:30+00:00",
+     "rumbo": 162.35,
+     "nudos": 23.1,
+     "alt": 325
+    },
+    {
+     "lat": 16.21,
+     "lon": -61.49,
+     "t": "2026-11-25T23:20+00:00",
+     "rumbo": 135.0,
+     "nudos": 107.5,
+     "alt": 975
+    },
+    {
+     "lat": 15.92,
+     "lon": -61.37,
+     "t": "2026-11-25T23:30+00:00",
+     "rumbo": 163.99,
+     "nudos": 119.6,
+     "alt": 975
+    },
+    {
+     "lat": 14.69,
+     "lon": -61.03,
+     "t": "2026-11-26T00:10+00:00",
+     "rumbo": 197.89,
+     "nudos": 133.5,
+     "alt": 1375
+    }
+   ]
+  },
   {
    "hex": "ae2689",
    "callsign": "C6551",
@@ -2372,70 +2452,6 @@
      "rumbo": null,
      "nudos": 3.8,
      "alt": "ground"
-    }
-   ]
-  },
-  {
-   "hex": "3b7b7f",
-   "callsign": "DRAG971",
-   "tipo": "EC45",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Francia",
-   "lat": 15.92,
-   "lon": -61.37,
-   "alt": 975,
-   "visto_utc": "2026-11-25T23:30+00:00",
-   "dist_pr_km": 611,
-   "primera_vez_utc": "2026-11-25T20:10+00:00",
-   "trazas": [
-    {
-     "lat": 16.18,
-     "lon": -61.49,
-     "t": "2026-11-25T21:06+00:00",
-     "rumbo": 328.74,
-     "nudos": 131.0,
-     "alt": 775
-    },
-    {
-     "lat": 16.2,
-     "lon": -61.49,
-     "t": "2026-11-25T22:10+00:00",
-     "rumbo": 78.11,
-     "nudos": 19.4,
-     "alt": 125
-    },
-    {
-     "lat": 16.2,
-     "lon": -61.49,
-     "t": "2026-11-25T22:20+00:00",
-     "rumbo": 254.62,
-     "nudos": 41.5,
-     "alt": 400
-    },
-    {
-     "lat": 16.2,
-     "lon": -61.49,
-     "t": "2026-11-25T22:30+00:00",
-     "rumbo": 162.35,
-     "nudos": 23.1,
-     "alt": 325
-    },
-    {
-     "lat": 16.21,
-     "lon": -61.49,
-     "t": "2026-11-25T23:20+00:00",
-     "rumbo": 135.0,
-     "nudos": 107.5,
-     "alt": 975
-    },
-    {
-     "lat": 15.92,
-     "lon": -61.37,
-     "t": "2026-11-25T23:30+00:00",
-     "rumbo": 163.99,
-     "nudos": 119.6,
-     "alt": 975
     }
    ]
   },
@@ -2764,16 +2780,7 @@
    "visto_utc": "2026-11-25T21:00+00:00",
    "dist_pr_km": 1023,
    "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": [
-    {
-     "lat": 10.73,
-     "lon": -61.06,
-     "t": "2026-11-25T21:00+00:00",
-     "rumbo": 42.2,
-     "nudos": 159.3,
-     "alt": 10975
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae04f9",
@@ -3650,7 +3657,6 @@
   "6/9800": "2026-11-25T22:20+00:00"
  },
  "tfr_base": [
-  3,
   4,
   5,
   3,
@@ -3793,7 +3799,8 @@
   7,
   7,
   7,
-  7
+  7,
+  1
  ],
  "tfr_geo": {
   "6/9689": {
