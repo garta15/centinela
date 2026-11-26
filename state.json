@@ -61,9 +61,41 @@
   "2f4a72df9f04": "2026-11-26T16:00:30+00:00",
   "4e3cc55f93dd": "2026-11-26T16:50:31+00:00",
   "68df5b76bd48": "2026-11-26T17:10:22+00:00",
-  "901386fcc057": "2026-11-26T18:00:31+00:00"
+  "901386fcc057": "2026-11-26T18:00:31+00:00",
+  "a1f8cfb4eee1": "2026-11-26T18:40:22+00:00",
+  "aa5529e58654": "2026-11-26T18:40:22+00:00"
  },
  "historial": [
+  {
+   "id": "aa5529e58654",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 84/100 (9 en 3 h · 43 en 24 h)",
+   "detalle": "U.S. Official Issues Stern Warning to Cuban Regime - CubaHeadlines",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBGQkpVN2FWQWFDQVN5bXlDX1Z3YzVuTEYzRlF2QVN1RXpPakRlR3BfaWpZbEl3NjJqYkJqZlJpaU1NQVpPV0JyZTNBVXZKZVVhbE1CY1NVdms?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T18:40:22+00:00"
+  },
+  {
+   "id": "a1f8cfb4eee1",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 71/100 (8 en 3 h · 59 en 24 h)",
+   "detalle": "FBI sting exposes shocking ransomware scam: Colombian businessman faces up to 20 years in prison for scamming cyberattack victims - El Cronista",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQOWpSdWZ4ZHBwVktmb254RU56UlhZTzYxTDFtRXR0akxzRzBMNVBKZnU1bktBRjRuLUloaFR6Q3Z6cnlvTXlOR2JyYS1iVHl6Y09nTmtyQXpqdGpaeUswLWgzcTc5TFlrVEVXbDFpOE82bDB5Y3J3dXBGY3lLTWNNMHpsY2JsbGZnVlB2ajRTNTFVMGhBUVRhWUItcGkzWWlXM1VVWjNiS09sN1VtTndfSVBTMy1wUFRqVUNWV3NhUGlPX0k3ZEpobjVmSk1DTmNpSUgxdDFNZjZ5alNEZGtJVElkd2VGSHc5QVBZblZQbG1WdlctcHc?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T18:40:22+00:00"
+  },
   {
    "id": "901386fcc057",
    "fuente": "ADS-B (adsb.lol)",
@@ -1084,7 +1116,7 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
@@ -1100,7 +1132,6 @@
   0,
   0,
   0,
-  0,
   1,
   0,
   0,
@@ -1179,6 +1210,7 @@
   2,
   2,
   2,
+  0,
   0,
   0,
   0
@@ -1331,7 +1363,6 @@
    0
   ],
   "ciber": [
-   22,
    30,
    30,
    22,
@@ -1474,10 +1505,10 @@
    27,
    60,
    26,
-   27
+   27,
+   59
   ],
   "electrica": [
-   56,
    60,
    51,
    51,
@@ -1620,12 +1651,12 @@
    71,
    70,
    61,
-   70
+   70,
+   60
   ],
   "ataque": [
    96,
    96,
-   96,
    89,
    89,
    96,
@@ -1766,10 +1797,10 @@
    95,
    94,
    95,
-   95
+   95,
+   94
   ],
   "terror": [
-   44,
    28,
    52,
    28,
@@ -1912,10 +1943,10 @@
    18,
    18,
    18,
-   30
+   30,
+   29
   ],
   "emergencia": [
-   52,
    53,
    52,
    56,
@@ -2058,10 +2089,10 @@
    85,
    93,
    87,
-   93
+   93,
+   86
   ],
   "espacio": [
-   20,
    16,
    20,
    21,
@@ -2204,10 +2235,10 @@
    20,
    21,
    22,
+   21,
    21
   ],
   "caribe": [
-   44,
    20,
    44,
    21,
@@ -2350,10 +2381,10 @@
    22,
    22,
    23,
-   22
+   22,
+   43
   ],
   "pr": [
-   61,
    29,
    29,
    60,
@@ -2496,6 +2527,7 @@
    45,
    45,
    27,
+   45,
    45
   ]
  },
@@ -2811,14 +2843,6 @@
    "primera_vez_utc": "2026-11-20T01:26+00:00",
    "trazas": [
     {
-     "lat": 25.64,
-     "lon": -80.21,
-     "t": "2026-11-26T15:40+00:00",
-     "rumbo": 84.53,
-     "nudos": 94.4,
-     "alt": 300
-    },
-    {
      "lat": 25.79,
      "lon": -80.18,
      "t": "2026-11-26T15:50+00:00",
@@ -2857,16 +2881,7 @@
    "visto_utc": "2026-11-26T15:40+00:00",
    "dist_pr_km": 1290,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
-   "trazas": [
-    {
-     "lat": 24.11,
-     "lon": -77.32,
-     "t": "2026-11-26T15:40+00:00",
-     "rumbo": 131.97,
-     "nudos": 308.0,
-     "alt": 22975
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae058d",
@@ -2881,16 +2896,7 @@
    "visto_utc": "2026-11-26T15:40+00:00",
    "dist_pr_km": 1965,
    "primera_vez_utc": "2026-11-25T05:00+00:00",
-   "trazas": [
-    {
-     "lat": 27.91,
-     "lon": -82.69,
-     "t": "2026-11-26T15:40+00:00",
-     "rumbo": 349.0,
-     "nudos": 353.0,
-     "alt": 15900
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "add70a",
@@ -3828,7 +3834,6 @@
   "6/9837": "2026-11-26T16:30+00:00"
  },
  "tfr_base": [
-  7,
   8,
   8,
   7,
@@ -3860,6 +3865,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
