@@ -58,9 +58,25 @@
   "22a6efe7d02f": "2026-11-26T14:30:26+00:00",
   "f7dcade82d41": "2026-11-26T15:00:39+00:00",
   "96759f66d1b9": "2026-11-26T15:10:25+00:00",
-  "2f4a72df9f04": "2026-11-26T16:00:30+00:00"
+  "2f4a72df9f04": "2026-11-26T16:00:30+00:00",
+  "4e3cc55f93dd": "2026-11-26T16:50:31+00:00"
  },
  "historial": [
+  {
+   "id": "4e3cc55f93dd",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 81/100 (10 en 3 h · 61 en 24 h)",
+   "detalle": "Fifa staff asked to give evidence to US investigation into governing body - The Times",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPZUpnTUx4UVRiTjkza1UzUEI1SkpEZE1fX3FyWG43c19kQ29jUUExQWhXY2pDbjF5NWFXaFUtM3Y0TXoxWFJfN2hyZmpFUTdJS0c5Y1ZCQmJwaHdwZmZ5VjBrRWdsV1VhclVIeHkzTjl1MVFxTHRnNmI2M1Y5ekZUREdHWENWUzd4VDZpYVdELUhzZ3NPUmhRVjVVZjM3aW1ITnZkdWxQTHJUQV9EQ291TUJMbUNOQQ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T16:50:31+00:00"
+  },
   {
    "id": "2f4a72df9f04",
    "fuente": "Medidor de prensa",
@@ -1036,9 +1052,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  1,
   0,
   0,
   0,
@@ -1133,7 +1148,8 @@
   2,
   2,
   1,
-  1
+  1,
+  2
  ],
  "medidores_base": {
   "telecom": [
@@ -1283,7 +1299,6 @@
    0
   ],
   "ciber": [
-   30,
    21,
    30,
    30,
@@ -1426,10 +1441,10 @@
    26,
    27,
    61,
-   26
+   26,
+   61
   ],
   "electrica": [
-   82,
    73,
    83,
    49,
@@ -1572,13 +1587,13 @@
    70,
    78,
    95,
-   81
+   81,
+   89
   ],
   "ataque": [
    96,
    96,
    96,
-   96,
    87,
    87,
    88,
@@ -1718,10 +1733,10 @@
    94,
    95,
    96,
+   95,
    95
   ],
   "terror": [
-   43,
    21,
    43,
    22,
@@ -1864,10 +1879,10 @@
    19,
    20,
    32,
-   30
+   30,
+   31
   ],
   "emergencia": [
-   44,
    45,
    50,
    46,
@@ -2010,10 +2025,10 @@
    87,
    86,
    93,
-   85
+   85,
+   93
   ],
   "espacio": [
-   22,
    18,
    17,
    17,
@@ -2156,10 +2171,10 @@
    16,
    18,
    17,
+   18,
    18
   ],
   "caribe": [
-   46,
    45,
    44,
    21,
@@ -2302,10 +2317,10 @@
    22,
    22,
    48,
+   22,
    22
   ],
   "pr": [
-   29,
    58,
    28,
    28,
@@ -2448,10 +2463,83 @@
    28,
    28,
    28,
-   52
+   52,
+   26
   ]
  },
  "log_aviones": [
+  {
+   "hex": "3b7b7f",
+   "callsign": "DRAG971",
+   "tipo": "EC45",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 16.75,
+   "lon": -61.76,
+   "alt": 950,
+   "visto_utc": "2026-11-26T16:50+00:00",
+   "dist_pr_km": 537,
+   "primera_vez_utc": "2026-11-25T20:10+00:00",
+   "trazas": [
+    {
+     "lat": 16.19,
+     "lon": -61.53,
+     "t": "2026-11-26T14:20+00:00",
+     "rumbo": 350.89,
+     "nudos": 132.7,
+     "alt": 900
+    },
+    {
+     "lat": 16.46,
+     "lon": -61.6,
+     "t": "2026-11-26T15:20+00:00",
+     "rumbo": 339.3,
+     "nudos": 135.8,
+     "alt": 900
+    },
+    {
+     "lat": 16.81,
+     "lon": -61.73,
+     "t": "2026-11-26T15:30+00:00",
+     "rumbo": 324.22,
+     "nudos": 136.8,
+     "alt": 900
+    },
+    {
+     "lat": 16.75,
+     "lon": -61.76,
+     "t": "2026-11-26T16:50+00:00",
+     "rumbo": 154.77,
+     "nudos": 115.0,
+     "alt": 950
+    }
+   ]
+  },
+  {
+   "hex": "3b76ae",
+   "callsign": "CTM1023",
+   "tipo": "A332",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 17.56,
+   "lon": -58.49,
+   "alt": 40000,
+   "visto_utc": "2026-11-26T16:50+00:00",
+   "dist_pr_km": 860,
+   "primera_vez_utc": "2026-11-26T16:50+00:00",
+   "trazas": [
+    {
+     "lat": 17.56,
+     "lon": -58.49,
+     "t": "2026-11-26T16:50+00:00",
+     "rumbo": 225.53,
+     "nudos": 461.1,
+     "alt": 40000
+    }
+   ]
+  },
   {
    "hex": "ae4bf0",
    "callsign": "C2316",
@@ -2697,46 +2785,6 @@
      "rumbo": 349.0,
      "nudos": 353.0,
      "alt": 15900
-    }
-   ]
-  },
-  {
-   "hex": "3b7b7f",
-   "callsign": "DRAG971",
-   "tipo": "EC45",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Francia",
-   "lat": 16.81,
-   "lon": -61.73,
-   "alt": 900,
-   "visto_utc": "2026-11-26T15:30+00:00",
-   "dist_pr_km": 538,
-   "primera_vez_utc": "2026-11-25T20:10+00:00",
-   "trazas": [
-    {
-     "lat": 16.19,
-     "lon": -61.53,
-     "t": "2026-11-26T14:20+00:00",
-     "rumbo": 350.89,
-     "nudos": 132.7,
-     "alt": 900
-    },
-    {
-     "lat": 16.46,
-     "lon": -61.6,
-     "t": "2026-11-26T15:20+00:00",
-     "rumbo": 339.3,
-     "nudos": 135.8,
-     "alt": 900
-    },
-    {
-     "lat": 16.81,
-     "lon": -61.73,
-     "t": "2026-11-26T15:30+00:00",
-     "rumbo": 324.22,
-     "nudos": 136.8,
-     "alt": 900
     }
    ]
   },
@@ -3734,7 +3782,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3766,6 +3813,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
