@@ -1,8 +1,9 @@
 {
- "actualizado_utc": "2026-11-26T14:10:21+00:00",
+ "actualizado_utc": "2026-11-26T14:20:22+00:00",
  "nivel": 1,
  "motor": "github",
  "fuentes_con_falla": [
+  "Aviones militares Caribe (ADS-B)",
   "IODA por proveedor (ISP)",
   "Internet PR/EE. UU. (IODA)"
  ]
