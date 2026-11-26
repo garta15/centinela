@@ -52,9 +52,25 @@
   "49f2de00d044": "2026-11-26T04:00:27+00:00",
   "ab59dde86ab6": "2026-11-26T05:00:39+00:00",
   "aa34f0d90371": "2026-11-26T05:10:19+00:00",
-  "4d72705cfa7f": "2026-11-26T06:00:28+00:00"
+  "4d72705cfa7f": "2026-11-26T06:00:28+00:00",
+  "601055d28e2a": "2026-11-26T12:30:25+00:00"
  },
  "historial": [
+  {
+   "id": "601055d28e2a",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 70/100 (8 en 3 h · 57 en 24 h)",
+   "detalle": "Hackers steal personal and legal information from Fifa in cyberattack as investigation launched - GB News",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9iam5yNmdwX3h5MjhkYktZMHlJOVFNcy1jeXlKUEhPSmY0Z0JFT29BemNZSnJkOHFPTlRHWk9FYlBxTGRpVGFCNVhKbnd2T1NIdHcyN1c1bnc4T3k3OE5IajFZS2tkQk1nci1Rc0lNWVE?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T12:30:25+00:00"
+  },
   {
    "id": "4d72705cfa7f",
    "fuente": "IODA",
@@ -940,10 +956,9 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   2,
-  2,
   1,
   0,
   1,
@@ -1035,6 +1050,7 @@
   1,
   1,
   1,
+  0,
   0,
   0,
   0
@@ -1066,7 +1082,7 @@
    1,
    1,
    1,
-   1,
+   0,
    0,
    0,
    0,
@@ -1187,7 +1203,6 @@
    0
   ],
   "ciber": [
-   30,
    30,
    30,
    29,
@@ -1330,10 +1345,10 @@
    55,
    26,
    26,
-   58
+   58,
+   57
   ],
   "electrica": [
-   56,
    47,
    70,
    47,
@@ -1476,11 +1491,11 @@
    100,
    94,
    70,
-   100
+   100,
+   92
   ],
   "ataque": [
    88,
-   88,
    96,
    88,
    88,
@@ -1622,10 +1637,10 @@
    88,
    90,
    91,
-   95
+   95,
+   90
   ],
   "terror": [
-   22,
    20,
    22,
    35,
@@ -1768,10 +1783,10 @@
    38,
    22,
    39,
+   21,
    21
   ],
   "emergencia": [
-   37,
    48,
    37,
    37,
@@ -1914,10 +1929,10 @@
    87,
    87,
    87,
-   94
+   94,
+   87
   ],
   "espacio": [
-   24,
    28,
    23,
    28,
@@ -2060,10 +2075,10 @@
    17,
    18,
    20,
-   18
+   18,
+   17
   ],
   "caribe": [
-   46,
    23,
    48,
    24,
@@ -2206,10 +2221,10 @@
    22,
    22,
    45,
-   45
+   45,
+   22
   ],
   "pr": [
-   28,
    28,
    60,
    60,
@@ -2352,7 +2367,8 @@
    62,
    28,
    63,
-   28
+   28,
+   63
   ]
  },
  "log_aviones": [
@@ -3473,7 +3489,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3505,6 +3520,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
