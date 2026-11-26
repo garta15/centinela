@@ -72,10 +72,15 @@ jobs:
         run: |
           git config user.name  "centinela-bot"
           git config user.email "centinela-bot@users.noreply.github.com"
-          git add docs state.json
+          git add -A docs state.json
           git diff --cached --quiet || git commit -m "estado $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase --autostash || true
-          git push
+          for i in 1 2 3; do
+            git push && exit 0
+            git fetch origin main
+            # si otra corrida guardó antes, nuestros archivos generados (más nuevos) ganan
+            git rebase -X theirs origin/main || { git rebase --abort; git reset --soft origin/main; git commit -m "estado $(date -u +%Y-%m-%dT%H:%MZ)" || true; }
+          done
+          exit 1
 
       - name: Respaldo en Hugging Face
         if: ${{ env.HF_TOKEN != '' }}
