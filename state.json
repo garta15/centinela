@@ -46,9 +46,25 @@
   "9f088444b847": "2026-11-25T22:10:26+00:00",
   "39b46e5cbd21": "2026-11-25T22:50:21+00:00",
   "5ad79e188192": "2026-11-25T23:00:31+00:00",
-  "c24503d040b1": "2026-11-26T00:10:20+00:00"
+  "c24503d040b1": "2026-11-26T00:10:20+00:00",
+  "9cb481386767": "2026-11-26T01:00:33+00:00"
  },
  "historial": [
+  {
+   "id": "9cb481386767",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 81/100 (17 en 3 h · 93 en 24 h)",
+   "detalle": "New Jersey under statewide state of emergency as powerful Thanksgiving nor'easter approaches - WRNJ Radio",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZFJ6X2tjc2tfZnpkaDM1bERJazI3S2ZlMk9GOFZRT1RzdEZFX016blFvVkxDeGxGLU9XcVhNalI1ZXpfQnNpTl80dHppMlpiTC1Md2ZSaG9LaWJ4clhSWUFFTEI5RGpvWlZaMWdwUnhBd3dVZHNNUTIwUDdVYVoxYlZ6OEoyOC1QR2hEekh6R1pVS0VLb1JUTndNb2xrMnpiU3VrM0ktZDYtbGg1Y25ESlFrY3Y?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T01:00:33+00:00"
+  },
   {
    "id": "c24503d040b1",
    "fuente": "Medidor de prensa",
@@ -808,7 +824,6 @@
   0,
   0,
   0,
-  0,
   1,
   0,
   0,
@@ -896,7 +911,8 @@
   1,
   3,
   1,
-  1
+  1,
+  0
  ],
  "medidores_base": {
   "telecom": [
@@ -914,7 +930,6 @@
    0,
    0,
    0,
-   0,
    1,
    1,
    0,
@@ -996,6 +1011,7 @@
    1,
    1,
    1,
+   0,
    0,
    0,
    0,
@@ -1046,7 +1062,6 @@
    0
   ],
   "ciber": [
-   18,
    21,
    17,
    17,
@@ -1189,10 +1204,10 @@
    37,
    24,
    24,
+   24,
    24
   ],
   "electrica": [
-   46,
    41,
    43,
    37,
@@ -1335,10 +1350,10 @@
    66,
    65,
    67,
+   70,
    70
   ],
   "ataque": [
-   72,
    94,
    95,
    94,
@@ -1481,10 +1496,10 @@
    95,
    96,
    95,
-   93
+   93,
+   97
   ],
   "terror": [
-   46,
    30,
    27,
    25,
@@ -1627,10 +1642,10 @@
    48,
    21,
    21,
-   48
+   48,
+   21
   ],
   "emergencia": [
-   23,
    20,
    17,
    45,
@@ -1773,10 +1788,10 @@
    83,
    94,
    91,
-   92
+   92,
+   93
   ],
   "espacio": [
-   3,
    4,
    3,
    6,
@@ -1919,10 +1934,10 @@
    20,
    25,
    20,
+   20,
    20
   ],
   "caribe": [
-   29,
    27,
    27,
    21,
@@ -2065,10 +2080,10 @@
    42,
    43,
    21,
+   21,
    21
   ],
   "pr": [
-   24,
    21,
    21,
    20,
@@ -2211,6 +2226,7 @@
    61,
    59,
    27,
+   59,
    59
   ]
  },
@@ -2622,14 +2638,6 @@
    "primera_vez_utc": "2026-11-25T18:40+00:00",
    "trazas": [
     {
-     "lat": 26.12,
-     "lon": -80.68,
-     "t": "2026-11-25T22:00+00:00",
-     "rumbo": 96.6,
-     "nudos": 269.8,
-     "alt": 6150
-    },
-    {
      "lat": 26.17,
      "lon": -79.86,
      "t": "2026-11-25T22:10+00:00",
@@ -2661,14 +2669,6 @@
    "dist_pr_km": 1636,
    "primera_vez_utc": "2026-11-25T18:50+00:00",
    "trazas": [
-    {
-     "lat": 26.15,
-     "lon": -80.97,
-     "t": "2026-11-25T22:00+00:00",
-     "rumbo": 94.2,
-     "nudos": 286.8,
-     "alt": 6150
-    },
     {
      "lat": 26.18,
      "lon": -80.11,
@@ -2724,16 +2724,7 @@
    "visto_utc": "2026-11-25T22:00+00:00",
    "dist_pr_km": 175,
    "primera_vez_utc": "2026-11-25T22:00+00:00",
-   "trazas": [
-    {
-     "lat": 16.65,
-     "lon": -66.51,
-     "t": "2026-11-25T22:00+00:00",
-     "rumbo": null,
-     "nudos": null,
-     "alt": 35975
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "ae4ae5",
@@ -3625,7 +3616,6 @@
   "6/9800": "2026-11-25T22:20+00:00"
  },
  "tfr_base": [
-  4,
   1,
   1,
   1,
@@ -3764,6 +3754,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
