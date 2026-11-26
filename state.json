@@ -56,9 +56,25 @@
   "601055d28e2a": "2026-11-26T12:30:25+00:00",
   "a4b5901041cd": "2026-11-26T13:30:34+00:00",
   "22a6efe7d02f": "2026-11-26T14:30:26+00:00",
-  "f7dcade82d41": "2026-11-26T15:00:39+00:00"
+  "f7dcade82d41": "2026-11-26T15:00:39+00:00",
+  "96759f66d1b9": "2026-11-26T15:10:25+00:00"
  },
  "historial": [
+  {
+   "id": "96759f66d1b9",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 76/100 (9 en 3 h · 60 en 24 h)",
+   "detalle": "FIFA confirms cyberattack that stole 'personal and business information' - Yahoo",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOYzB4ZzVKU0dYbElCVzRqMTJiZHJ5aERsRDhpQUc3SzJrbjRaeHMwb0ZzZ3llRmtMSFRhSm15R0VmY2ZFX2RzTGNCSl95V21oTWlfeUFNdFFTSUhaS1FNZVNFRDQ5dTNzN0ZBTjVrdG1aSkl4ZUZSYndMTnZhcWtFOUxycGJyU2sxdnpXTkFjNEppUQ?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T15:10:25+00:00"
+  },
   {
    "id": "f7dcade82d41",
    "fuente": "Medidor de prensa",
@@ -1006,7 +1022,6 @@
  ],
  "ultimo_nivel": 2,
  "mil_caribe": [
-  2,
   4,
   4,
   2,
@@ -1098,6 +1113,7 @@
   1,
   2,
   2,
+  3,
   3,
   3,
   3,
@@ -1114,7 +1130,7 @@
    1,
    1,
    1,
-   1,
+   0,
    0,
    0,
    0,
@@ -1251,7 +1267,6 @@
    0
   ],
   "ciber": [
-   21,
    21,
    30,
    30,
@@ -1394,10 +1409,10 @@
    61,
    27,
    61,
-   26
+   26,
+   60
   ],
   "electrica": [
-   61,
    80,
    67,
    62,
@@ -1540,10 +1555,10 @@
    68,
    68,
    97,
-   108
+   108,
+   69
   ],
   "ataque": [
-   87,
    88,
    96,
    87,
@@ -1686,10 +1701,10 @@
    96,
    94,
    92,
-   96
+   96,
+   94
   ],
   "terror": [
-   22,
    22,
    36,
    22,
@@ -1832,10 +1847,10 @@
    20,
    38,
    37,
-   37
+   37,
+   20
   ],
   "emergencia": [
-   40,
    50,
    49,
    40,
@@ -1978,10 +1993,10 @@
    90,
    88,
    88,
+   94,
    94
   ],
   "espacio": [
-   24,
    23,
    20,
    20,
@@ -2124,10 +2139,10 @@
    13,
    13,
    13,
-   15
+   15,
+   14
   ],
   "caribe": [
-   23,
    48,
    24,
    48,
@@ -2270,10 +2285,10 @@
    47,
    22,
    22,
-   49
+   49,
+   22
   ],
   "pr": [
-   29,
    59,
    59,
    59,
@@ -2416,7 +2431,8 @@
    29,
    61,
    62,
-   29
+   29,
+   61
   ]
  },
  "log_aviones": [
@@ -2427,21 +2443,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 25.18,
-   "lon": -80.01,
-   "alt": 3850,
-   "visto_utc": "2026-11-26T15:00+00:00",
-   "dist_pr_km": 1586,
+   "lat": 24.92,
+   "lon": -80.25,
+   "alt": 3500,
+   "visto_utc": "2026-11-26T15:10+00:00",
+   "dist_pr_km": 1595,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
-    {
-     "lat": 25.37,
-     "lon": -79.87,
-     "t": "2026-11-26T14:10+00:00",
-     "rumbo": 334.39,
-     "nudos": 134.2,
-     "alt": 1525
-    },
     {
      "lat": 25.45,
      "lon": -79.75,
@@ -2481,6 +2489,14 @@
      "rumbo": 198.43,
      "nudos": 142.3,
      "alt": 3850
+    },
+    {
+     "lat": 24.92,
+     "lon": -80.25,
+     "t": "2026-11-26T15:10+00:00",
+     "rumbo": 221.5,
+     "nudos": 104.1,
+     "alt": 3500
     }
    ]
   },
@@ -2491,11 +2507,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 25.91,
-   "lon": -80.41,
+   "lat": 25.73,
+   "lon": -79.45,
    "alt": 23000,
-   "visto_utc": "2026-11-26T15:00+00:00",
-   "dist_pr_km": 1659,
+   "visto_utc": "2026-11-26T15:10+00:00",
+   "dist_pr_km": 1566,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
    "trazas": [
     {
@@ -2537,6 +2553,14 @@
      "rumbo": 101.1,
      "nudos": 327.1,
      "alt": 23000
+    },
+    {
+     "lat": 25.73,
+     "lon": -79.45,
+     "t": "2026-11-26T15:10+00:00",
+     "rumbo": 101.65,
+     "nudos": 326.7,
+     "alt": 23000
     }
    ]
   },
@@ -2547,11 +2571,11 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 25.96,
-   "lon": -80.54,
+   "lat": 25.64,
+   "lon": -80.47,
    "alt": 2975,
-   "visto_utc": "2026-11-26T15:00+00:00",
-   "dist_pr_km": 1674,
+   "visto_utc": "2026-11-26T15:10+00:00",
+   "dist_pr_km": 1651,
    "primera_vez_utc": "2026-11-20T01:26+00:00",
    "trazas": [
     {
@@ -2584,6 +2608,14 @@
      "t": "2026-11-26T15:00+00:00",
      "rumbo": 179.05,
      "nudos": 121.0,
+     "alt": 2975
+    },
+    {
+     "lat": 25.64,
+     "lon": -80.47,
+     "t": "2026-11-26T15:10+00:00",
+     "rumbo": 119.6,
+     "nudos": 151.8,
      "alt": 2975
     }
    ]
@@ -3670,7 +3702,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3702,6 +3733,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
