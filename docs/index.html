@@ -213,14 +213,7 @@ body.vmapa main{max-width:1240px}
 </style>
 <link rel="icon" type="image/svg+xml" href="icono.svg"><link rel="apple-touch-icon" href="icono-180.png">
 </head><body><main>
-<div id="login" class="card login">
-  <div class="marca" style="margin-bottom:6px"><svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5V5"/><path d="M7.5 10.5a4.5 4.5 0 0 1 9 0"/><path d="M6.5 10.5h11"/><path d="M8 10.5V19h8v-8.5"/><path d="M10.5 19v-3a1.5 1.5 0 0 1 3 0v3"/><path d="M5 19h14"/><path d="M3 7.2a10 10 0 0 1 3.5-3.2" opacity=".55"/><path d="M21 7.2a10 10 0 0 0-3.5-3.2" opacity=".55"/></svg>Centinela Familiar</div>
-  <h2 style="font-size:28px">Acceso familiar</h2>
-  <p class="det">Contenido cifrado. Escribe la frase clave familiar.</p>
-  <form id="f"><input id="k" type="password" autocomplete="current-password" placeholder="Frase clave" aria-label="Frase clave" required>
-  <label class="chk"><input id="rec" type="checkbox"> Recordar en este dispositivo</label>
-  <button type="submit">Abrir</button><div id="err" role="alert"></div></form>
-</div>
+<div id="login" class="card login"><div id="err" role="status">Cargando…</div></div>
 <div id="app" hidden></div>
 <div id="hoja" role="dialog" aria-modal="false" aria-labelledby="hojaTit"><div class="asa"></div><button class="cerrar" aria-label="Cerrar" onclick="cerrarHoja()">✕</button><div id="hojaCont"></div></div>
 </main>
@@ -261,16 +254,10 @@ const NIV=["NORMAL","VIGILANCIA","ELEVADO","ALTO","CRÍTICO"],EMO=["🟢","🔵"
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"#";
-async function descifrar(clave){
-  const r=await fetch("estado.enc?t="+Date.now(),{cache:"no-store"});
-  if(r.status===404) throw new Error("Todavía no hay datos: el motor aún no ha corrido. Ejecuta el Paso 4 (Actions → Run workflow) y vuelve en 2–3 minutos.");
-  if(!r.ok) throw new Error("No se pudo descargar el estado ("+r.status+")");
-  const e=await r.json();
-  const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(clave),"PBKDF2",false,["deriveKey"]);
-  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(e.salt),iterations:e.iter,hash:"SHA-256"},
-             base,{name:"AES-GCM",length:256},false,["decrypt"]);
-  const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(e.iv)},key,b64(e.ct));
-  return JSON.parse(new TextDecoder().decode(pt));
+async function cargarEstado(){
+  const r=await fetch("estado.json?t="+Date.now(),{cache:"no-store"});
+  if(!r.ok) throw new Error("No se pudo descargar el estado ("+r.status+"). Vuelve a intentar en unos minutos.");
+  return r.json();
 }
 const SEC={pr:["pin","Puerto Rico"],eeuu:["bandera","Estados Unidos"],amenazas:["alerta","Amenazas a Norteamérica"],
   militar:["ancla","Militar y naval · Caribe"],infra:["satelite","Infraestructura y espacio"]};
@@ -549,21 +536,16 @@ function pintar(d){
       (nb?fila("netblocks","sinred","Cortes de internet en el mundo","Reportes de NetBlocks",null,`<ul class="lista">${nb}</ul>`):""))}
     ${grupo("Más",
       fila("historial","reloj","Historial de alertas","",null,`<ul class="lista">${hist}</ul>`)+
-      fila("fuentes","base","Fuentes",fallas?`${fallas} sin responder ahora`:"Todas responden",null,`<ul class="cols">${fu}</ul><h3 style="margin-top:14px">Consulta manual</h3><ul class="cols">${man}</ul>`))}
-    <p><button id="salir" class="sec2">Cerrar sesión en este teléfono</button></p>`;
+      fila("fuentes","base","Fuentes",fallas?`${fallas} sin responder ahora`:"Todas responden",null,`<ul class="cols">${fu}</ul><h3 style="margin-top:14px">Consulta manual</h3><ul class="cols">${man}</ul>`))}`;
   document.getElementById("login").hidden=true; app.hidden=false;
 
-  document.getElementById("salir").onclick=()=>{try{localStorage.removeItem("cf_k")}catch(e){} location.reload()};
 }
-async function abrir(clave,recordar){
-  const err=document.getElementById("err"); err.textContent="Descifrando…";
-  try{ const d=await descifrar(clave); err.textContent="";
-       if(recordar){try{localStorage.setItem("cf_k",clave)}catch(e){}}
-       pintar(d); setTimeout(()=>abrir(clave,false),300000);
-  }catch(e){ err.textContent = e.name==="OperationError" ? "Frase clave incorrecta." : e.message; }
+async function abrir(){
+  const err=document.getElementById("err");
+  try{ pintar(await cargarEstado()); }
+  catch(e){ if(document.getElementById("app").hidden) err.textContent=e.message; }
+  setTimeout(abrir,300000);
 }
-document.getElementById("f").onsubmit=ev=>{ev.preventDefault();
-  abrir(document.getElementById("k").value,document.getElementById("rec").checked)};
-let guardada=null; try{guardada=localStorage.getItem("cf_k")}catch(e){}
-if(guardada) abrir(guardada,false);
+try{localStorage.removeItem("cf_k")}catch(e){}
+abrir();
 </script></body></html>

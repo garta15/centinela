@@ -1585,12 +1585,13 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         # ---- MODO CIFRADO: lo público no revela nada personal ----
         status["historial"] = historial[:40]
         status["consulta_manual"] = CFG.get("consulta_manual", [])
-        json.dump(cifrar(status, CLAVE), open(os.path.join(DOCS, "estado.enc"), "w"))
+        json.dump(status, open(os.path.join(DOCS, "estado.json"), "w"), ensure_ascii=False)   # público: solo datos públicos
+        if os.path.exists(os.path.join(DOCS, "estado.enc")): os.remove(os.path.join(DOCS, "estado.enc"))
         for viejo in ("status.json", "alerta.txt"):
             if os.path.exists(os.path.join(DOCS, viejo)):
                 os.remove(os.path.join(DOCS, viejo))
         items = "".join(
-            f"""<item><title>🔒 {EMOJI[h['nivel']]} Nueva alerta (nivel {h['nivel']}) — abre el panel</title>
+            f"""<item><title>{EMOJI[h['nivel']]} Nueva alerta (nivel {h['nivel']}) — abre el panel</title>
 <link>{html.escape(url)}</link><guid isPermaLink="false">{h['id']}-{h['hora_utc']}</guid>
 <pubDate>{format_datetime(datetime.fromisoformat(h['hora_utc']))}</pubDate>
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item>"""
