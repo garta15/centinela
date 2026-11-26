@@ -59,9 +59,25 @@
   "f7dcade82d41": "2026-11-26T15:00:39+00:00",
   "96759f66d1b9": "2026-11-26T15:10:25+00:00",
   "2f4a72df9f04": "2026-11-26T16:00:30+00:00",
-  "4e3cc55f93dd": "2026-11-26T16:50:31+00:00"
+  "4e3cc55f93dd": "2026-11-26T16:50:31+00:00",
+  "68df5b76bd48": "2026-11-26T17:10:22+00:00"
  },
  "historial": [
+  {
+   "id": "68df5b76bd48",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 77/100 (7 en 3 h · 47 en 24 h)",
+   "detalle": "Lithuania Military Exercise - The Batesville Daily Guard",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOYlJzNGRWX005VXN5Q05GbGtTckkyOXVBV1JHUTlrbVY0b2QxVEZEUjc5WEFUeWVGWjUtWFhjalN0ZDNITVpxWVZWem5FbllhOF9zbE9pNEVSWEktMGhIX2hFWTVPRTA0dHg4by1jNlotRVp3b2p6b196cFRlSzBxWml4MVl2OXNJdnAtb0VPVTRiNXlfMkF3b2JzNFlMMlk0WVNMTXV3VTBBcktLZzBNZGhWYjk?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-26T17:10:22+00:00"
+  },
   {
    "id": "4e3cc55f93dd",
    "fuente": "Medidor de prensa",
@@ -1052,14 +1068,13 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
   0,
   0,
   0,
   0,
   0,
-  0,
   1,
   1,
   0,
@@ -1149,7 +1164,8 @@
   1,
   1,
   2,
-  4
+  4,
+  2
  ],
  "medidores_base": {
   "telecom": [
@@ -1300,7 +1316,6 @@
   ],
   "ciber": [
    30,
-   30,
    22,
    22,
    22,
@@ -1442,10 +1457,10 @@
    61,
    26,
    61,
-   26
+   26,
+   27
   ],
   "electrica": [
-   83,
    49,
    57,
    58,
@@ -1588,11 +1603,11 @@
    95,
    81,
    89,
-   86
+   86,
+   74
   ],
   "ataque": [
    96,
-   96,
    87,
    87,
    88,
@@ -1734,10 +1749,10 @@
    96,
    95,
    95,
+   94,
    94
   ],
   "terror": [
-   43,
    22,
    22,
    22,
@@ -1880,10 +1895,10 @@
    32,
    30,
    31,
+   32,
    32
   ],
   "emergencia": [
-   50,
    46,
    46,
    46,
@@ -2026,11 +2041,11 @@
    93,
    85,
    93,
+   87,
    87
   ],
   "espacio": [
    17,
-   17,
    21,
    20,
    16,
@@ -2170,12 +2185,12 @@
    16,
    18,
    17,
+   18,
    18,
    18,
    18
   ],
   "caribe": [
-   44,
    21,
    43,
    21,
@@ -2318,10 +2333,10 @@
    48,
    22,
    22,
-   21
+   21,
+   47
   ],
   "pr": [
-   28,
    28,
    59,
    28,
@@ -2464,10 +2479,83 @@
    28,
    52,
    26,
-   28
+   28,
+   56
   ]
  },
  "log_aviones": [
+  {
+   "hex": "3b76ae",
+   "callsign": "CTM1023",
+   "tipo": "A332",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Francia",
+   "lat": 15.62,
+   "lon": -60.3,
+   "alt": 28225,
+   "visto_utc": "2026-11-26T17:10+00:00",
+   "dist_pr_km": 728,
+   "primera_vez_utc": "2026-11-26T16:50+00:00",
+   "trazas": [
+    {
+     "lat": 17.56,
+     "lon": -58.49,
+     "t": "2026-11-26T16:50+00:00",
+     "rumbo": 225.53,
+     "nudos": 461.1,
+     "alt": 40000
+    },
+    {
+     "lat": 16.62,
+     "lon": -59.48,
+     "t": "2026-11-26T17:00+00:00",
+     "rumbo": 225.17,
+     "nudos": 463.9,
+     "alt": 40000
+    },
+    {
+     "lat": 15.62,
+     "lon": -60.3,
+     "t": "2026-11-26T17:10+00:00",
+     "rumbo": 199.22,
+     "nudos": 461.7,
+     "alt": 28225
+    }
+   ]
+  },
+  {
+   "hex": "e40090",
+   "callsign": "IWY327",
+   "tipo": "?",
+   "desc": "",
+   "clase": "militar",
+   "pais": "Brasil",
+   "lat": 17.41,
+   "lon": -64.79,
+   "alt": 35000,
+   "visto_utc": "2026-11-26T17:10+00:00",
+   "dist_pr_km": 211,
+   "primera_vez_utc": "2026-11-24T17:20+00:00",
+   "trazas": [
+    {
+     "lat": 18.13,
+     "lon": -65.97,
+     "t": "2026-11-26T17:00+00:00",
+     "rumbo": 122.28,
+     "nudos": 471.9,
+     "alt": 35000
+    },
+    {
+     "lat": 17.44,
+     "lon": -64.83,
+     "t": "2026-11-26T17:10+00:00",
+     "rumbo": 122.63,
+     "nudos": 478.5,
+     "alt": 35000
+    }
+   ]
+  },
   {
    "hex": "3b7b7f",
    "callsign": "DRAG971",
@@ -2525,38 +2613,6 @@
    ]
   },
   {
-   "hex": "3b76ae",
-   "callsign": "CTM1023",
-   "tipo": "A332",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Francia",
-   "lat": 16.62,
-   "lon": -59.48,
-   "alt": 40000,
-   "visto_utc": "2026-11-26T17:00+00:00",
-   "dist_pr_km": 775,
-   "primera_vez_utc": "2026-11-26T16:50+00:00",
-   "trazas": [
-    {
-     "lat": 17.56,
-     "lon": -58.49,
-     "t": "2026-11-26T16:50+00:00",
-     "rumbo": 225.53,
-     "nudos": 461.1,
-     "alt": 40000
-    },
-    {
-     "lat": 16.62,
-     "lon": -59.48,
-     "t": "2026-11-26T17:00+00:00",
-     "rumbo": 225.17,
-     "nudos": 463.9,
-     "alt": 40000
-    }
-   ]
-  },
-  {
    "hex": "ae04c0",
    "callsign": "58-0124",
    "tipo": "K35R",
@@ -2573,42 +2629,10 @@
     {
      "lat": 27.86,
      "lon": -82.5,
-     "t": "2026-11-26T14:10+00:00",
-     "rumbo": null,
-     "nudos": 0.0,
-     "alt": "ground"
-    },
-    {
-     "lat": 27.86,
-     "lon": -82.5,
      "t": "2026-11-26T17:00+00:00",
      "rumbo": null,
      "nudos": 0.0,
      "alt": "ground"
-    }
-   ]
-  },
-  {
-   "hex": "e40090",
-   "callsign": "IWY327",
-   "tipo": "?",
-   "desc": "",
-   "clase": "militar",
-   "pais": "Brasil",
-   "lat": 18.13,
-   "lon": -65.97,
-   "alt": 35000,
-   "visto_utc": "2026-11-26T17:00+00:00",
-   "dist_pr_km": 67,
-   "primera_vez_utc": "2026-11-24T17:20+00:00",
-   "trazas": [
-    {
-     "lat": 18.13,
-     "lon": -65.97,
-     "t": "2026-11-26T17:00+00:00",
-     "rumbo": 122.28,
-     "nudos": 471.9,
-     "alt": 35000
     }
    ]
   },
@@ -3805,7 +3829,6 @@
   7,
   7,
   7,
-  7,
   8,
   8,
   7,
@@ -3837,6 +3860,7 @@
   7,
   7,
   7,
+  1,
   1,
   1,
   1,
