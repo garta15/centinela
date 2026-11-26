@@ -1173,7 +1173,6 @@
   0,
   0,
   0,
-  0,
   1,
   1,
   1,
@@ -1244,6 +1243,7 @@
   1,
   1,
   1,
+  2,
   2
  ],
  "medidores_base": {
@@ -1394,7 +1394,6 @@
    0
   ],
   "ciber": [
-   0,
    34,
    37,
    37,
@@ -1537,10 +1536,10 @@
    27,
    26,
    56,
-   57
+   57,
+   27
   ],
   "electrica": [
-   0,
    65,
    70,
    66,
@@ -1683,10 +1682,10 @@
    57,
    49,
    71,
-   64
+   64,
+   51
   ],
   "ataque": [
-   0,
    97,
    95,
    95,
@@ -1825,6 +1824,7 @@
    95,
    95,
    95,
+   96,
    96,
    96,
    96,
@@ -1832,7 +1832,6 @@
    96
   ],
   "terror": [
-   0,
    22,
    49,
    48,
@@ -1975,10 +1974,10 @@
    25,
    15,
    16,
+   17,
    17
   ],
   "emergencia": [
-   0,
    84,
    91,
    83,
@@ -2121,10 +2120,10 @@
    93,
    92,
    80,
-   91
+   91,
+   88
   ],
   "espacio": [
-   0,
    20,
    20,
    20,
@@ -2267,10 +2266,10 @@
    23,
    23,
    20,
-   24
+   24,
+   23
   ],
   "caribe": [
-   0,
    43,
    43,
    42,
@@ -2413,10 +2412,10 @@
    16,
    16,
    16,
-   28
+   28,
+   16
   ],
   "pr": [
-   0,
    28,
    28,
    61,
@@ -2559,7 +2558,8 @@
    35,
    30,
    30,
-   29
+   29,
+   32
   ]
  },
  "log_aviones": [
@@ -2570,21 +2570,13 @@
    "desc": "E-3 AWACS",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 27.11,
-   "lon": -79.73,
-   "alt": 31050,
-   "visto_utc": "2026-11-26T23:30+00:00",
-   "dist_pr_km": 1670,
+   "lat": 26.63,
+   "lon": -80.28,
+   "alt": 31025,
+   "visto_utc": "2026-11-26T23:40+00:00",
+   "dist_pr_km": 1688,
    "primera_vez_utc": "2026-11-25T01:14+00:00",
    "trazas": [
-    {
-     "lat": 27.21,
-     "lon": -79.89,
-     "t": "2026-11-26T22:40+00:00",
-     "rumbo": 279.0,
-     "nudos": 289.0,
-     "alt": 31025
-    },
     {
      "lat": 26.49,
      "lon": -80.33,
@@ -2624,21 +2616,29 @@
      "rumbo": 327.0,
      "nudos": 365.0,
      "alt": 31050
+    },
+    {
+     "lat": 26.63,
+     "lon": -80.28,
+     "t": "2026-11-26T23:40+00:00",
+     "rumbo": 199.0,
+     "nudos": 362.0,
+     "alt": 31025
     }
    ]
   },
   {
    "hex": "ae4bf0",
-   "callsign": "2316",
+   "callsign": "C2316",
    "tipo": "CN35",
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 25.91,
-   "lon": -80.28,
-   "alt": "ground",
-   "visto_utc": "2026-11-26T23:30+00:00",
-   "dist_pr_km": 1647,
+   "lat": 25.95,
+   "lon": -79.95,
+   "alt": 1450,
+   "visto_utc": "2026-11-26T23:40+00:00",
+   "dist_pr_km": 1621,
    "primera_vez_utc": "2026-11-18T21:38+00:00",
    "trazas": [
     {
@@ -2648,6 +2648,14 @@
      "rumbo": 123.75,
      "nudos": 8.8,
      "alt": "ground"
+    },
+    {
+     "lat": 25.95,
+     "lon": -79.95,
+     "t": "2026-11-26T23:40+00:00",
+     "rumbo": 64.39,
+     "nudos": 187.4,
+     "alt": 1450
     }
    ]
   },
@@ -2665,14 +2673,6 @@
    "dist_pr_km": 1047,
    "primera_vez_utc": "2026-11-24T20:05+00:00",
    "trazas": [
-    {
-     "lat": 10.59,
-     "lon": -61.28,
-     "t": "2026-11-26T20:40+00:00",
-     "rumbo": 84.88,
-     "nudos": 134.5,
-     "alt": 2800
-    },
     {
      "lat": 10.62,
      "lon": -60.85,
@@ -2696,16 +2696,7 @@
    "visto_utc": "2026-11-26T20:33+00:00",
    "dist_pr_km": 1962,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
-   "trazas": [
-    {
-     "lat": 27.86,
-     "lon": -82.68,
-     "t": "2026-11-26T20:33+00:00",
-     "rumbo": 351.25,
-     "nudos": 131.5,
-     "alt": 975
-    }
-   ]
+   "trazas": []
   },
   {
    "hex": "3b76ae",
@@ -3734,7 +3725,7 @@
  },
  "tfr_base": [
   7,
-  7,
+  1,
   1,
   1,
   1,
@@ -9089,182 +9080,6 @@
    ],
    "motivo": "TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS",
    "texto": "!FDC 6/9741 ZDC VA..AIRSPACE 41NM SW HARRISONBURG, VA..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.137(A)(2), TEMPORARY FLIGHT RESTRICTIONS ARE IN EFFECT WI AN AREA DEFINED AS 2NM RADIUS OF 381800N0794730W (EKN166039.6) SFC-5200FT MSL EFFECTIVE 2611251400 UTC UNTIL 2611302300 UTC DLY 1400-2300. TO PROVIDE A SAFE ENVIRONMENT FOR FIRE FIGHTING ACFT OPS VIRGINIA INTERAGENCY COORDINATION CENTER , LITTLE RIDGE FIRE, TEL 434-423-2002, /FREQ 123.125 IS IN CHARGE OF ON SCENE EMERGENCY RESPONSE ACTIVITIES. THE WASHINGTON /ZDC/ ARTCC, TEL 703-771-3470, IS THE CDN FAC. 2611251400-2611302300",
-   "altitud": ""
-  },
-  "6/9740": {
-   "areas": [
-    {
-     "tipo": "poligono",
-     "puntos": [
-      [
-       40.40257077,
-       -83.10083333
-      ],
-      [
-       40.40104825,
-       -83.07810359
-      ],
-      [
-       40.39652716,
-       -83.05606747
-      ],
-      [
-       40.38914544,
-       -83.03539715
-      ],
-      [
-       40.37912826,
-       -83.01672265
-      ],
-      [
-       40.36678107,
-       -83.0006124
-      ],
-      [
-       40.35248017,
-       -82.9875559
-      ],
-      [
-       40.33666117,
-       -82.97794881
-      ],
-      [
-       40.3198056,
-       -82.97208109
-      ],
-      [
-       40.30242617,
-       -82.97012838
-      ],
-      [
-       40.28505114,
-       -82.97214705
-      ],
-      [
-       40.26820824,
-       -82.97807278
-      ],
-      [
-       40.25240865,
-       -82.98772293
-      ],
-      [
-       40.23813157,
-       -83.00080234
-      ],
-      [
-       40.22580971,
-       -83.01691258
-      ],
-      [
-       40.21581634,
-       -83.03556418
-      ],
-      [
-       40.20845404,
-       -83.05619144
-      ],
-      [
-       40.20394561,
-       -83.07816955
-      ],
-      [
-       40.20242749,
-       -83.10083333
-      ],
-      [
-       40.20394561,
-       -83.12349711
-      ],
-      [
-       40.20845404,
-       -83.14547522
-      ],
-      [
-       40.21581634,
-       -83.16610248
-      ],
-      [
-       40.22580971,
-       -83.18475408
-      ],
-      [
-       40.23813157,
-       -83.20086432
-      ],
-      [
-       40.25240865,
-       -83.21394373
-      ],
-      [
-       40.26820824,
-       -83.22359388
-      ],
-      [
-       40.28505114,
-       -83.22951961
-      ],
-      [
-       40.30242617,
-       -83.23153828
-      ],
-      [
-       40.3198056,
-       -83.22958557
-      ],
-      [
-       40.33666117,
-       -83.22371785
-      ],
-      [
-       40.35248017,
-       -83.21411076
-      ],
-      [
-       40.36678107,
-       -83.20105426
-      ],
-      [
-       40.37912826,
-       -83.18494401
-      ],
-      [
-       40.38914544,
-       -83.16626951
-      ],
-      [
-       40.39652716,
-       -83.14559919
-      ],
-      [
-       40.40104825,
-       -83.12356307
-      ],
-      [
-       40.40257077,
-       -83.10083333
-      ],
-      [
-       40.3025,
-       -83.10083333
-      ],
-      [
-       40.3025,
-       -83.10083333
-      ],
-      [
-       40.15106272,
-       -82.58830136
-      ],
-      [
-       40.15106272,
-       -82.58830136
-      ]
-     ]
-    }
-   ],
-   "motivo": "Temporary flight restrictions for VIP Movement",
-   "texto": "!FDC 6/9740 ZID OH..AIRSPACE DELAWARE, OHIO..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 26, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 91.141, ALL ACFT FLT OPS INCLUDING REMOTE CONTROLLED ACFT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 6NM RADIUS OF 401809N0830603W (APE297025.2) SFC-4999FT AGL EFFECTIVE 2611261430 UTC (0930 LOCAL 11/26/26) UNTIL 2611262330 UTC (183",
    "altitud": ""
   },
   "6/9736": {
