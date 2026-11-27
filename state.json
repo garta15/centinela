@@ -76,9 +76,25 @@
   "d55f392287b2": "2026-11-27T15:10:28+00:00",
   "1609de495968": "2026-11-27T16:00:44+00:00",
   "8ea9f238a6ef": "2026-11-27T17:20:21+00:00",
-  "869a7713811b": "2026-11-27T18:00:30+00:00"
+  "869a7713811b": "2026-11-27T18:00:30+00:00",
+  "5bbf606c10c0": "2026-11-27T22:30:27+00:00"
  },
  "historial": [
+  {
+   "id": "5bbf606c10c0",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Militar y naval en el Caribe",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "⚓ Militar y naval en el Caribe: índice 73/100 (11 en 3 h · 69 en 24 h)",
+   "detalle": "Army family advocate from Fort Hood wins Miss Universe crown - kcentv.com",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOUFhyeUR0Sk9rM3Zka21UTEFOTkh4d2JxQS03TjVUdkVkeG54OWY4YWJxZGR6U1pDRDJEQ2ZBM3dwMHhGU0FWbXBJbm9FZktBOEE2dVh2cC03RlNCVGRGNmRudjFIb3JlMGJ3cjFOV21HWldYcVpJZTgyUDlLT3hsTDhwdnhOcFppQWlqaWVvMi0zYWYzdjkzU1dNUklNM3c4ODctOE1zVGlvcFpiMmdvQ1gwcTNmSEdVSUZTeU9acXNyeFQzRzFtc05mTk9DVDZkbDh1dzdn?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-27T22:30:27+00:00"
+  },
   {
    "id": "869a7713811b",
    "fuente": "Medidor de prensa",
@@ -1354,9 +1370,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  1,
   1,
   1,
   1,
@@ -1451,10 +1466,12 @@
   0,
   0,
   0,
+  0,
   0
  ],
  "medidores_base": {
   "telecom": [
+   1,
    1,
    1,
    1,
@@ -1484,7 +1501,8 @@
    30,
    29,
    30,
-   51
+   51,
+   52
   ],
   "electrica": [
    63,
@@ -1500,7 +1518,8 @@
    73,
    49,
    49,
-   62
+   62,
+   63
   ],
   "ataque": [
    99,
@@ -1515,6 +1534,7 @@
    98,
    98,
    97,
+   98,
    98,
    98
   ],
@@ -1532,7 +1552,8 @@
    32,
    53,
    32,
-   32
+   32,
+   31
   ],
   "emergencia": [
    53,
@@ -1548,7 +1569,8 @@
    66,
    63,
    63,
-   67
+   67,
+   66
   ],
   "espacio": [
    6,
@@ -1564,7 +1586,8 @@
    5,
    5,
    8,
-   8
+   8,
+   7
   ],
   "caribe": [
    53,
@@ -1580,7 +1603,8 @@
    37,
    70,
    37,
-   36
+   36,
+   69
   ],
   "suministros": [
    11,
@@ -1596,7 +1620,8 @@
    10,
    10,
    10,
-   9
+   9,
+   10
   ],
   "pr": [
    27,
@@ -1612,7 +1637,8 @@
    27,
    27,
    27,
-   26
+   26,
+   28
   ]
  },
  "log_aviones": [
@@ -2960,7 +2986,6 @@
   1,
   1,
   1,
-  1,
   0,
   0,
   0,
@@ -3077,6 +3102,7 @@
   3,
   3,
   3,
+  4,
   4,
   4,
   4,
