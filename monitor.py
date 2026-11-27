@@ -297,12 +297,8 @@ def f_defconlevel():
         n = re.search(r"\bNUCLEAR\s*([1-5])\b", t)
         if n: d["nuclear"] = int(n.group(1))
         d["comandos"] = {}
-        for c in _COMANDOS:
-            mc = re.search(r"\b%s\b[^0-9A-Z]{0,60}?\b([1-5])\b" % c, t) or re.search(r"\b([1-5])\b[^0-9A-Z]{0,30}?\b%s\b" % c, t)
-            if mc: d["comandos"][c] = int(mc.group(1))
-        if not d["comandos"]:
-            for mm in list(re.finditer("SOUTHCOM", _raw))[:4]:
-                print("  defconlevel (html):", re.sub(r"\s+", " ", _raw[max(0, mm.start() - 300):mm.start() + 200]))
+        for c, v in re.findall(r'(?:title|alt)="([A-Z]{4,12}) Readiness Alert: ([1-5])', _raw):
+            d["comandos"].setdefault("INDOPACOM" if c == "USPACOM" else c, int(v))
         dr = re.search(r"Primary driver\s*:?\s*(.{5,140}?)(?=\s+(?:Oil|Market|Last 24|Gold|Updated|\$)|$)", t, re.I)
         if dr: d["motivo"] = dr.group(1).strip(" :-–")
         cats = {}
