@@ -63,9 +63,25 @@
   "a1f8cfb4eee1": "2026-11-26T18:40:22+00:00",
   "aa5529e58654": "2026-11-26T18:40:22+00:00",
   "da6ae267cd03": "2026-11-26T19:20:23+00:00",
-  "c574cb14df9e": "2026-11-26T20:10:29+00:00"
+  "c574cb14df9e": "2026-11-26T20:10:29+00:00",
+  "e4cc48f1e403": "2026-11-27T09:40:20+00:00"
  },
  "historial": [
+  {
+   "id": "e4cc48f1e403",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 3,
+   "nivel_txt": "ALTO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 90/100 (9 en 3 h · 62 en 24 h)",
+   "detalle": "3 medios distintos en 3 h: «martial law»",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1FcWZCaVZySUlRRlY1LWZQX2VxekVuczRYSmp0MHdIRlhoM295WmtPTERVSWE0Qk81MmFnellHamRWSzNMVDJ0WmJZT2tIS19nQ3c?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-27T09:40:20+00:00"
+  },
   {
    "id": "c574cb14df9e",
    "fuente": "Medidor de prensa",
@@ -1146,11 +1162,10 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 3,
  "mil_caribe": [
   2,
   2,
-  2,
   0,
   0,
   0,
@@ -1224,6 +1239,7 @@
   2,
   2,
   2,
+  1,
   1,
   1,
   1,
@@ -1393,7 +1409,6 @@
    0
   ],
   "ciber": [
-   54,
    55,
    54,
    55,
@@ -1536,10 +1551,10 @@
    61,
    61,
    28,
-   28
+   28,
+   61
   ],
   "electrica": [
-   86,
    69,
    65,
    96,
@@ -1682,11 +1697,11 @@
    46,
    64,
    66,
-   58
+   58,
+   57
   ],
   "ataque": [
    96,
-   96,
    85,
    95,
    95,
@@ -1828,10 +1843,10 @@
    97,
    96,
    95,
+   94,
    94
   ],
   "terror": [
-   37,
    14,
    36,
    14,
@@ -1974,10 +1989,10 @@
    31,
    52,
    52,
-   31
+   31,
+   53
   ],
   "emergencia": [
-   93,
    87,
    86,
    87,
@@ -2120,10 +2135,10 @@
    62,
    64,
    60,
+   62,
    62
   ],
   "espacio": [
-   20,
    21,
    20,
    19,
@@ -2266,10 +2281,10 @@
    12,
    12,
    15,
-   15
+   15,
+   12
   ],
   "caribe": [
-   23,
    23,
    23,
    22,
@@ -2412,10 +2427,10 @@
    23,
    39,
    24,
+   40,
    40
   ],
   "pr": [
-   59,
    29,
    59,
    28,
@@ -2558,7 +2573,8 @@
    26,
    27,
    27,
-   27
+   27,
+   26
   ]
  },
  "log_aviones": [
@@ -2569,21 +2585,13 @@
    "desc": "KC-135 (reabastecimiento)",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 26.94,
-   "lon": -80.16,
+   "lat": 26.17,
+   "lon": -80.04,
    "alt": 22000,
-   "visto_utc": "2026-11-27T09:30+00:00",
-   "dist_pr_km": 1696,
+   "visto_utc": "2026-11-27T09:40+00:00",
+   "dist_pr_km": 1641,
    "primera_vez_utc": "2026-11-24T16:51+00:00",
    "trazas": [
-    {
-     "lat": 27.15,
-     "lon": -79.96,
-     "t": "2026-11-27T08:40+00:00",
-     "rumbo": 267.36,
-     "nudos": 312.0,
-     "alt": 22000
-    },
     {
      "lat": 26.43,
      "lon": -80.32,
@@ -2622,6 +2630,14 @@
      "t": "2026-11-27T09:30+00:00",
      "rumbo": 195.12,
      "nudos": 340.0,
+     "alt": 22000
+    },
+    {
+     "lat": 26.17,
+     "lon": -80.04,
+     "t": "2026-11-27T09:40+00:00",
+     "rumbo": 60.64,
+     "nudos": 446.0,
      "alt": 22000
     }
    ]
@@ -3787,7 +3803,7 @@
   1,
   1,
   1,
-  1,
+  0,
   0,
   0,
   0,
