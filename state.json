@@ -1327,7 +1327,6 @@
   1,
   1,
   1,
-  1,
   0,
   0,
   0,
@@ -1419,6 +1418,7 @@
   1,
   1,
   1,
+  0,
   0
  ],
  "medidores_base": {
@@ -1569,7 +1569,6 @@
    0
   ],
   "ciber": [
-   27,
    60,
    60,
    60,
@@ -1712,10 +1711,10 @@
    55,
    55,
    25,
-   26
+   26,
+   25
   ],
   "electrica": [
-   77,
    76,
    84,
    63,
@@ -1858,10 +1857,10 @@
    55,
    56,
    41,
-   59
+   59,
+   57
   ],
   "ataque": [
-   94,
    94,
    95,
    95,
@@ -2004,10 +2003,10 @@
    94,
    96,
    96,
+   96,
    96
   ],
   "terror": [
-   21,
    33,
    32,
    32,
@@ -2150,10 +2149,10 @@
    32,
    57,
    32,
-   59
+   59,
+   32
   ],
   "emergencia": [
-   87,
    87,
    93,
    93,
@@ -2296,10 +2295,10 @@
    58,
    55,
    53,
+   50,
    50
   ],
   "espacio": [
-   19,
    18,
    18,
    19,
@@ -2442,10 +2441,10 @@
    7,
    7,
    5,
-   6
+   6,
+   7
   ],
   "caribe": [
-   47,
    22,
    44,
    45,
@@ -2588,10 +2587,10 @@
    25,
    47,
    47,
-   49
+   49,
+   26
   ],
   "pr": [
-   28,
    28,
    27,
    28,
@@ -2733,6 +2732,7 @@
    19,
    17,
    19,
+   18,
    18,
    18
   ]
@@ -2946,14 +2946,6 @@
    "trazas": [
     {
      "lat": 25.9,
-     "lon": -80.28,
-     "t": "2026-11-27T14:10+00:00",
-     "rumbo": 120.94,
-     "nudos": 17.5,
-     "alt": "ground"
-    },
-    {
-     "lat": 25.9,
      "lon": -79.95,
      "t": "2026-11-27T14:20+00:00",
      "rumbo": 87.56,
@@ -3008,14 +3000,6 @@
    "dist_pr_km": 1519,
    "primera_vez_utc": "2026-11-27T13:30+00:00",
    "trazas": [
-    {
-     "lat": 25.56,
-     "lon": -80.19,
-     "t": "2026-11-27T14:10+00:00",
-     "rumbo": 142.98,
-     "nudos": 310.6,
-     "alt": 19000
-    },
     {
      "lat": 24.89,
      "lon": -79.64,
@@ -4114,7 +4098,6 @@
   1,
   1,
   1,
-  1,
   0,
   0,
   0,
@@ -4214,6 +4197,7 @@
   1,
   1,
   1,
+  2,
   2,
   2,
   2,
@@ -12174,6 +12158,182 @@
    ],
    "motivo": "Temporary flight restrictions for Special Security Reasons",
    "texto": "!FDC 6/9875 ZMA FL..AIRSPACE PALM BEACH, FL..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 28-29, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 2NM RADIUS OF 264118N0800618W (PBI299001.1) SFC-2000FT AGL EFFECTIVE 2611282100 UTC (1600 LOCAL 11/28/26) UN",
+   "altitud": ""
+  },
+  "6/9877": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       40.78889416,
+       -73.97
+      ],
+      [
+       40.78876747,
+       -73.96809488
+      ],
+      [
+       40.78839122,
+       -73.96624767
+      ],
+      [
+       40.78777687,
+       -73.96451451
+      ],
+      [
+       40.78694309,
+       -73.96294808
+      ],
+      [
+       40.78591521,
+       -73.96159597
+      ],
+      [
+       40.78472447,
+       -73.96049929
+      ],
+      [
+       40.78340707,
+       -73.95969132
+      ],
+      [
+       40.78200304,
+       -73.95919663
+      ],
+      [
+       40.78055504,
+       -73.95903021
+      ],
+      [
+       40.77910707,
+       -73.9591971
+      ],
+      [
+       40.77770313,
+       -73.95969221
+      ],
+      [
+       40.77638586,
+       -73.96050048
+      ],
+      [
+       40.7751953,
+       -73.96159733
+      ],
+      [
+       40.77416759,
+       -73.96294943
+      ],
+      [
+       40.77333398,
+       -73.9645157
+      ],
+      [
+       40.77271976,
+       -73.96624855
+      ],
+      [
+       40.77234361,
+       -73.96809535
+      ],
+      [
+       40.77221694,
+       -73.97
+      ],
+      [
+       40.77234361,
+       -73.97190465
+      ],
+      [
+       40.77271976,
+       -73.97375145
+      ],
+      [
+       40.77333398,
+       -73.9754843
+      ],
+      [
+       40.77416759,
+       -73.97705057
+      ],
+      [
+       40.7751953,
+       -73.97840267
+      ],
+      [
+       40.77638586,
+       -73.97949952
+      ],
+      [
+       40.77770313,
+       -73.98030779
+      ],
+      [
+       40.77910707,
+       -73.9808029
+      ],
+      [
+       40.78055504,
+       -73.98096979
+      ],
+      [
+       40.78200304,
+       -73.98080337
+      ],
+      [
+       40.78340707,
+       -73.98030868
+      ],
+      [
+       40.78472447,
+       -73.97950071
+      ],
+      [
+       40.78591521,
+       -73.97840403
+      ],
+      [
+       40.78694309,
+       -73.97705192
+      ],
+      [
+       40.78777687,
+       -73.97548549
+      ],
+      [
+       40.78839122,
+       -73.97375233
+      ],
+      [
+       40.78876747,
+       -73.97190512
+      ],
+      [
+       40.78889416,
+       -73.97
+      ],
+      [
+       40.78055556,
+       -73.97
+      ],
+      [
+       40.78055556,
+       -73.97
+      ],
+      [
+       40.78371475,
+       -73.86859914
+      ],
+      [
+       40.78371475,
+       -73.86859914
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9877 ZNY NY..AIRSPACE MANHATTAN, NY..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 28, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 0.5NM RADIUS OF 404650N0735812W (LGA280004.6) SFC-1000FT AGL EFFECTIVE 2611281130 UTC (0630 LOCAL 11/28/26) UNTI",
    "altitud": ""
   }
  },
