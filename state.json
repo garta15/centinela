@@ -1326,7 +1326,6 @@
  "mil_caribe": [
   2,
   2,
-  2,
   1,
   1,
   1,
@@ -1419,7 +1418,8 @@
   2,
   3,
   3,
-  2
+  2,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -1569,7 +1569,6 @@
    0
   ],
   "ciber": [
-   61,
    26,
    61,
    26,
@@ -1712,10 +1711,10 @@
    25,
    0,
    54,
+   54,
    54
   ],
   "electrica": [
-   95,
    81,
    89,
    86,
@@ -1858,10 +1857,10 @@
    54,
    0,
    70,
+   56,
    56
   ],
   "ataque": [
-   96,
    95,
    95,
    94,
@@ -2004,10 +2003,10 @@
    96,
    0,
    94,
+   94,
    94
   ],
   "terror": [
-   32,
    30,
    31,
    32,
@@ -2150,10 +2149,10 @@
    32,
    0,
    32,
+   58,
    58
   ],
   "emergencia": [
-   93,
    85,
    93,
    87,
@@ -2296,10 +2295,10 @@
    55,
    0,
    55,
+   58,
    58
   ],
   "espacio": [
-   17,
    18,
    18,
    18,
@@ -2442,10 +2441,10 @@
    6,
    0,
    7,
-   9
+   9,
+   7
   ],
   "caribe": [
-   48,
    22,
    22,
    21,
@@ -2588,10 +2587,10 @@
    25,
    0,
    49,
-   26
+   26,
+   47
   ],
   "pr": [
-   28,
    52,
    26,
    28,
@@ -2734,7 +2733,8 @@
    20,
    0,
    20,
-   20
+   20,
+   19
   ]
  },
  "log_aviones": [
@@ -2745,21 +2745,13 @@
    "desc": "",
    "clase": "militar",
    "pais": "EE. UU.",
-   "lat": 27.7,
-   "lon": -82.88,
+   "lat": 27.6,
+   "lon": -82.67,
    "alt": 800,
-   "visto_utc": "2026-11-27T16:10+00:00",
-   "dist_pr_km": 1970,
+   "visto_utc": "2026-11-27T16:20+00:00",
+   "dist_pr_km": 1947,
    "primera_vez_utc": "2026-11-24T17:08+00:00",
    "trazas": [
-    {
-     "lat": 27.7,
-     "lon": -82.9,
-     "t": "2026-11-27T15:20+00:00",
-     "rumbo": 167.54,
-     "nudos": 176.1,
-     "alt": 825
-    },
     {
      "lat": 27.63,
      "lon": -82.89,
@@ -2798,6 +2790,14 @@
      "t": "2026-11-27T16:10+00:00",
      "rumbo": 335.64,
      "nudos": 162.5,
+     "alt": 800
+    },
+    {
+     "lat": 27.6,
+     "lon": -82.67,
+     "t": "2026-11-27T16:20+00:00",
+     "rumbo": 53.27,
+     "nudos": 167.2,
      "alt": 800
     }
    ]
@@ -3072,14 +3072,6 @@
    "dist_pr_km": 1542,
    "primera_vez_utc": "2026-11-25T19:50+00:00",
    "trazas": [
-    {
-     "lat": 26.42,
-     "lon": -78.95,
-     "t": "2026-11-27T13:20+00:00",
-     "rumbo": 197.79,
-     "nudos": 225.8,
-     "alt": 5000
-    },
     {
      "lat": 26.09,
      "lon": -79.08,
@@ -4120,7 +4112,8 @@
   "6/9860": "2026-11-27T00:40+00:00",
   "6/9857": "2026-11-27T00:40+00:00",
   "6/9856": "2026-11-27T00:40+00:00",
-  "6/9873": "2026-11-27T13:00+00:00"
+  "6/9873": "2026-11-27T13:00+00:00",
+  "6/9875": "2026-11-27T16:20+00:00"
  },
  "tfr_base": [
   1,
@@ -4167,7 +4160,6 @@
   1,
   1,
   1,
-  1,
   0,
   0,
   0,
@@ -4266,7 +4258,8 @@
   1,
   1,
   1,
-  1
+  1,
+  2
  ],
  "tfr_geo": {
   "6/9661": {
@@ -12046,6 +12039,182 @@
    ],
    "motivo": "Temporary flight restrictions for Special Security Reasons",
    "texto": "!FDC 6/9873 ZJX GA..AIRSPACE BRUNSWICK, GA..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 30-DECEMBER 18, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 0.5NM RADIUS OF 311417N0812825W (SSI357011.3) SFC-400FT AGL EFFECTIVE 2611301200 UTC (0700 LOCAL 11/",
+   "altitud": ""
+  },
+  "6/9875": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       26.72176327,
+       -80.105
+      ],
+      [
+       26.72125524,
+       -80.09853565
+      ],
+      [
+       26.71974663,
+       -80.09226788
+      ],
+      [
+       26.71728329,
+       -80.08638729
+      ],
+      [
+       26.71394014,
+       -80.08107266
+      ],
+      [
+       26.70981883,
+       -80.07648553
+      ],
+      [
+       26.70504466,
+       -80.07276529
+      ],
+      [
+       26.69976275,
+       -80.0700249
+      ],
+      [
+       26.69413366,
+       -80.06834753
+      ],
+      [
+       26.68832845,
+       -80.06778399
+      ],
+      [
+       26.68252354,
+       -80.06835124
+      ],
+      [
+       26.67689528,
+       -80.07003188
+      ],
+      [
+       26.67161465,
+       -80.07277469
+      ],
+      [
+       26.66684204,
+       -80.07649623
+      ],
+      [
+       26.66272239,
+       -80.08108335
+      ],
+      [
+       26.65938081,
+       -80.08639669
+      ],
+      [
+       26.65691875,
+       -80.09227486
+      ],
+      [
+       26.65541097,
+       -80.09853936
+      ],
+      [
+       26.65490324,
+       -80.105
+      ],
+      [
+       26.65541097,
+       -80.11146064
+      ],
+      [
+       26.65691875,
+       -80.11772514
+      ],
+      [
+       26.65938081,
+       -80.12360331
+      ],
+      [
+       26.66272239,
+       -80.12891665
+      ],
+      [
+       26.66684204,
+       -80.13350377
+      ],
+      [
+       26.67161465,
+       -80.13722531
+      ],
+      [
+       26.67689528,
+       -80.13996812
+      ],
+      [
+       26.68252354,
+       -80.14164876
+      ],
+      [
+       26.68832845,
+       -80.14221601
+      ],
+      [
+       26.69413366,
+       -80.14165247
+      ],
+      [
+       26.69976275,
+       -80.1399751
+      ],
+      [
+       26.70504466,
+       -80.13723471
+      ],
+      [
+       26.70981883,
+       -80.13351447
+      ],
+      [
+       26.71394014,
+       -80.12892734
+      ],
+      [
+       26.71728329,
+       -80.12361271
+      ],
+      [
+       26.71974663,
+       -80.11773212
+      ],
+      [
+       26.72125524,
+       -80.11146435
+      ],
+      [
+       26.72176327,
+       -80.105
+      ],
+      [
+       26.68833333,
+       -80.105
+      ],
+      [
+       26.68833333,
+       -80.105
+      ],
+      [
+       26.680055,
+       -80.08648986
+      ],
+      [
+       26.680055,
+       -80.08648986
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9875 ZMA FL..AIRSPACE PALM BEACH, FL..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 28-29, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 2NM RADIUS OF 264118N0800618W (PBI299001.1) SFC-2000FT AGL EFFECTIVE 2611282100 UTC (1600 LOCAL 11/28/26) UN",
    "altitud": ""
   }
  },
