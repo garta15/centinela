@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>Centinela Familiar — 🟠 nivel 3</title>
 <link>https://garta15.github.io/centinela/</link><description>Contenido cifrado</description>
-<lastBuildDate>Fri, 27 Nov 2026 10:50:23 +0000</lastBuildDate><ttl>15</ttl>
+<lastBuildDate>Fri, 27 Nov 2026 11:00:35 +0000</lastBuildDate><ttl>15</ttl>
 <item><title>🟠 Nueva alerta (nivel 3) — abre el panel</title>
+<link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">c8147a2c59ed-2026-11-27T11:00:35+00:00</guid>
+<pubDate>Fri, 27 Nov 2026 11:00:35 +0000</pubDate>
+<description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟠 Nueva alerta (nivel 3) — abre el panel</title>
 <link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">fe0ac8192007-2026-11-27T10:00:29+00:00</guid>
 <pubDate>Fri, 27 Nov 2026 10:00:29 +0000</pubDate>
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟠 Nueva alerta (nivel 3) — abre el panel</title>
@@ -119,8 +122,5 @@
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟡 Nueva alerta (nivel 2) — abre el panel</title>
 <link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">ad303a83f19b-2026-11-25T17:40:21+00:00</guid>
 <pubDate>Wed, 25 Nov 2026 17:40:21 +0000</pubDate>
-<description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟡 Nueva alerta (nivel 2) — abre el panel</title>
-<link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">2f41b461a5c1-2026-11-25T17:30:26+00:00</guid>
-<pubDate>Wed, 25 Nov 2026 17:30:26 +0000</pubDate>
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item>
 </channel></rss>
