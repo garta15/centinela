@@ -448,13 +448,12 @@ PR_FEEDS = [
     ("The Weekly Journal", "https://www.theweeklyjournal.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc"),
     ("Telemundo PR", "https://www.telemundopr.com/feed/"),
     ("Centro de Periodismo Investigativo", "https://periodismoinvestigativo.com/feed/"),
-    ("News is my Business", "https://newsismybusiness.com/feed/"),
     ("NotiUno", "https://www.notiuno.com/feed/"),
     ("Radio Isla", "https://radioisla.tv/feed/"),
     ("Es Noticia", "https://esnoticiapr.com/feed/"),
 ]
 _SITIOS_PR = ("elnuevodia.com", "primerahora.com", "noticel.com", "elvocero.com", "metro.pr", "wapa.tv",
-              "telemundopr.com", "periodismoinvestigativo.com", "newsismybusiness.com", "notiuno.com", "radioisla.tv")
+              "telemundopr.com", "periodismoinvestigativo.com", "notiuno.com", "radioisla.tv")
 # Áreas del panel a las que se suma cada noticia de PR (por palabras clave)
 AREAS_PR = {
     "electrica": r"apag[oó]n|\bluma\b|genera pr|relevos? de carga|sin luz|sin servicio el[eé]ctrico|aver[ií]as? el[eé]ctric|autoridad de energ[ií]a|\baee\b|generaci[oó]n|costa sur|aguirre|palo seco|ecoel[eé]ctrica",
