@@ -5,7 +5,7 @@
 #  Eso vive en el Atajo del iPhone y en los "Secrets" de GitHub.
 # ============================================================
 
-nombre_sistema: "Centinela Familiar"
+nombre_sistema: "OSINT Puerto Rico"
 
 # URL pública del panel (tu dominio o GitHub Pages). Se usa en las alertas.
 url_panel: "https://garta15.github.io/centinela/"

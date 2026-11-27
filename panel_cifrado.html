@@ -213,6 +213,7 @@ body.vmapa main{max-width:1240px}
 .escalera.dc{margin-top:12px}.escalera.dc .pel{height:44px}.escalera.dc .pel.on{height:52px}
 .chips2{display:flex;flex-wrap:wrap;gap:8px}.chip2{background:var(--carta);border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:14px}
 .lista li.sig{display:flex;align-items:center;gap:10px}.lista li.sig>div{flex:1}
+.tag{display:inline-block;background:color-mix(in srgb,#3B8CF6 22%,transparent);color:#BFD8FF;border-radius:6px;padding:0 6px;font-size:12px}
 </style>
 <link rel="icon" type="image/svg+xml" href="icono.svg"><link rel="apple-touch-icon" href="icono-180.png">
 </head><body><main>
@@ -265,7 +266,7 @@ async function cargarEstado(){
 const SEC={pr:["pin","Puerto Rico"],eeuu:["bandera","Estados Unidos"],amenazas:["alerta","Amenazas a Norteamérica"],
   militar:["ancla","Militar y naval · Caribe"],infra:["satelite","Infraestructura y espacio"]};
 const SECT={telecom:"antena",ciber:"ciber",electrica:"rayo",ataque:"mira",terror:"escudo",emergencia:"alerta",espacio:"satelite",caribe:"ancla",pr:"pin"};
-const EIC={"📡":"antena","💻":"ciber","⚡":"rayo","🚀":"mira","🛡️":"escudo","🛡":"escudo","🚨":"alerta","🛰️":"satelite","🛰":"satelite","⚓":"ancla","🇵🇷":"pin"};
+const EIC={"📡":"antena","💻":"ciber","⚡":"rayo","🚀":"mira","🛡️":"escudo","🛡":"escudo","🚨":"alerta","🚢":"puerto","🛰️":"satelite","🛰":"satelite","⚓":"ancla","🇵🇷":"pin"};
 function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);
   if(m<1)return"ahora"; if(m<60)return`hace ${m} min`; const h=Math.round(m/60); return h<24?`hace ${h} h`:`hace ${Math.round(h/24)} d`;}
 
@@ -410,7 +411,7 @@ function mapaBoton(d){const m=d.mapa||{};
 function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";
   const filas=r.categorias.map(k=>`<li><span class="dot" style="background:${COL[k.nivel]}"></span><span>${esc(k.nombre)}</span>${est(k.nivel)}</li>`).join("");
   const pl=r.planes.map(p=>`<details class="plan"><summary>${esc(p.titulo.replace(/^[^\p{L}]+/u,""))}${p.motivos.length?`<small>${esc(p.motivos[0])}</small>`:""}</summary><ol>${p.pasos.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`).join("");
-  return `<section class="rf2"><div class="rf-top"><div><h2>${ic("casa")} Tu familia</h2><p class="det">Riesgo en Puerto Rico y alrededores</p></div>
+  return `<section class="rf2"><div class="rf-top"><div><h2>${ic("escudo")} Índice de riesgo</h2><p class="det">Comunicaciones, energía, suministros, seguridad y desastres en PR</p></div>
     <div class="rf-num" style="--c:${COL[r.color]}"><b>${r.indice}</b><span>de 100 · ${esc(r.etiqueta.toLowerCase())}</span></div></div>
     <ul class="cats">${filas}</ul><div class="planes"><div class="ptit">Qué hacer</div>${pl}</div>
     <p class="det nota2">${esc(r.nota)}</p></section>`;}
@@ -431,6 +432,15 @@ function defconHTML(d){const x=d.defcon||{};if(!x.defcon)return"";
     ${resto.length?`<details class="plan"><summary>Otros ${resto.length} comandos</summary><ul class="lista">${resto.map(fila2).join("")}</ul></details>`:""}
     ${c24?`<div class="bloque"><h3>Alertas en las últimas 24 h</h3><div class="chips2">${c24}</div></div>`:""}
     <p class="det" style="margin-top:12px">${x.cambio?`Último cambio: ${esc(x.cambio)} · `:""}leído ${hace(x.leido_utc)} · ${enlace("https://www.defconlevel.com/current-level","defconlevel.com")}</p>`;}
+const AREA_ES={electrica:"Electricidad",telecom:"Comunicaciones",ciber:"Ciber",caribe:"Militar Caribe",pr:"Seguridad",emergencia:"Emergencia",espacio:"GPS y espacio",suministros:"Suministros"};
+function npHTML(d){const L=d.noticias_pr||[];if(!L.length)return`<p class="det">Sin noticias por ahora.</p>`;
+  const rel=L.filter(a=>a.areas.length), otras=L.filter(a=>!a.areas.length);
+  const li=a=>`<li>${enlace(a.url,a.titulo)}<div class="det">${esc(a.medio)} · ${fechaPR(a.hora_utc)}${a.areas.length?" · "+a.areas.map(x=>`<span class="tag">${esc(AREA_ES[x]||x)}</span>`).join(" "):""}</div></li>`;
+  const fu=Object.entries(d.noticieros_pr||{}).map(([k,v])=>`<span class="chip2">${esc(k)} <b>${v??"✕"}</b></span>`).join("");
+  return `<p class="det">Las noticias marcadas con un área también suman al termómetro de noticias, a electricidad y a suministros.</p>
+    ${rel.length?`<div class="bloque"><h3>Seguridad y servicios</h3><ul class="lista">${rel.slice(0,15).map(li).join("")}</ul></div>`:""}
+    ${otras.length?`<details class="plan"><summary>Otras ${otras.length} noticias</summary><ul class="lista">${otras.slice(0,25).map(li).join("")}</ul></details>`:""}
+    <details class="plan"><summary>Noticieros consultados</summary><div class="chips2" style="margin:8px 0">${fu}</div></details>`;}
 function energiaHTML(d){const e=d.energia||{},pr=e.pr||{},us=e.us||{};
   const ev=(pr.evidencia||[]).slice(0,5).map(x=>`<li>${enlace(x.url,x.texto)}<div class="det">${esc(x.fuente)} · ${fechaPR(x.hora_utc)}</div></li>`).join("");
   const rg=(us.regiones||[]).map(r=>{const v=Math.max(-30,Math.min(30,r.desviacion_pct)),col=r.desviacion_pct<=-10?COL[3]:r.desviacion_pct<=-5?COL[2]:COL[0];
@@ -514,7 +524,7 @@ function pintar(d){
   if(VISTA==="mapa"){
     document.body.classList.add("vmapa");
     app.innerHTML=`<div class="mapbar" style="border-left:8px solid ${COL[n]}"><a href="./" class="volver">‹ Panel</a>
-      <div><span class="dot" style="background:${COL[n]};display:inline-block;margin:0 4px 0 0"></span><b>Nivel ${n} · ${FR[n]}</b> <span class="det">· Riesgo familiar ${esc((d.riesgo_familiar?.etiqueta||"").toLowerCase())} · actualizado ${hace(d.actualizado_utc)}</span></div></div>
+      <div><span class="dot" style="background:${COL[n]};display:inline-block;margin:0 4px 0 0"></span><b>Nivel ${n} · ${FR[n]}</b> <span class="det">· Índice de riesgo ${esc((d.riesgo_familiar?.etiqueta||"").toLowerCase())} · actualizado ${hace(d.actualizado_utc)}</span></div></div>
       ${mapaHTML(d,"calc(100vh - 230px)")}`;
     document.getElementById("login").hidden=true; app.hidden=false; MAPA=null; pintarMapa(d); return;
   }
@@ -528,7 +538,7 @@ function pintar(d){
   const nuevasTfr=(d.tfrs||[]).filter(t=>t.nuevo).length;
   const fallas=Object.values(d.fuentes||{}).filter(v=>!v.ok).length;
   const ultAv=(d.log_aviones||[])[0], ultBq=(d.log_buques||[])[0];
-  app.innerHTML=`<header class="cab"><div class="marca">${ic("logo","logo")}Centinela Familiar</div>
+  app.innerHTML=`<header class="cab"><div class="marca">${ic("logo","logo")}OSINT Puerto Rico</div>
       <div class="det">Actualizado ${hace(d.actualizado_utc)}</div></header>
     <section class="hero2" style="--c:${COL[n]}"><div class="hz">Nivel de amenaza en Puerto Rico</div>
       <div class="nivel">${FR[n]}</div><div class="nnum">Nivel ${n} de 4</div><ol class="escalera" aria-label="Escala de amenaza">${esc5}</ol>
@@ -551,11 +561,12 @@ function pintar(d){
         <div class="bloque"><h3>Aeropuertos de EE. UU.</h3><ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin aeropuertos detenidos ni cerrados.</p>':""}
         <p class="det">Con demoras programadas: ${(ea.demoras_programadas||[]).length}.</p></div>`))}
     ${grupo("Noticias",
-      (d.defcon&&d.defcon.defcon?fila("defcon","alerta","Estimación DEFCON",`No oficial · ${d.defcon.nuclear?"riesgo nuclear "+d.defcon.nuclear+" · ":""}${Object.values(d.defcon.comandos||{}).filter(v=>v<5).length} comandos en alerta`,Math.max(0,Math.min(4,5-d.defcon.defcon)),defconHTML(d),"DEFCON "+d.defcon.defcon):"")+
+      fila("noticiaspr","diario","Noticias de Puerto Rico",`${(d.noticias_pr||[]).length} recientes de ${Object.values(d.noticieros_pr||{}).filter(Boolean).length} noticieros · ${(d.noticias_pr||[]).filter(a=>a.areas.length).length} sobre seguridad o servicios`,null,npHTML(d))+
       fila("medidores","medidor","Termómetro de noticias",medMax?`Lo más alto: ${esc(medMax.nombre)}`:"",medMax?medMax.nivel:0,`<p class="det">Cuánto se habla de cada tema comparado con lo normal. Toca uno para ver sus noticias.</p><div class="gridm">${med}</div>`)+
       fila("titulares","diario","Titulares","Prensa sin verificar",null,`<ul class="lista">${tit}</ul>`)+
       (nb?fila("netblocks","sinred","Cortes de internet en el mundo","Reportes de NetBlocks",null,`<ul class="lista">${nb}</ul>`):""))}
     ${grupo("Más",
+      (d.defcon&&d.defcon.defcon?fila("defcon","alerta","Estimación DEFCON",`No oficial · ${d.defcon.nuclear?"riesgo nuclear "+d.defcon.nuclear+" · ":""}${Object.values(d.defcon.comandos||{}).filter(v=>v<5).length} comandos en alerta`,Math.max(0,Math.min(4,5-d.defcon.defcon)),defconHTML(d),"DEFCON "+d.defcon.defcon):"")+
       fila("historial","reloj","Historial de alertas","",null,`<ul class="lista">${hist}</ul>`)+
       fila("fuentes","base","Fuentes",fallas?`${fallas} sin responder ahora`:"Todas responden",null,`<ul class="cols">${fu}</ul><h3 style="margin-top:14px">Consulta manual</h3><ul class="cols">${man}</ul>`))}`;
   document.getElementById("login").hidden=true; app.hidden=false;

@@ -20,7 +20,7 @@ Uso:  python monitor.py            (ejecución normal)
 import os, sys, json, math, time, hashlib, html, re, csv, io
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
-from email.utils import format_datetime
+from email.utils import format_datetime, parsedate_to_datetime
 import requests, yaml
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -438,6 +438,91 @@ def f_gpsjam():
                          clave=f"gpsjam-car-{dia}", seccion="militar"))
     return out
 
+# ------------------------------------------------------------------ noticieros de Puerto Rico (RSS abiertos)
+PR_FEEDS = [
+    ("El Nuevo Día", "https://www.elnuevodia.com/arc/outboundfeeds/rss/?outputType=xml"),
+    ("Primera Hora", "https://www.primerahora.com/arc/outboundfeeds/rss/?outputType=xml"),
+    ("Metro PR", "https://www.metro.pr/arc/outboundfeeds/rss/?outputType=xml"),
+    ("NotiCel", "https://www.noticel.com/arc/outboundfeeds/rss/?outputType=xml"),
+    ("El Vocero", "https://www.elvocero.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc"),
+    ("The Weekly Journal", "https://www.theweeklyjournal.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc"),
+    ("Telemundo PR", "https://www.telemundopr.com/feed/"),
+    ("Centro de Periodismo Investigativo", "https://periodismoinvestigativo.com/feed/"),
+    ("News is my Business", "https://newsismybusiness.com/feed/"),
+    ("NotiUno", "https://www.notiuno.com/feed/"),
+    ("Radio Isla", "https://radioisla.tv/feed/"),
+    ("Es Noticia", "https://esnoticiapr.com/feed/"),
+]
+_SITIOS_PR = ("elnuevodia.com", "primerahora.com", "noticel.com", "elvocero.com", "metro.pr", "wapa.tv",
+              "telemundopr.com", "periodismoinvestigativo.com", "newsismybusiness.com", "notiuno.com", "radioisla.tv")
+# Áreas del panel a las que se suma cada noticia de PR (por palabras clave)
+AREAS_PR = {
+    "electrica": r"apag[oó]n|\bluma\b|genera pr|relevos? de carga|sin luz|sin servicio el[eé]ctrico|aver[ií]as? el[eé]ctric|autoridad de energ[ií]a|\baee\b|generaci[oó]n|costa sur|aguirre|palo seco|ecoel[eé]ctrica",
+    "telecom": r"\bliberty\b|\bclaro\b|t-mobile|at&t|sin internet|sin se[nñ]al|telecomunicacion|\b9-?1-?1\b|fibra [oó]ptica|cable submarino|servicio celular",
+    "ciber": r"ciberataque|hacke|ransomware|ciberseguridad|filtraci[oó]n de datos|ciberdelincuen",
+    "caribe": r"marina de guerra|buques? de guerra|portaaviones|destructor|roosevelt roads|comando sur|southcom|venezuela|\bcuba\b|ejercicios? militar|tropas|militares estadounidenses|fuerza a[eé]rea|navy",
+    "pr": r"amenaza|evacuaci[oó]n|desalojo|guardia nacional|manejo de emergencias|negociado de manejo|\bfbi\b|seguridad nacional|bomba|terroris|tirador activo|estado de emergencia",
+    "emergencia": r"estado de emergencia|declara(?:ci[oó]n de)? emergencia|orden ejecutiva",
+    "espacio": r"\bgps\b|sat[eé]lite|tormenta (solar|geomagn)|starlink",
+    "suministros": r"puerto de san juan|muelles?\b|crowley|\btote\b|trailer bridge|contenedores|navieras?|desabasto|escasez|gasolina|combustible|di[eé]sel|huelga|ley jones|cadena de suministro|abastecimiento|cargamento",
+}
+_RX_AREAS = {k: re.compile(v, re.I) for k, v in AREAS_PR.items()}
+NOTICIAS_PR, _NPR = [], {"listo": False, "fuentes": {}}
+
+def _leer_feed(medio, url):
+    x = ET.fromstring(get(url).content)
+    out = []
+    for it in list(x.iter("item")) + list(x.iter("{http://www.w3.org/2005/Atom}entry")):
+        tit = (it.findtext("title") or it.findtext("{http://www.w3.org/2005/Atom}title") or "").strip()
+        link = it.findtext("link") or ""
+        if not link:
+            l = it.find("{http://www.w3.org/2005/Atom}link"); link = l.get("href", "") if l is not None else ""
+        fecha = (it.findtext("pubDate") or it.findtext("{http://purl.org/dc/elements/1.1/}date")
+                 or it.findtext("{http://www.w3.org/2005/Atom}updated") or "")
+        try:
+            t = parsedate_to_datetime(fecha) if "," in fecha else datetime.fromisoformat(fecha.replace("Z", "+00:00"))
+            if t.tzinfo is None: t = t.replace(tzinfo=timezone.utc)
+        except Exception:
+            continue
+        desc = re.sub(r"<[^>]+>", " ", it.findtext("description") or "")[:300]
+        if tit: out.append({"t": t.astimezone(timezone.utc), "titulo": tit, "url": link.strip(), "medio": medio, "desc": desc})
+    return out
+
+def noticias_pr():
+    """Lee una vez por corrida los RSS abiertos de los noticieros de PR (24 h) y clasifica cada noticia por área."""
+    if _NPR["listo"]: return NOTICIAS_PR
+    _NPR["listo"] = True
+    todas, vistos = [], set()
+    for medio, url in PR_FEEDS:
+        try:
+            its = [a for a in _leer_feed(medio, url) if (NOW - a["t"]).total_seconds() <= 86400]
+            _NPR["fuentes"][medio] = len(its); todas += its
+        except Exception as e:
+            _NPR["fuentes"][medio] = None; print("  ! noticiero", medio, str(e)[:70])
+    try:   # respaldo: Google News limitado a los noticieros de PR
+        q = "(" + " OR ".join("site:" + d for d in _SITIOS_PR) + ")"
+        g = _rss(q, "es")
+        for a in g: a["desc"] = ""
+        todas += g; _NPR["fuentes"]["Google News (sitios de PR)"] = len(g)
+    except Exception as e:
+        print("  ! noticieros vía Google News", str(e)[:70])
+    for a in sorted(todas, key=lambda a: a["t"], reverse=True):
+        k = re.sub(r"\W+", " ", a["titulo"].rsplit(" - ", 1)[0].lower())[:70]
+        if k in vistos: continue
+        vistos.add(k)
+        txt = a["titulo"] + " " + a.get("desc", "")
+        a["areas"] = [ar for ar, rx in _RX_AREAS.items() if rx.search(txt)]
+        NOTICIAS_PR.append(a)
+    print("  noticieros PR:", _NPR["fuentes"], "→", len(NOTICIAS_PR), "noticias,",
+          sum(1 for a in NOTICIAS_PR if a["areas"]), "con área")
+    return NOTICIAS_PR
+
+def f_noticieros_pr():
+    noticias_pr()
+    ok = [m for m, n in _NPR["fuentes"].items() if n]
+    if not ok: raise RuntimeError("ningún noticiero de PR respondió")
+    return []
+
 # ------------------------------------------------------------------ medidores de seguridad nacional
 MEDIDORES_DEF = [
     ("telecom", "📡", "Comunicaciones y telecom",
@@ -457,6 +542,8 @@ MEDIDORES_DEF = [
      [('("GPS outage" OR "GPS jamming" OR "satellite outage" OR "Starlink outage" OR "anti-satellite" OR "geomagnetic storm" OR "solar storm")', "en")]),
     ("caribe", "⚓", "Militar y naval en el Caribe",
      [('(Navy OR warship OR "aircraft carrier" OR military OR troops OR strike) (Caribbean OR "Puerto Rico" OR Venezuela OR Cuba)', "en")]),
+    ("suministros", "🚢", "Suministros y puertos de PR",
+     [('Puerto Rico (escasez OR desabasto OR "puerto de San Juan" OR naviera OR "huelga portuaria" OR "Ley Jones" OR combustible)', "es")]),
     ("pr", "🇵🇷", "Seguridad en Puerto Rico",
      [('Puerto Rico (emergencia OR avería OR "sin servicio" OR ciberataque OR amenaza OR "Guardia Nacional" OR militares OR evacuación OR "sin señal")', "es")]),
 ]
@@ -495,6 +582,8 @@ def f_medidores():
     """Medidores: volumen de noticias en vivo (3 h y 24 h) vs. lo normal, por tema."""
     out = []
     bases = ESTADO_REF.setdefault("medidores_base", {})
+    if ESTADO_REF.get("med_ver") != 2:     # se añadieron los noticieros de PR: el "normal" se recalcula
+        bases.clear(); ESTADO_REF["med_ver"] = 2
     for clave, ico, nombre, consultas in MEDIDORES_DEF:
         arts, vistos = [], set()
         for q, idioma in consultas:
@@ -506,6 +595,11 @@ def f_medidores():
             except Exception as e:
                 print("  ! medidor", clave, e)
             time.sleep(1)
+        for a in noticias_pr():                       # noticieros de PR que tocan esta área
+            if clave in a["areas"]:
+                k = a["titulo"].rsplit(" - ", 1)[0].lower()[:80]
+                if k not in vistos:
+                    vistos.add(k); arts.append(a)
         arts.sort(key=lambda a: a["t"], reverse=True)
         n24 = sum(1 for a in arts if (NOW - a["t"]).total_seconds() <= 86400)
         r3 = [a for a in arts if (NOW - a["t"]).total_seconds() <= 3 * 3600]
@@ -519,6 +613,7 @@ def f_medidores():
         r3x = n3 / max(1.0, ref / 8)                       # lo esperado en 3 h ≈ 1/8 del día
         indice = int(min(100, round(20 * r24 + 15 * r3x)))
         nivel = 0 if indice < 50 else 1 if indice < 70 else 2
+        if base is None: nivel = min(nivel, 1)        # sin historial suficiente todavía: no pasar de "atención"
         graves = sorted({f for a in r3 for f in FRASES_GRAVES if f in a["titulo"].lower()})
         medios_graves = {a["medio"] for a in r3 if any(f in a["titulo"].lower() for f in FRASES_GRAVES)}
         motivo = ""
@@ -1120,6 +1215,9 @@ def f_energia_pr():
                  if (NOW - a["t"]).total_seconds() <= 24 * 3600]
     except Exception as e:
         arts = []; print("  ! prensa energía", e)
+    vist = {x["titulo"].rsplit(" - ", 1)[0].lower()[:80] for x in arts}
+    arts += [x for x in noticias_pr() if "electrica" in x["areas"] and (NOW - x["t"]).total_seconds() <= 12 * 3600
+             and x["titulo"].lower()[:80] not in vist]
     for a in sorted(arts, key=lambda a: a["t"], reverse=True)[:8]:
         tl = a["titulo"].lower()
         evid.append({"fuente": "Prensa: " + (a["medio"] or "?"), "hora_utc": a["t"].isoformat(timespec="minutes"),
@@ -1534,7 +1632,7 @@ def evaluar_riesgo_familiar(senales):
             "planes": planes,
             "nota": "Evaluación automática con datos públicos. Ante cualquier duda, siguen mandando las instrucciones oficiales (NMEAD, FEMA, 911)."}
 
-FUENTES = [("Medidores de seguridad nacional", f_medidores),
+FUENTES = [("Noticieros de Puerto Rico", f_noticieros_pr), ("Medidores de seguridad nacional", f_medidores),
            ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
            ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
            ("Internet PR/EE. UU. (IODA)", f_ioda), ("Apple iMessage/FaceTime", f_apple),
@@ -1605,6 +1703,9 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
         "senales": senales, "fuentes": estado_fuentes, "panel": url,
         "motor": os.getenv("MOTOR", "github"),
         "titulares": sorted(TITULARES, key=lambda t: t["hora_utc"], reverse=True)[:40],
+        "noticias_pr": [{"hora_utc": a["t"].isoformat(timespec="minutes"), "titulo": a["titulo"].rsplit(" - ", 1)[0][:200],
+                         "url": a["url"], "medio": a["medio"], "areas": a.get("areas", [])} for a in NOTICIAS_PR[:40]],
+        "noticieros_pr": _NPR["fuentes"],
         "aviones_militares": AVIONES[:60],
         "medidores": MEDIDORES,
         "log_aviones": ESTADO_REF.get("log_aviones", [])[:20],
@@ -1794,7 +1895,7 @@ def primario_vivo():
 def main():
     dry = "--dry-run" in sys.argv
     if "--test-alert" in sys.argv:
-        notificar("🧪 PRUEBA — Centinela Familiar",
+        notificar("🧪 PRUEBA — OSINT Puerto Rico",
                   "Esto es una prueba. Si la recibiste, el canal funciona. Toca 'Enviar mi ubicación' para probar el Atajo.",
                   3, dry)
         return
@@ -1851,6 +1952,8 @@ def main():
     estado["tfr_geo"] = ESTADO_REF.get("tfr_geo", {})
     estado["tle_cache"] = ESTADO_REF.get("tle_cache", {})
     estado["log_buques_ais"] = ESTADO_REF.get("log_buques_ais", {})
+    estado["defcon_cache"] = ESTADO_REF.get("defcon_cache", {})
+    estado["med_ver"] = ESTADO_REF.get("med_ver")
 
     escribir_salidas(nivel, resumen, senales, fuentes, estado["historial"])
     json.dump(estado, open(STATE_FILE, "w"), ensure_ascii=False, indent=1)
