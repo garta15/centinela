@@ -67,9 +67,41 @@
   "e4cc48f1e403": "2026-11-27T09:40:20+00:00",
   "fe0ac8192007": "2026-11-27T10:00:29+00:00",
   "c8147a2c59ed": "2026-11-27T11:00:35+00:00",
-  "0c06a4119750": "2026-11-27T11:20:25+00:00"
+  "0c06a4119750": "2026-11-27T11:20:25+00:00",
+  "fa69ffe64e62": "2026-11-27T12:00:31+00:00",
+  "b52b160b6301": "2026-11-27T12:00:31+00:00"
  },
  "historial": [
+  {
+   "id": "b52b160b6301",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Ciberataques a infraestructura",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "💻 Ciberataques a infraestructura: índice 88/100 (11 en 3 h · 62 en 24 h)",
+   "detalle": "Hackers Used AI Tool Artex in Attacks on U.S. Intelligence Agencies - www.tokenpost.com",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUTVVSa20xX0RVZUlqejIydUtCMng3dzFEb05Gek1WSXpRdlNDempOaTktczhaQ28yYnBzZGJzU2Jld3Z6b1NZUzhhUjBMQ3BzUkNVUTN0S0hVNE0?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-27T12:00:31+00:00"
+  },
+  {
+   "id": "fa69ffe64e62",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 3,
+   "nivel_txt": "ALTO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 90/100 (10 en 3 h · 65 en 24 h)",
+   "detalle": "3 medios distintos en 3 h: «defcon 2»",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPRlFZYlBQdE1fSVNxblNJNlVud1hfUlFDNmJod0llWkkwY081TUFzczJQajR4ZTVONFlPRGtuR0p3cWNoX1IzNzNRMkVvbTB1Z2Z1OEx0V3hlSE1GdHhaUDl4VGlSMFZYOVhmdUtGU0Jqdm5tZ0lpbk90OHJyLWc4MkdtY1Zpdw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-27T12:00:31+00:00"
+  },
   {
    "id": "0c06a4119750",
    "fuente": "Medidor de prensa",
@@ -1217,7 +1249,6 @@
   1,
   1,
   1,
-  1,
   0,
   0,
   0,
@@ -1307,7 +1338,8 @@
   0,
   0,
   0,
-  2
+  2,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -1457,7 +1489,6 @@
    0
   ],
   "ciber": [
-   26,
    58,
    57,
    24,
@@ -1600,10 +1631,10 @@
    63,
    29,
    29,
-   63
+   63,
+   62
   ],
   "electrica": [
-   70,
    100,
    92,
    68,
@@ -1746,10 +1777,10 @@
    45,
    65,
    45,
+   45,
    45
   ],
   "ataque": [
-   91,
    95,
    90,
    95,
@@ -1892,10 +1923,10 @@
    95,
    95,
    94,
-   95
+   95,
+   94
   ],
   "terror": [
-   39,
    21,
    21,
    39,
@@ -2038,10 +2069,10 @@
    54,
    32,
    53,
-   32
+   32,
+   53
   ],
   "emergencia": [
-   87,
    94,
    87,
    95,
@@ -2184,10 +2215,10 @@
    70,
    66,
    68,
-   68
+   68,
+   65
   ],
   "espacio": [
-   20,
    18,
    17,
    19,
@@ -2330,10 +2361,10 @@
    14,
    10,
    13,
-   13
+   13,
+   10
   ],
   "caribe": [
-   45,
    45,
    22,
    45,
@@ -2476,10 +2507,10 @@
    25,
    44,
    25,
+   25,
    25
   ],
   "pr": [
-   63,
    28,
    63,
    28,
@@ -2622,10 +2653,43 @@
    23,
    26,
    26,
-   27
+   27,
+   23
   ]
  },
  "log_aviones": [
+  {
+   "hex": "add70a",
+   "callsign": "BAT91",
+   "tipo": "DH8B",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 10.1,
+   "lon": -60.86,
+   "alt": 13000,
+   "visto_utc": "2026-11-27T12:00+00:00",
+   "dist_pr_km": 1094,
+   "primera_vez_utc": "2026-11-24T20:05+00:00",
+   "trazas": [
+    {
+     "lat": 10.51,
+     "lon": -61.19,
+     "t": "2026-11-27T11:50+00:00",
+     "rumbo": 143.29,
+     "nudos": 147.2,
+     "alt": 7100
+    },
+    {
+     "lat": 10.1,
+     "lon": -60.86,
+     "t": "2026-11-27T12:00+00:00",
+     "rumbo": 141.11,
+     "nudos": 192.7,
+     "alt": 13000
+    }
+   ]
+  },
   {
    "hex": "ae5def",
    "callsign": "C2016",
@@ -2655,30 +2719,6 @@
      "rumbo": null,
      "nudos": 1.9,
      "alt": "ground"
-    }
-   ]
-  },
-  {
-   "hex": "add70a",
-   "callsign": "BAT91",
-   "tipo": "DH8B",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 10.51,
-   "lon": -61.19,
-   "alt": 7100,
-   "visto_utc": "2026-11-27T11:50+00:00",
-   "dist_pr_km": 1036,
-   "primera_vez_utc": "2026-11-24T20:05+00:00",
-   "trazas": [
-    {
-     "lat": 10.51,
-     "lon": -61.19,
-     "t": "2026-11-27T11:50+00:00",
-     "rumbo": 143.29,
-     "nudos": 147.2,
-     "alt": 7100
     }
    ]
   },
@@ -3870,7 +3910,7 @@
   1,
   1,
   1,
-  1,
+  0,
   0,
   0,
   0,
