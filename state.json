@@ -69,9 +69,25 @@
   "c8147a2c59ed": "2026-11-27T11:00:35+00:00",
   "0c06a4119750": "2026-11-27T11:20:25+00:00",
   "fa69ffe64e62": "2026-11-27T12:00:31+00:00",
-  "b52b160b6301": "2026-11-27T12:00:31+00:00"
+  "b52b160b6301": "2026-11-27T12:00:31+00:00",
+  "68608ebd3149": "2026-11-27T13:00:31+00:00"
  },
  "historial": [
+  {
+   "id": "68608ebd3149",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Emergencia nacional y gobierno",
+   "nivel": 3,
+   "nivel_txt": "ALTO",
+   "titulo": "🚨 Emergencia nacional y gobierno: índice 90/100 (10 en 3 h · 61 en 24 h)",
+   "detalle": "3 medios distintos en 3 h: «defcon 2»",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQMGdEU2FGWmYweGRDaTVsTHktUFZuUklWMVVKQ3dTblZOaXk0SnZodkxYVzJfZENjZlpXSG9ZTTlyVlVFYmduUmlJLTRFTUR4OUlRZU5xdlhYYUFTbkZLbDlOYTRNNzNuYWNBUFVXNDYweGZYZVR4ckdTMDFmeFVYd1VheEI0dUVINXltdFVOcnl4QdIBlwFBVV95cUxNSmZwd0RwdTdJVVczRGcxMklFSXRSNVBxZ2VuWWVXbWxQdnd6MFZDdTB3T0gxZkc0Sll0a18yV2FHVXlDOWlLR05xT0NjWDFQZzR5QTg1VUIyTi02bGpvd3pFckhneElRQ1VLSG9aX1EwTTlFekh6ZW9kS05ZcERWUmpteDJxSW5ZcUwzRm1zaU56V3NNdXkw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-27T13:00:31+00:00"
+  },
   {
    "id": "b52b160b6301",
    "fuente": "Medidor de prensa",
@@ -1247,7 +1263,6 @@
   0,
   0,
   0,
-  0,
   1,
   1,
   1,
@@ -1339,7 +1354,8 @@
   1,
   1,
   0,
-  0
+  0,
+  1
  ],
  "medidores_base": {
   "telecom": [
@@ -1490,7 +1506,6 @@
   ],
   "ciber": [
    26,
-   26,
    60,
    27,
    58,
@@ -1632,10 +1647,10 @@
    60,
    27,
    60,
-   59
+   59,
+   26
   ],
   "electrica": [
-   100,
    73,
    71,
    101,
@@ -1778,10 +1793,10 @@
    55,
    65,
    56,
-   66
+   66,
+   59
   ],
   "ataque": [
-   91,
    95,
    89,
    90,
@@ -1924,10 +1939,10 @@
    95,
    95,
    95,
-   95
+   95,
+   94
   ],
   "terror": [
-   39,
    20,
    20,
    20,
@@ -2070,10 +2085,10 @@
    32,
    56,
    32,
-   55
+   55,
+   32
   ],
   "emergencia": [
-   95,
    95,
    95,
    95,
@@ -2216,10 +2231,10 @@
    70,
    70,
    68,
-   68
+   68,
+   61
   ],
   "espacio": [
-   17,
    14,
    14,
    16,
@@ -2362,10 +2377,10 @@
    10,
    9,
    12,
-   12
+   12,
+   9
   ],
   "caribe": [
-   45,
    44,
    46,
    22,
@@ -2508,10 +2523,10 @@
    25,
    25,
    46,
+   46,
    46
   ],
   "pr": [
-   28,
    62,
    61,
    62,
@@ -2654,10 +2669,51 @@
    27,
    27,
    25,
-   25
+   25,
+   24
   ]
  },
  "log_aviones": [
+  {
+   "hex": "ae5def",
+   "callsign": "C2016",
+   "tipo": "C30J",
+   "desc": "",
+   "clase": "militar",
+   "pais": "EE. UU.",
+   "lat": 27.77,
+   "lon": -79.31,
+   "alt": 17525,
+   "visto_utc": "2026-11-27T13:00+00:00",
+   "dist_pr_km": 1678,
+   "primera_vez_utc": "2026-11-25T19:50+00:00",
+   "trazas": [
+    {
+     "lat": 27.91,
+     "lon": -82.53,
+     "t": "2026-11-27T10:50+00:00",
+     "rumbo": 2.17,
+     "nudos": 132.1,
+     "alt": 900
+    },
+    {
+     "lat": 27.97,
+     "lon": -82.52,
+     "t": "2026-11-27T11:50+00:00",
+     "rumbo": null,
+     "nudos": 1.9,
+     "alt": "ground"
+    },
+    {
+     "lat": 27.77,
+     "lon": -79.31,
+     "t": "2026-11-27T13:00+00:00",
+     "rumbo": 153.27,
+     "nudos": 315.7,
+     "alt": 17525
+    }
+   ]
+  },
   {
    "hex": "ae0360",
    "callsign": "58-0094",
@@ -2719,38 +2775,6 @@
      "rumbo": 141.11,
      "nudos": 192.7,
      "alt": 13000
-    }
-   ]
-  },
-  {
-   "hex": "ae5def",
-   "callsign": "C2016",
-   "tipo": "C30J",
-   "desc": "",
-   "clase": "militar",
-   "pais": "EE. UU.",
-   "lat": 27.97,
-   "lon": -82.52,
-   "alt": "ground",
-   "visto_utc": "2026-11-27T11:50+00:00",
-   "dist_pr_km": 1954,
-   "primera_vez_utc": "2026-11-25T19:50+00:00",
-   "trazas": [
-    {
-     "lat": 27.91,
-     "lon": -82.53,
-     "t": "2026-11-27T10:50+00:00",
-     "rumbo": 2.17,
-     "nudos": 132.1,
-     "alt": 900
-    },
-    {
-     "lat": 27.97,
-     "lon": -82.52,
-     "t": "2026-11-27T11:50+00:00",
-     "rumbo": null,
-     "nudos": 1.9,
-     "alt": "ground"
     }
    ]
   },
@@ -3854,7 +3878,8 @@
   "6/9859": "2026-11-27T00:40+00:00",
   "6/9860": "2026-11-27T00:40+00:00",
   "6/9857": "2026-11-27T00:40+00:00",
-  "6/9856": "2026-11-27T00:40+00:00"
+  "6/9856": "2026-11-27T00:40+00:00",
+  "6/9873": "2026-11-27T13:00+00:00"
  },
  "tfr_base": [
   1,
@@ -3921,7 +3946,6 @@
   1,
   1,
   1,
-  1,
   0,
   0,
   0,
@@ -4000,7 +4024,8 @@
   0,
   0,
   0,
-  0
+  0,
+  1
  ],
  "tfr_geo": {
   "6/9661": {
@@ -11605,6 +11630,182 @@
    "motivo": "Space Operations Area",
    "texto": "!FDC 6/9856 ZMA FL..AIRSPACE CAPE CANAVERAL, FL..TEMPORARY FLIGHT RESTRICTION. PURSUANT TO 14 CFR SECTION 91.143, SPACE OPS AREA, ACFT OPS ARE PROHIBITED WI AN AREA DEFINED AS 285116N0804219W TO 290730N0803000W TO 290557N0802718W TO 290506N0802429W TO 290403N0802144W TO 290248N0801907W TO 290120N0801638W TO 285942N0801419W TO 285753N0801209W TO 285554N0801011W TO 285347N0800826W TO 285133N0800653W TO 284912N0800534W TO 284645N0800429W TO 284414N0800340W TO 284139N0800305W TO 283903N0800246W TO 283625N0800242W TO 283348N0800254W TO 283112N0800322W TO 282840N0800404W TO 282611N0800502W TO 282347N0800614W TO 282129N0800739W TO 281918N0800918W TO 281715N0801110W TO 281521N0801313W TO 281337N0801526W TO 281330N0801600W TO 282501N0803029W TO 282501N0803759W TO 282501N0804144W TO 283121N0804349W TO 283801N0804701W TO 284910N0805044W TO 285116N0804714W TO THE POINT OF ORIGIN SFC-FL180 EFFECTIVE 2612011442 UTC (0942 LOCAL 12/01/26) UNTIL 2612011555 UTC (1055 LOCAL 12/01/26). EXCLUDING AIRSPACE OVER INTERNATIONAL WATERS.\r\nTHIS AREA ENCOMPASSES R2932, R2933 AND PORTIONS OF R2934 AND W497A. ADDITIONAL WARNING AND RESTRICTED AREAS WILL BE ACT. PILOTS MUST CONSULT ALL NOTAMS REGARDING THESE OPS ",
    "altitud": "From the surface  up to and including 18000 feet MSL"
+  },
+  "6/9873": {
+   "areas": [
+    {
+     "tipo": "poligono",
+     "puntos": [
+      [
+       31.24640741,
+       -81.47361111
+      ],
+      [
+       31.24628052,
+       -81.47192308
+      ],
+      [
+       31.24590369,
+       -81.47028635
+      ],
+      [
+       31.24528838,
+       -81.46875067
+      ],
+      [
+       31.2444533,
+       -81.46736271
+      ],
+      [
+       31.24342381,
+       -81.46616464
+      ],
+      [
+       31.24223121,
+       -81.46519286
+      ],
+      [
+       31.24091174,
+       -81.4644769
+      ],
+      [
+       31.23950549,
+       -81.4640385
+      ],
+      [
+       31.23805519,
+       -81.46389098
+      ],
+      [
+       31.23660492,
+       -81.4640388
+      ],
+      [
+       31.23519873,
+       -81.46447745
+      ],
+      [
+       31.23387936,
+       -81.4651936
+      ],
+      [
+       31.23268687,
+       -81.46616548
+      ],
+      [
+       31.23165751,
+       -81.46736355
+      ],
+      [
+       31.23082255,
+       -81.46875141
+      ],
+      [
+       31.23020734,
+       -81.4702869
+      ],
+      [
+       31.22983057,
+       -81.47192337
+      ],
+      [
+       31.2297037,
+       -81.47361111
+      ],
+      [
+       31.22983057,
+       -81.47529885
+      ],
+      [
+       31.23020734,
+       -81.47693532
+      ],
+      [
+       31.23082255,
+       -81.47847081
+      ],
+      [
+       31.23165751,
+       -81.47985867
+      ],
+      [
+       31.23268687,
+       -81.48105674
+      ],
+      [
+       31.23387936,
+       -81.48202862
+      ],
+      [
+       31.23519873,
+       -81.48274477
+      ],
+      [
+       31.23660492,
+       -81.48318342
+      ],
+      [
+       31.23805519,
+       -81.48333124
+      ],
+      [
+       31.23950549,
+       -81.48318372
+      ],
+      [
+       31.24091174,
+       -81.48274532
+      ],
+      [
+       31.24223121,
+       -81.48202936
+      ],
+      [
+       31.24342381,
+       -81.48105758
+      ],
+      [
+       31.2444533,
+       -81.47985951
+      ],
+      [
+       31.24528838,
+       -81.47847155
+      ],
+      [
+       31.24590369,
+       -81.47693587
+      ],
+      [
+       31.24628052,
+       -81.47529914
+      ],
+      [
+       31.24640741,
+       -81.47361111
+      ],
+      [
+       31.23805556,
+       -81.47361111
+      ],
+      [
+       31.23805556,
+       -81.47361111
+      ],
+      [
+       31.05051428,
+       -81.44596253
+      ],
+      [
+       31.05051428,
+       -81.44596253
+      ]
+     ]
+    }
+   ],
+   "motivo": "Temporary flight restrictions for Special Security Reasons",
+   "texto": "!FDC 6/9873 ZJX GA..AIRSPACE BRUNSWICK, GA..TEMPORARY FLIGHT RESTRICTIONS. NOVEMBER 30-DECEMBER 18, 2026 LOCAL. PURSUANT TO 49 USC 40103(B)(3), THE FEDERAL AVIATION ADMINISTRATION (FAA) CLASSIFIES THE AIRSPACE DEFINED IN THIS NOTAM AS 'NTL DEFENSE AIRSPACE'. PILOTS WHO DO NOT ADHERE TO THE FOLLOWING PROC MAY BE INTERCEPTED, DETAINED AND INTERVIEWED BY LAW ENFORCEMENT/SECURITY PERSONNEL. ANY OF THE FOLLOWING ADDITIONAL ACTIONS MAY ALSO BE TAKEN AGAINST A PILOT WHO DOES NOT COMPLY WITH THE RQMNTS OR ANY SPECIAL INSTRUCTIONS OR PROC ANNOUNCED IN THIS NOTAM:\nA) THE FAA MAY TAKE ADMINISTRATIVE ACTION, INCLUDING IMPOSING CIVIL PENALTIES AND THE SUSPENSION OR REVOCATION OF AIRMEN CERTIFICATES; OR \nB) THE UNITED STATES GOVERNMENT MAY PURSUE CRIMINAL CHARGES, INCLUDING CHARGES UNDER 49 USC SECTION 46307; OR \nC) THE UNITED STATES GOVERNMENT MAY USE DEADLY FORCE AGAINST THE AIRBORNE ACFT, IF IT IS DETERMINED THAT THE ACFT POSES AN IMMINENT SECURITY THREAT. \nPURSUANT TO 14 CFR 99.7, SPECIAL SECURITY INSTRUCTIONS (SSI), ALL UNMANNED ACFT SYSTEM (UAS) FLT OPS ARE PROHIBITED: WI AN AREA DEFINED AS 0.5NM RADIUS OF 311417N0812825W (SSI357011.3) SFC-400FT AGL EFFECTIVE 2611301200 UTC (0700 LOCAL 11/",
+   "altitud": ""
   }
  },
  "tle_cache": {
