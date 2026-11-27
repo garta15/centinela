@@ -210,6 +210,9 @@ body.vmapa main{max-width:1240px}
 .leyenda .i{width:16px;height:16px;color:#fff}.leyenda .tri{display:inline-block}
 .nnum{font:600 16px/1 "IBM Plex Sans",sans-serif;color:var(--c);margin:-8px 0 16px}
 .pel{display:flex;flex-direction:column;justify-content:flex-end;gap:2px}.pnum{font:800 18px/1 "Barlow Condensed",sans-serif;opacity:.9}.pel.on .pnum{font-size:22px}
+.escalera.dc{margin-top:12px}.escalera.dc .pel{height:44px}.escalera.dc .pel.on{height:52px}
+.chips2{display:flex;flex-wrap:wrap;gap:8px}.chip2{background:var(--carta);border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:14px}
+.lista li.sig{display:flex;align-items:center;gap:10px}.lista li.sig>div{flex:1}
 </style>
 <link rel="icon" type="image/svg+xml" href="icono.svg"><link rel="apple-touch-icon" href="icono-180.png">
 </head><body><main>
@@ -411,6 +414,23 @@ function riesgoHTML(d){const r=d.riesgo_familiar;if(!r)return"";
     <div class="rf-num" style="--c:${COL[r.color]}"><b>${r.indice}</b><span>de 100 · ${esc(r.etiqueta.toLowerCase())}</span></div></div>
     <ul class="cats">${filas}</ul><div class="planes"><div class="ptit">Qué hacer</div>${pl}</div>
     <p class="det nota2">${esc(r.nota)}</p></section>`;}
+const CMD_ES={NORTHCOM:"Norte · defensa de EE. UU. y Puerto Rico",SOUTHCOM:"Sur · Caribe y Latinoamérica",CYBERCOM:"Ciberespacio",SPACECOM:"Espacio",STRATCOM:"Estratégico (nuclear)",
+  CENTCOM:"Medio Oriente",EUCOM:"Europa",INDOPACOM:"Asia-Pacífico",AFRICOM:"África",SOCOM:"Operaciones especiales",TRANSCOM:"Transporte",BIOCOM:"Biológico",DISASTERCOM:"Desastres",FINCOM:"Financiero"};
+const dcol=n=>COL[Math.max(0,Math.min(4,5-n))];
+function defconHTML(d){const x=d.defcon||{};if(!x.defcon)return"";
+  const esc5=[5,4,3,2,1].map(k=>`<li class="pel${k===x.defcon?" on":""}${k>x.defcon?" bajo":""}" style="--c:${dcol(k)}"><b class="pnum">${k}</b><span>${["","Máximo","Muy alto","Elevado","Vigilancia","Normal"][k]}</span></li>`).join("");
+  const cm=Object.entries(x.comandos||{}).sort((a,b)=>(["NORTHCOM","SOUTHCOM","CYBERCOM"].indexOf(b[0])>=0)-(["NORTHCOM","SOUTHCOM","CYBERCOM"].indexOf(a[0])>=0)||a[1]-b[1]);
+  const fila2=([k,v])=>`<li class="sig"><span class="dot" style="background:${dcol(v)}"></span><div><b>${k}</b> <span class="det">· ${esc(CMD_ES[k]||"")}</span></div><span class="fest" style="--c:${dcol(v)}">${v}</span></li>`;
+  const pr=cm.filter(([k])=>["NORTHCOM","SOUTHCOM","CYBERCOM"].includes(k)), resto=cm.filter(([k])=>!["NORTHCOM","SOUTHCOM","CYBERCOM"].includes(k));
+  const c24=Object.entries(x.ult_24h||{}).map(([k,v])=>`<span class="chip2">${esc(k)} <b>${v}</b></span>`).join("");
+  return `<p class="det">Escala al revés: <b>5</b> es normal y <b>1</b> es lo máximo. El nivel oficial es secreto; esto es la estimación de un sitio privado con fuentes abiertas.</p>
+    <ol class="escalera dc">${esc5}</ol>
+    <p style="margin:12px 0 4px"><b>DEFCON ${x.defcon}</b>${x.codigo?` <span class="det">(${esc(x.codigo)})</span>`:""}${x.nuclear?` · Riesgo nuclear <b>${x.nuclear}</b>`:""}</p>
+    ${x.motivo?`<p class="det">Motivo principal (en inglés): ${esc(x.motivo)}</p>`:""}
+    ${pr.length?`<div class="bloque"><h3>Comandos más relevantes para Puerto Rico</h3><ul class="lista">${pr.map(fila2).join("")}</ul></div>`:""}
+    ${resto.length?`<details class="plan"><summary>Otros ${resto.length} comandos</summary><ul class="lista">${resto.map(fila2).join("")}</ul></details>`:""}
+    ${c24?`<div class="bloque"><h3>Alertas en las últimas 24 h</h3><div class="chips2">${c24}</div></div>`:""}
+    <p class="det" style="margin-top:12px">${x.cambio?`Último cambio: ${esc(x.cambio)} · `:""}leído ${hace(x.leido_utc)} · ${enlace("https://www.defconlevel.com/current-level","defconlevel.com")}</p>`;}
 function energiaHTML(d){const e=d.energia||{},pr=e.pr||{},us=e.us||{};
   const ev=(pr.evidencia||[]).slice(0,5).map(x=>`<li>${enlace(x.url,x.texto)}<div class="det">${esc(x.fuente)} · ${fechaPR(x.hora_utc)}</div></li>`).join("");
   const rg=(us.regiones||[]).map(r=>{const v=Math.max(-30,Math.min(30,r.desviacion_pct)),col=r.desviacion_pct<=-10?COL[3]:r.desviacion_pct<=-5?COL[2]:COL[0];
@@ -531,6 +551,7 @@ function pintar(d){
         <div class="bloque"><h3>Aeropuertos de EE. UU.</h3><ul class="lista">${gsl}${cl}</ul>${!gsl&&!cl?'<p class="det">Sin aeropuertos detenidos ni cerrados.</p>':""}
         <p class="det">Con demoras programadas: ${(ea.demoras_programadas||[]).length}.</p></div>`))}
     ${grupo("Noticias",
+      (d.defcon&&d.defcon.defcon?fila("defcon","alerta","Estimación DEFCON",`No oficial · ${d.defcon.nuclear?"riesgo nuclear "+d.defcon.nuclear+" · ":""}${Object.values(d.defcon.comandos||{}).filter(v=>v<5).length} comandos en alerta`,Math.max(0,Math.min(4,5-d.defcon.defcon)),defconHTML(d),"DEFCON "+d.defcon.defcon):"")+
       fila("medidores","medidor","Termómetro de noticias",medMax?`Lo más alto: ${esc(medMax.nombre)}`:"",medMax?medMax.nivel:0,`<p class="det">Cuánto se habla de cada tema comparado con lo normal. Toca uno para ver sus noticias.</p><div class="gridm">${med}</div>`)+
       fila("titulares","diario","Titulares","Prensa sin verificar",null,`<ul class="lista">${tit}</ul>`)+
       (nb?fila("netblocks","sinred","Cortes de internet en el mundo","Reportes de NetBlocks",null,`<ul class="lista">${nb}</ul>`):""))}

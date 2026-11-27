@@ -275,6 +275,55 @@ def f_pizzint():
                          clave=f"pizz-{lvl}-{NOW:%Y%m%d%H}", seccion="amenazas"))
     return out
 
+DEFCON_EST = {}
+_COMANDOS = ["NORTHCOM", "SOUTHCOM", "CYBERCOM", "SPACECOM", "STRATCOM", "CENTCOM", "EUCOM", "INDOPACOM",
+             "AFRICOM", "SOCOM", "TRANSCOM", "BIOCOM", "DISASTERCOM", "FINCOM"]
+def f_defconlevel():
+    """defconlevel.com: estimación OSINT (NO oficial) de DEFCON, riesgo nuclear y alertas por comando.
+    Se lee como máximo 1 vez por hora y cuenta solo como medidor (no dispara alertas por sí sola)."""
+    cache = ESTADO_REF.setdefault("defcon_cache", {})
+    if cache.get("t") and (NOW - datetime.fromisoformat(cache["t"])).total_seconds() < 3600:
+        DEFCON_EST.update(cache["d"])
+    else:
+        h = get("https://www.defconlevel.com/current-level").text
+        h = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", h)
+        t = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h)))
+        m = re.search(r"Current DEFCON.{0,120}?DEFCON\s*([1-5])", t, re.I) or re.search(r"\bDEFCON\s*([1-5])\b", t)
+        if not m: raise RuntimeError("no se encontró el nivel DEFCON en la página")
+        d = {"defcon": int(m.group(1))}
+        cw = re.search(r"\bDEFCON\s*%s\b.{0,60}?\b([A-Z]{4,}(?: [A-Z]{4,})?)\b" % d["defcon"], t)
+        if cw and cw.group(1) not in ("OSINT", "DEFCON", "NUCLEAR", "ESTIMATE"): d["codigo"] = cw.group(1).title()
+        n = re.search(r"\bNUCLEAR\s*([1-5])\b", t)
+        if n: d["nuclear"] = int(n.group(1))
+        d["comandos"] = {}
+        for c in _COMANDOS:
+            mc = re.search(r"\b%s\s*([1-5])\b" % c, t)
+            if mc: d["comandos"][c] = int(mc.group(1))
+        dr = re.search(r"Primary driver\s*:?\s*(.{5,140}?)(?=\s+(?:Oil|Market|Last 24|Gold|Updated|\$)|$)", t, re.I)
+        if dr: d["motivo"] = dr.group(1).strip(" :-–")
+        cats = {}
+        for k, es in (("Military", "Militar"), ("Cyber", "Ciber"), ("Terrorism", "Terrorismo"), ("Diplomatic", "Diplomático"), ("Space security", "Espacio")):
+            mk = re.search(r"\b%s\s*:?\s*(\d{1,3})\b" % k, t)
+            if mk: cats[es] = int(mk.group(1))
+        d["ult_24h"] = cats
+        ch = re.search(r"(?:Estimate last changed|last changed)\s*:?\s*([A-Z][a-z]{2,8}\.? \d{1,2},? \d{4})", t)
+        if ch: d["cambio"] = ch.group(1)
+        d["leido_utc"] = NOW.isoformat(timespec="minutes")
+        print("  defconlevel:", {k: v for k, v in d.items() if k != "comandos"}, "comandos:", len(d["comandos"]))
+        cache.update({"t": NOW.isoformat(timespec="minutes"), "d": d})
+        DEFCON_EST.update(d)
+    d = DEFCON_EST
+    # DEFCON 5→0, 4→0, 3→1, 2/1→2 (tope 2: es una estimación no oficial)
+    n = {5: 0, 4: 0, 3: 1, 2: 2, 1: 2}[d["defcon"]]
+    out = []
+    if n:
+        out.append(senal("Medidor DEFCON (OSINT, no oficial)", "Estimación DEFCON", n,
+                         f"Estimación OSINT: DEFCON {d['defcon']}" + (f" · nuclear {d['nuclear']}" if d.get("nuclear") else ""),
+                         (d.get("motivo") or "") + " — estimación de un sitio privado, no es el nivel oficial.",
+                         url="https://www.defconlevel.com/current-level", clave=f"defcon-{d['defcon']}-{d.get('nuclear')}",
+                         seccion="amenazas"))
+    return out
+
 # Aeronaves de interés (códigos ICAO de tipo)
 TIPOS_CLAVE = {"E6": "E-6B Mercury (mando nuclear)", "E3TF": "E-3 AWACS", "E3CF": "E-3 AWACS",
                "R135": "RC-135 (reconocimiento)", "P8": "P-8 Poseidon (patrulla marítima)",
@@ -1489,7 +1538,7 @@ FUENTES = [("Medidores de seguridad nacional", f_medidores),
            ("Alertas oficiales PR (NWS)", f_nws_pr), ("Alertas civiles EE. UU. (NWS)", f_nws_nacional),
            ("Huracán sobre PR (NHC)", f_huracanes), ("Tsunami (NTWC)", f_tsunami), ("Sismos fuertes (USGS)", f_sismos),
            ("Internet PR/EE. UU. (IODA)", f_ioda), ("Apple iMessage/FaceTime", f_apple),
-           ("Clima espacial (NOAA)", f_clima_espacial), ("PizzINT", f_pizzint),
+           ("Clima espacial (NOAA)", f_clima_espacial), ("PizzINT", f_pizzint), ("DEFCON estimado (OSINT)", f_defconlevel),
            ("Aviones militares Caribe (ADS-B)", f_militar_caribe), ("GPS Caribe (GPSJam)", f_gpsjam),
            ("Aeronaves cerca de PR (registro)", f_aeronaves_pr), ("Buques militares (reportes)", f_buques),
            ("Puertos que abastecen a PR", f_puertos),
@@ -1566,6 +1615,7 @@ def escribir_salidas(nivel, resumen, senales, estado_fuentes, historial):
                                  key=lambda x: x["prox"])[:90],
         "netblocks": NETBLOCKS[:15],
         "energia": ENERGIA,
+        "defcon": DEFCON_EST,
         "riesgo_familiar": evaluar_riesgo_familiar(senales),
         "mapa": {
             "aviones": [x for x in ESTADO_REF.get("log_aviones", []) if x.get("trazas")][:60],
