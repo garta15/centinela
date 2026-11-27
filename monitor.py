@@ -286,6 +286,7 @@ def f_defconlevel():
         DEFCON_EST.update(cache["d"])
     else:
         h = get("https://www.defconlevel.com/current-level").text
+        _raw = h
         h = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", h)
         t = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h)))
         m = re.search(r"Current DEFCON.{0,120}?DEFCON\s*([1-5])", t, re.I) or re.search(r"\bDEFCON\s*([1-5])\b", t)
@@ -300,7 +301,8 @@ def f_defconlevel():
             mc = re.search(r"\b%s\b[^0-9A-Z]{0,60}?\b([1-5])\b" % c, t) or re.search(r"\b([1-5])\b[^0-9A-Z]{0,30}?\b%s\b" % c, t)
             if mc: d["comandos"][c] = int(mc.group(1))
         if not d["comandos"]:
-            i = t.find("SOUTHCOM"); print("  defconlevel (texto comandos):", t[max(0, i - 150):i + 150] if i >= 0 else "sin SOUTHCOM")
+            for mm in list(re.finditer("SOUTHCOM", _raw))[:4]:
+                print("  defconlevel (html):", re.sub(r"\s+", " ", _raw[max(0, mm.start() - 300):mm.start() + 200]))
         dr = re.search(r"Primary driver\s*:?\s*(.{5,140}?)(?=\s+(?:Oil|Market|Last 24|Gold|Updated|\$)|$)", t, re.I)
         if dr: d["motivo"] = dr.group(1).strip(" :-–")
         cats = {}
