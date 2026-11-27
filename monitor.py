@@ -282,7 +282,7 @@ def f_defconlevel():
     """defconlevel.com: estimación OSINT (NO oficial) de DEFCON, riesgo nuclear y alertas por comando.
     Se lee como máximo 1 vez por hora y cuenta solo como medidor (no dispara alertas por sí sola)."""
     cache = ESTADO_REF.setdefault("defcon_cache", {})
-    if cache.get("t") and (NOW - datetime.fromisoformat(cache["t"])).total_seconds() < 3600:
+    if cache.get("t") and cache.get("d", {}).get("comandos") and (NOW - datetime.fromisoformat(cache["t"])).total_seconds() < 3600:
         DEFCON_EST.update(cache["d"])
     else:
         h = get("https://www.defconlevel.com/current-level").text
@@ -297,8 +297,10 @@ def f_defconlevel():
         if n: d["nuclear"] = int(n.group(1))
         d["comandos"] = {}
         for c in _COMANDOS:
-            mc = re.search(r"\b%s\s*([1-5])\b" % c, t)
+            mc = re.search(r"\b%s\b[^0-9A-Z]{0,60}?\b([1-5])\b" % c, t) or re.search(r"\b([1-5])\b[^0-9A-Z]{0,30}?\b%s\b" % c, t)
             if mc: d["comandos"][c] = int(mc.group(1))
+        if not d["comandos"]:
+            i = t.find("SOUTHCOM"); print("  defconlevel (texto comandos):", t[max(0, i - 150):i + 150] if i >= 0 else "sin SOUTHCOM")
         dr = re.search(r"Primary driver\s*:?\s*(.{5,140}?)(?=\s+(?:Oil|Market|Last 24|Gold|Updated|\$)|$)", t, re.I)
         if dr: d["motivo"] = dr.group(1).strip(" :-–")
         cats = {}
