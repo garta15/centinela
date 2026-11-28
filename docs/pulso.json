@@ -1,9 +1,8 @@
 {
- "actualizado_utc": "2026-11-28T06:00:38+00:00",
+ "actualizado_utc": "2026-11-28T06:10:23+00:00",
  "nivel": 1,
  "motor": "github",
  "fuentes_con_falla": [
-  "Downdetector (v\u00eda prensa)",
   "IODA por proveedor (ISP)",
   "Internet PR/EE. UU. (IODA)"
  ]
