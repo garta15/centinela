@@ -78,9 +78,25 @@
   "8ea9f238a6ef": "2026-11-27T17:20:21+00:00",
   "869a7713811b": "2026-11-27T18:00:30+00:00",
   "5bbf606c10c0": "2026-11-27T22:30:27+00:00",
-  "fdcb63cdd386": "2026-11-27T23:00:32+00:00"
+  "fdcb63cdd386": "2026-11-27T23:00:32+00:00",
+  "da0a6540f200": "2026-11-28T07:50:26+00:00"
  },
  "historial": [
+  {
+   "id": "da0a6540f200",
+   "fuente": "Medidor de prensa",
+   "categoria": "Medidor: Satélites, GPS y espacio",
+   "nivel": 2,
+   "nivel_txt": "ELEVADO",
+   "titulo": "🛰️ Satélites, GPS y espacio: índice 72/100 (3 en 3 h · 8 en 24 h)",
+   "detalle": "Centuries of Vatican records wipe out rumored reign of Pope Joan - Dagens.com",
+   "lat": null,
+   "lon": null,
+   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNeFI1VWVGVDdLb2taNENEd1lvOEpuRzZlaC1HTVk2UGpONlpQTjhySWtIdERaaGRxSTRGcWF2d1pKTUhCd05iQ0Y0NHFUR1B2YzR6dlJLWjJ6dzVGbFBIVGFreUwtb0tUdkh4cWNnRW9CTmhrdzdfNjgxaXhuSFRYckRjVS1qVk9BbHRFVFdUTmpITGtMR2FqaVYwYw?oc=5",
+   "alcance": "global",
+   "seccion": "medidores",
+   "hora_utc": "2026-11-28T07:50:26+00:00"
+  },
   {
    "id": "fdcb63cdd386",
    "fuente": "Medidor de prensa",
@@ -1386,9 +1402,8 @@
    "hora_utc": "2026-11-18T01:15:54+00:00"
   }
  ],
- "ultimo_nivel": 1,
+ "ultimo_nivel": 2,
  "mil_caribe": [
-  1,
   1,
   1,
   1,
@@ -1483,6 +1498,7 @@
   0,
   0,
   0,
+  0,
   0
  ],
  "medidores_base": {
@@ -1551,6 +1567,7 @@
    1,
    1,
    0,
+   1,
    1,
    1,
    1,
@@ -1630,7 +1647,8 @@
    25,
    25,
    25,
-   26
+   26,
+   46
   ],
   "electrica": [
    63,
@@ -1703,7 +1721,8 @@
    48,
    57,
    54,
-   58
+   58,
+   56
   ],
   "ataque": [
    99,
@@ -1770,6 +1789,7 @@
    95,
    92,
    0,
+   95,
    95,
    95,
    95,
@@ -1849,7 +1869,8 @@
    26,
    25,
    43,
-   42
+   42,
+   25
   ],
   "emergencia": [
    53,
@@ -1922,7 +1943,8 @@
    73,
    72,
    80,
-   73
+   73,
+   80
   ],
   "espacio": [
    6,
@@ -1995,7 +2017,8 @@
    6,
    8,
    4,
-   6
+   6,
+   8
   ],
   "caribe": [
    53,
@@ -2068,7 +2091,8 @@
    34,
    34,
    50,
-   50
+   50,
+   35
   ],
   "suministros": [
    11,
@@ -2141,6 +2165,7 @@
    7,
    6,
    5,
+   6,
    6
   ],
   "pr": [
@@ -2214,7 +2239,8 @@
    30,
    28,
    30,
-   28
+   28,
+   34
   ]
  },
  "log_aviones": [
@@ -3458,7 +3484,6 @@
   0,
   0,
   0,
-  0,
   1,
   1,
   1,
@@ -3496,6 +3521,7 @@
   3,
   3,
   3,
+  4,
   4,
   4,
   4,
