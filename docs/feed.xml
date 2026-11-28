@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel><title>OSINT Puerto Rico — 🔵 nivel 1</title>
+<rss version="2.0"><channel><title>OSINT Puerto Rico — 🟡 nivel 2</title>
 <link>https://garta15.github.io/centinela/</link><description>Contenido cifrado</description>
-<lastBuildDate>Sat, 28 Nov 2026 13:00:38 +0000</lastBuildDate><ttl>15</ttl>
+<lastBuildDate>Sat, 28 Nov 2026 13:10:20 +0000</lastBuildDate><ttl>15</ttl>
 <item><title>🟡 Nueva alerta (nivel 2) — abre el panel</title>
+<link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">0a33c93a7fe0-2026-11-28T13:10:20+00:00</guid>
+<pubDate>Sat, 28 Nov 2026 13:10:20 +0000</pubDate>
+<description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟡 Nueva alerta (nivel 2) — abre el panel</title>
 <link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">554c4807dd18-2026-11-28T12:00:27+00:00</guid>
 <pubDate>Sat, 28 Nov 2026 12:00:27 +0000</pubDate>
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟡 Nueva alerta (nivel 2) — abre el panel</title>
@@ -119,8 +122,5 @@
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟠 Nueva alerta (nivel 3) — abre el panel</title>
 <link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">ea8bb6df3026-2026-11-26T03:00:31+00:00</guid>
 <pubDate>Thu, 26 Nov 2026 03:00:31 +0000</pubDate>
-<description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item><item><title>🟠 Nueva alerta (nivel 3) — abre el panel</title>
-<link>https://garta15.github.io/centinela/</link><guid isPermaLink="false">c1cddbb16c41-2026-11-26T02:20:32+00:00</guid>
-<pubDate>Thu, 26 Nov 2026 02:20:32 +0000</pubDate>
 <description>Contenido cifrado. Ábrelo en el panel familiar con la clave.</description></item>
 </channel></rss>
